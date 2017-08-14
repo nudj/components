@@ -1,7 +1,7 @@
 const React = require('react')
 const Textarea = require('react-textarea-autosize')
 const get = require('lodash/get')
-const styles = require('./compose-email.css.js')
+const styles = require('./email-form.css')
 
 const errorLabel = (className, template) => <p className={className}>{template}</p>
 

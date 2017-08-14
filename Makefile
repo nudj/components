@@ -5,24 +5,24 @@ BIN:=./node_modules/.bin
 
 build:
 	@docker build \
-		-t test-image \
+		-t components-image \
 		.
 
 test:
-	-@docker rm -f test-container 2> /dev/null || true
+	-@docker rm -f components-container 2> /dev/null || true
 	@docker run --rm -it \
-		--name test-container \
+		--name components-container \
 		-v $(CWD)/src/lib:/usr/src/lib \
 		-v $(CWD)/src/test:/usr/src/test \
-		test-image
+		components-image
 
 tdd:
-	-@docker rm -f test-container 2> /dev/null || true
+	-@docker rm -f components-container 2> /dev/null || true
 	@docker run --rm -it \
-		--name test-container \
+		--name components-container \
     -v $(CWD)/src/lib:/usr/src/lib \
     -v $(CWD)/src/test:/usr/src/test \
-		test-image \
+		components-image \
 		$(BIN)/nodemon \
 			--quiet \
 			--watch ./ \

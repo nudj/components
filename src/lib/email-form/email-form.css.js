@@ -17,7 +17,10 @@ const styles = ({
     alignSelf: 'center'
   })
 
-  return merge(mixins.pageLayout, {
+  return {
+    emailForm: {
+      paddingTop: variables.padding.d
+    },
     inputWrap: {
       flex: 1,
       display: 'flex',
@@ -35,6 +38,9 @@ const styles = ({
     recipients: merge({
       flexGrow: '1'
     }, mixins.formElements.inputBoxBorderless),
+    recipientsReadonly: merge({
+      flexGrow: '1'
+    }, mixins.formElements.inputBoxReadonlyBorderless),
     email: merge(mixins.cardStyle, {
     }),
     subjectWrap: merge(fieldStyle, {
@@ -61,7 +67,7 @@ const styles = ({
       color: variables.colors.midRed,
       paddingBottom: variables.padding.e
     }
-  })
+  }
 }
 
 module.exports = styles

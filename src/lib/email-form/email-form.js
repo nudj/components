@@ -1,19 +1,39 @@
 const React = require('react')
 const Textarea = require('react-textarea-autosize')
 const get = require('lodash/get')
+const classnames = require('classnames')
 const styles = require('./email-form.css')
 
 const errorLabel = (className, template) => <p className={className}>{template}</p>
 
 module.exports = (props) => {
   const style = props.css(styles)
+
+  let recipientInteractions = { readOnly: true }
+  if (props.onChangeRecipients) {
+    recipientInteractions = {
+      onChange: props.onChangeRecipients,
+      onBlur: props.onBlurRecipients
+    }
+  }
+
   return (
-    <div>
+    <div className={classnames(style.emailForm, props.className)}>
       <div className={style.recipientsWrap}>
         <label className={style.addLabel}>Sending to</label>
         <div className={style.inputWrap}>
           {props.recipientsError ? errorLabel(style.errorLabel, props.recipientsError) : null}
-          <input className={style.recipients} id='recipients' name='recipients' value={get(props, 'recipients', '')} onChange={props.onChangeRecipients} onBlur={props.onBlurRecipients} placeholder='Enter employee’s email here' />
+          <input
+            className={classnames({
+              [style.recipients]: !!props.onChangeRecipients,
+              [style.recipientsReadonly]: !props.onChangeRecipients
+            })}
+            id='recipients'
+            name='recipients'
+            value={get(props, 'recipients', '')}
+            {...recipientInteractions}
+            placeholder='Enter employee’s email here'
+          />
         </div>
       </div>
       <div className={style.email}>

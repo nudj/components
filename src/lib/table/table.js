@@ -4,22 +4,38 @@ const get = require('lodash/get')
 const Table = (props) => {
   const data = get(props, 'data', [])
   const columns = get(props, 'columns', [])
+  const className = get(props, 'className')
+  const rowsClassName = get(props, 'rowsClassName')
+  const headerClassName = get(props, 'headerClassName')
+  const headerRowClassName = get(props, 'headerRowClassName')
+  const headingsClassName = get(props, 'headersClassName')
+  const bodyClassName = get(props, 'bodyClassName')
+  const cellsClassName = get(props, 'cellsClassName')
+
+  const renderDataRow = (connection) => {
+    return columns.map(column => {
+      let rowData = get(connection, column.accessor, '')
+      if (column.accessor.keys) {
+        const splitter = get(column.accessor, 'joinWith', ' ')
+        const values = column.accessor.keys.map(key => get(connection, key, ''))
+        rowData = values.join(splitter)
+      }
+
+      return <td className={cellsClassName} key={`td-${connection.id}`}>{rowData}</td>
+    })
+  }
 
   return (
-    <table>
-      <thead>
-        <tr>
-          {columns.map(header => <th key={header.title}>{header.title}</th>)}
+    <table className={className}>
+      <thead className={headerClassName}>
+        <tr className={headerRowClassName}>
+          {columns.map(header => <th className={headingsClassName} key={header.title}>{header.title}</th>)}
         </tr>
       </thead>
-      <tbody>
-        {data.map(connection => {
-          return (
-            <tr key={`tr-${connection.id}`}>
-              {columns.map(column => <td key={`td-${connection.id}`}>{get(connection, column.accessor, '')}</td>)}
-            </tr>
-          )
-        })}
+      <tbody className={bodyClassName}>
+        {
+          data.map(connection => <tr className={rowsClassName} key={`tr-${connection.id}`}>{renderDataRow(connection)}</tr>)
+        }
       </tbody>
     </table>
   )

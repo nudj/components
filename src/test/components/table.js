@@ -95,4 +95,61 @@ describe('Table', () => {
     expect(firstRow.at(0).text()).to.equal('Dot Notation Success')
     expect(firstRow.at(1).text()).to.equal('Bracket Success')
   })
+
+  it('can use an object accessor to concat values under one heading', () => {
+    const tableColumn = [
+      {
+        title: 'Name',
+        accessor: {
+          keys: ['firstName', 'lastName']
+        }
+      }
+    ]
+    const tableData = [{
+      id: 1,
+      firstName: 'John',
+      lastName: 'Smith'
+    }]
+    const component = shallow(<Table data={tableData} columns={tableColumn} />)
+    const rows = component.find('tbody').children()
+    const firstRow = rows.first().children()
+
+    expect(firstRow.at(0).text()).to.equal('John Smith')
+  })
+
+  it('can be provided with a custom separator for an object accessor', () => {
+    const tableColumn = [
+      {
+        title: 'Name',
+        accessor: {
+          keys: ['firstName', 'lastName'],
+          joinWith: '----'
+        }
+      }
+    ]
+    const tableData = [{
+      id: 1,
+      firstName: 'John',
+      lastName: 'Smith'
+    }]
+    const component = shallow(<Table data={tableData} columns={tableColumn} />)
+    const rows = component.find('tbody').children()
+    const firstRow = rows.first().children()
+
+    expect(firstRow.at(0).text()).to.equal('John----Smith')
+  })
+
+  describe('styles', () => {
+    it('can be provided with a className', () => {
+      const component = shallow(<Table className='custom_class' data={data} columns={columns} />)
+      const props = component.props()
+      expect(props.className).to.equal('custom_class')
+    })
+
+    it('can be given a general', () => {
+      const component = shallow(<Table className='custom_class' data={data} columns={columns} />)
+      const props = component.props()
+      expect(props.className).to.equal('custom_class')
+    })
+  })
 })

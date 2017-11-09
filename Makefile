@@ -15,7 +15,7 @@ test:
 		-v $(CWD)/src/lib:/usr/src/lib \
 		-v $(CWD)/src/test:/usr/src/test \
 		components-image \
-		/bin/sh -c '$(BIN)/standard && $(BIN)/mocha --recursive test'
+		/bin/sh -c '$(BIN)/standard && $(BIN)/mocha --compilers js:babel-core/register --recursive test'
 
 tdd:
 	-@docker rm -f components-container 2> /dev/null || true
@@ -28,4 +28,4 @@ tdd:
 			--quiet \
 			--watch ./ \
 			--delay 250ms \
-			-x '$(BIN)/standard && $(BIN)/mocha --recursive test || exit 1'
+			-x '$(BIN)/standard && $(BIN)/mocha --compilers js:babel-core/register --recursive test || exit 1'

@@ -4,6 +4,11 @@ chai.use(require('dirty-chai'))
 chai.use(require('sinon-chai'))
 global.expect = chai.expect
 
+const { configure } = require('enzyme')
+const Adapter = require('enzyme-adapter-react-15')
+
+configure({ adapter: new Adapter() })
+
 global.asyncTest = (fn) => {
   return async () => {
     try {

@@ -28,4 +28,4 @@ tdd:
 			--quiet \
 			--watch ./ \
 			--delay 250ms \
-			-x '$(BIN)/standard && $(BIN)/mocha --compilers js:babel-core/register --recursive test || exit 1'
+			-x '$(BIN)/mocha --compilers js:babel-core/register --recursive test || exit 1'

@@ -9,41 +9,90 @@ const Table = require('../../lib/table')
 
 const columns = [
   {
-    Header: 'First Name',
+    title: 'First Name',
     accessor: 'firstName'
   },
   {
-    Header: 'Last Name',
+    title: 'Last Name',
     accessor: 'lastName'
   },
   {
-    Header: 'Source',
+    title: 'Source',
     accessor: 'source'
   },
   {
-    Header: 'Company',
+    title: 'Company',
     accessor: 'company'
   },
   {
-    Header: 'Job Title',
+    title: 'Job Title',
     accessor: 'title'
   },
   {
-    Header: 'Email Address',
+    title: 'Email Address',
     accessor: 'to.email'
   }
 ]
 
 describe('Table', () => {
-  it('takes data as a prop', () => {
+  it('takes an array of columns', () => {
     const component = shallow(<Table data={data} columns={columns} />)
-    const props = component.props()
-    expect(props.data.length).to.deep.equal(6)
+    const headers = component.find('th')
+
+    expect(headers).to.have.length(6)
   })
 
-  it('takes columns as a prop', () => {
+  it('creates rows based on provided data', () => {
     const component = shallow(<Table data={data} columns={columns} />)
-    const props = component.props()
-    expect(props.columns.length).to.deep.equal(7)
+    const rows = component.find('tbody').children()
+
+    expect(rows).to.have.length(7)
+  })
+
+  it('renders the provided title as the column title', () => {
+    const component = shallow(<Table data={data} columns={columns} />)
+    const firstHeader = component.find('th').at(0).props()
+    const secondHeader = component.find('th').at(1).props()
+
+    expect(firstHeader.children).to.equal('First Name')
+    expect(secondHeader.children).to.equal('Last Name')
+  })
+
+  it('places the correct values on the row using the column accessor keys', () => {
+    const component = shallow(<Table data={data} columns={columns} />)
+    const rows = component.find('tbody').children()
+    const firstRow = rows.first().children()
+    const rowData = firstRow.map(rowItem => rowItem.text())
+
+    expect(rowData).to.deep.equal([
+      'John',
+      'Smith',
+      'LinkedIn',
+      'Grand Testing Inc.',
+      'Chief Executive Tester',
+      'test@email.com'
+    ])
+  })
+
+  it('can use accessor strings for row data', () => {
+    const tableColumn = [
+      { title: 'Dot Notation', accessor: 'deeply.nested.value' },
+      { title: 'Brackets', accessor: 'bracketed[\'value\']' }
+    ]
+    const tableData = [{
+      id: 1,
+      bracketed: { value: 'Bracket Success' },
+      deeply: {
+        nested: {
+          value: 'Dot Notation Success'
+        }
+      }
+    }]
+    const component = shallow(<Table data={tableData} columns={tableColumn} />)
+    const rows = component.find('tbody').children()
+    const firstRow = rows.first().children()
+
+    expect(firstRow.at(0).text()).to.equal('Dot Notation Success')
+    expect(firstRow.at(1).text()).to.equal('Bracket Success')
   })
 })

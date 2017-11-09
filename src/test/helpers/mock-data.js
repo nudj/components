@@ -2,10 +2,10 @@ const data = [
   {
     id: 1,
     from: {},
+    firstName: 'John',
     to: {
       email: 'test@email.com'
     },
-    firstName: 'John',
     lastName: 'Smith',
     source: 'LinkedIn',
     company: 'Grand Testing Inc.',
@@ -17,33 +17,33 @@ const data = [
     to: {
       email: 'jane@email.com'
     },
-    firstName: 'Jane',
-    lastName: 'Doe',
     source: 'LinkedIn',
+    lastName: 'Doe',
     company: 'Grand Testing Inc.',
+    firstName: 'Jane',
     title: 'Chief Executive Tester'
   },
   {
     id: 3,
     from: {},
+    company: 'Grand Testing Inc.',
     to: {
       email: 'john.stevens@email.com'
     },
     firstName: '',
     lastName: 'Stevens',
     source: 'LinkedIn',
-    company: 'Grand Testing Inc.',
     title: 'Chief Executive Tester'
   },
   {
     id: 4,
-    from: {},
     to: {
       email: 'dave@email.com'
     },
+    from: {},
     firstName: 'Davy',
-    lastName: 'Jones',
     source: 'Manual',
+    lastName: 'Jones',
     company: 'Grand Testing Inc.',
     title: 'Chief Executive Tester'
   },
@@ -55,21 +55,33 @@ const data = [
     },
     firstName: 'James',
     lastName: 'Gordon',
+    title: 'Chief Executive Tester',
     source: 'Google Contacts',
-    company: 'Grand Testing Inc.',
-    title: 'Chief Executive Tester'
+    company: 'Grand Testing Inc.'
   },
   {
     id: 6,
     from: {},
-    to: {
-      email: 'bob@email.com'
-    },
     firstName: 'Bob',
     lastName: '',
     source: 'Manual',
+    to: {
+      email: 'bob@email.com'
+    },
     company: 'Test Inc.',
     title: 'Tester'
+  },
+  {
+    id: 7,
+    from: {},
+    firstName: 'M',
+    lastName: 'Bison',
+    source: 'Facebook',
+    to: {
+      email: 'bison@email.com'
+    },
+    company: 'Fake',
+    title: 'Junior Sales Rep'
   }
 ]
 

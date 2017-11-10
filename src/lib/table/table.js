@@ -8,7 +8,7 @@ const Table = (props) => {
   const rowsClassName = get(props, 'rowsClassName')
   const headerClassName = get(props, 'headerClassName')
   const headerRowClassName = get(props, 'headerRowClassName')
-  const headingsClassName = get(props, 'headersClassName')
+  const titleClassName = get(props, 'titleClassName')
   const bodyClassName = get(props, 'bodyClassName')
   const cellsClassName = get(props, 'cellsClassName')
 
@@ -21,7 +21,7 @@ const Table = (props) => {
         rowData = values.join(splitter)
       }
 
-      return <td className={cellsClassName} key={`td-${connection.id}`}>{rowData}</td>
+      return <td className={column.cellsClassName || cellsClassName} key={`td-${connection.id}`}>{rowData}</td>
     })
   }
 
@@ -29,7 +29,7 @@ const Table = (props) => {
     <table className={className}>
       <thead className={headerClassName}>
         <tr className={headerRowClassName}>
-          {columns.map(header => <th className={headingsClassName} key={header.title}>{header.title}</th>)}
+          {columns.map(header => <th className={header.titleClassName || titleClassName} key={header.title}>{header.title}</th>)}
         </tr>
       </thead>
       <tbody className={bodyClassName}>

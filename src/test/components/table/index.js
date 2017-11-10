@@ -9,16 +9,16 @@ const Table = require('../../../lib/table')
 
 const columns = [
   {
-    title: 'Title One',
-    label: 'keyOne'
+    label: 'Title One',
+    name: 'keyOne'
   },
   {
-    title: 'Example',
-    label: 'keyTwo'
+    label: 'Example',
+    name: 'keyTwo'
   },
   {
-    title: 'Important Thing',
-    label: 'keyThree.nestedKey'
+    label: 'Important Thing',
+    name: 'keyThree.nestedKey'
   }
 ]
 
@@ -99,8 +99,8 @@ describe('Table', () => {
 
     it('can use paths as labels for row data', () => {
       const tableColumn = [
-        { title: 'Dot Notation', label: 'deeply.nested.value' },
-        { title: 'Brackets', label: 'bracketed[\'value\']' }
+        { label: 'Dot Notation', name: 'deeply.nested.value' },
+        { label: 'Brackets', name: 'bracketed[\'value\']' }
       ]
       const tableData = [{
         id: 1,
@@ -121,10 +121,7 @@ describe('Table', () => {
 
     it('has a checkbox for each row', () => {
       const component = shallow(<Table data={data} columns={columns} />)
-      const checkbox = component.find('td').first().children()
       const row = (index) => component.find('tbody').children().at(index).children().first().children().props()
-
-      expect(checkbox.type()).to.equal('input')
       expect(row(0).type).to.equal('checkbox')
       expect(row(1).type).to.equal('checkbox')
       expect(row(2).type).to.equal('checkbox')
@@ -133,9 +130,9 @@ describe('Table', () => {
   })
 
   describe('callbacks', () => {
-    it('can be given a function for checkbox change', () => {
+    it('can be passed a custom function for checkbox onChange event', () => {
       const testFunction = () => {}
-      const component = shallow(<Table onCheckboxChange={testFunction} data={data} columns={columns} />)
+      const component = shallow(<Table onCheckboxChange={() => testFunction} data={data} columns={columns} />)
       const checkbox = component.find('td').first().children()
 
       expect(checkbox.props().onChange).to.equal(testFunction)
@@ -151,9 +148,9 @@ describe('Table', () => {
     })
 
     it('can be given a function for rendering cells', () => {
-      const basicData = [{ keyOne: 'valueOneA', keyTwo: 'valueTwoA' }]
-      const basicColumns = [{ title: 'One' }, { title: 'Two' }]
-      const renderFunction = (column, row) => `${column.title} - ${row.keyTwo}`
+      const basicData = [{ id: 1, keyOne: 'valueOneA', keyTwo: 'valueTwoA' }]
+      const basicColumns = [{ label: 'One', name: 'one' }, { label: 'Two', name: 'two' }]
+      const renderFunction = (column, row) => `${column.label} - ${row.keyTwo}`
       const component = shallow(<Table renderer={renderFunction} data={basicData} columns={basicColumns} />)
 
       const rows = component.find('tbody').children()
@@ -168,12 +165,31 @@ describe('Table', () => {
     })
 
     it('custom cellRenderer function is provided with all row and column data', () => {
-      const basicData = [{ keyOne: 'valueOneA', keyTwo: 'valueTwoA' }]
-      const basicColumns = [{ title: 'One' }]
+      const basicData = [{ id: 1, keyOne: 'valueOneA', keyTwo: 'valueTwoA' }]
+      const basicColumns = [{ label: 'One', name: 'one' }]
       const renderFunction = sinon.stub()
       shallow(<Table renderer={renderFunction} data={basicData} columns={basicColumns} />)
 
-      expect(renderFunction).to.have.been.calledWith({ title: 'One' }, { keyOne: 'valueOneA', keyTwo: 'valueTwoA' })
+      expect(renderFunction).to.have.been.calledWith(basicColumns[0], basicData[0])
+    })
+
+    it('can be passed a custom function for header onClick event', () => {
+      const dummyFunction = () => {}
+      const testFunction = (header) => dummyFunction
+      const component = shallow(<Table onClickHeader={testFunction} data={data} columns={columns} />)
+      const header = component.find('th').at(1)
+
+      expect(header.props().onClick).to.equal(dummyFunction)
+    })
+
+    it('header onClick function is passed all header data', () => {
+      const basicColumns = [{ label: 'Basic Title', name: 'basic' }]
+      const testFunction = sinon.stub()
+      const component = shallow(<Table onClickHeader={testFunction} data={data} columns={basicColumns} />)
+      const header = component.find('th').at(1)
+      header.simulate('click')
+
+      expect(testFunction).to.have.been.calledWith(basicColumns[0])
     })
   })
 

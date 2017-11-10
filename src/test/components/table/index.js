@@ -3,6 +3,7 @@
 
 const React = require('react')
 const { shallow } = require('enzyme')
+const sinon = require('sinon')
 
 const Table = require('../../../lib/table')
 
@@ -129,13 +130,50 @@ describe('Table', () => {
       expect(row(2).type).to.equal('checkbox')
       expect(row(3).type).to.equal('checkbox')
     })
+  })
 
+  describe('callbacks', () => {
     it('can be given a function for checkbox change', () => {
       const testFunction = () => {}
       const component = shallow(<Table onCheckboxChange={testFunction} data={data} columns={columns} />)
       const checkbox = component.find('td').first().children()
 
       expect(checkbox.props().onChange).to.equal(testFunction)
+    })
+
+    it('given onCheckboxChange function gets executed on click', () => {
+      const testFunction = sinon.stub()
+      const component = shallow(<Table onCheckboxChange={testFunction} data={data} columns={columns} />)
+      const checkbox = component.find('td').first().children()
+      checkbox.simulate('change')
+
+      expect(testFunction).to.have.been.called()
+    })
+
+    it('can be given a function for rendering cells', () => {
+      const basicData = [{ keyOne: 'valueOneA', keyTwo: 'valueTwoA' }]
+      const basicColumns = [{ title: 'One' }, { title: 'Two' }]
+      const renderFunction = (column, row) => `${column.title} - ${row.keyTwo}`
+      const component = shallow(<Table renderer={renderFunction} data={basicData} columns={basicColumns} />)
+
+      const rows = component.find('tbody').children()
+      const firstRow = rows.first().children()
+      const rowData = firstRow.map(rowItem => rowItem.text() || rowItem.html())
+
+      expect(rowData).to.deep.equal([
+        '<td><input type="checkbox"/></td>',
+        'One - valueTwoA',
+        'Two - valueTwoA'
+      ])
+    })
+
+    it('custom cellRenderer function is provided with all row and column data', () => {
+      const basicData = [{ keyOne: 'valueOneA', keyTwo: 'valueTwoA' }]
+      const basicColumns = [{ title: 'One' }]
+      const renderFunction = sinon.stub()
+      shallow(<Table renderer={renderFunction} data={basicData} columns={basicColumns} />)
+
+      expect(renderFunction).to.have.been.calledWith({ title: 'One' }, { keyOne: 'valueOneA', keyTwo: 'valueTwoA' })
     })
   })
 

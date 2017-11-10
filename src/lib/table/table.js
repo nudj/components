@@ -4,6 +4,7 @@ const get = require('lodash/get')
 const Table = (props) => {
   const data = get(props, 'data', [])
   const columns = get(props, 'columns', [])
+  const cellRenderer = get(props, 'renderer')
   const className = get(props, 'className')
   const rowsClassName = get(props, 'rowsClassName')
   const headerClassName = get(props, 'headerClassName')
@@ -14,16 +15,14 @@ const Table = (props) => {
   const checkboxClassName = get(props, 'checkboxClassName')
   const checkboxCellClassName = get(props, 'checkboxCellClassName')
 
-  const renderDataRow = (connection) => {
+  const renderDataRow = (row) => {
     return columns.map(column => {
-      let rowData = get(connection, column.accessor, '')
-      if (column.accessor.keys) {
-        const splitter = get(column.accessor, 'joinWith', ' ')
-        const values = column.accessor.keys.map(key => get(connection, key, ''))
-        rowData = values.join(splitter)
+      let cell = get(row, column.label)
+      if (cellRenderer) {
+        cell = cellRenderer(column, row)
       }
 
-      return <td className={column.cellsClassName || cellsClassName} key={`td-${connection.id}`}>{rowData}</td>
+      return <td className={column.cellsClassName || cellsClassName} key={`td-${row.id}`}>{cell}</td>
     })
   }
 
@@ -31,18 +30,19 @@ const Table = (props) => {
     <table className={className}>
       <thead className={headerClassName}>
         <tr className={headerRowClassName}>
+          <th />
           {columns.map(header => <th className={header.titleClassName || titleClassName} key={header.title}>{header.title}</th>)}
         </tr>
       </thead>
       <tbody className={bodyClassName}>
         {
-          data.map(connection => {
+          data.map(row => {
             return (
-              <tr className={rowsClassName} key={`tr-${connection.id}`}>
+              <tr className={rowsClassName} key={`tr-${row.id}`}>
                 <td className={checkboxCellClassName}>
                   <input className={checkboxClassName} type='checkbox' onChange={props.onCheckboxChange} />
                 </td>
-                {renderDataRow(connection)}
+                {renderDataRow(row)}
               </tr>
             )
           })

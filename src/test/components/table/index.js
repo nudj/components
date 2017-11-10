@@ -4,81 +4,102 @@
 const React = require('react')
 const { shallow } = require('enzyme')
 
-const { data } = require('../helpers/mock-data')
-const Table = require('../../lib/table')
+const Table = require('../../../lib/table')
 
 const columns = [
   {
-    title: 'Name',
-    accessor: {
-      keys: ['firstName', 'lastName']
+    title: 'Title One',
+    label: 'keyOne'
+  },
+  {
+    title: 'Example',
+    label: 'keyTwo'
+  },
+  {
+    title: 'Important Thing',
+    label: 'keyThree.nestedKey'
+  }
+]
+
+const data = [
+  {
+    id: 1,
+    keyOne: 'valueOneA',
+    keyTwo: 'valueTwoA',
+    keyThree: {
+      nestedKey: 'nestedValueThreeA'
     }
   },
   {
-    title: 'Source',
-    accessor: 'source',
-    cellsClassName: 'sourceClass'
+    id: 2,
+    keyOne: 'valueOneB',
+    keyTwo: 'valueTwoB',
+    keyThree: {
+      nestedKey: 'nestedValueThreeB'
+    }
   },
   {
-    title: 'Company',
-    accessor: 'company'
+    id: 3,
+    keyOne: 'valueOneC',
+    keyTwo: 'valueTwoC',
+    keyThree: {
+      nestedKey: 'nestedValueThreeC'
+    }
   },
   {
-    title: 'Job Title',
-    titleClassName: 'titleClass',
-    accessor: 'title'
-  },
-  {
-    title: 'Email Address',
-    accessor: 'to.email'
+    id: 4,
+    keyOne: 'valueOneD',
+    keyTwo: 'valueTwoD',
+    keyThree: {
+      nestedKey: 'nestedValueThreeD'
+    }
   }
 ]
 
 describe('Table', () => {
   describe('data', () => {
-    it('takes an array of columns', () => {
+    it('creates headers based on provided data', () => {
       const component = shallow(<Table data={data} columns={columns} />)
       const headers = component.find('th')
 
-      expect(headers).to.have.length(5)
+      expect(headers).to.have.length(4) // Including extra column for checkbox
     })
 
     it('creates rows based on provided data', () => {
       const component = shallow(<Table data={data} columns={columns} />)
       const rows = component.find('tbody').children()
 
-      expect(rows).to.have.length(7)
+      expect(rows).to.have.length(4)
     })
 
     it('renders the provided title as the column title', () => {
       const component = shallow(<Table data={data} columns={columns} />)
-      const firstHeader = component.find('th').at(0).props()
-      const secondHeader = component.find('th').at(1).props()
+      const header = (index) => component.find('th').at(index).props()
 
-      expect(firstHeader.children).to.equal('Name')
-      expect(secondHeader.children).to.equal('Source')
+      expect(header(0)).to.exist() // Checkbox header
+      expect(header(1).children).to.equal('Title One')
+      expect(header(2).children).to.equal('Example')
+      expect(header(3).children).to.equal('Important Thing')
     })
 
     it('places the correct values on the row using the column accessor keys', () => {
       const component = shallow(<Table data={data} columns={columns} />)
       const rows = component.find('tbody').children()
       const firstRow = rows.first().children()
-      const rowData = firstRow.map(rowItem => rowItem.text())
+      const rowData = firstRow.map(rowItem => rowItem.text() || rowItem.html())
 
       expect(rowData).to.deep.equal([
-        '', // Checkbox
-        'John Smith',
-        'LinkedIn',
-        'Grand Testing Inc.',
-        'Chief Executive Tester',
-        'test@email.com'
+        '<td><input type="checkbox"/></td>',
+        'valueOneA',
+        'valueTwoA',
+        'nestedValueThreeA'
       ])
     })
 
-    it('can use accessor strings for row data', () => {
+    it('can use paths as labels for row data', () => {
       const tableColumn = [
-        { title: 'Dot Notation', accessor: 'deeply.nested.value' },
-        { title: 'Brackets', accessor: 'bracketed[\'value\']' }
+        { title: 'Dot Notation', label: 'deeply.nested.value' },
+        { title: 'Brackets', label: 'bracketed[\'value\']' }
       ]
       const tableData = [{
         id: 1,
@@ -91,61 +112,22 @@ describe('Table', () => {
       }]
       const component = shallow(<Table data={tableData} columns={tableColumn} />)
       const rows = component.find('tbody').children()
-      const firstRow = rows.first().children()
+      const rowData = (index) => rows.first().children().at(index)
 
-      expect(firstRow.at(1).text()).to.equal('Dot Notation Success')
-      expect(firstRow.at(2).text()).to.equal('Bracket Success')
-    })
-
-    it('can use an object accessor to concat values under one heading', () => {
-      const tableColumn = [
-        {
-          title: 'Name',
-          accessor: {
-            keys: ['firstName', 'lastName']
-          }
-        }
-      ]
-      const tableData = [{
-        id: 1,
-        firstName: 'John',
-        lastName: 'Smith'
-      }]
-      const component = shallow(<Table data={tableData} columns={tableColumn} />)
-      const rows = component.find('tbody').children()
-      const firstRow = rows.first().children()
-
-      expect(firstRow.at(1).text()).to.equal('John Smith')
-    })
-
-    it('can be provided with a custom separator for an object accessor', () => {
-      const tableColumn = [
-        {
-          title: 'Name',
-          accessor: {
-            keys: ['firstName', 'lastName'],
-            joinWith: '----'
-          }
-        }
-      ]
-      const tableData = [{
-        id: 1,
-        firstName: 'John',
-        lastName: 'Smith'
-      }]
-      const component = shallow(<Table data={tableData} columns={tableColumn} />)
-      const rows = component.find('tbody').children()
-      const firstRow = rows.first().children()
-
-      expect(firstRow.at(1).text()).to.equal('John----Smith')
+      expect(rowData(1).text()).to.equal('Dot Notation Success')
+      expect(rowData(2).text()).to.equal('Bracket Success')
     })
 
     it('has a checkbox for each row', () => {
       const component = shallow(<Table data={data} columns={columns} />)
       const checkbox = component.find('td').first().children()
+      const row = (index) => component.find('tbody').children().at(index).children().first().children().props()
 
       expect(checkbox.type()).to.equal('input')
-      expect(checkbox.props().type).to.equal('checkbox')
+      expect(row(0).type).to.equal('checkbox')
+      expect(row(1).type).to.equal('checkbox')
+      expect(row(2).type).to.equal('checkbox')
+      expect(row(3).type).to.equal('checkbox')
     })
 
     it('can be given a function for checkbox change', () => {
@@ -194,7 +176,7 @@ describe('Table', () => {
 
     it('can be given a general heading/title class', () => {
       const component = shallow(<Table titleClassName='custom_headings_class' data={data} columns={columns} />)
-      const props = component.find('th').first().props()
+      const props = component.find('th').at(1).props()
       expect(props.className).to.equal('custom_headings_class')
     })
 
@@ -214,24 +196,6 @@ describe('Table', () => {
       const component = shallow(<Table checkboxClassName='custom_checkbox_cell_class' data={data} columns={columns} />)
       const props = component.find('input').first().props()
       expect(props.className).to.equal('custom_checkbox_cell_class')
-    })
-
-    it('can override class of cells in column', () => {
-      const component = shallow(<Table cellsClassName='custom_cell_class' data={data} columns={columns} />)
-      const rows = component.find('tbody').first().children().at(0).children()
-      const standardClassCell = rows.at(1).props()
-      const overriddenClassCell = rows.at(2).props()
-      expect(standardClassCell.className).to.equal('custom_cell_class')
-      expect(overriddenClassCell.className).to.equal('sourceClass')
-    })
-
-    it('can override class of column title', () => {
-      const component = shallow(<Table titleClassName='custom_title_class' data={data} columns={columns} />)
-      const headers = component.find('th')
-      const standardClassTitle = headers.at(0).props()
-      const overriddenClassTitle = headers.at(3).props()
-      expect(standardClassTitle.className).to.equal('custom_title_class')
-      expect(overriddenClassTitle.className).to.equal('titleClass')
     })
   })
 })

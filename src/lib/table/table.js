@@ -11,6 +11,8 @@ const Table = (props) => {
   const titleClassName = get(props, 'titleClassName')
   const bodyClassName = get(props, 'bodyClassName')
   const cellsClassName = get(props, 'cellsClassName')
+  const checkboxClassName = get(props, 'checkboxClassName')
+  const checkboxCellClassName = get(props, 'checkboxCellClassName')
 
   const renderDataRow = (connection) => {
     return columns.map(column => {
@@ -34,7 +36,16 @@ const Table = (props) => {
       </thead>
       <tbody className={bodyClassName}>
         {
-          data.map(connection => <tr className={rowsClassName} key={`tr-${connection.id}`}>{renderDataRow(connection)}</tr>)
+          data.map(connection => {
+            return (
+              <tr className={rowsClassName} key={`tr-${connection.id}`}>
+                <td className={checkboxCellClassName}>
+                  <input className={checkboxClassName} type='checkbox' onChange={props.onCheckboxChange} />
+                </td>
+                {renderDataRow(connection)}
+              </tr>
+            )
+          })
         }
       </tbody>
     </table>

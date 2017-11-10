@@ -66,6 +66,7 @@ describe('Table', () => {
       const rowData = firstRow.map(rowItem => rowItem.text())
 
       expect(rowData).to.deep.equal([
+        '', // Checkbox
         'John Smith',
         'LinkedIn',
         'Grand Testing Inc.',
@@ -92,8 +93,8 @@ describe('Table', () => {
       const rows = component.find('tbody').children()
       const firstRow = rows.first().children()
 
-      expect(firstRow.at(0).text()).to.equal('Dot Notation Success')
-      expect(firstRow.at(1).text()).to.equal('Bracket Success')
+      expect(firstRow.at(1).text()).to.equal('Dot Notation Success')
+      expect(firstRow.at(2).text()).to.equal('Bracket Success')
     })
 
     it('can use an object accessor to concat values under one heading', () => {
@@ -114,7 +115,7 @@ describe('Table', () => {
       const rows = component.find('tbody').children()
       const firstRow = rows.first().children()
 
-      expect(firstRow.at(0).text()).to.equal('John Smith')
+      expect(firstRow.at(1).text()).to.equal('John Smith')
     })
 
     it('can be provided with a custom separator for an object accessor', () => {
@@ -136,7 +137,23 @@ describe('Table', () => {
       const rows = component.find('tbody').children()
       const firstRow = rows.first().children()
 
-      expect(firstRow.at(0).text()).to.equal('John----Smith')
+      expect(firstRow.at(1).text()).to.equal('John----Smith')
+    })
+
+    it('has a checkbox for each row', () => {
+      const component = shallow(<Table data={data} columns={columns} />)
+      const checkbox = component.find('td').first().children()
+
+      expect(checkbox.type()).to.equal('input')
+      expect(checkbox.props().type).to.equal('checkbox')
+    })
+
+    it('can be given a function for checkbox change', () => {
+      const testFunction = () => {}
+      const component = shallow(<Table onCheckboxChange={testFunction} data={data} columns={columns} />)
+      const checkbox = component.find('td').first().children()
+
+      expect(checkbox.props().onChange).to.equal(testFunction)
     })
   })
 
@@ -150,7 +167,7 @@ describe('Table', () => {
     it('can be given a general cell class', () => {
       const component = shallow(<Table cellsClassName='custom_cell_class' data={data} columns={columns} />)
       const rows = component.find('tbody').children()
-      const firstCell = rows.first().children().first()
+      const firstCell = rows.first().children().at(1)
       const lastCell = rows.last().children().last()
       expect(firstCell.props().className).to.equal('custom_cell_class')
       expect(lastCell.props().className).to.equal('custom_cell_class')
@@ -187,11 +204,23 @@ describe('Table', () => {
       expect(props.className).to.equal('custom_body_class')
     })
 
+    it('can be given a checkbox class', () => {
+      const component = shallow(<Table checkboxClassName='custom_checkbox_class' data={data} columns={columns} />)
+      const props = component.find('td').first().children().props()
+      expect(props.className).to.equal('custom_checkbox_class')
+    })
+
+    it('can be given a checkbox container class', () => {
+      const component = shallow(<Table checkboxClassName='custom_checkbox_cell_class' data={data} columns={columns} />)
+      const props = component.find('input').first().props()
+      expect(props.className).to.equal('custom_checkbox_cell_class')
+    })
+
     it('can override class of cells in column', () => {
       const component = shallow(<Table cellsClassName='custom_cell_class' data={data} columns={columns} />)
       const rows = component.find('tbody').first().children().at(0).children()
-      const standardClassCell = rows.at(0).props()
-      const overriddenClassCell = rows.at(1).props()
+      const standardClassCell = rows.at(1).props()
+      const overriddenClassCell = rows.at(2).props()
       expect(standardClassCell.className).to.equal('custom_cell_class')
       expect(overriddenClassCell.className).to.equal('sourceClass')
     })

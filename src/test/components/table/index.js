@@ -179,13 +179,13 @@ describe('Table', () => {
 
   describe('styles', () => {
     it('can be provided with a className', () => {
-      const component = shallow(<Table className='custom_class' data={data} columns={columns} />)
+      const component = shallow(<Table classNames={{table: 'custom_class'}} data={data} columns={columns} />)
       const props = component.props()
       expect(props.className).to.equal('custom_class')
     })
 
     it('can be given a general cell class', () => {
-      const component = shallow(<Table cellsClassName='custom_cell_class' data={data} columns={columns} />)
+      const component = shallow(<Table classNames={{cell: 'custom_cell_class'}} data={data} columns={columns} />)
       const rows = component.find('tbody').children()
       const firstCell = rows.first().children().at(1)
       const lastCell = rows.last().children().last()
@@ -194,45 +194,45 @@ describe('Table', () => {
     })
 
     it('can be given a general row class', () => {
-      const component = shallow(<Table rowsClassName='custom_row_class' data={data} columns={columns} />)
+      const component = shallow(<Table classNames={{row: 'custom_row_class'}} data={data} columns={columns} />)
       const rows = component.find('tbody').children()
       const props = rows.first().props()
       expect(props.className).to.equal('custom_row_class')
     })
 
     it('can be given a general header class', () => {
-      const component = shallow(<Table headerClassName='custom_header_class' data={data} columns={columns} />)
+      const component = shallow(<Table classNames={{header: 'custom_header_class'}} data={data} columns={columns} />)
       const props = component.find('thead').props()
       expect(props.className).to.equal('custom_header_class')
     })
 
     it('can be given a general header-row class', () => {
-      const component = shallow(<Table headerRowClassName='custom_header_row_class' data={data} columns={columns} />)
+      const component = shallow(<Table classNames={{headerRow: 'custom_header_row_class'}} data={data} columns={columns} />)
       const props = component.find('thead').children().props()
       expect(props.className).to.equal('custom_header_row_class')
     })
 
     it('can be given a general heading/title class', () => {
-      const component = shallow(<Table titleClassName='custom_headings_class' data={data} columns={columns} />)
+      const component = shallow(<Table classNames={{heading: 'custom_headings_class'}} data={data} columns={columns} />)
       const props = component.find('th').at(1).props()
       expect(props.className).to.equal('custom_headings_class')
     })
 
     it('can be given a general body class', () => {
-      const component = shallow(<Table bodyClassName='custom_body_class' data={data} columns={columns} />)
+      const component = shallow(<Table classNames={{body: 'custom_body_class'}} data={data} columns={columns} />)
       const props = component.find('tbody').first().props()
       expect(props.className).to.equal('custom_body_class')
     })
 
     it('can be given a checkbox class', () => {
-      const component = shallow(<Table checkboxClassName='custom_checkbox_class' data={data} columns={columns} />)
-      const props = component.find('td').first().children().props()
+      const component = shallow(<Table classNames={{checkbox: 'custom_checkbox_class'}} data={data} columns={columns} />)
+      const props = component.find('input').first().props()
       expect(props.className).to.equal('custom_checkbox_class')
     })
 
     it('can be given a checkbox container class', () => {
-      const component = shallow(<Table checkboxClassName='custom_checkbox_cell_class' data={data} columns={columns} />)
-      const props = component.find('input').first().props()
+      const component = shallow(<Table classNames={{checkboxCell: 'custom_checkbox_cell_class'}} data={data} columns={columns} />)
+      const props = component.find('td').first().props()
       expect(props.className).to.equal('custom_checkbox_cell_class')
     })
   })

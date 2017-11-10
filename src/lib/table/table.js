@@ -5,15 +5,7 @@ const Table = (props) => {
   const data = get(props, 'data', [])
   const columns = get(props, 'columns', [])
   const cellRenderer = get(props, 'renderer')
-  const className = get(props, 'className')
-  const rowsClassName = get(props, 'rowsClassName')
-  const headerClassName = get(props, 'headerClassName')
-  const headerRowClassName = get(props, 'headerRowClassName')
-  const titleClassName = get(props, 'titleClassName')
-  const bodyClassName = get(props, 'bodyClassName')
-  const cellsClassName = get(props, 'cellsClassName')
-  const checkboxClassName = get(props, 'checkboxClassName')
-  const checkboxCellClassName = get(props, 'checkboxCellClassName')
+  const classNames = get(props, 'classNames', {})
 
   const renderDataRow = (row) => {
     return columns.map(column => {
@@ -22,25 +14,25 @@ const Table = (props) => {
         cell = cellRenderer(column, row)
       }
 
-      return <td className={column.cellsClassName || cellsClassName} key={`td-${row.id}`}>{cell}</td>
+      return <td className={classNames.cell} key={`td-${row.id}`}>{cell}</td>
     })
   }
 
   return (
-    <table className={className}>
-      <thead className={headerClassName}>
-        <tr className={headerRowClassName}>
+    <table className={classNames.table}>
+      <thead className={classNames.header}>
+        <tr className={classNames.headerRow}>
           <th />
-          {columns.map(header => <th className={header.titleClassName || titleClassName} key={header.title}>{header.title}</th>)}
+          {columns.map(header => <th className={classNames.heading} key={header.title}>{header.title}</th>)}
         </tr>
       </thead>
-      <tbody className={bodyClassName}>
+      <tbody className={classNames.body}>
         {
           data.map(row => {
             return (
-              <tr className={rowsClassName} key={`tr-${row.id}`}>
-                <td className={checkboxCellClassName}>
-                  <input className={checkboxClassName} type='checkbox' onChange={props.onCheckboxChange} />
+              <tr className={classNames.row} key={`tr-${row.id}`}>
+                <td className={classNames.checkboxCell}>
+                  <input className={classNames.checkbox} type='checkbox' onChange={props.onCheckboxChange} />
                 </td>
                 {renderDataRow(row)}
               </tr>

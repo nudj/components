@@ -68,7 +68,7 @@ describe('Table', () => {
 
     it('creates rows based on provided data', () => {
       const component = shallow(<Table data={data} columns={columns} />)
-      const rows = component.find('tbody').children()
+      const rows = component.find('defaultBody').children()
 
       expect(rows).to.have.length(4)
     })
@@ -85,12 +85,11 @@ describe('Table', () => {
 
     it('places the correct values on the row using the column accessor keys', () => {
       const component = shallow(<Table data={data} columns={columns} />)
-      const rows = component.find('tbody').children()
-      const firstRow = rows.first().children()
-      const rowData = firstRow.map(rowItem => rowItem.text() || rowItem.html())
+      const rows = component.find('defaultBody').children()
+      const firstRow = rows.first()
+      const rowData = firstRow.dive().children().map(rowItem => rowItem.children().text())
 
       expect(rowData).to.deep.equal([
-        '<td><input type="checkbox"/></td>',
         'valueOneA',
         'valueTwoA',
         'nestedValueThreeA'
@@ -112,53 +111,61 @@ describe('Table', () => {
         }
       }]
       const component = shallow(<Table data={tableData} columns={tableColumn} />)
-      const rows = component.find('tbody').children()
-      const rowData = (index) => rows.first().children().at(index)
+      const rows = component.find('defaultBody').children()
+      const firstRow = rows.first()
+      const rowData = (index) => firstRow.dive().children().at(index).children()
 
-      expect(rowData(1).text()).to.equal('Dot Notation Success')
-      expect(rowData(2).text()).to.equal('Bracket Success')
+      expect(rowData(0).text()).to.equal('Dot Notation Success')
+      expect(rowData(1).text()).to.equal('Bracket Success')
+    })
+  })
+
+  describe('component overrides', () => {
+    it('has a main table component that can be overridden', () => {
+      const customTable = (props) => <table>{props.children}</table>
+      const component = shallow(<Table data={data} columns={columns} />)
+      const customComponent = shallow(<Table table={customTable} data={data} columns={columns} />)
+      expect(component.name()).to.equal('defaultTable')
+      expect(customComponent.name()).to.equal('customTable')
     })
 
-    it('has a checkbox for each row', () => {
+    it('has a table body that can be overridden', () => {
+      const customBody = (props) => <tbody>{props.children}</tbody>
       const component = shallow(<Table data={data} columns={columns} />)
-      const row = (index) => component.find('tbody').children().at(index).children().first().children().props()
-      expect(row(0).type).to.equal('checkbox')
-      expect(row(1).type).to.equal('checkbox')
-      expect(row(2).type).to.equal('checkbox')
-      expect(row(3).type).to.equal('checkbox')
+      const customComponent = shallow(<Table tableBody={customBody} data={data} columns={columns} />)
+      expect(component.children().last().name()).to.equal('defaultBody')
+      expect(customComponent.children().last().name()).to.equal('customBody')
+    })
+
+    it('has a table cell component that can be overridden', () => {
+      const customCell = (props) => <td>{props.children}</td>
+      const component = shallow(<Table data={data} columns={columns} />)
+      const customComponent = shallow(<Table tableCell={customCell} data={data} columns={columns} />)
+      expect(component.find('defaultBody').children().first().dive().children().first().name()).to.equal('defaultCell')
+      expect(customComponent.find('defaultBody').children().first().dive().children().first().name()).to.equal('customCell')
+    })
+
+    it('has a row cell component that can be overridden', () => {
+      const customRow = (props) => <tr>{props.children}</tr>
+      const component = shallow(<Table data={data} columns={columns} />)
+      const customComponent = shallow(<Table tableRow={customRow} data={data} columns={columns} />)
+      expect(component.find('defaultBody').children().first().name()).to.equal('defaultRow')
+      expect(customComponent.find('defaultBody').children().first().name()).to.equal('customRow')
     })
   })
 
   describe('callbacks', () => {
-    it('can be passed a custom function for checkbox onChange event', () => {
-      const testFunction = () => {}
-      const component = shallow(<Table onCheckboxChange={() => testFunction} data={data} columns={columns} />)
-      const checkbox = component.find('td').first().children()
-
-      expect(checkbox.props().onChange).to.equal(testFunction)
-    })
-
-    it('given onCheckboxChange function gets executed on click', () => {
-      const testFunction = sinon.stub()
-      const component = shallow(<Table onCheckboxChange={testFunction} data={data} columns={columns} />)
-      const checkbox = component.find('td').first().children()
-      checkbox.simulate('change')
-
-      expect(testFunction).to.have.been.called()
-    })
-
     it('can be given a function for rendering cells', () => {
       const basicData = [{ id: 1, keyOne: 'valueOneA', keyTwo: 'valueTwoA' }]
       const basicColumns = [{ label: 'One', name: 'one' }, { label: 'Two', name: 'two' }]
       const renderFunction = (column, row) => `${column.label} - ${row.keyTwo}`
       const component = shallow(<Table renderer={renderFunction} data={basicData} columns={basicColumns} />)
 
-      const rows = component.find('tbody').children()
+      const rows = component.find('defaultBody')
       const firstRow = rows.first().children()
-      const rowData = firstRow.map(rowItem => rowItem.text() || rowItem.html())
+      const rowData = firstRow.dive().children().map(rowItem => rowItem.children().text())
 
       expect(rowData).to.deep.equal([
-        '<td><input type="checkbox"/></td>',
         'One - valueTwoA',
         'Two - valueTwoA'
       ])
@@ -168,7 +175,8 @@ describe('Table', () => {
       const basicData = [{ id: 1, keyOne: 'valueOneA', keyTwo: 'valueTwoA' }]
       const basicColumns = [{ label: 'One', name: 'one' }]
       const renderFunction = sinon.stub()
-      shallow(<Table renderer={renderFunction} data={basicData} columns={basicColumns} />)
+      const component = shallow(<Table renderer={renderFunction} data={basicData} columns={basicColumns} />)
+      component.find('defaultBody').children().first().dive() // Using dive to simulate the component being rendered.
 
       expect(renderFunction).to.have.been.calledWith(basicColumns[0], basicData[0])
     })
@@ -202,16 +210,13 @@ describe('Table', () => {
 
     it('can be given a general cell class', () => {
       const component = shallow(<Table classNames={{cell: 'custom_cell_class'}} data={data} columns={columns} />)
-      const rows = component.find('tbody').children()
-      const firstCell = rows.first().children().at(1)
-      const lastCell = rows.last().children().last()
-      expect(firstCell.props().className).to.equal('custom_cell_class')
-      expect(lastCell.props().className).to.equal('custom_cell_class')
+      const cell = component.find('defaultBody').children().first().dive().children().first()
+      expect(cell.props().className).to.equal('custom_cell_class')
     })
 
     it('can be given a general row class', () => {
       const component = shallow(<Table classNames={{row: 'custom_row_class'}} data={data} columns={columns} />)
-      const rows = component.find('tbody').children()
+      const rows = component.find('defaultBody').children()
       const props = rows.first().props()
       expect(props.className).to.equal('custom_row_class')
     })
@@ -236,20 +241,8 @@ describe('Table', () => {
 
     it('can be given a general body class', () => {
       const component = shallow(<Table classNames={{body: 'custom_body_class'}} data={data} columns={columns} />)
-      const props = component.find('tbody').first().props()
+      const props = component.find('defaultBody').first().props()
       expect(props.className).to.equal('custom_body_class')
-    })
-
-    it('can be given a checkbox class', () => {
-      const component = shallow(<Table classNames={{checkbox: 'custom_checkbox_class'}} data={data} columns={columns} />)
-      const props = component.find('input').first().props()
-      expect(props.className).to.equal('custom_checkbox_class')
-    })
-
-    it('can be given a checkbox container class', () => {
-      const component = shallow(<Table classNames={{checkboxCell: 'custom_checkbox_cell_class'}} data={data} columns={columns} />)
-      const props = component.find('td').first().props()
-      expect(props.className).to.equal('custom_checkbox_cell_class')
     })
   })
 })

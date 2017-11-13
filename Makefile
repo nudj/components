@@ -15,7 +15,7 @@ test:
 		-v $(CWD)/src/lib:/usr/src/lib \
 		-v $(CWD)/src/test:/usr/src/test \
 		components-image \
-		/bin/sh -c '$(BIN)/standard && $(BIN)/mocha --compilers js:babel-core/register --recursive test'
+		/bin/sh -c '$(BIN)/standard --parser babel-eslint --plugin flowtype && $(BIN)/mocha --compilers js:babel-core/register --recursive test'
 
 flow:
 	-@docker rm -f components-container 2> /dev/null || true

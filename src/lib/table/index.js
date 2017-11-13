@@ -1,3 +1,4 @@
+// @flow
 const React = require('react')
 const get = require('lodash/get')
 const classnames = require('classnames')
@@ -64,7 +65,12 @@ const defaultRow = props => {
   )
 }
 
-const Table = props => {
+type TableProps = {
+  headingRenderer: Function,
+  cellRenderer: Function
+}
+
+const Table = (props: TableProps) => {
   const MainTable = get(props, 'table', defaultTable)
   const TableBody = get(props, 'tableBody', defaultBody)
   const TableHead = get(props, 'tableHead', defaultHead)

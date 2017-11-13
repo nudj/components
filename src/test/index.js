@@ -9,7 +9,7 @@ const Adapter = require('enzyme-adapter-react-15')
 
 configure({ adapter: new Adapter() })
 
-global.asyncTest = (fn) => {
+global.asyncTest = fn => {
   return async () => {
     try {
       return await fn()
@@ -18,10 +18,14 @@ global.asyncTest = (fn) => {
         throw error
       } else {
         // handle custom errors from @nudj/framework/errors
-        throw new Error([error.stack, ...(error.log || [])].map(item => {
-          if (typeof item !== 'object') return item
-          return JSON.stringify(item, null, 2)
-        }).join(' '))
+        throw new Error(
+          [error.stack, ...(error.log || [])]
+            .map(item => {
+              if (typeof item !== 'object') return item
+              return JSON.stringify(item, null, 2)
+            })
+            .join(' ')
+        )
       }
     }
   }

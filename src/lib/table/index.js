@@ -7,7 +7,14 @@ const renderDataRow = (row, columns, renderer, className, Cell) => {
     const defaultValue = get(row, column.name, '')
     const cell = renderer ? renderer(column, row, defaultValue) : defaultValue
 
-    return <Cell className={classnames(className)} key={`cell-${row.id}-${column.name}`}>{cell}</Cell>
+    return (
+      <Cell
+        className={classnames(className)}
+        key={`cell-${row.id}-${column.name}`}
+      >
+        {cell}
+      </Cell>
+    )
   })
 }
 
@@ -16,24 +23,48 @@ const renderHeading = (column, renderer) => {
   return renderer ? renderer(column, defaultValue) : defaultValue
 }
 
-const defaultTable = (props) => <table className={classnames(props.className)}>{props.children}</table>
-const defaultBody = (props) => <tbody className={classnames(props.className)}>{props.children}</tbody>
-const defaultHead = (props) => <thead className={classnames(props.className)}>{props.children}</thead>
-const defaultCell = (props) => <td className={classnames(props.className)}>{props.children}</td>
-const defaultHeaderRow = (props) => <tr className={classnames(props.className)}>{props.children}</tr>
+const defaultTable = props => (
+  <table className={classnames(props.className)}>{props.children}</table>
+)
+const defaultBody = props => (
+  <tbody className={classnames(props.className)}>{props.children}</tbody>
+)
+const defaultHead = props => (
+  <thead className={classnames(props.className)}>{props.children}</thead>
+)
+const defaultCell = props => (
+  <td className={classnames(props.className)}>{props.children}</td>
+)
+const defaultHeaderRow = props => (
+  <tr className={classnames(props.className)}>{props.children}</tr>
+)
 
-const defaultHeading = (props) => {
+const defaultHeading = props => {
   const column = get(props, 'column')
   const renderer = get(props, 'renderer')
 
-  return <th className={classnames(props.className)}>{renderHeading(column, renderer)}</th>
+  return (
+    <th className={classnames(props.className)}>
+      {renderHeading(column, renderer)}
+    </th>
+  )
 }
-const defaultRow = (props) => {
+const defaultRow = props => {
   const className = get(props, 'classNames.cell')
-  return <tr className={classnames(props.className)}>{renderDataRow(props.row, props.columns, props.renderer, className, props.Cell)}</tr>
+  return (
+    <tr className={classnames(props.className)}>
+      {renderDataRow(
+        props.row,
+        props.columns,
+        props.renderer,
+        className,
+        props.Cell
+      )}
+    </tr>
+  )
 }
 
-const Table = (props) => {
+const Table = props => {
   const MainTable = get(props, 'table', defaultTable)
   const TableBody = get(props, 'tableBody', defaultBody)
   const TableHead = get(props, 'tableHead', defaultHead)

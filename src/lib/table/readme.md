@@ -3,8 +3,8 @@
 
 ```javascript
 const columns = [
-  { label: 'Title One', name: 'keyOne' },
-  { label: 'Title Two', name: 'keyTwo' }
+  { heading: 'Title One', name: 'keyOne' },
+  { heading: 'Title Two', name: 'keyTwo' }
 ]
 
 const data = [
@@ -24,8 +24,8 @@ return <Table data={data} columns={columns} />
 
 ```javascript
 const columns = [
-  { label: 'Title One', name: 'keyOne' },
-  { label: 'Title Two', name: 'keyTwo' }
+  { heading: 'Title One', name: 'keyOne' },
+  { heading: 'Title Two', name: 'keyTwo' }
 ]
 
 const data = [
@@ -48,8 +48,8 @@ return <Table data={data} columns={columns} tableCell={tableCell} />
 
 ```javascript
 const columns = [
-  { label: 'Title One', name: 'keyOne' },
-  { label: 'Title Two', name: 'keyTwo' }
+  { heading: 'Title One', name: 'keyOne' },
+  { heading: 'Title Two', name: 'keyTwo' }
 ]
 
 const data = [
@@ -57,11 +57,11 @@ const data = [
   { keyOne: 'valueOneB', keyTwo: 'valueTwoB' }
 ]
 
-const cellRenderer = (column, row) => {
+const cellRenderer = (column, row, default) => {
   return get(row, column.name) + "!!!"
 }
 
-const headingRenderer = (heading, renderer) => {
+const headingRenderer = (heading, renderer, default) => {
   return <span style={{color: 'blue'}}>{get(heading, 'label')}</span>
 }
 
@@ -73,12 +73,23 @@ const headingRenderer = (heading, renderer) => {
 
 <img width="203" alt="screen shot 2017-11-13 at 11 02 52" src="https://user-images.githubusercontent.com/24386407/32722630-67a98a6e-c862-11e7-941b-b096d16a9c71.png">
 
+- Note that the renderers accept a default rendered output as a third argument, so if you wanted to use the default output in certain cases, you could do something along the lines of:
+
+```javascript
+  const cellRenderer = (column, row, default) => {
+    if (column.name === 'checkbox') {
+      return <input type='checkbox' />
+    }
+    return default
+  }
+```
+
 - Custom classnames can be applied without overriding the components if desired, using the  `classNames` object.  For example:
 
 ```javascript
 const columns = [
-  { label: 'Title One', name: 'keyOne' },
-  { label: 'Title Two', name: 'keyTwo' }
+  { heading: 'Title One', name: 'keyOne' },
+  { heading: 'Title Two', name: 'keyTwo' }
 ]
 
 const data = [

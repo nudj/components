@@ -4,20 +4,16 @@ const classnames = require('classnames')
 
 const renderDataRow = (row, columns, renderer, className, Cell) => {
   return columns.map(column => {
-    let cell = get(row, column.name, '')
-    if (renderer) {
-      cell = renderer(column, row)
-    }
+    const defaultValue = get(row, column.name, '')
+    const cell = renderer ? renderer(column, row, defaultValue) : defaultValue
 
     return <Cell className={classnames(className)} key={`cell-${row.id}-${column.name}`}>{cell}</Cell>
   })
 }
 
-const renderHeading = (header, renderer) => {
-  if (renderer) {
-    return renderer(header)
-  }
-  return get(header, 'label', '')
+const renderHeading = (column, renderer) => {
+  const defaultValue = get(column, 'heading', '')
+  return renderer ? renderer(column, defaultValue) : defaultValue
 }
 
 const defaultTable = (props) => <table className={classnames(props.className)}>{props.children}</table>
@@ -27,10 +23,10 @@ const defaultCell = (props) => <td className={classnames(props.className)}>{prop
 const defaultHeaderRow = (props) => <tr className={classnames(props.className)}>{props.children}</tr>
 
 const defaultHeading = (props) => {
-  const header = get(props, 'header')
+  const column = get(props, 'column')
   const renderer = get(props, 'renderer')
 
-  return <th className={classnames(props.className)}>{renderHeading(header, renderer)}</th>
+  return <th className={classnames(props.className)}>{renderHeading(column, renderer)}</th>
 }
 const defaultRow = (props) => {
   const className = get(props, 'classNames.cell')
@@ -53,11 +49,28 @@ const Table = (props) => {
     <MainTable className={classnames(classNames.table)}>
       <TableHead className={classnames(classNames.header)}>
         <HeaderRow className={classnames(classNames.headerRow)}>
-          {columns.map(header => <TableHeading className={classnames(classNames.heading)} renderer={props.headingRenderer} key={header.name} header={header} />)}
+          {columns.map(column => (
+            <TableHeading
+              className={classnames(classNames.heading)}
+              renderer={props.headingRenderer}
+              key={column.name}
+              column={column}
+            />
+          ))}
         </HeaderRow>
       </TableHead>
       <TableBody className={classnames(classNames.body)}>
-        {data.map(row => <Row columns={columns} row={row} classNames={classNames} className={classnames(classNames.row)} renderer={props.cellRenderer} Cell={Cell} key={row.id} />)}
+        {data.map(row => (
+          <Row
+            columns={columns}
+            row={row}
+            classNames={classNames}
+            className={classnames(classNames.row)}
+            renderer={props.cellRenderer}
+            Cell={Cell}
+            key={row.id}
+          />
+        ))}
       </TableBody>
     </MainTable>
   )

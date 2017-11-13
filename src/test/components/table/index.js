@@ -9,15 +9,15 @@ const Table = require('../../../lib/table')
 
 const columns = [
   {
-    label: 'Title One',
+    heading: 'Title One',
     name: 'keyOne'
   },
   {
-    label: 'Example',
+    heading: 'Example',
     name: 'keyTwo'
   },
   {
-    label: 'Important Thing',
+    heading: 'Important Thing',
     name: 'keyThree.nestedKey'
   }
 ]
@@ -95,10 +95,10 @@ describe('Table', () => {
       ])
     })
 
-    it('can use paths as labels for row data', () => {
+    it('can use paths as names for row data', () => {
       const tableColumn = [
-        { label: 'Dot Notation', name: 'deeply.nested.value' },
-        { label: 'Brackets', name: 'bracketed[\'value\']' }
+        { heading: 'Dot Notation', name: 'deeply.nested.value' },
+        { heading: 'Brackets', name: 'bracketed[\'value\']' }
       ]
       const tableData = [{
         id: 1,
@@ -180,8 +180,8 @@ describe('Table', () => {
   describe('custom renderers', () => {
     it('can be given a function for rendering cells', () => {
       const basicData = [{ id: 1, keyOne: 'valueOneA', keyTwo: 'valueTwoA' }]
-      const basicColumns = [{ label: 'One', name: 'one' }, { label: 'Two', name: 'two' }]
-      const renderFunction = (column, row) => `${column.label} - ${row.keyTwo}`
+      const basicColumns = [{ heading: 'One', name: 'one' }, { heading: 'Two', name: 'two' }]
+      const renderFunction = (column, row) => `${column.heading} - ${row.keyTwo}`
       const component = shallow(<Table cellRenderer={renderFunction} data={basicData} columns={basicColumns} />)
 
       const rows = component.find('defaultBody')
@@ -196,31 +196,31 @@ describe('Table', () => {
 
     it('custom cellRenderer function is provided with all row and column data', () => {
       const basicData = [{ id: 1, keyOne: 'valueOneA', keyTwo: 'valueTwoA' }]
-      const basicColumns = [{ label: 'One', name: 'one' }]
+      const basicColumns = [{ heading: 'One', name: 'keyOne' }]
       const renderFunction = sinon.stub()
       const component = shallow(<Table cellRenderer={renderFunction} data={basicData} columns={basicColumns} />)
       component.find('defaultBody').children().first().dive() // Using dive to simulate the component being rendered.
 
-      expect(renderFunction).to.have.been.calledWith(basicColumns[0], basicData[0])
+      expect(renderFunction).to.have.been.calledWith(basicColumns[0], basicData[0], 'valueOneA')
     })
 
     it('can be given a custom renderer for headings', () => {
       const basicData = [{ id: 1, keyOne: 'valueOneA', keyTwo: 'valueTwoA' }]
-      const basicColumns = [{ label: 'One', name: 'one' }]
+      const basicColumns = [{ heading: 'One', name: 'one' }]
       const customHeadingRenderer = (header) => {}
       const component = shallow(<Table headingRenderer={customHeadingRenderer} data={basicData} columns={basicColumns} />)
 
       expect(component.find('defaultHeading').props().renderer).to.equal(customHeadingRenderer)
     })
 
-    it('custom headingRenderer is provided with the heading data', () => {
+    it('custom headingRenderer is provided with the heading data and default rendered state', () => {
       const basicData = [{ id: 1, keyOne: 'valueOneA', keyTwo: 'valueTwoA' }]
-      const basicColumns = [{ label: 'One', name: 'one' }]
+      const basicColumns = [{ heading: 'One', name: 'one' }]
       const customHeadingRenderer = sinon.stub()
       const component = shallow(<Table headingRenderer={customHeadingRenderer} data={basicData} columns={basicColumns} />)
       component.find('defaultHeading').dive() // Simulates the component being rendered.
 
-      expect(customHeadingRenderer).to.have.been.calledWith(basicColumns[0])
+      expect(customHeadingRenderer).to.have.been.calledWith(basicColumns[0], basicColumns[0].heading)
     })
   })
 

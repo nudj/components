@@ -177,7 +177,7 @@ describe('Table', () => {
     })
   })
 
-  describe('callbacks', () => {
+  describe('custom renderers', () => {
     it('can be given a function for rendering cells', () => {
       const basicData = [{ id: 1, keyOne: 'valueOneA', keyTwo: 'valueTwoA' }]
       const basicColumns = [{ label: 'One', name: 'one' }, { label: 'Two', name: 'two' }]

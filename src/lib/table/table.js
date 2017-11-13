@@ -8,7 +8,7 @@ const renderDataRow = (row, columns, renderer, className, Cell) => {
       cell = renderer(column, row)
     }
 
-    return <Cell className={className} key={`cell-${row.id}`}>{cell}</Cell>
+    return <Cell className={className} key={`cell-${row.id}-${column.name}`}>{cell}</Cell>
   })
 }
 

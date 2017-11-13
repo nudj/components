@@ -20,3 +20,7 @@ Reusable React components from the nudj platform
 1. Increment `package.json` version
 1. Merge into `master`
 1. Codefresh will publish to npm
+
+## Usage
+
+Instructions on using each component can be found in their own directories.

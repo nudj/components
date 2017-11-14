@@ -3,46 +3,72 @@ const React = require('react')
 const get = require('lodash/get')
 const classnames = require('classnames')
 
-const renderDataRow = (row, columns, renderer, className, Cell) => {
-  return columns.map(column => {
-    const defaultValue = get(row, column.name, '')
-    const cell = renderer ? renderer(column, row, defaultValue) : defaultValue
+type Column = {
+  heading: string,
+  name: string
+}
+
+type DefaultComponentProps = {
+  className: ?string,
+  children: React.Node
+}
+
+type DefaultHeadingProps = {
+  className: ?string
+}
+
+type DefaultRowProps = {
+  className: ?string,
+  columns: Array<Column>,
+  row: Object,
+  renderer: ?Function,
+  Cell: Function
+}
+
+type TableProps = {
+  headingRenderer: Function,
+  cellRenderer: Function
+}
+
+const renderDataRow: Function = (row: Object, columns: Array<Column>, renderer: ?Function, className: ?string, Cell: Function) => {
+  return columns.map((column: Column) => {
+    const defaultValue: string = get(row, column.name, '')
 
     return (
       <Cell
         className={classnames(className)}
         key={`cell-${row.id}-${column.name}`}
       >
-        {cell}
+        {renderer ? renderer(column, row, defaultValue) : defaultValue}
       </Cell>
     )
   })
 }
 
-const renderHeading = (column, renderer) => {
-  const defaultValue = get(column, 'heading', '')
+const renderHeading: Function = (column: Column, renderer: ?Function) => {
+  const defaultValue: string = get(column, 'heading', '')
   return renderer ? renderer(column, defaultValue) : defaultValue
 }
 
-const defaultTable = props => (
+const defaultTable: Function = (props: DefaultComponentProps) => (
   <table className={classnames(props.className)}>{props.children}</table>
 )
-const defaultBody = props => (
+const defaultBody: Function = (props: DefaultComponentProps) => (
   <tbody className={classnames(props.className)}>{props.children}</tbody>
 )
-const defaultHead = props => (
+const defaultHead: Function = (props: DefaultComponentProps) => (
   <thead className={classnames(props.className)}>{props.children}</thead>
 )
-const defaultCell = props => (
+const defaultCell: Function = (props: DefaultComponentProps) => (
   <td className={classnames(props.className)}>{props.children}</td>
 )
-const defaultHeaderRow = props => (
+const defaultHeaderRow: Function = (props: DefaultComponentProps) => (
   <tr className={classnames(props.className)}>{props.children}</tr>
 )
 
-const defaultHeading = props => {
-  const column = get(props, 'column')
-  const renderer = get(props, 'renderer')
+const defaultHeading: Function = (props: DefaultHeadingProps) => {
+  const column: Column = get(props, 'column')
+  const renderer: Function = get(props, 'renderer')
 
   return (
     <th className={classnames(props.className)}>
@@ -50,8 +76,9 @@ const defaultHeading = props => {
     </th>
   )
 }
-const defaultRow = props => {
-  const className = get(props, 'classNames.cell')
+
+const defaultRow: Function = (props: DefaultRowProps) => {
+  const className: ?string = get(props, 'classNames.cell')
   return (
     <tr className={classnames(props.className)}>
       {renderDataRow(
@@ -65,28 +92,23 @@ const defaultRow = props => {
   )
 }
 
-type TableProps = {
-  headingRenderer: Function,
-  cellRenderer: Function
-}
-
-const Table = (props: TableProps) => {
-  const MainTable = get(props, 'table', defaultTable)
-  const TableBody = get(props, 'tableBody', defaultBody)
-  const TableHead = get(props, 'tableHead', defaultHead)
-  const TableHeading = get(props, 'tableHeading', defaultHeading)
-  const Row = get(props, 'tableRow', defaultRow)
-  const HeaderRow = get(props, 'headerRow', defaultHeaderRow)
-  const Cell = get(props, 'tableCell', defaultCell)
-  const data = get(props, 'data', [])
-  const columns = get(props, 'columns', [])
-  const classNames = get(props, 'classNames', {})
+const Table: Function = (props: TableProps) => {
+  const MainTable: Function = get(props, 'table', defaultTable)
+  const TableBody: Function = get(props, 'tableBody', defaultBody)
+  const TableHead: Function = get(props, 'tableHead', defaultHead)
+  const TableHeading: Function = get(props, 'tableHeading', defaultHeading)
+  const Row: Function = get(props, 'tableRow', defaultRow)
+  const HeaderRow: Function = get(props, 'headerRow', defaultHeaderRow)
+  const Cell: Function = get(props, 'tableCell', defaultCell)
+  const data: Array<Object> = get(props, 'data', [])
+  const columns: Array<Column> = get(props, 'columns', [])
+  const classNames: Object = get(props, 'classNames', {})
 
   return (
     <MainTable className={classnames(classNames.table)}>
       <TableHead className={classnames(classNames.header)}>
         <HeaderRow className={classnames(classNames.headerRow)}>
-          {columns.map(column => (
+          {columns.map((column: Column) => (
             <TableHeading
               className={classnames(classNames.heading)}
               renderer={props.headingRenderer}
@@ -97,7 +119,7 @@ const Table = (props: TableProps) => {
         </HeaderRow>
       </TableHead>
       <TableBody className={classnames(classNames.body)}>
-        {data.map(row => (
+        {data.map((row: Object) => (
           <Row
             columns={columns}
             row={row}

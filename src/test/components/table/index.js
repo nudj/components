@@ -61,7 +61,12 @@ describe('Table', () => {
   describe('data', () => {
     it('creates headers based on provided data', () => {
       const component = shallow(<TableWrapper data={data} columns={columns} />)
-      const headers = component.find('defaultHeaderCell')
+      const headers = component
+        .children()
+        .first()
+        .children()
+        .first()
+        .children()
 
       expect(headers).to.have.length(3)
     })
@@ -80,7 +85,11 @@ describe('Table', () => {
       const component = shallow(<TableWrapper data={data} columns={columns} />)
       const header = index =>
         component
-          .find('defaultHeaderCell')
+          .children()
+          .first()
+          .children()
+          .first()
+          .children()
           .at(index)
           .dive()
           .props()
@@ -322,9 +331,15 @@ describe('Table', () => {
         />
       )
 
-      expect(component.find('defaultHeaderCell').props().renderer).to.equal(
-        customHeadingRenderer
-      )
+      expect(
+        component
+          .children()
+          .first()
+          .children()
+          .first()
+          .children()
+          .props().renderer
+      ).to.equal(customHeadingRenderer)
     })
 
     it('custom headingRenderer is provided with the heading data and default rendered state', () => {
@@ -338,7 +353,13 @@ describe('Table', () => {
           columns={basicColumns}
         />
       )
-      component.find('defaultHeaderCell').dive() // Simulates the component being rendered.
+      component
+        .children()
+        .first()
+        .children()
+        .first()
+        .children()
+        .dive() // Simulates the component being rendered.
 
       expect(customHeadingRenderer).to.have.been.calledWith(
         basicColumns[0],
@@ -405,7 +426,7 @@ describe('Table', () => {
       )
       const props = component
         .children()
-        .at(1)
+        .first()
         .props()
 
       expect(props.className).to.equal('custom_header_class')
@@ -420,8 +441,10 @@ describe('Table', () => {
         />
       )
       const props = component
-        .find('defaultHead')
         .children()
+        .first()
+        .children()
+        .first()
         .props()
       expect(props.className).to.equal('custom_header_row_class')
     })
@@ -435,7 +458,11 @@ describe('Table', () => {
         />
       )
       const props = component
-        .find('defaultHeaderCell')
+        .children()
+        .first()
+        .children()
+        .first()
+        .children()
         .at(0)
         .dive()
         .props()
@@ -451,7 +478,8 @@ describe('Table', () => {
         />
       )
       const props = component
-        .find('defaultBody')
+        .children()
+        .at(1)
         .first()
         .props()
       expect(props.className).to.equal('custom_body_class')

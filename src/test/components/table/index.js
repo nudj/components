@@ -61,7 +61,7 @@ describe('Table', () => {
   describe('data', () => {
     it('creates headers based on provided data', () => {
       const component = shallow(<Table data={data} columns={columns} />)
-      const headers = component.find('defaultHeading')
+      const headers = component.find('defaultHeaderCell')
 
       expect(headers).to.have.length(3)
     })
@@ -77,7 +77,7 @@ describe('Table', () => {
       const component = shallow(<Table data={data} columns={columns} />)
       const header = index =>
         component
-          .find('defaultHeading')
+          .find('defaultHeaderCell')
           .at(index)
           .dive()
           .props()
@@ -347,7 +347,7 @@ describe('Table', () => {
         />
       )
 
-      expect(component.find('defaultHeading').props().renderer).to.equal(
+      expect(component.find('defaultHeaderCell').props().renderer).to.equal(
         customHeadingRenderer
       )
     })
@@ -363,7 +363,7 @@ describe('Table', () => {
           columns={basicColumns}
         />
       )
-      component.find('defaultHeading').dive() // Simulates the component being rendered.
+      component.find('defaultHeaderCell').dive() // Simulates the component being rendered.
 
       expect(customHeadingRenderer).to.have.been.calledWith(
         basicColumns[0],
@@ -452,7 +452,7 @@ describe('Table', () => {
         />
       )
       const props = component
-        .find('defaultHeading')
+        .find('defaultHeaderCell')
         .at(0)
         .dive()
         .props()

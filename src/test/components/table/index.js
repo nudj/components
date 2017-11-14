@@ -68,7 +68,10 @@ describe('Table', () => {
 
     it('creates rows based on provided data', () => {
       const component = shallow(<TableWrapper data={data} columns={columns} />)
-      const rows = component.find('defaultBody').children()
+      const rows = component
+        .children()
+        .at(1)
+        .children()
 
       expect(rows).to.have.length(4)
     })
@@ -89,8 +92,11 @@ describe('Table', () => {
 
     it('places the correct values on the row using the column accessor keys', () => {
       const component = shallow(<TableWrapper data={data} columns={columns} />)
-      const rows = component.find('defaultBody').children()
-      const firstRow = rows.first()
+      const firstRow = component
+        .children()
+        .at(1)
+        .children()
+        .first()
       const rowData = firstRow
         .dive()
         .children()
@@ -122,8 +128,11 @@ describe('Table', () => {
       const component = shallow(
         <TableWrapper data={tableData} columns={tableColumn} />
       )
-      const rows = component.find('defaultBody').children()
-      const firstRow = rows.first()
+      const firstRow = component
+        .children()
+        .at(1)
+        .children()
+        .first()
       const rowData = index =>
         firstRow
           .dive()
@@ -139,26 +148,17 @@ describe('Table', () => {
   describe('component overrides', () => {
     it('has a main table component that can be overridden', () => {
       const customTable = props => <table>{props.children}</table>
-      const component = shallow(<TableWrapper data={data} columns={columns} />)
       const customComponent = shallow(
         <TableWrapper Table={customTable} data={data} columns={columns} />
       )
-      expect(component.name()).to.equal('defaultTable')
       expect(customComponent.name()).to.equal('customTable')
     })
 
     it('has a table body that can be overridden', () => {
       const customBody = props => <tbody>{props.children}</tbody>
-      const component = shallow(<TableWrapper data={data} columns={columns} />)
       const customComponent = shallow(
         <TableWrapper Body={customBody} data={data} columns={columns} />
       )
-      expect(
-        component
-          .children()
-          .last()
-          .name()
-      ).to.equal('defaultBody')
       expect(
         customComponent
           .children()
@@ -169,23 +169,13 @@ describe('Table', () => {
 
     it('has a table cell component that can be overridden', () => {
       const customCell = props => <td>{props.children}</td>
-      const component = shallow(<TableWrapper data={data} columns={columns} />)
       const customComponent = shallow(
         <TableWrapper Cell={customCell} data={data} columns={columns} />
       )
       expect(
-        component
-          .find('defaultBody')
-          .children()
-          .first()
-          .dive()
-          .children()
-          .first()
-          .name()
-      ).to.equal('defaultCell')
-      expect(
         customComponent
-          .find('defaultBody')
+          .children()
+          .at(1)
           .children()
           .first()
           .dive()
@@ -197,20 +187,13 @@ describe('Table', () => {
 
     it('has a row cell component that can be overridden', () => {
       const customRow = props => <tr>{props.children}</tr>
-      const component = shallow(<TableWrapper data={data} columns={columns} />)
       const customComponent = shallow(
         <TableWrapper Row={customRow} data={data} columns={columns} />
       )
       expect(
-        component
-          .find('defaultBody')
-          .children()
-          .first()
-          .name()
-      ).to.equal('defaultRow')
-      expect(
         customComponent
-          .find('defaultBody')
+          .children()
+          .at(1)
           .children()
           .first()
           .name()
@@ -219,20 +202,11 @@ describe('Table', () => {
 
     it('has a table head component that can be overridden', () => {
       const customHead = props => <thead>{props.children}</thead>
-      const component = shallow(<TableWrapper data={data} columns={columns} />)
       const customComponent = shallow(
         <TableWrapper Head={customHead} data={data} columns={columns} />
       )
       expect(
-        component
-          .find('defaultTable')
-          .children()
-          .first()
-          .name()
-      ).to.equal('defaultHead')
-      expect(
         customComponent
-          .find('defaultTable')
           .children()
           .first()
           .name()
@@ -241,20 +215,17 @@ describe('Table', () => {
 
     it('has a header row component that can be overridden', () => {
       const customHeaderRow = props => <tr>{props.children}</tr>
-      const component = shallow(<TableWrapper data={data} columns={columns} />)
       const customComponent = shallow(
-        <TableWrapper HeaderRow={customHeaderRow} data={data} columns={columns} />
+        <TableWrapper
+          HeaderRow={customHeaderRow}
+          data={data}
+          columns={columns}
+        />
       )
       expect(
-        component
-          .find('defaultHead')
+        customComponent
           .children()
           .first()
-          .name()
-      ).to.equal('defaultHeaderRow')
-      expect(
-        customComponent
-          .find('defaultHead')
           .children()
           .first()
           .name()
@@ -263,19 +234,19 @@ describe('Table', () => {
 
     it('has a header cell component that can be overridden', () => {
       const customHeaderCell = props => <th>{props.children}</th>
-      const component = shallow(<TableWrapper data={data} columns={columns} />)
       const customComponent = shallow(
-        <TableWrapper HeaderCell={customHeaderCell} data={data} columns={columns} />
+        <TableWrapper
+          HeaderCell={customHeaderCell}
+          data={data}
+          columns={columns}
+        />
       )
       expect(
-        component
-          .find('defaultHeaderCell')
-          .first()
-          .name()
-      ).to.equal('defaultHeaderCell')
-      expect(
         customComponent
-          .find('defaultHeaderRow')
+          .children()
+          .first()
+          .children()
+          .first()
           .first()
           .children()
           .first()
@@ -301,8 +272,11 @@ describe('Table', () => {
         />
       )
 
-      const rows = component.find('defaultBody')
-      const firstRow = rows.first().children()
+      const rows = component
+        .children()
+        .at(1)
+        .children()
+      const firstRow = rows.first()
       const rowData = firstRow
         .dive()
         .children()
@@ -323,7 +297,8 @@ describe('Table', () => {
         />
       )
       component
-        .find('defaultBody')
+        .children()
+        .at(1)
         .children()
         .first()
         .dive() // Using dive to simulate the component being rendered.
@@ -394,7 +369,8 @@ describe('Table', () => {
         />
       )
       const cell = component
-        .find('defaultBody')
+        .children()
+        .at(1)
         .children()
         .first()
         .dive()
@@ -411,7 +387,10 @@ describe('Table', () => {
           columns={columns}
         />
       )
-      const rows = component.find('defaultBody').children()
+      const rows = component
+        .children()
+        .at(1)
+        .children()
       const props = rows.first().props()
       expect(props.className).to.equal('custom_row_class')
     })
@@ -424,7 +403,11 @@ describe('Table', () => {
           columns={columns}
         />
       )
-      const props = component.find('defaultHead').props()
+      const props = component
+        .children()
+        .at(1)
+        .props()
+
       expect(props.className).to.equal('custom_header_class')
     })
 

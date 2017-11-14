@@ -8,11 +8,6 @@ type Column = {
   name: string
 }
 
-type DefaultComponentProps = {
-  className: ?string,
-  children: React.Node
-}
-
 type DefaultHeaderCellProps = {
   className: ?string
 }
@@ -25,7 +20,13 @@ type DefaultRowProps = {
   Cell: Function
 }
 
-const renderDataRow: Function = (row: Object, columns: Array<Column>, renderer: ?Function, className: ?string, Cell: Function) => {
+const renderDataRow: Function = (
+  row: Object,
+  columns: Array<Column>,
+  renderer: ?Function,
+  className: ?string,
+  Cell: Function
+) => {
   return columns.map((column: Column) => {
     const defaultValue: string = get(row, column.name, '')
 
@@ -44,22 +45,6 @@ const renderHeading: Function = (column: Column, renderer: ?Function) => {
   const defaultValue: string = get(column, 'heading', '')
   return renderer ? renderer(column, defaultValue) : defaultValue
 }
-
-const defaultTable: Function = (props: DefaultComponentProps) => (
-  <table className={classnames(props.className)}>{props.children}</table>
-)
-const defaultBody: Function = (props: DefaultComponentProps) => (
-  <tbody className={classnames(props.className)}>{props.children}</tbody>
-)
-const defaultHead: Function = (props: DefaultComponentProps) => (
-  <thead className={classnames(props.className)}>{props.children}</thead>
-)
-const defaultCell: Function = (props: DefaultComponentProps) => (
-  <td className={classnames(props.className)}>{props.children}</td>
-)
-const defaultHeaderRow: Function = (props: DefaultComponentProps) => (
-  <tr className={classnames(props.className)}>{props.children}</tr>
-)
 
 const defaultHeaderCell: Function = (props: DefaultHeaderCellProps) => {
   const column: Column = get(props, 'column')
@@ -88,31 +73,33 @@ const defaultRow: Function = (props: DefaultRowProps) => {
 }
 
 type TableProps = {
-  Table: Function,
-  Body: Function,
-  Head: Function,
-  HeaderCell: Function,
-  HeaderRow: Function,
-  Row: Function,
-  Cell: Function,
-  headingRenderer: Function,
-  cellRenderer: Function
+  Table?: Function,
+  Body?: Function,
+  Head?: Function,
+  HeaderCell?: Function,
+  HeaderRow?: Function,
+  Row?: Function,
+  Cell?: Function,
+  data: Array<Object>,
+  columns: Array<Column>,
+  classNames?: Object,
+  headingRenderer?: Function,
+  cellRenderer?: Function
 }
 
-const TableWrapper: Function = (props: TableProps) => {
+const TableWrapper = (props: TableProps) => {
   const {
-    Table,
-    Body,
-    Head,
-    HeaderCell,
-    HeaderRow,
-    Row,
-    Cell
+    Table = props => <table {...props} />,
+    Body = props => <tbody {...props} />,
+    Head = props => <thead {...props} />,
+    Cell = props => <td {...props} />,
+    HeaderRow = props => <tr {...props} />,
+    Row = defaultRow,
+    HeaderCell = defaultHeaderCell,
+    data = [],
+    columns = [],
+    classNames = {}
   } = props
-
-  const data: Array<Object> = get(props, 'data', [])
-  const columns: Array<Column> = get(props, 'columns', [])
-  const classNames: Object = get(props, 'classNames', {})
 
   return (
     <Table className={classnames(classNames.table)}>
@@ -143,16 +130,6 @@ const TableWrapper: Function = (props: TableProps) => {
       </Body>
     </Table>
   )
-}
-
-TableWrapper.defaultProps = {
-  Table: defaultTable,
-  Body: defaultBody,
-  Head: defaultHead,
-  HeaderCell: defaultHeaderCell,
-  HeaderRow: defaultHeaderRow,
-  Row: defaultRow,
-  Cell: defaultCell
 }
 
 module.exports = TableWrapper

@@ -5,7 +5,7 @@ const React = require('react')
 const { shallow } = require('enzyme')
 const sinon = require('sinon')
 
-const TableWrapper = require('../../../lib/table')
+const Table = require('../../../lib/table')
 
 const columns = [
   {
@@ -61,7 +61,7 @@ describe('Table', () => {
   describe('data', () => {
     it('creates headings based on provided data', () => {
       const component = shallow(
-        <TableWrapper
+        <Table
           classNames={{ heading: 'headingClass' }}
           data={data}
           columns={columns}
@@ -73,7 +73,7 @@ describe('Table', () => {
 
     it('creates rows based on provided data', () => {
       const component = shallow(
-        <TableWrapper
+        <Table
           classNames={{ row: 'rowClass' }}
           data={data}
           columns={columns}
@@ -85,7 +85,7 @@ describe('Table', () => {
 
     it('renders the provided title as the column title', () => {
       const component = shallow(
-        <TableWrapper
+        <Table
           classNames={{ heading: 'headingClass' }}
           data={data}
           columns={columns}
@@ -100,7 +100,7 @@ describe('Table', () => {
 
     it('places the correct values on the row using the column accessor keys', () => {
       const component = shallow(
-        <TableWrapper
+        <Table
           classNames={{ cell: 'cellClass' }}
           data={data}
           columns={columns}
@@ -141,7 +141,7 @@ describe('Table', () => {
         }
       ]
       const component = shallow(
-        <TableWrapper
+        <Table
           classNames={{ row: 'rowClass' }}
           data={tableData}
           columns={tableColumn}
@@ -161,7 +161,7 @@ describe('Table', () => {
     it('has a main table component that can be overridden', () => {
       const customTable = props => <table>{props.children}</table>
       const customComponent = shallow(
-        <TableWrapper Table={customTable} data={data} columns={columns} />
+        <Table component={customTable} data={data} columns={columns} />
       )
       expect(customComponent.name()).to.equal('customTable')
     })
@@ -169,7 +169,7 @@ describe('Table', () => {
     it('has a table body that can be overridden', () => {
       const customBody = props => <tbody>{props.children}</tbody>
       const customComponent = shallow(
-        <TableWrapper
+        <Table
           classNames={{ body: 'classBody' }}
           Body={customBody}
           data={data}
@@ -183,7 +183,7 @@ describe('Table', () => {
     it('has a table cell component that can be overridden', () => {
       const customCell = props => <td>{props.children}</td>
       const customComponent = shallow(
-        <TableWrapper
+        <Table
           classNames={{ cell: 'cellClass', row: 'rowClass' }}
           Cell={customCell}
           data={data}
@@ -199,7 +199,7 @@ describe('Table', () => {
     it('has a row cell component that can be overridden', () => {
       const customRow = props => <tr>{props.children}</tr>
       const customComponent = shallow(
-        <TableWrapper Row={customRow} data={data} columns={columns} />
+        <Table Row={customRow} data={data} columns={columns} />
       )
       expect(customComponent.find('customRow').exists()).to.be.true()
     })
@@ -207,7 +207,7 @@ describe('Table', () => {
     it('has a table head component that can be overridden', () => {
       const customHead = props => <thead>{props.children}</thead>
       const customComponent = shallow(
-        <TableWrapper Head={customHead} data={data} columns={columns} />
+        <Table Head={customHead} data={data} columns={columns} />
       )
       expect(customComponent.find('customHead').exists()).to.be.true()
     })
@@ -215,7 +215,7 @@ describe('Table', () => {
     it('has a header row component that can be overridden', () => {
       const customHeaderRow = props => <tr>{props.children}</tr>
       const customComponent = shallow(
-        <TableWrapper
+        <Table
           HeaderRow={customHeaderRow}
           data={data}
           columns={columns}
@@ -227,7 +227,7 @@ describe('Table', () => {
     it('has a header cell component that can be overridden', () => {
       const customHeaderCell = props => <th>{props.children}</th>
       const customComponent = shallow(
-        <TableWrapper
+        <Table
           HeaderCell={customHeaderCell}
           data={data}
           columns={columns}
@@ -246,7 +246,7 @@ describe('Table', () => {
       ]
       const renderFunction = (column, row) => `${column.heading}-${row.keyTwo}`
       const component = shallow(
-        <TableWrapper
+        <Table
           classNames={{ cell: 'cellClass' }}
           cellRenderer={renderFunction}
           data={basicData}
@@ -263,7 +263,7 @@ describe('Table', () => {
       const basicColumns = [{ heading: 'One', name: 'keyOne' }]
       const renderFunction = sinon.stub()
       shallow(
-        <TableWrapper
+        <Table
           cellRenderer={renderFunction}
           data={basicData}
           columns={basicColumns}
@@ -281,7 +281,7 @@ describe('Table', () => {
       const basicColumns = [{ heading: 'One', name: 'one' }]
       const customHeadingRenderer = () => 'Custom content'
       const component = shallow(
-        <TableWrapper
+        <Table
           classNames={{ heading: 'headingClass' }}
           headingRenderer={customHeadingRenderer}
           data={basicData}
@@ -298,7 +298,7 @@ describe('Table', () => {
       const basicColumns = [{ heading: 'One', name: 'one' }]
       const customHeadingRenderer = sinon.stub()
       shallow(
-        <TableWrapper
+        <Table
           headingRenderer={customHeadingRenderer}
           data={basicData}
           columns={basicColumns}
@@ -314,7 +314,7 @@ describe('Table', () => {
   describe('styles', () => {
     it('can be provided with a className', () => {
       const component = shallow(
-        <TableWrapper
+        <Table
           classNames={{ table: 'custom_class' }}
           data={data}
           columns={columns}
@@ -327,7 +327,7 @@ describe('Table', () => {
     it('can be given a general cell class', () => {
       const classNames = { cell: 'custom_cell_class' }
       const component = shallow(
-        <TableWrapper classNames={classNames} data={data} columns={columns} />
+        <Table classNames={classNames} data={data} columns={columns} />
       )
       expect(
         component.find({ className: classNames.cell }).exists()
@@ -337,7 +337,7 @@ describe('Table', () => {
     it('can be given a general row class', () => {
       const classNames = { row: 'custom_row_class' }
       const component = shallow(
-        <TableWrapper classNames={classNames} data={data} columns={columns} />
+        <Table classNames={classNames} data={data} columns={columns} />
       )
       expect(
         component.find({ className: classNames.row }).exists()
@@ -347,7 +347,7 @@ describe('Table', () => {
     it('can be given a general header class', () => {
       const classNames = { header: 'custom_header_class' }
       const component = shallow(
-        <TableWrapper classNames={classNames} data={data} columns={columns} />
+        <Table classNames={classNames} data={data} columns={columns} />
       )
       expect(
         component.find({ className: classNames.header }).exists()
@@ -357,7 +357,7 @@ describe('Table', () => {
     it('can be given a general header-row class', () => {
       const classNames = { headerRow: 'custom_header_row_class' }
       const component = shallow(
-        <TableWrapper classNames={classNames} data={data} columns={columns} />
+        <Table classNames={classNames} data={data} columns={columns} />
       )
       expect(
         component.find({ className: classNames.headerRow }).exists()
@@ -367,7 +367,7 @@ describe('Table', () => {
     it('can be given a general heading/title class', () => {
       const classNames = { heading: 'custom_headings_class' }
       const component = shallow(
-        <TableWrapper classNames={classNames} data={data} columns={columns} />
+        <Table classNames={classNames} data={data} columns={columns} />
       )
       expect(
         component.find({ className: classNames.heading }).exists()
@@ -377,7 +377,7 @@ describe('Table', () => {
     it('can be given a general body class', () => {
       const classNames = { body: 'custom_body_class' }
       const component = shallow(
-        <TableWrapper classNames={classNames} data={data} columns={columns} />
+        <Table classNames={classNames} data={data} columns={columns} />
       )
       expect(
         component.find({ className: classNames.body }).exists()

@@ -19,7 +19,7 @@ type ClassList = {
 }
 
 type TableProps = {
-  Table?: Function,
+  component?: Function,
   Body?: Function,
   Head?: Function,
   HeaderCell?: Function,
@@ -33,9 +33,9 @@ type TableProps = {
   cellRenderer?: Function
 }
 
-const TableWrapper = (props: TableProps) => {
+const Table = (props: TableProps) => {
   const {
-    Table = props => <table {...props} />,
+    component: Table = props => <table {...props} />,
     Body = props => <tbody {...props} />,
     Head = props => <thead {...props} />,
     Cell = props => <td {...props} />,
@@ -84,4 +84,4 @@ const TableWrapper = (props: TableProps) => {
   )
 }
 
-module.exports = TableWrapper
+module.exports = Table

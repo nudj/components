@@ -47,6 +47,13 @@ describe.only('Input', () => {
       const wrapper = component.find({ className: 'customWrapperClass' })
       expect(wrapper.type()).to.equal(wrappingComponent)
     })
+
+    it('takes an ErrorWrapper component for optional custom wrapper', () => {
+      const CustomErrorWrapper = (props) => <span {...props} />
+      const component = shallow(<Input errorClass='customErrorClass' ErrorWrapper={CustomErrorWrapper} />)
+      const wrapper = component.find({ className: 'customErrorClass' })
+      expect(wrapper.type()).to.equal(CustomErrorWrapper)
+    })
   })
 
   describe('events', () => {
@@ -155,6 +162,12 @@ describe.only('Input', () => {
     it('takes an outer wrapper className', () => {
       const component = shallow(<Input className='inputClass' wrapperClass='wrapper' />)
       const wrapper = component.find({ className: 'wrapper' }).type()
+      expect(wrapper().type).to.equal('div')
+    })
+
+    it('takes an ErrorWrapper className', () => {
+      const component = shallow(<Input className='inputClass' errorClass='customErrorClass' />)
+      const wrapper = component.find({ className: 'customErrorClass' }).type()
       expect(wrapper().type).to.equal('div')
     })
   })

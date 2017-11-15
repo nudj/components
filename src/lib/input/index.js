@@ -24,8 +24,10 @@ const Input = (props: InputProps) => {
     type = 'text',
     Wrapper = props => <div {...props} />,
     wrapperClass,
-    className,
-    error
+    ErrorWrapper = props => <div {...props} />,
+    error,
+    errorClass,
+    className
   } = props
 
   const handleEvent = type => event => {
@@ -46,7 +48,9 @@ const Input = (props: InputProps) => {
         onFocus={handleEvent('onFocus')}
         required={required}
       />
-      {error ? <span>{error}</span> : null}
+      <ErrorWrapper className={classnames(errorClass)}>
+        {error || ''}
+      </ErrorWrapper>
     </Wrapper>
   )
 }

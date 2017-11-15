@@ -57,7 +57,6 @@ const TableWrapper = (props: TableProps) => {
             <HeaderCell
               className={classnames(classNames.heading)}
               key={column.name}
-              column={column}
             >
               {headingRenderer(column, get(column, 'heading', ''))}
             </HeaderCell>

@@ -9,13 +9,6 @@ const Input = require('../../../lib/input')
 
 describe.only('Input', () => {
   describe('props', () => {
-    it('takes a className', () => {
-      const component = shallow(<Input className='inputClass' />)
-      const input = component.find({ className: 'inputClass' })
-      expect(input.name()).to.equal('input')
-      expect(input.exists()).to.be.true()
-    })
-
     it('takes required boolean', () => {
       const component = shallow(
         <Input className='inputClass' required />
@@ -77,6 +70,22 @@ describe.only('Input', () => {
       )
       const input = component.find({ className: 'inputClass' })
       expect(input.name()).to.equal('textarea')
+    })
+  })
+
+  describe('classes', () => {
+    it('takes an input className', () => {
+      const component = shallow(<Input className='inputClass' />)
+      const input = component.find({ className: 'inputClass' })
+      expect(input.name()).to.equal('input')
+      expect(input.exists()).to.be.true()
+    })
+
+    it('takes an outer wrapper className', () => {
+      const component = shallow(<Input className='inputClass' wrapperClass='wrapper' />)
+      const wrapper = component.find({ className: 'wrapper' })
+      expect(wrapper.name()).to.equal('div')
+      expect(wrapper.exists()).to.be.true()
     })
   })
 })

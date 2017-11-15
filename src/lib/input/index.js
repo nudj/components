@@ -1,10 +1,12 @@
 // @Flow
 const React = require('react')
+const classnames = require('classnames')
 
 type InputProps = {
   id?: string,
   type?: string,
   className?: string,
+  wrapperClass?: string,
   onChange?: Function,
   error?: string,
   required: boolean
@@ -14,7 +16,10 @@ const Input = (props: InputProps) => {
   const {
     required = false,
     onChange = () => {},
-    type = 'text'
+    type = 'text',
+    wrapperClass,
+    className,
+    error
   } = props
 
   const handleChange = event => {
@@ -24,15 +29,15 @@ const Input = (props: InputProps) => {
   const InputComponent = type === 'textarea' ? 'textarea' : 'input'
 
   return (
-    <div>
+    <div className={classnames(wrapperClass)}>
       <InputComponent
-        className={props.className}
+        className={classnames(className)}
         id={props.id}
         name={props.name}
         onChange={handleChange}
         required={required}
       />
-      {props.error ? <span>{props.error}</span> : null}
+      {error ? <span>{error}</span> : null}
     </div>
   )
 }

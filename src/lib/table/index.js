@@ -8,68 +8,14 @@ type Column = {
   name: string
 }
 
-type DefaultHeaderCellProps = {
-  className: ?string
-}
-
-type DefaultRowProps = {
-  className: ?string,
-  columns: Array<Column>,
-  row: Object,
-  renderer: ?Function,
-  Cell: Function
-}
-
-const renderDataRow: Function = (
-  row: Object,
-  columns: Array<Column>,
-  renderer: ?Function,
-  className: ?string,
-  Cell: Function
-) => {
-  return columns.map((column: Column) => {
-    const defaultValue: string = get(row, column.name, '')
-
-    return (
-      <Cell
-        className={classnames(className)}
-        key={`cell-${row.id}-${column.name}`}
-      >
-        {renderer ? renderer(column, row, defaultValue) : defaultValue}
-      </Cell>
-    )
-  })
-}
-
-const renderHeading: Function = (column: Column, renderer: ?Function) => {
-  const defaultValue: string = get(column, 'heading', '')
-  return renderer ? renderer(column, defaultValue) : defaultValue
-}
-
-const defaultHeaderCell: Function = (props: DefaultHeaderCellProps) => {
-  const column: Column = get(props, 'column')
-  const renderer: Function = get(props, 'renderer')
-
-  return (
-    <th className={classnames(props.className)}>
-      {renderHeading(column, renderer)}
-    </th>
-  )
-}
-
-const defaultRow: Function = (props: DefaultRowProps) => {
-  const className: ?string = get(props, 'classNames.cell')
-  return (
-    <tr className={classnames(props.className)}>
-      {renderDataRow(
-        props.row,
-        props.columns,
-        props.renderer,
-        className,
-        props.Cell
-      )}
-    </tr>
-  )
+type ClassList = {
+  table?: string,
+  header?: string,
+  headerRow?: string,
+  heading?: string,
+  body?: string,
+  row?: string,
+  cell?: string
 }
 
 type TableProps = {
@@ -82,7 +28,7 @@ type TableProps = {
   Cell?: Function,
   data: Array<Object>,
   columns: Array<Column>,
-  classNames?: Object,
+  classNames?: ClassList,
   headingRenderer?: Function,
   cellRenderer?: Function
 }
@@ -94,8 +40,10 @@ const TableWrapper = (props: TableProps) => {
     Head = props => <thead {...props} />,
     Cell = props => <td {...props} />,
     HeaderRow = props => <tr {...props} />,
-    Row = defaultRow,
-    HeaderCell = defaultHeaderCell,
+    Row = props => <tr {...props} />,
+    HeaderCell = props => <th {...props} />,
+    cellRenderer = (row, column, defaultValue) => defaultValue,
+    headingRenderer = (column, defaultValue) => defaultValue,
     data = [],
     columns = [],
     classNames = {}
@@ -108,24 +56,29 @@ const TableWrapper = (props: TableProps) => {
           {columns.map((column: Column) => (
             <HeaderCell
               className={classnames(classNames.heading)}
-              renderer={props.headingRenderer}
               key={column.name}
               column={column}
-            />
+            >
+              {headingRenderer(column, get(column, 'heading', ''))}
+            </HeaderCell>
           ))}
         </HeaderRow>
       </Head>
       <Body className={classnames(classNames.body)}>
         {data.map((row: Object) => (
-          <Row
-            columns={columns}
-            row={row}
-            classNames={classNames}
-            className={classnames(classNames.row)}
-            renderer={props.cellRenderer}
-            Cell={Cell}
-            key={row.id}
-          />
+          <Row className={classnames(classNames.row)} key={row.id}>
+            {columns.map((column: Column) => {
+              const defaultValue: string = get(row, column.name, '')
+              return (
+                <Cell
+                  className={classnames(classNames.cell)}
+                  key={`${row.id}-${column.name}`}
+                >
+                  {cellRenderer(column, row, defaultValue)}
+                </Cell>
+              )
+            })}
+          </Row>
         ))}
       </Body>
     </Table>

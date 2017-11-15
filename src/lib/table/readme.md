@@ -107,5 +107,5 @@ const classNames = {
 return <Table data={data} columns={columns} classNames={classNames} />
 ```
 
-- List of style names that can be specified: `table`, `header`, `heading`, `headerRow`, `row`, `body`
-- List of components that can be overridden: `table`, `tableBody`, `tableHead`, `tableHeading`, `tableRow`, `headerRow`, `tableCell`
+- List of style names that can be specified: `table`, `header`, `heading`, `headerRow`, `row`, `body`, `cell`
+- List of components that can be overridden: `component`, `Body`, `Head`, `Cell`, `HeaderRow`, `Row`, `HeaderCell`

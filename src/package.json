@@ -1,6 +1,6 @@
 {
   "name": "@nudj/components",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Nudj React Component Library",
   "main": "lib/index.js",
   "repository": {
@@ -17,6 +17,10 @@
     "url": "https://github.com/nudj/components/issues"
   },
   "homepage": "https://github.com/nudj/components#readme",
+  "standard": {
+    "parser": "babel-eslint",
+    "plugins": [ "flowtype" ]
+  },
   "dependencies": {
     "classnames": "^2.2.5",
     "lodash": "4.17.4",
@@ -27,7 +31,9 @@
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
+    "babel-eslint": "^7.1.1",
     "babel-preset-env": "1.6.1",
+    "babel-preset-flow": "6.23.0",
     "babel-preset-react": "6.24.1",
     "babel-register": "6.26.0",
     "chai": "3.5.0",
@@ -35,6 +41,8 @@
     "dirty-chai": "1.2.2",
     "enzyme": "3.1.1",
     "enzyme-adapter-react-15": "1.0.5",
+    "eslint-plugin-flowtype": "2.39.1",
+    "flow-bin": "0.59.0",
     "jsdom": "11.3.0",
     "mocha": "3.2.0",
     "nodemon": "1.11.0",

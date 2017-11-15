@@ -7,7 +7,10 @@ type InputProps = {
   type?: string,
   className?: string,
   wrapperClass?: string,
+  Wrapper?: Function,
   onChange?: Function,
+  onBlur?: Function,
+  onFocus?: Function,
   error?: string,
   required: boolean
 }
@@ -16,29 +19,35 @@ const Input = (props: InputProps) => {
   const {
     required = false,
     onChange = () => {},
+    onBlur = () => {},
+    onFocus = () => {},
     type = 'text',
+    Wrapper = props => <div {...props} />,
     wrapperClass,
     className,
     error
   } = props
 
-  const handleChange = event => {
-    return onChange(event, props.name, event.target.value)
+  const handleEvent = type => event => {
+    const actions = { onChange, onBlur, onFocus }
+    return actions[type](event, props.name, event.target.value)
   }
 
   const InputComponent = type === 'textarea' ? 'textarea' : 'input'
 
   return (
-    <div className={classnames(wrapperClass)}>
+    <Wrapper className={classnames(wrapperClass)}>
       <InputComponent
         className={classnames(className)}
         id={props.id}
         name={props.name}
-        onChange={handleChange}
+        onChange={handleEvent('onChange')}
+        onBlur={handleEvent('onBlur')}
+        onFocus={handleEvent('onFocus')}
         required={required}
       />
       {error ? <span>{error}</span> : null}
-    </div>
+    </Wrapper>
   )
 }
 

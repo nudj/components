@@ -33,6 +33,23 @@ describe.only('Input', () => {
       expect(input.props().name).to.equal('myInput')
     })
 
+    it('takes textarea as type', () => {
+      const component = shallow(
+        <Input className='inputClass' type='textarea' />
+      )
+      const input = component.find({ className: 'inputClass' })
+      expect(input.name()).to.equal('textarea')
+    })
+
+    it('takes a Wrapper component for optional custom wrapper', () => {
+      const wrappingComponent = (props) => <span {...props} />
+      const component = shallow(<Input wrapperClass='customWrapperClass' Wrapper={wrappingComponent} />)
+      const wrapper = component.find({ className: 'customWrapperClass' })
+      expect(wrapper.type()).to.equal(wrappingComponent)
+    })
+  })
+
+  describe('events', () => {
     it('takes an onChange function', () => {
       const customOnChange = sinon.stub()
       const component = shallow(
@@ -64,12 +81,66 @@ describe.only('Input', () => {
       )
     })
 
-    it('takes textarea as type', () => {
+    it('takes an onBlur function', () => {
+      const customOnBlur = sinon.stub()
       const component = shallow(
-        <Input className='inputClass' type='textarea' />
+        <Input className='inputClass' onBlur={customOnBlur} />
       )
       const input = component.find({ className: 'inputClass' })
-      expect(input.name()).to.equal('textarea')
+      expect(customOnBlur).to.not.have.been.called()
+      input.simulate('blur', { target: {} })
+      expect(customOnBlur).to.have.been.called()
+    })
+
+    it('passes event, name and input value to onBlur function', () => {
+      const customOnBlur = sinon.stub()
+      const inputName = 'myInput'
+      const component = shallow(
+        <Input className='inputClass' name={inputName} onBlur={customOnBlur} />
+      )
+      const input = component.find({ className: 'inputClass' })
+      const event = {
+        target: {
+          value: 'Input Value Here'
+        }
+      }
+      input.simulate('blur', event)
+      expect(customOnBlur).to.have.been.calledWith(
+        event,
+        inputName,
+        event.target.value
+      )
+    })
+
+    it('takes an onFocus function', () => {
+      const customOnFocus = sinon.stub()
+      const component = shallow(
+        <Input className='inputClass' onFocus={customOnFocus} />
+      )
+      const input = component.find({ className: 'inputClass' })
+      expect(customOnFocus).to.not.have.been.called()
+      input.simulate('focus', { target: {} })
+      expect(customOnFocus).to.have.been.called()
+    })
+
+    it('passes event, name and input value to onFocus function', () => {
+      const customOnFocus = sinon.stub()
+      const inputName = 'myInput'
+      const component = shallow(
+        <Input className='inputClass' name={inputName} onFocus={customOnFocus} />
+      )
+      const input = component.find({ className: 'inputClass' })
+      const event = {
+        target: {
+          value: 'Input Value Here'
+        }
+      }
+      input.simulate('focus', event)
+      expect(customOnFocus).to.have.been.calledWith(
+        event,
+        inputName,
+        event.target.value
+      )
     })
   })
 
@@ -83,9 +154,8 @@ describe.only('Input', () => {
 
     it('takes an outer wrapper className', () => {
       const component = shallow(<Input className='inputClass' wrapperClass='wrapper' />)
-      const wrapper = component.find({ className: 'wrapper' })
-      expect(wrapper.name()).to.equal('div')
-      expect(wrapper.exists()).to.be.true()
+      const wrapper = component.find({ className: 'wrapper' }).type()
+      expect(wrapper().type).to.equal('div')
     })
   })
 })

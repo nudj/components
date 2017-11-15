@@ -1,4 +1,5 @@
 module.exports = {
   StyleChild: require('./style-child'),
-  EmailForm: require('./email-form')
+  EmailForm: require('./email-form'),
+  Table: require('./table')
 }

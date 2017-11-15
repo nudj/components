@@ -14,7 +14,8 @@ test:
 		--name components-container \
 		-v $(CWD)/src/lib:/usr/src/lib \
 		-v $(CWD)/src/test:/usr/src/test \
-		components-image
+		components-image \
+		/bin/sh -c '$(BIN)/standard && $(BIN)/mocha --compilers js:babel-core/register --recursive test'
 
 tdd:
 	-@docker rm -f components-container 2> /dev/null || true
@@ -27,4 +28,15 @@ tdd:
 			--quiet \
 			--watch ./ \
 			--delay 250ms \
-			-x '$(BIN)/standard && $(BIN)/mocha test/*.js || exit 1'
+			-x '$(BIN)/mocha --compilers js:babel-core/register --recursive test || exit 1'
+
+ssh:
+	-@docker rm -f components-container 2> /dev/null || true
+	@docker run --rm -it \
+		--name components-container \
+		-v $(CWD)/.zshrc:/root/.zshrc \
+		-v $(CWD)/src/lib:/usr/src/lib \
+		-v $(CWD)/src/test:/usr/src/test \
+		-v $(CWD)/src/package.json:/usr/src/package.json \
+		components-image \
+		/bin/zsh

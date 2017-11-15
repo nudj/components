@@ -1,16 +1,32 @@
-/* eslint-env mocha */
+const chai = require('chai')
+chai.use(require('chai-as-promised'))
+chai.use(require('dirty-chai'))
+chai.use(require('sinon-chai'))
+global.expect = chai.expect
 
-let chai = require('chai')
-let dirtyChai = require('dirty-chai')
-let expect = chai.expect
+const { configure } = require('enzyme')
+const Adapter = require('enzyme-adapter-react-15')
 
-chai.use(dirtyChai)
+configure({ adapter: new Adapter() })
 
-// const components = require('../lib')
-
-describe('Components', () => {
-  it('works', () => {
-    // expect(components).to.be.an('object')
-    expect(true).to.be.true()
-  })
-})
+global.asyncTest = fn => {
+  return async () => {
+    try {
+      return await fn()
+    } catch (error) {
+      if (error.name === 'AssertionError') {
+        throw error
+      } else {
+        // handle custom errors from @nudj/framework/errors
+        throw new Error(
+          [error.stack, ...(error.log || [])]
+            .map(item => {
+              if (typeof item !== 'object') return item
+              return JSON.stringify(item, null, 2)
+            })
+            .join(' ')
+        )
+      }
+    }
+  }
+}

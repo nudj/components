@@ -1,6 +1,6 @@
 {
   "name": "@nudj/components",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Nudj React Component Library",
   "main": "lib/index.js",
   "repository": {
@@ -21,15 +21,26 @@
     "classnames": "^2.2.5",
     "lodash": "4.17.4",
     "prop-types": "15.5.10",
-    "react": "15.6.1",
+    "react": "15.6.2",
+    "react-dom": "15.6.2",
     "react-textarea-autosize": "5.1.0"
   },
   "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-react": "6.24.1",
+    "babel-register": "6.26.0",
     "chai": "3.5.0",
     "chai-as-promised": "7.1.1",
     "dirty-chai": "1.2.2",
+    "enzyme": "3.1.1",
+    "enzyme-adapter-react-15": "1.0.5",
+    "jsdom": "11.3.0",
     "mocha": "3.2.0",
     "nodemon": "1.11.0",
+    "react-test-renderer": "15.6.2",
+    "sinon": "4.0.0",
+    "sinon-chai": "2.14.0",
     "standard": "9.0.1"
   },
   "scripts": {

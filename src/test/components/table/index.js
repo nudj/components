@@ -161,7 +161,7 @@ describe('Table', () => {
     it('has a main table component that can be overridden', () => {
       const customTable = props => <table>{props.children}</table>
       const customComponent = shallow(
-        <TableWrapper Table={customTable} data={data} columns={columns} />
+        <TableWrapper component={customTable} data={data} columns={columns} />
       )
       expect(customComponent.name()).to.equal('customTable')
     })

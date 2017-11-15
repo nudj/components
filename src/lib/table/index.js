@@ -19,7 +19,7 @@ type ClassList = {
 }
 
 type TableProps = {
-  Table?: Function,
+  component?: Function,
   Body?: Function,
   Head?: Function,
   HeaderCell?: Function,
@@ -35,7 +35,7 @@ type TableProps = {
 
 const TableWrapper = (props: TableProps) => {
   const {
-    Table = props => <table {...props} />,
+    component: Table = props => <table {...props} />,
     Body = props => <tbody {...props} />,
     Head = props => <thead {...props} />,
     Cell = props => <td {...props} />,

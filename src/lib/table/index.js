@@ -33,7 +33,7 @@ type TableProps = {
   cellRenderer?: Function
 }
 
-const TableWrapper = (props: TableProps) => {
+const Table = (props: TableProps) => {
   const {
     component: Table = props => <table {...props} />,
     Body = props => <tbody {...props} />,
@@ -85,4 +85,4 @@ const TableWrapper = (props: TableProps) => {
   )
 }
 
-module.exports = TableWrapper
+module.exports = Table

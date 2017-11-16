@@ -7,7 +7,7 @@ const sinon = require('sinon')
 
 const Input = require('../../../lib/input')
 
-describe.only('Input', () => {
+describe('Input', () => {
   describe('props', () => {
     it('takes required boolean', () => {
       const component = shallow(

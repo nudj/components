@@ -1,6 +1,9 @@
 // @Flow
 const React = require('react')
 const classnames = require('classnames')
+const getStyle = require('./style.css')
+
+const { merge } = require('@nudj/library')
 
 type classList = {
   root?: string,
@@ -39,12 +42,14 @@ const Input = (props: InputProps) => {
     return actions[type](event, props.name, event.target.value)
   }
 
+  const defaultStyles = getStyle()
+  const styles = merge(defaultStyles, classNames)
   const InputComponent = type === 'textarea' ? 'textarea' : 'input'
 
   return (
-    <Wrapper className={classnames(classNames.wrapper)}>
+    <Wrapper className={classnames(styles.wrapper)}>
       <InputComponent
-        className={classnames(classNames.root)}
+        className={classnames(styles.root)}
         id={props.id}
         name={props.name}
         type={type}
@@ -53,11 +58,11 @@ const Input = (props: InputProps) => {
         onFocus={handleEvent('onFocus')}
         required={required}
       />
-      <ErrorWrapper className={classnames(classNames.error)}>
+      <ErrorWrapper className={classnames(styles.error)}>
         {error}
       </ErrorWrapper>
     </Wrapper>
   )
 }
-// button, checkbox, email, file, password, radio,
+
 module.exports = Input

@@ -1,6 +1,9 @@
-// const { merge } = require('@nudj/library')
-// const { css, mixins, variables } = require('../css')
-//
-// const styles = {}
-//
-// module.exports = css(styles)
+const { css } = require('../css')
+
+const styles = {
+  root: {},
+  wrapper: {},
+  error: {}
+}
+
+module.exports = css(styles)

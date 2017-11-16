@@ -1,4 +1,4 @@
-// @Flow
+// @flow
 const React = require('react')
 const classnames = require('classnames')
 const getStyle = require('./style.css')
@@ -16,11 +16,13 @@ type InputProps = {
   type?: string,
   wrapperClass?: string,
   Wrapper?: Function,
+  ErrorWrapper?: Function,
   onChange?: Function,
   onBlur?: Function,
   onFocus?: Function,
   error?: string,
   required?: boolean,
+  name?: string,
   classNames?: classList
 }
 
@@ -28,18 +30,19 @@ const Input = (props: InputProps) => {
   const {
     required = false,
     classNames = {},
-    onChange = () => {},
-    onBlur = () => {},
-    onFocus = () => {},
+    onChange = (...args) => {},
+    onBlur = (...args) => {},
+    onFocus = (...args) => {},
     type = 'text',
     Wrapper = props => <div {...props} />,
     ErrorWrapper = props => <div {...props} />,
+    name = '',
     error = ''
   } = props
 
   const handleEvent = type => event => {
     const actions = { onChange, onBlur, onFocus }
-    return actions[type](event, props.name, event.target.value)
+    return actions[type](event, name, event.target.value)
   }
 
   const defaultStyles = getStyle()
@@ -51,7 +54,7 @@ const Input = (props: InputProps) => {
       <InputComponent
         className={classnames(styles.root)}
         id={props.id}
-        name={props.name}
+        name={name}
         type={type}
         onChange={handleEvent('onChange')}
         onBlur={handleEvent('onBlur')}

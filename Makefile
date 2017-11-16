@@ -23,8 +23,9 @@ flow:
 		--name components-container \
 		-v $(CWD)/src/lib:/usr/src/lib \
 		-v $(CWD)/src/test:/usr/src/test \
+		-v $(CWD)/src/.flowconfig:/usr/src/.flowconfig \
 		components-image \
-		/bin/sh -c '$(BIN)/flow --quiet'
+		/bin/sh -c '$(BIN)/flow'
 
 tdd:
 	-@docker rm -f components-container 2> /dev/null || true
@@ -46,6 +47,8 @@ ssh:
 		-v $(CWD)/.zshrc:/root/.zshrc \
 		-v $(CWD)/src/lib:/usr/src/lib \
 		-v $(CWD)/src/test:/usr/src/test \
+		-v $(CWD)/src/.npmrc:/usr/src/.npmrc \
+		-v $(CWD)/src/.flowconfig:/usr/src/.flowconfig \
 		-v $(CWD)/src/package.json:/usr/src/package.json \
 		components-image \
 		/bin/zsh

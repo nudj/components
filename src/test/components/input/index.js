@@ -10,9 +10,7 @@ const Input = require('../../../lib/input')
 describe('Input', () => {
   describe('props', () => {
     it('takes required boolean', () => {
-      const component = shallow(
-        <Input className='inputClass' required />
-      )
+      const component = shallow(<Input className='inputClass' required />)
       const input = component.find({ className: 'inputClass' })
       expect(input.props().required).to.be.true()
     })
@@ -26,9 +24,7 @@ describe('Input', () => {
     })
 
     it('takes name prop', () => {
-      const component = shallow(
-        <Input className='inputClass' name='myInput' />
-      )
+      const component = shallow(<Input className='inputClass' name='myInput' />)
       const input = component.find({ className: 'inputClass' })
       expect(input.props().name).to.equal('myInput')
     })
@@ -42,15 +38,25 @@ describe('Input', () => {
     })
 
     it('takes a Wrapper component for optional custom wrapper', () => {
-      const wrappingComponent = (props) => <span {...props} />
-      const component = shallow(<Input wrapperClass='customWrapperClass' Wrapper={wrappingComponent} />)
+      const wrappingComponent = props => <span {...props} />
+      const component = shallow(
+        <Input
+          componentClasses={{ wrapper: 'customWrapperClass' }}
+          Wrapper={wrappingComponent}
+        />
+      )
       const wrapper = component.find({ className: 'customWrapperClass' })
       expect(wrapper.type()).to.equal(wrappingComponent)
     })
 
     it('takes an ErrorWrapper component for optional custom wrapper', () => {
-      const CustomErrorWrapper = (props) => <span {...props} />
-      const component = shallow(<Input errorClass='customErrorClass' ErrorWrapper={CustomErrorWrapper} />)
+      const CustomErrorWrapper = props => <span {...props} />
+      const component = shallow(
+        <Input
+          componentClasses={{ error: 'customErrorClass' }}
+          ErrorWrapper={CustomErrorWrapper}
+        />
+      )
       const wrapper = component.find({ className: 'customErrorClass' })
       expect(wrapper.type()).to.equal(CustomErrorWrapper)
     })
@@ -72,7 +78,11 @@ describe('Input', () => {
       const customOnChange = sinon.stub()
       const inputName = 'myInput'
       const component = shallow(
-        <Input className='inputClass' name={inputName} onChange={customOnChange} />
+        <Input
+          className='inputClass'
+          name={inputName}
+          onChange={customOnChange}
+        />
       )
       const input = component.find({ className: 'inputClass' })
       const event = {
@@ -134,7 +144,11 @@ describe('Input', () => {
       const customOnFocus = sinon.stub()
       const inputName = 'myInput'
       const component = shallow(
-        <Input className='inputClass' name={inputName} onFocus={customOnFocus} />
+        <Input
+          className='inputClass'
+          name={inputName}
+          onFocus={customOnFocus}
+        />
       )
       const input = component.find({ className: 'inputClass' })
       const event = {
@@ -160,13 +174,23 @@ describe('Input', () => {
     })
 
     it('takes an outer wrapper className', () => {
-      const component = shallow(<Input className='inputClass' wrapperClass='wrapper' />)
+      const component = shallow(
+        <Input
+          className='inputClass'
+          componentClasses={{ wrapper: 'wrapper' }}
+        />
+      )
       const wrapper = component.find({ className: 'wrapper' }).type()
       expect(wrapper().type).to.equal('div')
     })
 
     it('takes an ErrorWrapper className', () => {
-      const component = shallow(<Input className='inputClass' errorClass='customErrorClass' />)
+      const component = shallow(
+        <Input
+          className='inputClass'
+          componentClasses={{ error: 'customErrorClass' }}
+        />
+      )
       const wrapper = component.find({ className: 'customErrorClass' }).type()
       expect(wrapper().type).to.equal('div')
     })

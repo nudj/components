@@ -2,6 +2,11 @@
 const React = require('react')
 const classnames = require('classnames')
 
+type classList = {
+  error?: string,
+  wrapper?: string
+}
+
 type InputProps = {
   id?: string,
   type?: string,
@@ -12,21 +17,21 @@ type InputProps = {
   onBlur?: Function,
   onFocus?: Function,
   error?: string,
-  required: boolean
+  required?: boolean,
+  componentClasses?: classList
 }
 
 const Input = (props: InputProps) => {
   const {
     required = false,
+    componentClasses = {},
     onChange = () => {},
     onBlur = () => {},
     onFocus = () => {},
     type = 'text',
     Wrapper = props => <div {...props} />,
-    wrapperClass,
     ErrorWrapper = props => <div {...props} />,
     error,
-    errorClass,
     className
   } = props
 
@@ -38,7 +43,7 @@ const Input = (props: InputProps) => {
   const InputComponent = type === 'textarea' ? 'textarea' : 'input'
 
   return (
-    <Wrapper className={classnames(wrapperClass)}>
+    <Wrapper className={classnames(componentClasses.wrapper)}>
       <InputComponent
         className={classnames(className)}
         id={props.id}
@@ -48,7 +53,7 @@ const Input = (props: InputProps) => {
         onFocus={handleEvent('onFocus')}
         required={required}
       />
-      <ErrorWrapper className={classnames(errorClass)}>
+      <ErrorWrapper className={classnames(componentClasses.error)}>
         {error || ''}
       </ErrorWrapper>
     </Wrapper>

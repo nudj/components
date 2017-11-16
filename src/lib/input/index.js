@@ -31,7 +31,7 @@ const Input = (props: InputProps) => {
     type = 'text',
     Wrapper = props => <div {...props} />,
     ErrorWrapper = props => <div {...props} />,
-    error,
+    error = '',
     className
   } = props
 
@@ -54,7 +54,7 @@ const Input = (props: InputProps) => {
         required={required}
       />
       <ErrorWrapper className={classnames(componentClasses.error)}>
-        {error || ''}
+        {error}
       </ErrorWrapper>
     </Wrapper>
   )

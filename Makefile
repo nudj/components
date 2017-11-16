@@ -6,6 +6,7 @@ BIN:=./node_modules/.bin
 build:
 	@docker build \
 		-t components-image \
+		--build-arg NPM_TOKEN=${NPM_TOKEN} \
 		.
 
 test:

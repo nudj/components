@@ -1,4 +1,5 @@
 FROM node:8-alpine
+ARG NPM_TOKEN
 RUN mkdir -p /usr/src \
   && apk update \
   && apk add zsh wget make git \

@@ -22,6 +22,8 @@
     "plugins": [ "flowtype" ]
   },
   "dependencies": {
+    "@nudj/library": "1.1.0",
+    "aphrodite": "^1.2.0",
     "classnames": "^2.2.5",
     "lodash": "4.17.4",
     "prop-types": "15.5.10",

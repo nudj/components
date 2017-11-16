@@ -13,7 +13,7 @@ type classList = {
 
 type InputProps = {
   id?: string,
-  type?: string,
+  type?: 'text' | 'email' | 'password' | 'search' | 'url' | 'textarea',
   wrapperClass?: string,
   Wrapper?: Function,
   ErrorWrapper?: Function,

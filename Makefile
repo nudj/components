@@ -25,7 +25,7 @@ flow:
 		-v $(CWD)/src/test:/usr/src/test \
 		-v $(CWD)/src/.flowconfig:/usr/src/.flowconfig \
 		components-image \
-		/bin/sh -c '$(BIN)/flow'
+		/bin/sh -c '$(BIN)/flow --quiet'
 
 tdd:
 	-@docker rm -f components-container 2> /dev/null || true

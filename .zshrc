@@ -10,7 +10,7 @@ alias tdd='./node_modules/.bin/nodemon \
 	--watch ./ \
 	--delay 250ms \
 	-x "./node_modules/.bin/mocha --compilers js:babel-core/register --recursive test || exit 1"'
-alias flow='./node_modules/.bin/flow'
+alias flow='./node_modules/.bin/flow --quiet'
 
 alias ll="ls -la"
 alias d="docker"

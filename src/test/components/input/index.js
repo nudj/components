@@ -5,7 +5,7 @@ const React = require('react')
 const { shallow } = require('enzyme')
 const sinon = require('sinon')
 
-const Input = require('../../../lib/input')
+const Input = require('../../../lib/components/input')
 
 describe('Input', () => {
   describe('props', () => {

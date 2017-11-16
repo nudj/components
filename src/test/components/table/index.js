@@ -5,7 +5,7 @@ const React = require('react')
 const { shallow } = require('enzyme')
 const sinon = require('sinon')
 
-const Table = require('../../../lib/table')
+const Table = require('../../../lib/components/table')
 
 const columns = [
   {

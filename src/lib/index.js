@@ -1,7 +1,7 @@
 module.exports = {
-  StyleChild: require('./style-child'),
-  EmailForm: require('./email-form'),
-  Table: require('./table'),
-  Input: require('./input'),
-  InputField: require('./input-field')
+  StyleChild: require('./components/style-child'),
+  EmailForm: require('./components/email-form'),
+  Table: require('./components/table'),
+  Input: require('./components/input'),
+  InputField: require('./components/input-field')
 }

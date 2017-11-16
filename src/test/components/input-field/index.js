@@ -4,7 +4,7 @@
 const React = require('react')
 const { shallow } = require('enzyme')
 
-const InputField = require('../../../lib/input-field')
+const InputField = require('../../../lib/components/input-field')
 
 describe('InputField', () => {
   describe('props', () => {

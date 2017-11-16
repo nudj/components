@@ -1,4 +1,4 @@
-const { css } = require('../css')
+const { css } = require('../../css')
 
 const styles = {
   root: {},

@@ -1,35 +1,33 @@
 // @Flow
 const React = require('react')
 const classnames = require('classnames')
-const get = require('lodash/get')
 
 type classList = {
+  root: string,
   label?: string,
   requiredNotice?: string
 }
 
 type InputProps = {
   id?: string,
-  className?: string,
-  for?: string,
+  htmlFor?: string,
   label: string,
   required?: boolean,
-  componentClasses?: classList
+  classNames?: classList
 }
 
 const InputField = (props: InputProps) => {
-  const labelClass = get(props, 'componentClasses.label')
-  const requiredNoticeClass = get(props, 'componentClasses.requiredNotice')
+  const { classNames = {} } = props
 
   return (
-    <div className={classnames(props.className)}>
+    <div className={classnames(classNames.root)}>
       <label
-        className={classnames(labelClass)}
+        className={classnames(classNames.label)}
         id={props.id}
-        htmlFor={props.for}
+        htmlFor={props.htmlFor}
       >
         {props.label}
-        <div className={classnames(requiredNoticeClass)}>
+        <div className={classnames(classNames.requiredNotice)}>
           {props.required ? '(required)' : ''}
         </div>
       </label>

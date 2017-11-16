@@ -10,7 +10,7 @@ describe('InputField', () => {
   describe('props', () => {
     it('uses label prop as body text', () => {
       const component = shallow(
-        <InputField label='Test' componentClasses={{ label: 'labelClass' }} />
+        <InputField label='Test' classNames={{ label: 'labelClass' }} />
       )
       const label = component.find({ className: 'labelClass' })
       expect(label.text()).to.equal('Test')
@@ -20,7 +20,7 @@ describe('InputField', () => {
       const component = shallow(
         <InputField
           label='Test'
-          componentClasses={{ label: 'labelClass' }}
+          classNames={{ label: 'labelClass' }}
           required
         />
       )
@@ -32,8 +32,8 @@ describe('InputField', () => {
       const component = shallow(
         <InputField
           label='Test'
-          for='TestId'
-          componentClasses={{ label: 'labelClass' }}
+          htmlFor='TestId'
+          classNames={{ label: 'labelClass' }}
           required
         />
       )
@@ -45,7 +45,7 @@ describe('InputField', () => {
   describe('classes', () => {
     it('takes a label className', () => {
       const component = shallow(
-        <InputField componentClasses={{ label: 'labelClass' }} />
+        <InputField classNames={{ label: 'labelClass' }} />
       )
       const label = component.find({ className: 'labelClass' })
       expect(label.type()).to.equal('label')
@@ -54,7 +54,7 @@ describe('InputField', () => {
     it('takes a required notice className', () => {
       const component = shallow(
         <InputField
-          componentClasses={{ requiredNotice: 'requireClass' }}
+          classNames={{ requiredNotice: 'requireClass' }}
           required
         />
       )

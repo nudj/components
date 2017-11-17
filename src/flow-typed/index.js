@@ -1,3 +1,3 @@
-declare module CSSModule {
+declare module StyleFile {
   declare var exports: () => {}
 }

@@ -12,7 +12,7 @@ type classList = {
 }
 
 type InputProps = {
-  id?: string,
+  id: string,
   type?: 'text' | 'email' | 'password' | 'search' | 'url' | 'textarea',
   Wrapper?: Function,
   ErrorWrapper?: Function,
@@ -21,7 +21,7 @@ type InputProps = {
   onFocus?: Function,
   error?: string,
   required?: boolean,
-  name?: string,
+  name: string,
   classNames?: classList
 }
 
@@ -42,7 +42,7 @@ const Input = (props: InputProps) => {
     type = 'text',
     Wrapper = props => <div {...props} />,
     ErrorWrapper = props => <div {...props} />,
-    name = '',
+    name,
     error
   } = props
 

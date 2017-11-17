@@ -14,6 +14,7 @@ test:
 	@docker run --rm -it \
 		--name components-container \
 		-v $(CWD)/src/lib:/usr/src/lib \
+		-v $(CWD)/src/flow-typed:/usr/src/flow-typed \
 		-v $(CWD)/src/test:/usr/src/test \
 		components-image
 

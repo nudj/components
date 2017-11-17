@@ -6,7 +6,7 @@ const getStyle = require('./style.css')
 const { merge } = require('@nudj/library')
 
 type classList = {
-  root: string,
+  root?: string,
   label?: string,
   requiredNotice?: string
 }

@@ -25,6 +25,10 @@ const InputField = (props: InputProps) => {
   const defaultStyles = getStyle()
   const style = merge(defaultStyles, classNames)
 
+  const requiredNotice = (
+    <span className={classnames(style.requiredNotice)}>(required)</span>
+  )
+
   return (
     <div className={classnames(style.root)}>
       <label
@@ -33,9 +37,7 @@ const InputField = (props: InputProps) => {
         htmlFor={props.htmlFor}
       >
         {props.label}
-        <div className={classnames(style.requiredNotice)}>
-          {props.required ? '(required)' : ''}
-        </div>
+        {props.required ? requiredNotice : null}
       </label>
       {props.children}
     </div>

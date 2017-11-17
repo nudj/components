@@ -60,7 +60,7 @@ const Input = (props: InputProps) => {
   const styles = merge(defaultStyles, classNames)
   const InputComponent = type === 'textarea' ? 'textarea' : 'input'
 
-  const errorSection = (
+  const errorSection = () => (
     <ErrorWrapper className={classnames(styles.error)}>{error}</ErrorWrapper>
   )
 
@@ -76,7 +76,7 @@ const Input = (props: InputProps) => {
         onFocus={handleEvent('onFocus')}
         required={required}
       />
-      {error ? errorSection : null}
+      {error ? errorSection() : null}
     </Wrapper>
   )
 }

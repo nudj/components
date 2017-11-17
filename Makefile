@@ -23,6 +23,7 @@ flow:
 		--name components-container \
 		-v $(CWD)/src/lib:/usr/src/lib \
 		-v $(CWD)/src/test:/usr/src/test \
+		-v $(CWD)/src/flow-typed:/usr/src/flow-typed \
 		-v $(CWD)/src/.flowconfig:/usr/src/.flowconfig \
 		components-image \
 		/bin/sh -c '$(BIN)/flow --quiet'
@@ -48,6 +49,7 @@ ssh:
 		-v $(CWD)/src/lib:/usr/src/lib \
 		-v $(CWD)/src/test:/usr/src/test \
 		-v $(CWD)/src/.npmrc:/usr/src/.npmrc \
+		-v $(CWD)/src/flow-typed:/usr/src/flow-typed \
 		-v $(CWD)/src/.flowconfig:/usr/src/.flowconfig \
 		-v $(CWD)/src/package.json:/usr/src/package.json \
 		components-image \

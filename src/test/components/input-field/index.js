@@ -28,7 +28,7 @@ describe('InputField', () => {
       expect(label.text()).to.equal('Test(required)')
     })
 
-    it('takes for prop as htmlFor on field label', () => {
+    it('takes htmlFor prop as htmlFor on field label', () => {
       const component = shallow(
         <InputField
           label='Test'

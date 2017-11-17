@@ -2,9 +2,9 @@
 const React = require('react')
 const classnames = require('classnames')
 const get = require('lodash/get')
+const { merge } = require('@nudj/library')
 
 const getStyle = require('./style.css')
-const { merge } = require('@nudj/library')
 
 type Column = {
   heading: string,

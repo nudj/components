@@ -1,9 +1,9 @@
 // @flow
 const React = require('react')
 const classnames = require('classnames')
-const getStyle = require('./style.css')
-
 const { merge } = require('@nudj/library')
+
+const getStyle = require('./style.css')
 
 type classList = {
   root?: string,
@@ -36,7 +36,7 @@ const Input = (props: InputProps) => {
     Wrapper = props => <div {...props} />,
     ErrorWrapper = props => <div {...props} />,
     name = '',
-    error = ''
+    error
   } = props
 
   const handleEvent = type => event => {
@@ -47,6 +47,12 @@ const Input = (props: InputProps) => {
   const defaultStyles = getStyle()
   const styles = merge(defaultStyles, classNames)
   const InputComponent = type === 'textarea' ? 'textarea' : 'input'
+
+  const errorSection = (
+    <ErrorWrapper className={classnames(styles.error)}>
+      {error}
+    </ErrorWrapper>
+  )
 
   return (
     <Wrapper className={classnames(styles.wrapper)}>
@@ -60,9 +66,7 @@ const Input = (props: InputProps) => {
         onFocus={handleEvent('onFocus')}
         required={required}
       />
-      <ErrorWrapper className={classnames(styles.error)}>
-        {error}
-      </ErrorWrapper>
+      {error ? errorSection : null}
     </Wrapper>
   )
 }

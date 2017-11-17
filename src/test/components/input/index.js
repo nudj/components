@@ -66,11 +66,25 @@ describe('Input', () => {
       const component = shallow(
         <Input
           classNames={{ error: 'customErrorClass' }}
+          error='Invalid test'
           ErrorWrapper={CustomErrorWrapper}
         />
       )
       const wrapper = component.find({ className: 'customErrorClass' })
       expect(wrapper.type()).to.equal(CustomErrorWrapper)
+      expect(wrapper.children().text()).to.equal('Invalid test')
+    })
+
+    it('only renders errorWrapper when an error exists', () => {
+      const CustomErrorWrapper = props => <span {...props} />
+      const component = shallow(
+        <Input
+          classNames={{ error: 'customErrorClass' }}
+          ErrorWrapper={CustomErrorWrapper}
+        />
+      )
+      const wrapper = component.find({ className: 'customErrorClass' })
+      expect(wrapper.exists()).to.be.false()
     })
   })
 
@@ -199,7 +213,10 @@ describe('Input', () => {
 
     it('takes an ErrorWrapper className', () => {
       const component = shallow(
-        <Input classNames={{ root: 'inputClass', error: 'customErrorClass' }} />
+        <Input
+          classNames={{ root: 'inputClass', error: 'customErrorClass' }}
+          error='Invalid test'
+        />
       )
       const wrapper = component.find({ className: 'customErrorClass' }).type()
       expect(wrapper().type).to.equal('div')

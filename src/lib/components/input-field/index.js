@@ -1,9 +1,9 @@
 // @flow
 const React = require('react')
 const classnames = require('classnames')
+const { merge } = require('@nudj/library')
 
 const getStyle = require('./style.css')
-const { merge } = require('@nudj/library')
 
 type classList = {
   root?: string,

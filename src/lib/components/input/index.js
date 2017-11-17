@@ -25,13 +25,20 @@ type InputProps = {
   classNames?: classList
 }
 
+const noopHandler = (
+  name: string,
+  value: string,
+  preventDefault: Function,
+  stopPropagation: Function
+) => {}
+
 const Input = (props: InputProps) => {
   const {
     required = false,
     classNames = {},
-    onChange = (...args) => {},
-    onBlur = (...args) => {},
-    onFocus = (...args) => {},
+    onChange = noopHandler,
+    onBlur = noopHandler,
+    onFocus = noopHandler,
     type = 'text',
     Wrapper = props => <div {...props} />,
     ErrorWrapper = props => <div {...props} />,
@@ -41,7 +48,12 @@ const Input = (props: InputProps) => {
 
   const handleEvent = type => event => {
     const actions = { onChange, onBlur, onFocus }
-    return actions[type](event, name, event.target.value)
+    return actions[type](
+      name,
+      event.target.value,
+      event.preventDefault,
+      event.stopPropagation
+    )
   }
 
   const defaultStyles = getStyle()
@@ -49,9 +61,7 @@ const Input = (props: InputProps) => {
   const InputComponent = type === 'textarea' ? 'textarea' : 'input'
 
   const errorSection = (
-    <ErrorWrapper className={classnames(styles.error)}>
-      {error}
-    </ErrorWrapper>
+    <ErrorWrapper className={classnames(styles.error)}>{error}</ErrorWrapper>
   )
 
   return (

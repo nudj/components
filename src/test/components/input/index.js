@@ -114,13 +114,16 @@ describe('Input', () => {
       const event = {
         target: {
           value: 'Input Value Here'
-        }
+        },
+        preventDefault: () => {},
+        stopPropagation: () => {}
       }
       input.simulate('change', event)
       expect(customOnChange).to.have.been.calledWith(
-        event,
         inputName,
-        event.target.value
+        event.target.value,
+        event.preventDefault,
+        event.stopPropagation
       )
     })
 
@@ -149,13 +152,16 @@ describe('Input', () => {
       const event = {
         target: {
           value: 'Input Value Here'
-        }
+        },
+        preventDefault: () => {},
+        stopPropagation: () => {}
       }
       input.simulate('blur', event)
       expect(customOnBlur).to.have.been.calledWith(
-        event,
         inputName,
-        event.target.value
+        event.target.value,
+        event.preventDefault,
+        event.stopPropagation
       )
     })
 
@@ -184,13 +190,16 @@ describe('Input', () => {
       const event = {
         target: {
           value: 'Input Value Here'
-        }
+        },
+        preventDefault: () => {},
+        stopPropagation: () => {}
       }
       input.simulate('focus', event)
       expect(customOnFocus).to.have.been.calledWith(
-        event,
         inputName,
-        event.target.value
+        event.target.value,
+        event.preventDefault,
+        event.stopPropagation
       )
     })
   })

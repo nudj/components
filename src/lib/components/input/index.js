@@ -25,12 +25,14 @@ type InputProps = {
   classNames?: classList
 }
 
-const noopHandler = (
+type HandlerArgs = {
   name: string,
   value: string,
   preventDefault: Function,
   stopPropagation: Function
-) => {}
+}
+
+const noopHandler = (args: HandlerArgs) => {}
 
 const Input = (props: InputProps) => {
   const {
@@ -48,12 +50,12 @@ const Input = (props: InputProps) => {
 
   const handleEvent = type => event => {
     const actions = { onChange, onBlur, onFocus }
-    return actions[type](
+    return actions[type]({
       name,
-      event.target.value,
-      event.preventDefault,
-      event.stopPropagation
-    )
+      value: event.target.value,
+      preventDefault: event.preventDefault,
+      stopPropagation: event.stopPropagation
+    })
   }
 
   const defaultStyles = getStyle()

@@ -119,12 +119,12 @@ describe('Input', () => {
         stopPropagation: () => {}
       }
       input.simulate('change', event)
-      expect(customOnChange).to.have.been.calledWith(
-        inputName,
-        event.target.value,
-        event.preventDefault,
-        event.stopPropagation
-      )
+      expect(customOnChange).to.have.been.calledWith({
+        name: inputName,
+        value: event.target.value,
+        preventDefault: event.preventDefault,
+        stopPropagation: event.stopPropagation
+      })
     })
 
     it('takes an onBlur function', () => {
@@ -157,12 +157,12 @@ describe('Input', () => {
         stopPropagation: () => {}
       }
       input.simulate('blur', event)
-      expect(customOnBlur).to.have.been.calledWith(
-        inputName,
-        event.target.value,
-        event.preventDefault,
-        event.stopPropagation
-      )
+      expect(customOnBlur).to.have.been.calledWith({
+        name: inputName,
+        value: event.target.value,
+        preventDefault: event.preventDefault,
+        stopPropagation: event.stopPropagation
+      })
     })
 
     it('takes an onFocus function', () => {
@@ -195,12 +195,12 @@ describe('Input', () => {
         stopPropagation: () => {}
       }
       input.simulate('focus', event)
-      expect(customOnFocus).to.have.been.calledWith(
-        inputName,
-        event.target.value,
-        event.preventDefault,
-        event.stopPropagation
-      )
+      expect(customOnFocus).to.have.been.calledWith({
+        name: inputName,
+        value: event.target.value,
+        preventDefault: event.preventDefault,
+        stopPropagation: event.stopPropagation
+      })
     })
   })
 

@@ -15,10 +15,7 @@ const Icon = (props: IconProps) => {
   const defaultClass = getStyle()
   const style = className || defaultClass
 
-  const setSvg = () => {
-    const icon = get(icons, name, '')
-    return { __html: icon }
-  }
+  const setSvg = () => ({ __html: get(icons, name, '') })
 
   return (
     <span

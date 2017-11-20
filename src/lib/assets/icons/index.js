@@ -1,6 +1,7 @@
+// @flow
 const svgSanitise = require('../../helpers/svg-sanitise')
 
-const linkSvg = (name) => {
+const linkSvg = (name: string) => {
   const filePath = `./svgs/${name}.svg`
   return svgSanitise(require(filePath))
 }

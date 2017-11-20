@@ -1,6 +1,3 @@
-const variables = require('./variables')
-const mixins = require('./mixins')
-
 const { StyleSheet } = require('aphrodite/no-important')
 
 const Extended = StyleSheet.extend([])
@@ -16,7 +13,5 @@ const css = (stylesheet) => {
 }
 
 module.exports = {
-  css,
-  mixins,
-  variables
+  css
 }

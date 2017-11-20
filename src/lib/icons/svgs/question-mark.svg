@@ -1,0 +1,7 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24">
+  <g class="nc-icon-wrapper" fill="#444444">
+    <circle fill="none" stroke="#444444" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" cx="12" cy="12" r="11" stroke-linejoin="round"></circle>
+    <path data-color="color-2" fill="none" stroke="#444444" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M12,15v-2 c1.609,0,3-1.391,3-3s-1.391-3-3-3c-1.194,0-2.342,0.893-2.792,1.921" stroke-linejoin="round"></path>
+    <circle data-color="color-2" data-stroke="none" fill="#444444" cx="12" cy="18" r="1" stroke-linejoin="round" stroke-linecap="round"></circle>
+  </g>
+</svg>

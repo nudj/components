@@ -5,8 +5,8 @@ const React = require('react')
 const { shallow } = require('enzyme')
 const proxyquire = require('proxyquire')
 
-const Icon = proxyquire('../../../lib/icon', {
-  '../icons': {
+const Icon = proxyquire('../../../lib/components/icon', {
+  '../../icons': {
     example: 'my-example-svg'
   }
 })

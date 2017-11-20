@@ -4,7 +4,7 @@ const get = require('lodash/get')
 
 const getStyle = require('./style.css')
 
-const icons = require('../icons')
+const icons = require('../../icons')
 
 type IconProps = {
   name: string,

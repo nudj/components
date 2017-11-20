@@ -1,8 +1,10 @@
 // @flow
 const React = require('react')
-const classnames = require('classnames')
+const get = require('lodash/get')
 
 const getStyle = require('./style.css')
+
+const icons = require('../icons')
 
 type IconProps = {
   name: string,
@@ -10,11 +12,20 @@ type IconProps = {
 }
 
 const Icon = (props: IconProps) => {
+  const { name, className } = props
   const defaultClass = getStyle()
-  const style = props.className || defaultClass
+  const style = className || defaultClass
+
+  const setSVG = () => {
+    const icon = get(icons, name, '')
+    return { __html: icon }
+  }
 
   return (
-    <img src={`assets/icons/${props.name}.svg`} className={classnames(style)} />
+    <span
+      className={style}
+      dangerouslySetInnerHTML={setSVG()}
+    />
   )
 }
 

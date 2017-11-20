@@ -16,7 +16,7 @@ const Icon = (props: IconProps) => {
   const defaultClass = getStyle()
   const style = className || defaultClass
 
-  const setSVG = () => {
+  const setSvg = () => {
     const icon = get(icons, name, '')
     return { __html: icon }
   }
@@ -24,7 +24,7 @@ const Icon = (props: IconProps) => {
   return (
     <span
       className={style}
-      dangerouslySetInnerHTML={setSVG()}
+      dangerouslySetInnerHTML={setSvg()}
     />
   )
 }

@@ -6,7 +6,7 @@ const { shallow } = require('enzyme')
 const proxyquire = require('proxyquire')
 
 const Icon = proxyquire('../../../lib/components/icon', {
-  '../../icons': {
+  '../../assets/icons': {
     example: 'my-example-svg'
   }
 })

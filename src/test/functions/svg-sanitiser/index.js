@@ -1,7 +1,7 @@
 /* global expect */
 /* eslint-env mocha */
 
-const svgSanitise = require('../../../lib/icons/svg-sanitiser')
+const svgSanitise = require('../../../lib/helpers/svg-sanitiser')
 
 describe('Svg sanitiser', () => {
   it('santises provided svg', () => {

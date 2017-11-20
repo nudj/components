@@ -19,9 +19,12 @@
   "homepage": "https://github.com/nudj/components#readme",
   "standard": {
     "parser": "babel-eslint",
-    "plugins": [ "flowtype" ]
+    "plugins": [ "flowtype" ],
+    "ignore": [ "flow-typed" ]
   },
   "dependencies": {
+    "@nudj/library": "1.1.0",
+    "aphrodite": "^1.2.0",
     "classnames": "^2.2.5",
     "lodash": "4.17.4",
     "prop-types": "15.5.10",

@@ -6,6 +6,7 @@ BIN:=./node_modules/.bin
 build:
 	@docker build \
 		-t components-image \
+		--build-arg NPM_TOKEN=${NPM_TOKEN} \
 		.
 
 test:
@@ -13,6 +14,7 @@ test:
 	@docker run --rm -it \
 		--name components-container \
 		-v $(CWD)/src/lib:/usr/src/lib \
+		-v $(CWD)/src/flow-typed:/usr/src/flow-typed \
 		-v $(CWD)/src/test:/usr/src/test \
 		components-image
 
@@ -22,6 +24,8 @@ flow:
 		--name components-container \
 		-v $(CWD)/src/lib:/usr/src/lib \
 		-v $(CWD)/src/test:/usr/src/test \
+		-v $(CWD)/src/flow-typed:/usr/src/flow-typed \
+		-v $(CWD)/src/.flowconfig:/usr/src/.flowconfig \
 		components-image \
 		/bin/sh -c '$(BIN)/flow --quiet'
 
@@ -45,6 +49,9 @@ ssh:
 		-v $(CWD)/.zshrc:/root/.zshrc \
 		-v $(CWD)/src/lib:/usr/src/lib \
 		-v $(CWD)/src/test:/usr/src/test \
+		-v $(CWD)/src/.npmrc:/usr/src/.npmrc \
+		-v $(CWD)/src/flow-typed:/usr/src/flow-typed \
+		-v $(CWD)/src/.flowconfig:/usr/src/.flowconfig \
 		-v $(CWD)/src/package.json:/usr/src/package.json \
 		components-image \
 		/bin/zsh

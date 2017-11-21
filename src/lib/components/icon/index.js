@@ -1,7 +1,7 @@
 // @flow
 const React = require('react')
+const classnames = require('classnames')
 
-const getStyle = require('./style.css')
 const icons = require('../../assets/icons')
 
 type IconProps = {
@@ -11,14 +11,9 @@ type IconProps = {
 
 const Icon = (props: IconProps) => {
   const { name, className } = props
-  const style = className || getStyle()
   const Icon = icons[name]
 
-  return (
-    <span>
-      <Icon className={style} />
-    </span>
-  )
+  return <Icon className={classnames(className)} />
 }
 
 module.exports = Icon

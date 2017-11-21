@@ -23,15 +23,14 @@ describe('Icon', () => {
   describe('props', () => {
     it('takes a name prop to provide the correct svg', () => {
       const name = 'testExample'
-      const component = shallow(<Icon name={name} />)
-      expect(component.contains(<ExampleSvg />)).to.equal(true)
+      const component = shallow(<Icon name={name} className='customClass' />)
+      expect(component.contains(<ExampleSvg className='customClass' />)).to.equal(true)
     })
 
     it('takes a class name', () => {
       const name = 'testExample'
       const component = shallow(<Icon name={name} className='iconClass' />)
-      const svg = component.children().props()
-      expect(svg.className).to.equal('iconClass')
+      expect(component.props().className).to.equal('iconClass')
     })
   })
 })

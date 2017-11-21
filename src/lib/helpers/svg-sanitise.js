@@ -1,4 +1,3 @@
-// @flow
 const cleanups = {
   width: / +width="\d+(\.\d+)?(px)?"/gi,
   height: / +height="\d+(\.\d+)?(px)?"/gi,
@@ -6,7 +5,7 @@ const cleanups = {
   stroke: / +stroke="(none|#[0-9a-f]+)"/gi
 }
 
-const svgSanitise = (svg: string) => Object.keys(cleanups)
+const svgSanitise = (svg) => Object.keys(cleanups)
   .reduce((accumulator, key) => accumulator.replace(cleanups[key], ''), svg)
   .trim()
 

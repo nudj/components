@@ -1,28 +1,20 @@
-// @flow
-const svgSanitise = require('../../helpers/svg-sanitise')
-
-const linkSvg = (name: string) => {
-  const filePath = `./svgs/${name}.svg`
-  return svgSanitise(require(filePath))
-}
-
 module.exports = {
-  briefcase: linkSvg('briefcase'),
-  buildings: linkSvg('buildings'),
-  candidates: linkSvg('candidates'),
-  chevron: linkSvg('chevron'),
-  closeButton: linkSvg('close-icon'),
-  email: linkSvg('email-icon'),
-  emptySpeechBubble: linkSvg('empty-speech-bubble'),
-  speechBubble: linkSvg('speech-bubble'),
-  exitArrow: linkSvg('exit-arrow'),
-  facebookMessenger: linkSvg('facebook-messenger'),
-  mobile: linkSvg('mobile'),
-  network: linkSvg('network'),
-  openLetter: linkSvg('open-letter'),
-  paperclip: linkSvg('paperclip'),
-  questionMark: linkSvg('question-mark'),
-  tick: linkSvg('tick'),
-  todo: linkSvg('todo'),
-  whatsapp: linkSvg('whatsapp')
+  briefcase: require('./svgs/briefcase'),
+  buildings: require('./svgs/buildings'),
+  candidates: require('./svgs/candidates'),
+  chevron: require('./svgs/chevron'),
+  closeButton: require('./svgs/close-icon'),
+  email: require('./svgs/email-icon'),
+  emptySpeechBubble: require('./svgs/empty-speech-bubble'),
+  speechBubble: require('./svgs/speech-bubble'),
+  exitArrow: require('./svgs/exit-arrow'),
+  facebookMessenger: require('./svgs/facebook-messenger'),
+  mobile: require('./svgs/mobile'),
+  network: require('./svgs/network'),
+  openLetter: require('./svgs/open-letter'),
+  paperclip: require('./svgs/paperclip'),
+  questionMark: require('./svgs/question-mark'),
+  tick: require('./svgs/tick'),
+  todo: require('./svgs/todo'),
+  whatsapp: require('./svgs/whatsapp')
 }

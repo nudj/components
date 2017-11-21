@@ -5,30 +5,33 @@ const React = require('react')
 const { shallow } = require('enzyme')
 const proxyquire = require('proxyquire')
 
+const ExampleSvg = (props) => (
+  <svg viewBox='0 0 24 24' width='1em' height='1em' {...props}>
+    <g>
+      <path data-color='color-2' d='M8 5V1h8v4' />
+    </g>
+  </svg>
+)
+
 const Icon = proxyquire('../../../lib/components/icon', {
   '../../assets/icons': {
-    example: 'my-example-svg'
+    testExample: ExampleSvg
   }
 })
 
 describe('Icon', () => {
   describe('props', () => {
     it('takes a name prop to provide the correct svg', () => {
-      const name = 'example'
+      const name = 'testExample'
       const component = shallow(<Icon name={name} />)
-      expect(component.html()).to.equal(`<span>my-example-svg</span>`)
-    })
-
-    it('sets span content as empty string if invalid name is passed', () => {
-      const invalidName = 'invalidName'
-      const component = shallow(<Icon name={invalidName} />)
-      expect(component.html()).to.equal(`<span></span>`)
+      expect(component.contains(<ExampleSvg />)).to.equal(true)
     })
 
     it('takes a class name', () => {
-      const name = 'my-image'
+      const name = 'testExample'
       const component = shallow(<Icon name={name} className='iconClass' />)
-      expect(component.props().className).to.equal('iconClass')
+      const svg = component.children().props()
+      expect(svg.className).to.equal('iconClass')
     })
   })
 })

@@ -17,6 +17,22 @@ describe('Checkbox', () => {
       expect(checkbox.props().checked).to.be.true()
     })
 
+    it('renders tick svg when checked prop is true', () => {
+      const component = shallow(
+        <Checkbox classNames={{ root: 'checkboxClass' }} checked />
+      )
+      const tick = component.find('path')
+      expect(tick.exists()).to.be.true()
+    })
+
+    it('renders no tick svg when checked prop is false', () => {
+      const component = shallow(
+        <Checkbox classNames={{ root: 'checkboxClass' }} />
+      )
+      const tick = component.find('path')
+      expect(tick.exists()).to.be.false()
+    })
+
     it('takes a Wrapper component for optional custom wrapper', () => {
       const wrappingComponent = props => <span {...props} />
       const component = shallow(

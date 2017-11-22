@@ -7,7 +7,8 @@ const getStyle = require('./style.css')
 type ClassList = {
   root?: string,
   checkbox?: string,
-  wrapper?: string
+  wrapper?: string,
+  label?: string
 }
 
 type CheckboxProps = {
@@ -17,12 +18,14 @@ type CheckboxProps = {
   onChange: Function,
   id: string,
   name?: string,
-  value?: string
+  value?: string,
+  label?: string
 }
 
 const Checkbox = (props: CheckboxProps) => {
   const {
     classNames = {},
+    label = '',
     Wrapper = props => <div {...props} />,
     checked,
     onChange,
@@ -70,6 +73,9 @@ const Checkbox = (props: CheckboxProps) => {
             { checked ? <path d='M8 12L3 7l2-2 3 3 8-8 2 2z' fill='#E35205' /> : '' }
           </g>
         </svg>
+        <span className={styles.label}>
+          {label}
+        </span>
       </label>
     </Wrapper>
   )

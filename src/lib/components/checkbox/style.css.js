@@ -2,6 +2,7 @@ const { css } = require('../../css')
 
 const styles = {
   checkbox: {},
+  label: {},
   wrapper: {
     position: 'relative'
   },

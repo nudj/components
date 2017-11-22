@@ -25,7 +25,10 @@
   "dependencies": {
     "@nudj/library": "1.1.0",
     "aphrodite": "^1.2.0",
+    "catalog": "^3.0.0-rc.4",
     "classnames": "^2.2.5",
+    "dedent": "^0.7.0",
+    "http-server": "0.10.0",
     "lodash": "4.17.4",
     "prop-types": "15.5.10",
     "react": "15.6.2",
@@ -55,6 +58,8 @@
     "standard": "9.0.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "catalog-start": "catalog start",
+    "catalog-build": "catalog build"
   }
 }

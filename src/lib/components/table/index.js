@@ -1,7 +1,10 @@
 // @flow
 const React = require('react')
-const get = require('lodash/get')
 const classnames = require('classnames')
+const get = require('lodash/get')
+const { merge } = require('@nudj/library')
+
+const getStyle = require('./style.css')
 
 type Column = {
   heading: string,
@@ -19,7 +22,7 @@ type ClassList = {
 }
 
 type TableProps = {
-  Table?: Function,
+  component?: Function,
   Body?: Function,
   Head?: Function,
   HeaderCell?: Function,
@@ -33,9 +36,9 @@ type TableProps = {
   cellRenderer?: Function
 }
 
-const TableWrapper = (props: TableProps) => {
+const Table = (props: TableProps) => {
   const {
-    Table = props => <table {...props} />,
+    component: Table = props => <table {...props} />,
     Body = props => <tbody {...props} />,
     Head = props => <thead {...props} />,
     Cell = props => <td {...props} />,
@@ -49,13 +52,16 @@ const TableWrapper = (props: TableProps) => {
     classNames = {}
   } = props
 
+  const defaultStyles = getStyle()
+  const style = merge(defaultStyles, classNames)
+
   return (
-    <Table className={classnames(classNames.table)}>
-      <Head className={classnames(classNames.header)}>
-        <HeaderRow className={classnames(classNames.headerRow)}>
+    <Table className={classnames(style.table)}>
+      <Head className={classnames(style.header)}>
+        <HeaderRow className={classnames(style.headerRow)}>
           {columns.map((column: Column) => (
             <HeaderCell
-              className={classnames(classNames.heading)}
+              className={classnames(style.heading)}
               key={column.name}
             >
               {headingRenderer(column, get(column, 'heading', ''))}
@@ -63,14 +69,14 @@ const TableWrapper = (props: TableProps) => {
           ))}
         </HeaderRow>
       </Head>
-      <Body className={classnames(classNames.body)}>
+      <Body className={classnames(style.body)}>
         {data.map((row: Object) => (
-          <Row className={classnames(classNames.row)} key={row.id}>
+          <Row className={classnames(style.row)} key={row.id}>
             {columns.map((column: Column) => {
               const defaultValue: string = get(row, column.name, '')
               return (
                 <Cell
-                  className={classnames(classNames.cell)}
+                  className={classnames(style.cell)}
                   key={`${row.id}-${column.name}`}
                 >
                   {cellRenderer(column, row, defaultValue)}
@@ -84,4 +90,4 @@ const TableWrapper = (props: TableProps) => {
   )
 }
 
-module.exports = TableWrapper
+module.exports = Table

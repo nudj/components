@@ -3,7 +3,7 @@ source /root/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 PROMPT='components» '
 
 alias run="node ."
-alias dev='./node_modules/.bin/webpack --config ./webpack.dll.js --bail --hide-modules && ./node_modules/.bin/nodemon --config ./nodemon.json -e js,html,css --quiet --watch ./ --delay 250ms -x "printf \"\n\nBuilding...\n\" && ./node_modules/.bin/webpack --config ./webpack.config.js --bail --hide-modules && node ."'
+alias dev='./node_modules/.bin/catalog-start'
 alias test="./node_modules/.bin/mocha --compilers js:babel-core/register --recursive test"
 alias tdd='./node_modules/.bin/nodemon \
 	--quiet \
@@ -11,6 +11,12 @@ alias tdd='./node_modules/.bin/nodemon \
 	--delay 250ms \
 	-x "./node_modules/.bin/mocha --compilers js:babel-core/register --recursive test || exit 1"'
 alias flow='./node_modules/.bin/flow --quiet'
+
+alias fdd='./node_modules/.bin/nodemon \
+	--quiet \
+	--watch ./ \
+	--delay 250ms \
+	-x "./node_modules/.bin/flow --quiet || exit 1"'
 
 alias ll="ls -la"
 alias d="docker"

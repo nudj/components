@@ -6,6 +6,7 @@ BIN:=./node_modules/.bin
 build:
 	@docker build \
 		-t components-image \
+		--build-arg NPM_TOKEN=${NPM_TOKEN} \
 		.
 
 test:
@@ -13,6 +14,7 @@ test:
 	@docker run --rm -it \
 		--name components-container \
 		-v $(CWD)/src/lib:/usr/src/lib \
+		-v $(CWD)/src/flow-typed:/usr/src/flow-typed \
 		-v $(CWD)/src/test:/usr/src/test \
 		components-image
 
@@ -22,6 +24,8 @@ flow:
 		--name components-container \
 		-v $(CWD)/src/lib:/usr/src/lib \
 		-v $(CWD)/src/test:/usr/src/test \
+		-v $(CWD)/src/flow-typed:/usr/src/flow-typed \
+		-v $(CWD)/src/.flowconfig:/usr/src/.flowconfig \
 		components-image \
 		/bin/sh -c '$(BIN)/flow --quiet'
 
@@ -42,9 +46,24 @@ ssh:
 	-@docker rm -f components-container 2> /dev/null || true
 	@docker run --rm -it \
 		--name components-container \
+		-p 0.0.0.0:4000:4000 \
 		-v $(CWD)/.zshrc:/root/.zshrc \
 		-v $(CWD)/src/lib:/usr/src/lib \
 		-v $(CWD)/src/test:/usr/src/test \
+		-v $(CWD)/src/.npmrc:/usr/src/.npmrc \
+		-v $(CWD)/src/flow-typed:/usr/src/flow-typed \
+		-v $(CWD)/src/.flowconfig:/usr/src/.flowconfig \
 		-v $(CWD)/src/package.json:/usr/src/package.json \
+		-v $(CWD)/src/catalog:/usr/src/catalog \
 		components-image \
 		/bin/zsh
+
+standardFix:
+	-@docker rm -f components-container 2> /dev/null || true
+	@docker run --rm -it \
+		--name components-container \
+		-v $(CWD)/src/lib:/usr/src/lib \
+		-v $(CWD)/src/test:/usr/src/test \
+		-v $(CWD)/src/catalog:/usr/src/catalog \
+		components-image \
+		$(BIN)/standard --fix

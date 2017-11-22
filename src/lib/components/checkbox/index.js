@@ -6,6 +6,7 @@ const getStyle = require('./style.css')
 
 type ClassList = {
   root?: string,
+  checkbox?: string,
   wrapper?: string
 }
 

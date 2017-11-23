@@ -17,9 +17,9 @@ type CheckboxProps = {
   Wrapper?: Function,
   onChange: Function,
   id: string,
-  name?: string,
-  value?: string,
-  label?: string
+  name: string,
+  value: string,
+  label: string
 }
 
 const Checkbox = (props: CheckboxProps) => {

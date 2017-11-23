@@ -6,13 +6,17 @@ const { merge } = require('@nudj/library')
 
 const getStyle = require('./style.css')
 
+type Row = {
+  id: string | number
+}
+
 type Column = {
   heading: string,
   name: string
 }
 
 type ClassList = {
-  table?: string,
+  root?: string,
   header?: string,
   headerRow?: string,
   heading?: string,
@@ -29,7 +33,7 @@ type TableProps = {
   HeaderRow?: Function,
   Row?: Function,
   Cell?: Function,
-  data: Array<Object>,
+  data: Array<Row>,
   columns: Array<Column>,
   classNames?: ClassList,
   headingRenderer?: Function,
@@ -56,14 +60,11 @@ const Table = (props: TableProps) => {
   const style = merge(defaultStyles, classNames)
 
   return (
-    <Table className={classnames(style.table)}>
+    <Table className={classnames(style.root)}>
       <Head className={classnames(style.header)}>
         <HeaderRow className={classnames(style.headerRow)}>
           {columns.map((column: Column) => (
-            <HeaderCell
-              className={classnames(style.heading)}
-              key={column.name}
-            >
+            <HeaderCell className={classnames(style.heading)} key={column.name}>
               {headingRenderer(column, get(column, 'heading', ''))}
             </HeaderCell>
           ))}

@@ -3,6 +3,11 @@ const React = require('react')
 const Checkbox = (props) => <input type='checkbox' {...props} /> // require('../checkbox')
 const uniqueId = require('lodash/uniqueId')
 
+type ChildType = {
+  value: string,
+  label: string
+}
+
 type CheckboxProps = {
   Input?: Function,
   required?: boolean,
@@ -26,13 +31,15 @@ const CheckboxGroup = (props: CheckboxProps) => {
 
   return (
     <div className={className}>
-      {children && children((childProps) => {
+      {children && children((childProps: ChildType) => {
         const checked = values.includes(childProps.value)
 
         return (
           <Input
             id={uniqueId()}
             name={name}
+            value={childProps.value}
+            label={childProps.label}
             onChange={onChange}
             checked={checked}
             required={required}

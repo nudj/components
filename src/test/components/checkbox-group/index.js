@@ -24,7 +24,8 @@ const createCheckboxGroup = (properties = {}) => {
   const {
     values = [],
     name = 'Example Name',
-    onChange = () => {}
+    onChange = () => {},
+    required = false
   } = properties
 
   const component = shallow(
@@ -32,6 +33,7 @@ const createCheckboxGroup = (properties = {}) => {
       onChange={onChange}
       name={name}
       values={values}
+      required={required}
     />
   )
   return component.dive().children()
@@ -50,10 +52,14 @@ describe.only('CheckboxGroup', () => {
   })
 
   describe('props', () => {
-    it('takes a name prop', () => {
-      const CheckboxGroup = createCheckboxGroup()
+    it('spreads name and required props to children', () => {
+      const CheckboxGroup = createCheckboxGroup({
+        name: 'Example',
+        required: true
+      })
       CheckboxGroup.children().forEach(checkbox => {
-        expect(checkbox.props().name).to.equal('Example Name')
+        expect(checkbox.props().name).to.equal('Example')
+        expect(checkbox.props().required).to.equal(true)
       })
     })
 

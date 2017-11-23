@@ -1,17 +1,28 @@
 // @flow
 const React = require('react')
-const Checkbox = (props) => <input type='checkbox' {...props} /> // require('../checkbox')
+const classnames = require('classnames')
 const uniqueId = require('lodash/uniqueId')
+
+const Checkbox = require('../checkbox')
+const getStyle = require('./style.css')
 
 type ChildType = {
   value: string,
   label: string
 }
 
+type CheckboxClassList = {
+  root?: string,
+  checkbox?: string,
+  wrapper?: string,
+  label?: string
+}
+
 type CheckboxProps = {
   Input?: Function,
   required?: boolean,
   className?: string,
+  checkboxClassNames?: CheckboxClassList,
   children: Function,
   onChange: Function,
   values: Array<string>,
@@ -20,17 +31,20 @@ type CheckboxProps = {
 
 const CheckboxGroup = (props: CheckboxProps) => {
   const {
-    children,
     Input = Checkbox,
     required = false,
+    className,
+    checkboxClassNames,
+    children,
     values,
     name,
-    className,
     onChange
   } = props
 
+  const defaultStyle: Object = getStyle()
+
   return (
-    <div className={className}>
+    <div className={classnames(defaultStyle.root, className)}>
       {children && children((childProps: ChildType) => {
         const checked = values.includes(childProps.value)
 
@@ -38,6 +52,7 @@ const CheckboxGroup = (props: CheckboxProps) => {
           <Input
             id={uniqueId()}
             name={name}
+            classNames={classnames(checkboxClassNames)}
             value={childProps.value}
             label={childProps.label}
             onChange={onChange}

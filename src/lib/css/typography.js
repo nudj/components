@@ -1,14 +1,14 @@
 const fontFamily = {
   jan: [
-    'jan',
-    '-apple-system',
-    'BlinkMacSystemFont',
-    'helvetica neue',
-    'helvetica',
-    'roboto',
-    'arial',
-    'sans-serif'
-  ].join(' ')
+    '"jan"',
+    '"-apple-system"',
+    '"BlinkMacSystemFont"',
+    '"helvetica neue"',
+    '"helvetica"',
+    '"roboto"',
+    '"arial"',
+    '"sans-serif"'
+  ].join(', ')
 }
 
 const fontWeight = {

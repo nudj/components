@@ -102,7 +102,7 @@ describe('Checkbox', () => {
   })
 
   describe('classes', () => {
-    it.only('takes a custom classNames object for styling', () => {
+    it('takes a custom classNames object for styling', () => {
       const component = shallow(
         <Checkbox
           checked

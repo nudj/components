@@ -51,6 +51,9 @@ module.exports = {
   dangerDark: redDark,
   danger: red,
   dangerLight: redLight,
+  text: charcoal,
+
+  // Greys
   black: black,
   greyDarkest: greyDarkest,
   greyDarker: greyDarker,

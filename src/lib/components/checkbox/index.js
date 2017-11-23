@@ -25,7 +25,7 @@ type CheckboxProps = {
 const Checkbox = (props: CheckboxProps) => {
   const {
     classNames = {},
-    label = '',
+    label,
     Wrapper = props => <div {...props} />,
     checked,
     onChange,

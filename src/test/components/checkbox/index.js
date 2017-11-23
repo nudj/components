@@ -102,6 +102,26 @@ describe('Checkbox', () => {
   })
 
   describe('classes', () => {
+    it.only('takes a custom classNames object for styling', () => {
+      const component = shallow(
+        <Checkbox
+          checked
+          classNames={{
+            root: 'inputClass',
+            wrapper: 'wrapperClass',
+            checkbox: 'checkboxClass'
+          }}
+        />
+      )
+      const checkbox = component.find({ className: 'checkboxClass' })
+      const input = component.find({ className: 'inputClass' })
+      const wrapper = component.find({ className: 'wrapperClass' })
+      const styledComponents = [checkbox, input, wrapper]
+      styledComponents.forEach(element => {
+        expect(element.exists()).to.be.true()
+      })
+    })
+
     it('takes a checkbox className', () => {
       const component = shallow(
         <Checkbox classNames={{ root: 'checkboxClass' }} checked />

@@ -17,11 +17,12 @@ class CheckboxDocumentation extends React.Component {
     this.setState({ checked: !this.state.checked })
   }
 
-  render() {
+  render () {
     return (
       <Page>
         <p>
-          A checkbox should be used to present a choice to the user, where only a binary yes or no response is appropriate.
+          A checkbox should be used to present a choice to the user, where only
+          a binary yes or no response is appropriate.
         </p>
         <ReactCodeSpecimen
           code={dedent`
@@ -40,14 +41,14 @@ class CheckboxDocumentation extends React.Component {
             />
             `}
         >
-        <Checkbox
-          checked={this.state.checked}
-          label='Subscribe'
-          onChange={this.onChangeHandler}
-          name='subscription'
-          value='nudj-newsletter'
-          id={1}
-        />
+          <Checkbox
+            checked={this.state.checked}
+            label='Subscribe'
+            onChange={this.onChangeHandler}
+            name='subscription'
+            value='nudj-newsletter'
+            id={1}
+          />
         </ReactCodeSpecimen>
       </Page>
     )

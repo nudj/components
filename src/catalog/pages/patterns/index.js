@@ -11,7 +11,7 @@ const patterns = orderBy(
       path: '/patterns/checkbox',
       title: 'Checkbox',
       content: require('./checkbox')
-    }
+    },
     {
       path: '/patterns/primitives',
       title: 'Primitives',

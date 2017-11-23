@@ -9,12 +9,12 @@ const Text = require('../../../lib/components/text')
 describe('Text', () => {
   describe('props', () => {
     it('takes an `elm` prop to change the element type', () => {
-      const component = shallow(<Text elm='p' />)
+      const component = shallow(<Text elm="p">foo</Text>)
       expect(component.type()).to.equal('p')
     })
 
     it('takes a class name', () => {
-      const component = shallow(<Text className='example' />)
+      const component = shallow(<Text className="example">foo</Text>)
       const text = component.find('.example')
       expect(text.exists()).to.be.true()
     })

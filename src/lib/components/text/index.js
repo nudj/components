@@ -5,22 +5,20 @@ const classnames = require('classnames')
 const getStyle = require('./style.css')
 
 type TextProps = {
+  children: React.Node,
   className?: string,
-  children?: React.Node,
   elm?: string
 }
 
 const Text = (props: TextProps) => {
-  const { className, children, elm = 'span' } = props
+  const { className, children, elm: Component = 'span' } = props
 
   const defaultStyles: Object = getStyle()
 
-  return React.createElement(
-    elm,
-    {
-      className: classnames(defaultStyles.root, className)
-    },
-    children
+  return (
+    <Component className={classnames(defaultStyles.root, className)}>
+      {children}
+    </Component>
   )
 }
 

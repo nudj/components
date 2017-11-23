@@ -26,11 +26,6 @@ class CheckboxDocumentation extends React.Component {
         </p>
         <ReactCodeSpecimen
           code={dedent`
-            onCheckHandler() {
-              const checked = !this.state.checked
-              this.setState({ checked })
-            }
-
             <Checkbox
               checked={this.state.checked}
               onChange={onCheckHandler}

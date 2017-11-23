@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Catalog } from 'catalog'
 import colors from '../lib/css/colors'
+import { fontFamily } from '../lib/css/typography'
 
 const pages = [
   {
@@ -17,8 +18,8 @@ const pages = [
 ]
 
 const theme = {
-  fontFamily: 'jan-light',
-  fontHeading: 'jan-bold',
+  fontFamily: fontFamily.jan,
+  fontHeading: fontFamily.jan,
   background: colors.white,
   textColor: colors.greyDarkest,
   brandColor: colors.primary,

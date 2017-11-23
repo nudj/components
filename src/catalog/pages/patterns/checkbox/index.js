@@ -39,7 +39,7 @@ class CheckboxDocumentation extends React.Component {
               value='nudj-newsletter'
               id='subscription-checkbox-1'
             />
-            `}
+          `}
         >
           <Checkbox
             checked={this.state.checked}

@@ -16,7 +16,7 @@ const ReactCodeSpecimen = ({ children, code, span, ...rest }) => {
         {children}
       </ReactSpecimen>
       <div style={styles.codeSpecimenWrapper}>
-        <CodeSpecimen {...rest} span={span} lang="jsx">
+        <CodeSpecimen {...rest} span={span} lang='jsx'>
           {code}
         </CodeSpecimen>
       </div>

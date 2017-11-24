@@ -19,7 +19,7 @@ export default class FormDocumentation extends Component<Props, State> {
   handleChange: Function
   handleToggle: Function
 
-  constructor(props: Object) {
+  constructor (props: Object) {
     super(props)
 
     this.handleChange = this.handleChange.bind(this)
@@ -32,19 +32,19 @@ export default class FormDocumentation extends Component<Props, State> {
     }
   }
 
-  handleChange({ name, value }: { name: string, value: string }) {
+  handleChange ({ name, value }: { name: string, value: string }) {
     this.setState({
       [name]: value
     })
   }
 
-  handleToggle({ name, checked }: { name: string, checked: boolean }) {
+  handleToggle ({ name, checked }: { name: string, checked: boolean }) {
     this.setState({
       [name]: checked
     })
   }
 
-  render() {
+  render () {
     const { input, error, checkbox } = this.state
 
     return (
@@ -64,9 +64,9 @@ export default class FormDocumentation extends Component<Props, State> {
         >
           <Input
             onChange={this.handleChange}
-            id="input"
-            name="input"
-            placeholder="Example input"
+            id='input'
+            name='input'
+            placeholder='Example input'
             value={input}
           />
         </ReactCodeSpecimen>
@@ -89,10 +89,10 @@ export default class FormDocumentation extends Component<Props, State> {
         >
           <Input
             onChange={this.handleChange}
-            id="errored-input"
-            name="error"
+            id='errored-input'
+            name='error'
             value={error}
-            error="Enter a valid value"
+            error='Enter a valid value'
           />
         </ReactCodeSpecimen>
         <h3>Checkbox</h3>
@@ -114,11 +114,11 @@ export default class FormDocumentation extends Component<Props, State> {
         >
           <Checkbox
             checked={checkbox}
-            label="Subscribe"
+            label='Subscribe'
             onChange={this.handleToggle}
-            name="checkbox"
-            value="checkbox"
-            id="checkbox"
+            name='checkbox'
+            value='checkbox'
+            id='checkbox'
           />
         </ReactCodeSpecimen>
       </Page>

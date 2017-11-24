@@ -22,9 +22,6 @@ export default class FormDocumentation extends Component<Props, State> {
   constructor (props: Object) {
     super(props)
 
-    this.handleChange = this.handleChange.bind(this)
-    this.handleToggle = this.handleToggle.bind(this)
-
     this.state = {
       input: '',
       error: 'Invalid input',
@@ -32,13 +29,13 @@ export default class FormDocumentation extends Component<Props, State> {
     }
   }
 
-  handleChange ({ name, value }: { name: string, value: string }) {
+  handleChange = ({ name, value }: { name: string, value: string }) => {
     this.setState({
       [name]: value
     })
   }
 
-  handleToggle ({ name, checked }: { name: string, checked: boolean }) {
+  handleToggle = ({ name, checked }: { name: string, checked: boolean }) => {
     this.setState({
       [name]: checked
     })

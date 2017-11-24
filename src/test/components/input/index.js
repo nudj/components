@@ -19,7 +19,7 @@ describe('Input', () => {
 
     it('takes name prop', () => {
       const component = shallow(
-        <Input classNames={{ input: 'inputClass' }} name="myInput" />
+        <Input classNames={{ input: 'inputClass' }} name='myInput' />
       )
       const input = component.find('.inputClass')
       expect(input.props().name).to.equal('myInput')
@@ -33,7 +33,7 @@ describe('Input', () => {
 
     it('takes textarea as type', () => {
       const component = shallow(
-        <Input classNames={{ input: 'inputClass' }} type="textarea" />
+        <Input classNames={{ input: 'inputClass' }} type='textarea' />
       )
       const input = component.find('.inputClass')
       expect(input.type()).to.equal('textarea')
@@ -55,7 +55,7 @@ describe('Input', () => {
       const component = shallow(
         <Input
           classNames={{ error: 'customErrorClass' }}
-          error="Invalid test"
+          error='Invalid test'
           ErrorWrapper={CustomErrorWrapper}
         />
       )
@@ -213,7 +213,7 @@ describe('Input', () => {
       const component = shallow(
         <Input
           classNames={{ input: 'inputClass', error: 'customErrorClass' }}
-          error="Invalid test"
+          error='Invalid test'
         />
       )
       const wrapper = component.find('.customErrorClass').type()

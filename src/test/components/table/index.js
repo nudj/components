@@ -73,11 +73,7 @@ describe('Table', () => {
 
     it('creates rows based on provided data', () => {
       const component = shallow(
-        <Table
-          classNames={{ row: 'rowClass' }}
-          data={data}
-          columns={columns}
-        />
+        <Table classNames={{ row: 'rowClass' }} data={data} columns={columns} />
       )
       const rows = component.find({ className: 'rowClass' })
       expect(rows).to.have.length(data.length)
@@ -215,11 +211,7 @@ describe('Table', () => {
     it('has a header row component that can be overridden', () => {
       const customHeaderRow = props => <tr>{props.children}</tr>
       const customComponent = shallow(
-        <Table
-          HeaderRow={customHeaderRow}
-          data={data}
-          columns={columns}
-        />
+        <Table HeaderRow={customHeaderRow} data={data} columns={columns} />
       )
       expect(customComponent.find('customHeaderRow').exists()).to.be.true()
     })
@@ -227,11 +219,7 @@ describe('Table', () => {
     it('has a header cell component that can be overridden', () => {
       const customHeaderCell = props => <th>{props.children}</th>
       const customComponent = shallow(
-        <Table
-          HeaderCell={customHeaderCell}
-          data={data}
-          columns={columns}
-        />
+        <Table HeaderCell={customHeaderCell} data={data} columns={columns} />
       )
       expect(customComponent.find('customHeaderCell').exists()).to.be.true()
     })
@@ -315,7 +303,7 @@ describe('Table', () => {
     it('can be provided with a className', () => {
       const component = shallow(
         <Table
-          classNames={{ table: 'custom_class' }}
+          classNames={{ root: 'custom_class' }}
           data={data}
           columns={columns}
         />

@@ -9,19 +9,14 @@ const patterns = orderBy(
       content: require('./table')
     },
     {
-      path: '/patterns/checkbox',
-      title: 'Checkbox',
-      content: require('./checkbox')
-    },
-    {
       path: '/patterns/primitives',
       title: 'Primitives',
       content: require('./primitives')
     },
     {
-      path: '/patterns/inputs',
-      title: 'Inputs',
-      content: require('./inputs')
+      path: '/patterns/forms',
+      title: 'Forms',
+      content: require('./forms')
     }
   ],
   'title'

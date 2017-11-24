@@ -20,7 +20,6 @@ const PrimitivesDocumentation = () => (
           all the stuff we need to build our applications 🚀
         </Text>
       `}
-      span={5}
     >
       <Text>
         Lejo is nudj’s living pattern library and style guide. It’s our

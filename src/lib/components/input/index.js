@@ -23,7 +23,8 @@ type InputProps = {
   required?: boolean,
   name: string,
   classNames?: classList,
-  placeholder?: string
+  placeholder?: string,
+  value?: string
 }
 
 type HandlerArgs = {
@@ -47,7 +48,8 @@ const Input = (props: InputProps) => {
     ErrorWrapper = props => <div {...props} />,
     name,
     error,
-    placeholder
+    placeholder,
+    value
   } = props
 
   const handleEvent = type => event => {
@@ -80,6 +82,7 @@ const Input = (props: InputProps) => {
         onFocus={handleEvent('onFocus')}
         required={required}
         placeholder={placeholder}
+        value={value}
       />
       {error ? errorSection() : null}
     </Wrapper>

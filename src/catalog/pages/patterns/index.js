@@ -1,3 +1,4 @@
+// @flow
 const orderBy = require('lodash/orderBy')
 
 const patterns = orderBy(
@@ -16,6 +17,11 @@ const patterns = orderBy(
       path: '/patterns/primitives',
       title: 'Primitives',
       content: require('./primitives')
+    },
+    {
+      path: '/patterns/inputs',
+      title: 'Inputs',
+      content: require('./inputs')
     }
   ],
   'title'

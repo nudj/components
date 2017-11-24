@@ -22,7 +22,8 @@ type InputProps = {
   error?: string,
   required?: boolean,
   name: string,
-  classNames?: classList
+  classNames?: classList,
+  placeholder?: string
 }
 
 type HandlerArgs = {
@@ -45,7 +46,8 @@ const Input = (props: InputProps) => {
     Wrapper = props => <div {...props} />,
     ErrorWrapper = props => <div {...props} />,
     name,
-    error
+    error,
+    placeholder
   } = props
 
   const handleEvent = type => event => {
@@ -67,9 +69,9 @@ const Input = (props: InputProps) => {
   )
 
   return (
-    <Wrapper className={classnames(styles.wrapper)}>
+    <Wrapper className={classnames(styles.root)}>
       <InputComponent
-        className={classnames(styles.root)}
+        className={classnames(styles.input, error ? styles.inputError : null)}
         id={props.id}
         name={name}
         type={type}
@@ -77,6 +79,7 @@ const Input = (props: InputProps) => {
         onBlur={handleEvent('onBlur')}
         onFocus={handleEvent('onFocus')}
         required={required}
+        placeholder={placeholder}
       />
       {error ? errorSection() : null}
     </Wrapper>

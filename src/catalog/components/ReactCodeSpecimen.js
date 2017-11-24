@@ -7,16 +7,16 @@ const getStyle = () => ({
   }
 })
 
-const ReactCodeSpecimen = ({ children, code, span }) => {
+const ReactCodeSpecimen = ({ children, code, ...rest }) => {
   const styles = getStyle()
 
   return (
     <div>
-      <ReactSpecimen span={span} noSource>
+      <ReactSpecimen {...rest} noSource>
         {children}
       </ReactSpecimen>
       <div style={styles.codeSpecimenWrapper}>
-        <CodeSpecimen span={span} lang='jsx'>
+        <CodeSpecimen {...rest} lang="jsx">
           {code}
         </CodeSpecimen>
       </div>

@@ -11,54 +11,43 @@ describe('Input', () => {
   describe('props', () => {
     it('takes required boolean', () => {
       const component = shallow(
-        <Input classNames={{ root: 'inputClass' }} required />
+        <Input classNames={{ input: 'inputClass' }} required />
       )
-      const input = component.find({ className: 'inputClass' })
+      const input = component.find('.inputClass')
       expect(input.props().required).to.be.true()
-    })
-
-    it('defaults required boolean to false', () => {
-      const component = shallow(
-        <Input classNames={{ root: 'inputClass' }} required={false} />
-      )
-      const input = component.find({ className: 'inputClass' })
-      expect(input.props().required).to.be.false()
     })
 
     it('takes name prop', () => {
       const component = shallow(
-        <Input classNames={{ root: 'inputClass' }} name='myInput' />
+        <Input classNames={{ input: 'inputClass' }} name="myInput" />
       )
-      const input = component.find({ className: 'inputClass' })
+      const input = component.find('.inputClass')
       expect(input.props().name).to.equal('myInput')
     })
 
     it('default to input as type', () => {
-      const component = shallow(
-        <Input classNames={{ root: 'inputClass' }} />
-      )
-      const defaultInput = component.find({ className: 'inputClass' })
-      expect(defaultInput.name()).to.equal('input')
+      const component = shallow(<Input classNames={{ input: 'inputClass' }} />)
+      const defaultInput = component.find('.inputClass')
+      expect(defaultInput.type()).to.equal('input')
     })
 
     it('takes textarea as type', () => {
       const component = shallow(
-        <Input classNames={{ root: 'inputClass' }} type='textarea' />
+        <Input classNames={{ input: 'inputClass' }} type="textarea" />
       )
-      const input = component.find({ className: 'inputClass' })
-      expect(input.name()).to.equal('textarea')
+      const input = component.find('.inputClass')
+      expect(input.type()).to.equal('textarea')
     })
 
     it('takes a Wrapper component for optional custom wrapper', () => {
       const wrappingComponent = props => <span {...props} />
       const component = shallow(
         <Input
-          classNames={{ wrapper: 'customWrapperClass' }}
+          classNames={{ root: 'customWrapperClass' }}
           Wrapper={wrappingComponent}
         />
       )
-      const wrapper = component.find({ className: 'customWrapperClass' })
-      expect(wrapper.type()).to.equal(wrappingComponent)
+      expect(component.type()).to.equal(wrappingComponent)
     })
 
     it('takes an ErrorWrapper component for optional custom wrapper', () => {
@@ -66,11 +55,11 @@ describe('Input', () => {
       const component = shallow(
         <Input
           classNames={{ error: 'customErrorClass' }}
-          error='Invalid test'
+          error="Invalid test"
           ErrorWrapper={CustomErrorWrapper}
         />
       )
-      const wrapper = component.find({ className: 'customErrorClass' })
+      const wrapper = component.find('.customErrorClass')
       expect(wrapper.type()).to.equal(CustomErrorWrapper)
       expect(wrapper.children().text()).to.equal('Invalid test')
     })
@@ -83,7 +72,7 @@ describe('Input', () => {
           ErrorWrapper={CustomErrorWrapper}
         />
       )
-      const wrapper = component.find({ className: 'customErrorClass' })
+      const wrapper = component.find('.customErrorClass')
       expect(wrapper.exists()).to.be.false()
     })
   })
@@ -92,9 +81,9 @@ describe('Input', () => {
     it('takes an onChange function', () => {
       const customOnChange = sinon.stub()
       const component = shallow(
-        <Input classNames={{ root: 'inputClass' }} onChange={customOnChange} />
+        <Input classNames={{ input: 'inputClass' }} onChange={customOnChange} />
       )
-      const input = component.find({ className: 'inputClass' })
+      const input = component.find('.inputClass')
       expect(customOnChange).to.not.have.been.called()
       input.simulate('change', { target: {} })
       expect(customOnChange).to.have.been.called()
@@ -105,12 +94,12 @@ describe('Input', () => {
       const inputName = 'myInput'
       const component = shallow(
         <Input
-          classNames={{ root: 'inputClass' }}
+          classNames={{ input: 'inputClass' }}
           name={inputName}
           onChange={customOnChange}
         />
       )
-      const input = component.find({ className: 'inputClass' })
+      const input = component.find('.inputClass')
       const event = {
         target: {
           value: 'Input Value Here'
@@ -130,9 +119,9 @@ describe('Input', () => {
     it('takes an onBlur function', () => {
       const customOnBlur = sinon.stub()
       const component = shallow(
-        <Input classNames={{ root: 'inputClass' }} onBlur={customOnBlur} />
+        <Input classNames={{ input: 'inputClass' }} onBlur={customOnBlur} />
       )
-      const input = component.find({ className: 'inputClass' })
+      const input = component.find('.inputClass')
       expect(customOnBlur).to.not.have.been.called()
       input.simulate('blur', { target: {} })
       expect(customOnBlur).to.have.been.called()
@@ -143,12 +132,12 @@ describe('Input', () => {
       const inputName = 'myInput'
       const component = shallow(
         <Input
-          classNames={{ root: 'inputClass' }}
+          classNames={{ input: 'inputClass' }}
           name={inputName}
           onBlur={customOnBlur}
         />
       )
-      const input = component.find({ className: 'inputClass' })
+      const input = component.find('.inputClass')
       const event = {
         target: {
           value: 'Input Value Here'
@@ -168,9 +157,9 @@ describe('Input', () => {
     it('takes an onFocus function', () => {
       const customOnFocus = sinon.stub()
       const component = shallow(
-        <Input classNames={{ root: 'inputClass' }} onFocus={customOnFocus} />
+        <Input classNames={{ input: 'inputClass' }} onFocus={customOnFocus} />
       )
-      const input = component.find({ className: 'inputClass' })
+      const input = component.find('.inputClass')
       expect(customOnFocus).to.not.have.been.called()
       input.simulate('focus', { target: {} })
       expect(customOnFocus).to.have.been.called()
@@ -181,12 +170,12 @@ describe('Input', () => {
       const inputName = 'myInput'
       const component = shallow(
         <Input
-          classNames={{ root: 'inputClass' }}
+          classNames={{ input: 'inputClass' }}
           name={inputName}
           onFocus={customOnFocus}
         />
       )
-      const input = component.find({ className: 'inputClass' })
+      const input = component.find('.inputClass')
       const event = {
         target: {
           value: 'Input Value Here'
@@ -206,28 +195,28 @@ describe('Input', () => {
 
   describe('classes', () => {
     it('takes an input className', () => {
-      const component = shallow(<Input classNames={{ root: 'inputClass' }} />)
-      const input = component.find({ className: 'inputClass' })
+      const component = shallow(<Input classNames={{ input: 'inputClass' }} />)
+      const input = component.find('.inputClass')
       expect(input.name()).to.equal('input')
       expect(input.exists()).to.be.true()
     })
 
     it('takes an outer wrapper className', () => {
       const component = shallow(
-        <Input classNames={{ root: 'inputClass', wrapper: 'wrapper' }} />
+        <Input classNames={{ input: 'inputClass', root: 'wrapper' }} />
       )
-      const wrapper = component.find({ className: 'wrapper' }).type()
+      const wrapper = component.find('.wrapper').type()
       expect(wrapper().type).to.equal('div')
     })
 
     it('takes an ErrorWrapper className', () => {
       const component = shallow(
         <Input
-          classNames={{ root: 'inputClass', error: 'customErrorClass' }}
-          error='Invalid test'
+          classNames={{ input: 'inputClass', error: 'customErrorClass' }}
+          error="Invalid test"
         />
       )
-      const wrapper = component.find({ className: 'customErrorClass' }).type()
+      const wrapper = component.find('.customErrorClass').type()
       expect(wrapper().type).to.equal('div')
     })
   })

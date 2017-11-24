@@ -1,4 +1,5 @@
 module.exports = {
+  Button: require('./components/button'),
   Card: require('./components/card'),
   Checkbox: require('./components/checkbox'),
   EmailForm: require('./components/email-form'),

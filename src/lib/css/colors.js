@@ -6,7 +6,7 @@ const charcoal = '#2D2926'
 // Palette
 const blueDark = '#001459'
 const blue = royalBlue
-const blueLight = '#1A478C'
+const blueLight = '#1A4280'
 const redDark = '#CA3900'
 const red = midRed
 const redLight = '#FD6C1F'

@@ -1,0 +1,16 @@
+{
+  "presets": [
+    "flow",
+    "catalog/babel",
+    "react",
+      ["env", {
+        "targets": {
+          "browsers": ["last 2 versions", "safari >= 7"]
+        }
+      }]
+  ],
+  plugins: [
+    "babel-plugin-transform-class-properties",
+    "babel-plugin-transform-object-rest-spread"
+  ]
+}

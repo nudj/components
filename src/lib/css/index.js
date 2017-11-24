@@ -1,8 +1,12 @@
 const { StyleSheet } = require('aphrodite/no-important')
+const typography = require('./typography')
+const colors = require('./colors')
+const sizes = require('./sizes')
+const utilities = require('./utilities')
 
 const Extended = StyleSheet.extend([])
 
-const css = (stylesheet) => {
+const css = stylesheet => {
   return () => {
     const styles = Extended.StyleSheet.create(stylesheet)
     return Object.keys(stylesheet).reduce((classList, className) => {
@@ -13,5 +17,9 @@ const css = (stylesheet) => {
 }
 
 module.exports = {
-  css
+  css,
+  typography,
+  colors,
+  sizes,
+  utilities
 }

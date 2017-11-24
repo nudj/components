@@ -34,18 +34,22 @@ export default class InputDocumentation extends Component<Props, State> {
   render() {
     const { input } = this.state
     const errorMessage =
-      input === 'invalud' ? 'Ermagerd something wernt wreng' : ''
+      input === 'invalid' ? 'Ermagerd something wernt wreng' : ''
 
     return (
-      <Input
-        key={1}
-        onChange={this.handleChange}
-        id="1"
-        name="input"
-        placeholder="Example input"
-        value={input}
-        error={errorMessage}
-      />
+      <Page>
+        <div style={{ width: '100%' }}>
+          <Input
+            key={1}
+            onChange={this.handleChange}
+            id="1"
+            name="input"
+            placeholder="Example input"
+            value={input}
+            error={errorMessage}
+          />
+        </div>
+      </Page>
     )
   }
 }

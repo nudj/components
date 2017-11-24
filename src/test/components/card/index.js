@@ -8,12 +8,12 @@ const Card = require('../../../lib/components/card')
 
 describe('Card', () => {
   it('renders', () => {
-    const component = shallow(<Card>foo</Card>)
+    shallow(<Card>foo</Card>)
   })
 
   describe('props', () => {
     it('takes a class name', () => {
-      const component = shallow(<Card className="example">foo</Card>)
+      const component = shallow(<Card className='example'>foo</Card>)
       const card = component.find('.example')
       expect(card.exists()).to.be.true()
     })

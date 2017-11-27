@@ -19,8 +19,8 @@ const ButtonDocumentation = () => {
       <p>
         To help the user with wayfinding, we use{' '}
         <a
-          href="https://www.viget.com/articles/visual-loudness"
-          target="_blank"
+          href='https://www.viget.com/articles/visual-loudness'
+          target='_blank'
         >
           visual loudness
         </a>{' '}
@@ -39,23 +39,23 @@ const ButtonDocumentation = () => {
         `}
       >
         <div className={style.wrapper}>
-          <Button className={style.button} volume="scream">
+          <Button className={style.button} volume='scream'>
             scream
           </Button>
-          <Button className={style.button} volume="yell">
+          <Button className={style.button} volume='yell'>
             yell
           </Button>
-          <Button className={style.button} volume="shout">
+          <Button className={style.button} volume='shout'>
             shout
           </Button>
-          <Button className={style.button} volume="cheer">
+          <Button className={style.button} volume='cheer'>
             cheer
           </Button>
           <Button className={style.button}>murmur</Button>
-          <Button className={style.button} volume="whistle">
+          <Button className={style.button} volume='whistle'>
             whistle
           </Button>
-          <Button className={style.button} volume="whisper">
+          <Button className={style.button} volume='whisper'>
             whisper
           </Button>
         </div>

@@ -205,8 +205,8 @@ describe('Input', () => {
       const component = shallow(
         <Input classNames={{ input: 'inputClass', root: 'wrapper' }} />
       )
-      const wrapper = component.find('.wrapper').type()
-      expect(wrapper().type).to.equal('div')
+      const wrapper = component.find('.wrapper')
+      expect(wrapper.type()).to.equal('div')
     })
 
     it('takes an ErrorWrapper className', () => {
@@ -216,8 +216,8 @@ describe('Input', () => {
           error='Invalid test'
         />
       )
-      const wrapper = component.find('.customErrorClass').type()
-      expect(wrapper().type).to.equal('div')
+      const wrapper = component.find('.customErrorClass')
+      expect(wrapper.type()).to.equal('div')
     })
   })
 })

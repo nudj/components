@@ -17,6 +17,11 @@ const patterns = orderBy(
       path: '/patterns/forms',
       title: 'Forms',
       content: require('./forms')
+    },
+    {
+      path: '/patterns/buttons',
+      title: 'Buttons',
+      content: require('./buttons')
     }
   ],
   'title'

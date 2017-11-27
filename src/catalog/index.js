@@ -23,7 +23,7 @@ const theme = {
   background: colors.white,
   textColor: colors.greyDarkest,
   brandColor: colors.primary,
-  linkColor: colors.black,
+  linkColor: colors.midRed,
   lightColor: colors.greyLightest,
   pageHeadingBackground: colors.white,
   pageHeadingTextColor: colors.primary,

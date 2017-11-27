@@ -5,6 +5,7 @@ import { Page } from 'catalog'
 
 import Input from '../../../../lib/components/input'
 import InputField from '../../../../lib/components/input-field'
+import Select from '../../../../lib/components/select'
 import Checkbox from '../../../../lib/components/checkbox'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
 
@@ -14,7 +15,8 @@ type State = {
   input: string,
   error: string,
   checkbox: boolean,
-  inputField: string
+  inputField: string,
+  select: string
 }
 
 export default class FormDocumentation extends Component<Props, State> {
@@ -28,7 +30,8 @@ export default class FormDocumentation extends Component<Props, State> {
       input: '',
       error: 'Invalid input',
       checkbox: false,
-      inputField: ''
+      inputField: '',
+      select: ''
     }
   }
 
@@ -45,7 +48,7 @@ export default class FormDocumentation extends Component<Props, State> {
   }
 
   render () {
-    const { input, error, checkbox, inputField } = this.state
+    const { input, error, checkbox, inputField, select } = this.state
 
     return (
       <Page>
@@ -120,6 +123,38 @@ export default class FormDocumentation extends Component<Props, State> {
             value='checkbox'
             id='checkbox'
           />
+        </ReactCodeSpecimen>
+        <h3>Select</h3>
+        <p>
+          Use a select when a user needs to choose from a list of pre-defined
+          options. In a lot of cases, there will be a better way of presenting
+          the options to the user, such as a a group of radio buttons, so use
+          this as a last resort when no other input type makes sense.
+        </p>
+        <ReactCodeSpecimen
+          code={dedent`
+            <Select
+              id="select"
+              name="select"
+              value={select}
+              onChange={this.handleChange}
+            >
+              <option value="javascript">JavaScript 💫</option>
+              <option value="ruby">Ruby 💎</option>
+              <option value="go">Go 🏃</option>
+            </Select>
+          `}
+        >
+          <Select
+            id='select'
+            name='select'
+            value={select}
+            onChange={this.handleChange}
+          >
+            <option value='javascript'>JavaScript 💫</option>
+            <option value='ruby'>Ruby 💎</option>
+            <option value='go'>Go 🏃</option>
+          </Select>
         </ReactCodeSpecimen>
         <h3>Input field</h3>
         <p>

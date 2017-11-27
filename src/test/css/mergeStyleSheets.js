@@ -29,6 +29,21 @@ describe('mergeStyleSheets', () => {
     })
   })
 
+  it('accepts already merged style sheets', () => {
+    expect(
+      mergeStyleSheets(
+        {
+          foo: 'bar'
+        },
+        {
+          foo: ['baz', 'abc']
+        }
+      )
+    ).to.eql({
+      foo: ['bar', 'baz', 'abc']
+    })
+  })
+
   it('accepts undefined or null sheets', () => {
     expect(mergeStyleSheets(inputOne, undefined)).to.eql({
       root: ['Obi'],

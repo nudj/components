@@ -19,8 +19,8 @@ const ButtonDocumentation = () => {
       <p>
         To help the user with wayfinding, we use{' '}
         <a
-          href='https://www.viget.com/articles/visual-loudness'
-          target='_blank'
+          href="https://www.viget.com/articles/visual-loudness"
+          target="_blank"
         >
           visual loudness
         </a>{' '}
@@ -29,34 +29,34 @@ const ButtonDocumentation = () => {
       </p>
       <ReactCodeSpecimen
         code={dedent`
-          <Button volume="scream">label</Button>
-          <Button volume="yell">label</Button>
-          <Button volume="shout">label</Button>
-          <Button volume="cheer">label</Button>
-          <Button>label</Button>
-          <Button volume="whistle">label</Button>
-          <Button volume="whisper">label</Button>   
+          <Button volume="scream">scream</Button>
+          <Button volume="yell">yell</Button>
+          <Button volume="shout">shout</Button>
+          <Button volume="cheer">cheer</Button>
+          <Button>murmur</Button>
+          <Button volume="whistle">whistle</Button>
+          <Button volume="whisper">whisper</Button>   
         `}
       >
         <div className={style.wrapper}>
-          <Button className={style.button} volume='scream'>
-            label
+          <Button className={style.button} volume="scream">
+            scream
           </Button>
-          <Button className={style.button} volume='yell'>
-            label
+          <Button className={style.button} volume="yell">
+            yell
           </Button>
-          <Button className={style.button} volume='shout'>
-            label
+          <Button className={style.button} volume="shout">
+            shout
           </Button>
-          <Button className={style.button} volume='cheer'>
-            label
+          <Button className={style.button} volume="cheer">
+            cheer
           </Button>
-          <Button className={style.button}>label</Button>
-          <Button className={style.button} volume='whistle'>
-            label
+          <Button className={style.button}>murmur</Button>
+          <Button className={style.button} volume="whistle">
+            whistle
           </Button>
-          <Button className={style.button} volume='whisper'>
-            label
+          <Button className={style.button} volume="whisper">
+            whisper
           </Button>
         </div>
       </ReactCodeSpecimen>

@@ -25,7 +25,7 @@ describe('InputField', () => {
         />
       )
       const label = component.find({ className: 'labelClass' })
-      expect(label.text()).to.equal('Test(required)')
+      expect(label.text()).to.equal('Test*')
     })
 
     it('takes htmlFor prop as htmlFor on field label', () => {
@@ -53,14 +53,11 @@ describe('InputField', () => {
 
     it('takes a required notice className', () => {
       const component = shallow(
-        <InputField
-          classNames={{ requiredNotice: 'requireClass' }}
-          required
-        />
+        <InputField classNames={{ requiredNotice: 'requireClass' }} required />
       )
       const notice = component.find({ className: 'requireClass' })
       expect(notice.exists()).to.be.true()
-      expect(notice.text()).to.equal('(required)')
+      expect(notice.text()).to.equal('*')
     })
   })
 })

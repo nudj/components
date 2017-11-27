@@ -4,6 +4,7 @@ import dedent from 'dedent'
 import { Page } from 'catalog'
 
 import Input from '../../../../lib/components/input'
+import InputField from '../../../../lib/components/input-field'
 import Checkbox from '../../../../lib/components/checkbox'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
 
@@ -12,7 +13,8 @@ type Props = {}
 type State = {
   input: string,
   error: string,
-  checkbox: boolean
+  checkbox: boolean,
+  inputField: string
 }
 
 export default class FormDocumentation extends Component<Props, State> {
@@ -25,7 +27,8 @@ export default class FormDocumentation extends Component<Props, State> {
     this.state = {
       input: '',
       error: 'Invalid input',
-      checkbox: false
+      checkbox: false,
+      inputField: ''
     }
   }
 
@@ -42,7 +45,7 @@ export default class FormDocumentation extends Component<Props, State> {
   }
 
   render () {
-    const { input, error, checkbox } = this.state
+    const { input, error, checkbox, inputField } = this.state
 
     return (
       <Page>
@@ -69,8 +72,8 @@ export default class FormDocumentation extends Component<Props, State> {
         </ReactCodeSpecimen>
         <h3>Input with error</h3>
         <p>
-          When an input's value is invalid, you can provide a message to help
-          guide the user to correcting the mistake
+          When an input&#39;s value is invalid, you can provide a message to
+          help guide the user to correcting the mistake
         </p>
         <ReactCodeSpecimen
           code={dedent`
@@ -117,6 +120,43 @@ export default class FormDocumentation extends Component<Props, State> {
             value='checkbox'
             id='checkbox'
           />
+        </ReactCodeSpecimen>
+        <h3>Input field</h3>
+        <p>
+          Add context to inputs by wrapping them in an input field component.
+        </p>
+        <ReactCodeSpecimen
+          code={dedent`
+            <InputField
+              htmlFor="inputField"
+              label="Name"
+              required
+              description="What your parents called you"
+            >
+              <Input
+                onChange={this.handleChange}
+                id="inputField"
+                name="inputField"
+                value={inputField}
+                required
+              />
+            </InputField>
+          `}
+        >
+          <InputField
+            htmlFor='inputField'
+            label='Name'
+            required
+            description='What your parents called you'
+          >
+            <Input
+              onChange={this.handleChange}
+              id='inputField'
+              name='inputField'
+              value={inputField}
+              required
+            />
+          </InputField>
         </ReactCodeSpecimen>
       </Page>
     )

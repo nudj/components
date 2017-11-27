@@ -8,7 +8,9 @@ const getStyle = require('./style.css')
 type classList = {
   root?: string,
   label?: string,
-  requiredNotice?: string
+  requiredNotice?: string,
+  description?: string,
+  inputContainer?: string
 }
 
 type InputProps = {
@@ -17,16 +19,21 @@ type InputProps = {
   label: string,
   required?: boolean,
   classNames?: classList,
-  children: React.Node
+  children: React.Node,
+  description?: React.Node
 }
 
 const InputField = (props: InputProps) => {
-  const { classNames = {} } = props
+  const { label, required, classNames, description } = props
   const defaultStyles = getStyle()
   const style = merge(defaultStyles, classNames)
 
   const requiredNotice = () => (
-    <span className={classnames(style.requiredNotice)}>(required)</span>
+    <span className={classnames(style.requiredNotice)}>*</span>
+  )
+
+  const descriptionContainer = () => (
+    <div className={classnames(style.description)}>{description}</div>
   )
 
   return (
@@ -36,12 +43,17 @@ const InputField = (props: InputProps) => {
         id={props.id}
         htmlFor={props.htmlFor}
       >
-        {props.label}
-        {props.required ? requiredNotice() : null}
+        {label}
+        {required ? requiredNotice() : null}
       </label>
-      {props.children}
+      <div className={classnames(style.inputContainer)}>{props.children}</div>
+      {description ? descriptionContainer() : null}
     </div>
   )
+}
+
+InputField.defaultProps = {
+  classNames: {}
 }
 
 module.exports = InputField

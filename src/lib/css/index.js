@@ -17,6 +17,7 @@ const css = stylesheet => {
 }
 
 module.exports = {
+  aphrodite: Extended,
   css,
   typography,
   colors,

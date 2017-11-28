@@ -1,14 +1,14 @@
 // @flow
 const React = require('react')
-const classnames = require('classnames')
-const { merge } = require('@nudj/library')
 
-const getStyle = require('./style.css')
+const { aphrodite } = require('../../css')
+const defaultStylesheet = require('./style.css')
 
 type classList = {
   root?: string,
   error?: string,
-  wrapper?: string
+  input?: string,
+  inputError?: string
 }
 
 type InputProps = {
@@ -22,7 +22,7 @@ type InputProps = {
   error?: string,
   required?: boolean,
   name: string,
-  classNames?: classList,
+  stylesheet: classList,
   placeholder?: string,
   value?: string
 }
@@ -44,7 +44,7 @@ const Input = (props: InputProps) => {
     required,
     placeholder,
     value,
-    classNames,
+    stylesheet,
     onChange,
     onBlur,
     onFocus,
@@ -63,18 +63,27 @@ const Input = (props: InputProps) => {
     })
   }
 
-  const defaultStyles = getStyle()
-  const styles = merge(defaultStyles, classNames)
   const InputComponent = type === 'textarea' ? 'textarea' : 'input'
 
   const errorSection = () => (
-    <ErrorWrapper className={classnames(styles.error)}>{error}</ErrorWrapper>
+    <ErrorWrapper
+      className={aphrodite.css(defaultStylesheet.error, stylesheet.error)}
+    >
+      {error}
+    </ErrorWrapper>
   )
 
+  console.log(defaultStylesheet)
+
   return (
-    <Wrapper className={classnames(styles.root)}>
+    <Wrapper className={aphrodite.css(defaultStylesheet.root, stylesheet.root)}>
       <InputComponent
-        className={classnames(styles.input, error ? styles.inputError : null)}
+        className={aphrodite.css(
+          defaultStylesheet.input,
+          stylesheet.input,
+          error && defaultStylesheet.inputError,
+          error && stylesheet.inputError
+        )}
         id={id}
         name={name}
         type={type}
@@ -92,7 +101,7 @@ const Input = (props: InputProps) => {
 
 Input.defaultProps = {
   type: 'text',
-  classNames: {},
+  stylesheet: {},
   onChange: noopHandler,
   onBlur: noopHandler,
   onFocus: noopHandler,

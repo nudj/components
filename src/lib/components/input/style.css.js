@@ -1,8 +1,8 @@
 const { merge } = require('@nudj/library')
 
-const { css, typography, colors, sizes, utilities } = require('../../css')
+const { aphrodite, typography, colors, sizes, utilities } = require('../../css')
 
-const styles = {
+const stylesheet = aphrodite.StyleSheet.create({
   root: {},
   input: merge(typography.type.regular, {
     backgroundColor: colors.white,
@@ -44,6 +44,6 @@ const styles = {
     borderBottomRightRadius: utilities.borderRadius,
     borderBottomLeftRadius: utilities.borderRadius
   })
-}
+})
 
-module.exports = css(styles)
+module.exports = stylesheet

@@ -6,8 +6,12 @@ const defaultStyleSheet = require('./style.css')
 
 type StyleSheetType = {
   root?: string,
-  checkbox?: string,
-  wrapper?: string,
+  input?: string,
+  icon?: string,
+  iconBox?: string,
+  iconCheckmark?: string,
+  iconCheckmarkUnchecked?: string,
+  iconCheckmarkChecked?: string,
   label?: string
 }
 
@@ -60,33 +64,31 @@ const Checkbox = (props: CheckboxProps) => {
         type='checkbox'
         name={name}
         value={value}
-        className={css(style.root)}
+        className={css(style.input)}
         checked={checked}
         id={id}
         onChange={onChangeHandler}
       />
       <label htmlFor={id}>
-        <svg
-          className={css(style.checkbox)}
-          width='1em'
-          height='1em'
-          viewBox='0 0 24 24'
-        >
+        <svg className={css(style.icon)} viewBox='0 0 24 24'>
           <g transform='translate(3 4)' fill='none' fillRule='evenodd'>
             <rect
-              stroke='#D5D5D3'
-              strokeWidth={2}
+              className={css(style.iconBox)}
               x={1}
               y={1}
               width={14}
               height={14}
               rx={4}
             />
-            {checked ? (
-              <path d='M8 12L3 7l2-2 3 3 8-8 2 2z' fill='#E35205' />
-            ) : (
-              ''
-            )}
+            <path
+              className={css(
+                style.iconCheckmark,
+                checked
+                  ? style.iconCheckmarkChecked
+                  : style.iconCheckmarkUnchecked
+              )}
+              d='M8 12L3 7l2-2 3 3 8-8 2 2z'
+            />
           </g>
         </svg>
         <span className={css(style.label)}>{label}</span>

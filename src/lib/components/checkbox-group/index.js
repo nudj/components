@@ -18,21 +18,28 @@ type CheckboxClassList = {
   label?: string
 }
 
+type HandlerArgs = {
+  name: string,
+  values: Array<string>,
+  preventDefault: Function,
+  stopPropagation: Function
+}
+
 type CheckboxProps = {
-  Input?: Function,
+  Input: React.ElementType,
   required?: boolean,
   className?: string,
   checkboxClassNames?: CheckboxClassList,
-  children: Function,
-  onChange: Function,
+  children: React.ElementType => React.Node,
+  onChange: HandlerArgs => mixed,
   values: Array<string>,
   name: string
 }
 
 const CheckboxGroup = (props: CheckboxProps) => {
   const {
-    Input = Checkbox,
-    required = false,
+    Input,
+    required,
     className,
     checkboxClassNames,
     children,
@@ -43,27 +50,59 @@ const CheckboxGroup = (props: CheckboxProps) => {
 
   const defaultStyle: Object = getStyle()
 
+  const handleChange = ({
+    value,
+    preventDefault,
+    stopPropagation
+  }: {
+    value: string,
+    preventDefault: Function,
+    stopPropagation: Function
+  }) => {
+    let newValues
+
+    if (values.includes(value)) {
+      newValues = values.filter(val => val !== value)
+    } else {
+      newValues = [...values, value]
+    }
+
+    onChange({
+      name,
+      values: newValues,
+      preventDefault: preventDefault,
+      stopPropagation: stopPropagation
+    })
+  }
+
   return (
     <div className={classnames(defaultStyle.root, className)}>
-      {children && children((childProps: ChildType) => {
-        const checked = values.includes(childProps.value)
+      {children &&
+        children((childProps: ChildType) => {
+          const checked = values.includes(childProps.value)
 
-        return (
-          <Input
-            id={uniqueId()}
-            name={name}
-            classNames={classnames(checkboxClassNames)}
-            value={childProps.value}
-            label={childProps.label}
-            onChange={onChange}
-            checked={checked}
-            required={required}
-            {...childProps}
-          />
-        )
-      }) }
+          return (
+            <Input
+              id={uniqueId(name)}
+              name={name}
+              classNames={classnames(checkboxClassNames)}
+              value={childProps.value}
+              label={childProps.label}
+              onChange={handleChange}
+              checked={checked}
+              required={required}
+              {...childProps}
+            />
+          )
+        })}
     </div>
   )
+}
+
+CheckboxGroup.defaultProps = {
+  Input: Checkbox,
+  values: [],
+  required: false
 }
 
 module.exports = CheckboxGroup

@@ -3,77 +3,73 @@
 
 const React = require('react')
 const { shallow } = require('enzyme')
+const sinon = require('sinon')
 
 const CheckboxGroup = require('../../../lib/components/checkbox-group')
 
-const ExampleComponent = (props) => (
-  <CheckboxGroup {...props}>
-    {
-      checkbox => (
-        <span>
-          { checkbox({ value: '0', label: 'One' }) }
-          { checkbox({ value: '1', label: 'Two' }) }
-          { checkbox({ value: '2', label: 'Three' }) }
-        </span>
-      )
-    }
-  </CheckboxGroup>
-)
-
-const createCheckboxGroup = (properties = {}) => {
-  const {
-    values = [],
-    name = 'Example Name',
-    onChange = () => {},
-    required = false
-  } = properties
-
-  const component = shallow(
-    <ExampleComponent
-      onChange={onChange}
-      name={name}
-      values={values}
-      required={required}
-    />
-  )
-  return component.dive().children()
-}
-
-describe.only('CheckboxGroup', () => {
-  describe('rendering', () => {
-    it('renders provided children', () => {
-      const CheckboxGroup = createCheckboxGroup()
-      const checkboxes = CheckboxGroup.children()
-      expect(checkboxes).to.have.lengthOf(3)
-      checkboxes.forEach(checkbox => {
-        expect(checkbox.name()).to.equal('Checkbox')
-      })
-    })
+describe('CheckboxGroup', () => {
+  it('renders', () => {
+    shallow(
+      <CheckboxGroup name='checkboxgroup' onChange={() => {}} values={['1']}>
+        {Checkbox => <Checkbox value='1' label='One' />}
+      </CheckboxGroup>
+    )
   })
 
   describe('props', () => {
-    it('spreads name and required props to children', () => {
-      const CheckboxGroup = createCheckboxGroup({
-        name: 'Example',
-        required: true
-      })
-      CheckboxGroup.children().forEach(checkbox => {
-        expect(checkbox.props().name).to.equal('Example')
-        expect(checkbox.props().required).to.equal(true)
-      })
+    it('correctly sets the checked values', () => {
+      let wrapper
+      const component = shallow(
+        <CheckboxGroup name='checkboxgroup' onChange={() => {}} values={['1']}>
+          {Checkbox => {
+            wrapper = Checkbox
+            return <Checkbox value='1' label='One' />
+          }}
+        </CheckboxGroup>
+      )
+
+      const checkbox = component.find(wrapper).dive()
+      expect(checkbox.props().checked).to.be.true()
     })
 
-    it('uses array of values to determine checked state of children', () => {
-      const OneCheckedGroup = createCheckboxGroup({ values: ['1'] })
-      const AllCheckedGroup = createCheckboxGroup({ values: ['0', '1', '2'] })
-      const oneCheckedValues = OneCheckedGroup.children().map(checkbox => {
-        return checkbox.props().checked
+    it('takes an onChange function', () => {
+      let wrapper
+      const onChange = sinon.stub()
+      const component = shallow(
+        <CheckboxGroup name='checkboxgroup' onChange={onChange} values={[]}>
+          {Checkbox => {
+            wrapper = Checkbox
+            return <Checkbox value='1' label='One' />
+          }}
+        </CheckboxGroup>
+      )
+
+      const event = {
+        name: 'checkboxgroup',
+        target: {
+          value: '1',
+          checked: true
+        },
+        preventDefault: () => {},
+        stopPropagation: () => {}
+      }
+
+      const checkbox = component
+        .find(wrapper)
+        .dive()
+        .dive()
+        .find('input[type="checkbox"]')
+
+      expect(onChange).to.not.have.been.called()
+
+      checkbox.simulate('change', event)
+
+      expect(onChange).to.have.been.calledWith({
+        name: 'checkboxgroup',
+        values: ['1'],
+        preventDefault: event.preventDefault,
+        stopPropagation: event.stopPropagation
       })
-      const allCheckedValues = AllCheckedGroup.children().map(checkbox => {
-        return checkbox.props().checked
-      })
-      expect(oneCheckedValues).to.deep.equal([false, true, false])
-      expect(allCheckedValues).to.deep.equal([true, true, true])
     })
   })
 })

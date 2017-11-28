@@ -11,27 +11,35 @@ type StyleSheetType = {
   inputError?: string
 }
 
+type HandlerArgs = {
+  name: string,
+  value: string,
+  preventDefault: Function,
+  stopPropagation: Function
+}
+
 type InputProps = {
   id: string,
   type: 'text' | 'email' | 'password' | 'search' | 'url' | 'textarea',
+<<<<<<< HEAD
   Wrapper: React.ElementType,
   ErrorWrapper: React.ElementType,
   onChange: Function,
   onBlur: Function,
   onFocus: Function,
+=======
+  Wrapper: Function,
+  ErrorWrapper: Function,
+  onChange: HandlerArgs => mixed,
+  onBlur: HandlerArgs => mixed,
+  onFocus: HandlerArgs => mixed,
+>>>>>>> Implement checkbox group
   error?: string,
   required?: boolean,
   name: string,
   styleSheet: StyleSheetType,
   placeholder?: string,
   value?: string
-}
-
-type HandlerArgs = {
-  name: string,
-  value: string,
-  preventDefault: Function,
-  stopPropagation: Function
 }
 
 const noopHandler = (args: HandlerArgs) => {}

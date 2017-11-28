@@ -3,13 +3,17 @@ const { merge } = require('@nudj/library')
 const { css, typography, colors, sizes, utilities } = require('../../css')
 
 const styles = {
-  root: {},
-  input: merge(typography.type.regular, {
+  root: {
+    position: 'relative'
+  },
+  select: merge(typography.type.regular, {
+    appearance: 'none',
     backgroundColor: colors.white,
     border: `1px solid ${colors.grey}`,
     borderRadius: utilities.borderRadius,
     boxShadow: utilities.boxShadow[0].wide,
     color: colors.text,
+    height: '100%',
     paddingBottom: sizes.smallI,
     paddingLeft: sizes.regular,
     paddingRight: sizes.regular,
@@ -25,25 +29,14 @@ const styles = {
       color: colors.grey
     }
   }),
-  inputError: {
-    borderBottomRightRadius: 0,
-    borderBottomLeftRadius: 0,
-    color: colors.danger,
-    borderColor: colors.danger,
-    ':focus': {
-      borderColor: colors.danger
-    }
-  },
-  error: merge(typography.type.regular, {
-    paddingBottom: sizes.smallI,
-    paddingLeft: sizes.regular,
-    paddingRight: sizes.regular,
-    paddingTop: sizes.smallI,
-    backgroundColor: colors.danger,
-    color: colors.white,
-    borderBottomRightRadius: utilities.borderRadius,
-    borderBottomLeftRadius: utilities.borderRadius
-  })
+  chevron: {
+    fill: colors.greyDark,
+    pointerEvents: 'none',
+    position: 'absolute',
+    right: sizes.regular,
+    top: '50%',
+    transform: 'translateY(-50%) rotate(180deg)'
+  }
 }
 
 module.exports = css(styles)

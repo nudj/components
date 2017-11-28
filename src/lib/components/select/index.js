@@ -3,28 +3,25 @@ const React = require('react')
 const classnames = require('classnames')
 const { merge } = require('@nudj/library')
 
+const Icon = require('../icon')
 const getStyle = require('./style.css')
 
 type classList = {
   root?: string,
-  error?: string,
-  wrapper?: string
+  select?: string,
+  chevron?: string
 }
 
-type InputProps = {
+type SelectProps = {
   id: string,
-  type: 'text' | 'email' | 'password' | 'search' | 'url' | 'textarea',
-  Wrapper: React.ElementType,
-  ErrorWrapper: React.ElementType,
+  name: string,
+  value?: string,
   onChange: Function,
   onBlur: Function,
   onFocus: Function,
-  error?: string,
   required?: boolean,
-  name: string,
-  classNames?: classList,
-  placeholder?: string,
-  value?: string
+  classNames: classList,
+  children: React.ChildrenArray<React.Element<'option'>>
 }
 
 type HandlerArgs = {
@@ -36,21 +33,17 @@ type HandlerArgs = {
 
 const noopHandler = (args: HandlerArgs) => {}
 
-const Input = (props: InputProps) => {
+const Select = (props: SelectProps) => {
   const {
     id,
     name,
-    type,
     required,
-    placeholder,
     value,
     classNames,
     onChange,
     onBlur,
     onFocus,
-    Wrapper,
-    ErrorWrapper,
-    error
+    children
   } = props
 
   const handleEvent = type => event => {
@@ -65,39 +58,31 @@ const Input = (props: InputProps) => {
 
   const defaultStyles = getStyle()
   const styles = merge(defaultStyles, classNames)
-  const InputComponent = type === 'textarea' ? 'textarea' : 'input'
-
-  const errorSection = () => (
-    <ErrorWrapper className={classnames(styles.error)}>{error}</ErrorWrapper>
-  )
 
   return (
-    <Wrapper className={classnames(styles.root)}>
-      <InputComponent
-        className={classnames(styles.input, error ? styles.inputError : null)}
+    <div className={styles.root}>
+      <select
+        className={classnames(styles.select)}
         id={id}
         name={name}
-        type={type}
         onChange={handleEvent('onChange')}
         onBlur={handleEvent('onBlur')}
         onFocus={handleEvent('onFocus')}
         required={required}
-        placeholder={placeholder}
         value={value}
-      />
-      {error ? errorSection() : null}
-    </Wrapper>
+      >
+        {children}
+      </select>
+      <Icon name='chevron' className={styles.chevron} />
+    </div>
   )
 }
 
-Input.defaultProps = {
-  type: 'text',
+Select.defaultProps = {
   classNames: {},
   onChange: noopHandler,
   onBlur: noopHandler,
-  onFocus: noopHandler,
-  Wrapper: 'div',
-  ErrorWrapper: 'div'
+  onFocus: noopHandler
 }
 
-module.exports = Input
+module.exports = Select

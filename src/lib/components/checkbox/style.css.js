@@ -1,6 +1,6 @@
-const { css } = require('../../css')
+const { StyleSheet } = require('../../css')
 
-const styles = {
+const stylesheet = StyleSheet.create({
   checkbox: {},
   label: {},
   wrapper: {
@@ -10,6 +10,6 @@ const styles = {
     opacity: 0,
     position: 'absolute'
   }
-}
+})
 
-module.exports = css(styles)
+module.exports = stylesheet

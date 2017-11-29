@@ -1,21 +1,29 @@
 // @flow
 const React = require('react')
-const { merge } = require('@nudj/library')
 
-const getStyle = require('./style.css')
+const { mergeStyleSheets, css } = require('../../css')
+const defaultStyleSheet = require('./style.css')
 
-type ClassList = {
+type StyleSheet = {
   root?: string,
   checkbox?: string,
   wrapper?: string,
   label?: string
 }
 
-type CheckboxProps = {
-  classNames?: ClassList,
+type HandlerArgs = {
+  name: string,
+  value: string,
   checked: boolean,
-  Wrapper?: Function,
-  onChange: Function,
+  preventDefault: Function,
+  stopPropagation: Function
+}
+
+type CheckboxProps = {
+  styleSheet: StyleSheet,
+  checked: boolean,
+  Wrapper: React.ElementType,
+  onChange: HandlerArgs => mixed,
   id: string,
   name: string,
   value: string,
@@ -24,9 +32,9 @@ type CheckboxProps = {
 
 const Checkbox = (props: CheckboxProps) => {
   const {
-    classNames = {},
+    styleSheet,
     label,
-    Wrapper = props => <div {...props} />,
+    Wrapper,
     checked,
     onChange,
     name,
@@ -44,22 +52,26 @@ const Checkbox = (props: CheckboxProps) => {
     })
   }
 
-  const defaultStyles = getStyle()
-  const styles = merge(defaultStyles, classNames)
+  const classNames = mergeStyleSheets(defaultStyleSheet, styleSheet)
 
   return (
-    <Wrapper className={styles.wrapper}>
+    <Wrapper className={css(classNames.wrapper)}>
       <input
         type='checkbox'
         name={name}
         value={value}
-        className={styles.root}
+        className={css(classNames.root)}
         checked={checked}
         id={id}
         onChange={onChangeHandler}
       />
       <label htmlFor={id}>
-        <svg className={styles.checkbox} width='1em' height='1em' viewBox='0 0 24 24'>
+        <svg
+          className={css(classNames.checkbox)}
+          width='1em'
+          height='1em'
+          viewBox='0 0 24 24'
+        >
           <g transform='translate(3 4)' fill='none' fillRule='evenodd'>
             <rect
               stroke='#D5D5D3'
@@ -70,15 +82,22 @@ const Checkbox = (props: CheckboxProps) => {
               height={14}
               rx={4}
             />
-            { checked ? <path d='M8 12L3 7l2-2 3 3 8-8 2 2z' fill='#E35205' /> : '' }
+            {checked ? (
+              <path d='M8 12L3 7l2-2 3 3 8-8 2 2z' fill='#E35205' />
+            ) : (
+              ''
+            )}
           </g>
         </svg>
-        <span className={styles.label}>
-          {label}
-        </span>
+        <span className={css(classNames.label)}>{label}</span>
       </label>
     </Wrapper>
   )
+}
+
+Checkbox.defaultProps = {
+  styleSheet: {},
+  Wrapper: 'div'
 }
 
 module.exports = Checkbox

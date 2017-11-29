@@ -1,10 +1,9 @@
 // @flow
 const React = require('react')
-const classnames = require('classnames')
 const uniqueId = require('lodash/uniqueId')
 
+const { css } = require('../../css')
 const Checkbox = require('../checkbox')
-const getStyle = require('./style.css')
 
 type ChildType = {
   value: string,
@@ -28,11 +27,11 @@ type HandlerArgs = {
 type CheckboxProps = {
   Input: React.ElementType,
   required?: boolean,
-  className?: string,
-  checkboxClassNames?: CheckboxClassList,
+  checkboxStyleSheet: CheckboxClassList,
   children: React.ElementType => React.Node,
   onChange: HandlerArgs => mixed,
   values: Array<string>,
+  styles?: Object,
   name: string
 }
 
@@ -40,15 +39,13 @@ const CheckboxGroup = (props: CheckboxProps) => {
   const {
     Input,
     required,
-    className,
-    checkboxClassNames,
+    checkboxStyleSheet,
     children,
     values,
     name,
-    onChange
+    onChange,
+    styles
   } = props
-
-  const defaultStyle: Object = getStyle()
 
   const handleChange = ({
     value,
@@ -76,7 +73,7 @@ const CheckboxGroup = (props: CheckboxProps) => {
   }
 
   return (
-    <div className={classnames(defaultStyle.root, className)}>
+    <div className={css(styles)}>
       {children &&
         children((childProps: ChildType) => {
           const checked = values.includes(childProps.value)
@@ -85,7 +82,7 @@ const CheckboxGroup = (props: CheckboxProps) => {
             <Input
               id={uniqueId(name)}
               name={name}
-              classNames={classnames(checkboxClassNames)}
+              classNames={checkboxStyleSheet}
               value={childProps.value}
               label={childProps.label}
               onChange={handleChange}
@@ -102,7 +99,8 @@ const CheckboxGroup = (props: CheckboxProps) => {
 CheckboxGroup.defaultProps = {
   Input: Checkbox,
   values: [],
-  required: false
+  required: false,
+  checkboxStyleSheet: {}
 }
 
 module.exports = CheckboxGroup

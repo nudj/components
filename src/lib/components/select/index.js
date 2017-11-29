@@ -71,7 +71,7 @@ const Select = (props: SelectProps) => {
       >
         {children}
       </select>
-      <Icon name='chevron' className={css(classNames.chevron)} />
+      <Icon name='chevron' styles={classNames.chevron} />
     </div>
   )
 }

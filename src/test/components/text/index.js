@@ -9,7 +9,7 @@ const Text = require('../../../lib/components/text')
 describe('Text', () => {
   describe('props', () => {
     it('takes an `elm` prop to change the element type', () => {
-      const component = shallow(<Text elm='li'>foo</Text>)
+      const component = shallow(<Text element='li'>foo</Text>)
       expect(component.type()).to.equal('li')
     })
 

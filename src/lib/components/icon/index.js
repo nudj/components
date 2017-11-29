@@ -24,28 +24,20 @@ const icons = {
   whatsapp: require('./icons/whatsapp')
 }
 
-type StyleSheet = {
-  root?: Object
-}
-
 type IconProps = {
   name: string,
-  styleSheet: StyleSheet
+  styles?: Object
 }
 
 const Icon = (props: IconProps) => {
-  const { name, styleSheet } = props
+  const { name, styles } = props
   const Icon = icons[name]
 
   if (!Icon) {
     throw new Error('Invalid icon name')
   }
 
-  return <Icon className={css(styleSheet.root)} />
-}
-
-Icon.defaultProps = {
-  styleSheet: {}
+  return <Icon className={css(styles)} />
 }
 
 module.exports = Icon

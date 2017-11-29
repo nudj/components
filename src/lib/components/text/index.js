@@ -1,30 +1,25 @@
 // @flow
 const React = require('react')
 
-const { mergeStyleSheets, css } = require('../../css')
-const defaultStyleSheet = require('./style.css')
-
-type StyleSheet = {
-  root?: Object
-}
+const { css } = require('../../css')
+const styleSheet = require('./style.css')
 
 type TextProps = {
   children: React.Node,
-  styleSheet: StyleSheet,
-  elm: React.ElementType
+  styles?: Object,
+  element: React.ElementType
 }
 
 const Text = (props: TextProps) => {
-  const { styleSheet, children, elm: Component } = props
+  const { styles, children, element: Component } = props
 
-  const classNames = mergeStyleSheets(defaultStyleSheet, styleSheet)
-
-  return <Component className={css(classNames.root)}>{children}</Component>
+  return (
+    <Component className={css(styleSheet.root, styles)}>{children}</Component>
+  )
 }
 
 Text.defaultProps = {
-  Component: 'span',
-  styleSheet: {}
+  element: 'span'
 }
 
 module.exports = Text

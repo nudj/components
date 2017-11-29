@@ -1,6 +1,6 @@
-import { sizes } from '../../../../lib/css'
+import { StyleSheet, sizes } from '../../../../lib/css'
 
-const styleSheet = {
+const styleSheet = StyleSheet.create({
   wrapper: {
     marginTop: `-${sizes.regular}`,
     marginLeft: `-${sizes.smallIi}`,
@@ -11,6 +11,6 @@ const styleSheet = {
     marginRight: sizes.smallIi,
     marginLeft: sizes.smallIi
   }
-}
+})
 
 export default styleSheet

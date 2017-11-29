@@ -5,12 +5,10 @@ import { Page } from 'catalog'
 
 import Button from '../../../../lib/components/button'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
-import { StyleSheet, css } from '../../../../lib/css'
+import { css } from '../../../../lib/css'
 import styleSheet from './style.css'
 
 const ButtonDocumentation = () => {
-  const classNames = StyleSheet.create(styleSheet)
-
   return (
     <Page>
       <p>
@@ -20,8 +18,8 @@ const ButtonDocumentation = () => {
       <p>
         To help the user with wayfinding, we use{' '}
         <a
-          href='https://www.viget.com/articles/visual-loudness'
-          target='_blank'
+          href="https://www.viget.com/articles/visual-loudness"
+          target="_blank"
         >
           visual loudness
         </a>{' '}
@@ -39,24 +37,24 @@ const ButtonDocumentation = () => {
           <Button volume="whisper">whisper</Button>   
         `}
       >
-        <div className={css(classNames.wrapper)}>
-          <Button styleSheet={{ root: classNames.button }} volume='scream'>
+        <div className={css(styleSheet.wrapper)}>
+          <Button styles={styleSheet.button} volume="scream">
             scream
           </Button>
-          <Button styleSheet={{ root: classNames.button }} volume='yell'>
+          <Button styles={styleSheet.button} volume="yell">
             yell
           </Button>
-          <Button styleSheet={{ root: classNames.button }} volume='shout'>
+          <Button styles={styleSheet.button} volume="shout">
             shout
           </Button>
-          <Button styleSheet={{ root: classNames.button }} volume='cheer'>
+          <Button styles={styleSheet.button} volume="cheer">
             cheer
           </Button>
-          <Button styleSheet={{ root: classNames.button }}>murmur</Button>
-          <Button styleSheet={{ root: classNames.button }} volume='whistle'>
+          <Button styles={styleSheet.button}>murmur</Button>
+          <Button styles={styleSheet.button} volume="whistle">
             whistle
           </Button>
-          <Button styleSheet={{ root: classNames.button }} volume='whisper'>
+          <Button styles={styleSheet.button} volume="whisper">
             whisper
           </Button>
         </div>

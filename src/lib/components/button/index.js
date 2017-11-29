@@ -1,19 +1,8 @@
 // @flow
 const React = require('react')
 
-const { css, mergeStyleSheets } = require('../../css')
-const defaultStylesheet = require('./style.css')
-
-type StyleSheetType = {
-  root?: Object,
-  scream?: Object,
-  yell?: Object,
-  shout?: Object,
-  cheer?: Object,
-  murmur?: Object,
-  whistle?: Object,
-  whisper?: Object
-}
+const { css } = require('../../css')
+const stylesheet = require('./style.css')
 
 type Props = {
   volume:
@@ -26,15 +15,17 @@ type Props = {
     | 'whisper',
   type: 'submit' | 'reset' | 'button',
   children: React.Node,
-  styleSheet: StyleSheetType
+  styles: Object
 }
 
 const Button = (props: Props) => {
-  const { volume, type, children, styleSheet } = props
-  const classNames = mergeStyleSheets(defaultStylesheet, styleSheet)
+  const { volume, type, children, styles } = props
 
   return (
-    <button type={type} className={css(classNames.root, classNames[volume])}>
+    <button
+      type={type}
+      className={css(stylesheet.root, stylesheet[volume], styles)}
+    >
       {children}
     </button>
   )
@@ -42,8 +33,7 @@ const Button = (props: Props) => {
 
 Button.defaultProps = {
   volume: 'murmur',
-  type: 'button',
-  styleSheet: {}
+  type: 'button'
 }
 
 module.exports = Button

@@ -1,26 +1,16 @@
 // @flow
 const React = require('react')
 
-const { mergeStyleSheets, css } = require('../../css')
-const defaultStyleSheet = require('./style.css')
-
-type Stylesheet = {
-  root?: Object
-}
+const { css } = require('../../css')
+const styleSheet = require('./style.css')
 
 type Props = {
   children: React.Node,
-  stylesheet: Stylesheet
+  styles?: Object
 }
 
-const Card = ({ children, stylesheet }: Props) => {
-  const classNames = mergeStyleSheets(defaultStyleSheet, stylesheet)
-
-  return <div className={css(classNames.root)}>{children}</div>
-}
-
-Card.defaultProps = {
-  stylesheet: {}
-}
+const Card = ({ children, styles }: Props) => (
+  <div className={css(styleSheet.root, styles)}>{children}</div>
+)
 
 module.exports = Card

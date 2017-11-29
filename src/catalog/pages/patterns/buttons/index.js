@@ -5,8 +5,12 @@ import { Page } from 'catalog'
 
 import Button from '../../../../lib/components/button'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
-import { css } from '../../../../lib/css'
 import styleSheet from './style.css'
+
+/**
+ * NOTE: using import here instead of require makes flow blow up due to destructuring
+ */
+const { css } = require('../../../../lib/css')
 
 const ButtonDocumentation = () => {
   return (
@@ -18,8 +22,8 @@ const ButtonDocumentation = () => {
       <p>
         To help the user with wayfinding, we use{' '}
         <a
-          href="https://www.viget.com/articles/visual-loudness"
-          target="_blank"
+          href='https://www.viget.com/articles/visual-loudness'
+          target='_blank'
         >
           visual loudness
         </a>{' '}
@@ -38,23 +42,23 @@ const ButtonDocumentation = () => {
         `}
       >
         <div className={css(styleSheet.wrapper)}>
-          <Button styles={styleSheet.button} volume="scream">
+          <Button styles={styleSheet.button} volume='scream'>
             scream
           </Button>
-          <Button styles={styleSheet.button} volume="yell">
+          <Button styles={styleSheet.button} volume='yell'>
             yell
           </Button>
-          <Button styles={styleSheet.button} volume="shout">
+          <Button styles={styleSheet.button} volume='shout'>
             shout
           </Button>
-          <Button styles={styleSheet.button} volume="cheer">
+          <Button styles={styleSheet.button} volume='cheer'>
             cheer
           </Button>
           <Button styles={styleSheet.button}>murmur</Button>
-          <Button styles={styleSheet.button} volume="whistle">
+          <Button styles={styleSheet.button} volume='whistle'>
             whistle
           </Button>
-          <Button styles={styleSheet.button} volume="whisper">
+          <Button styles={styleSheet.button} volume='whisper'>
             whisper
           </Button>
         </div>

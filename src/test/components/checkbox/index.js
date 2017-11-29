@@ -7,7 +7,7 @@ const sinon = require('sinon')
 
 const Checkbox = require('../../../lib/components/checkbox')
 
-describe.only('Checkbox', () => {
+describe('Checkbox', () => {
   describe('events', () => {
     it('takes an onChange function', () => {
       const customOnChange = sinon.stub()

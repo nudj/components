@@ -1,6 +1,7 @@
 // @flow
 const React = require('react')
-const classnames = require('classnames')
+
+const { css } = require('../../css')
 
 const icons = {
   briefcase: require('./icons/briefcase'),
@@ -23,20 +24,28 @@ const icons = {
   whatsapp: require('./icons/whatsapp')
 }
 
+type StyleSheet = {
+  root?: Object
+}
+
 type IconProps = {
   name: string,
-  className?: string
+  styleSheet: StyleSheet
 }
 
 const Icon = (props: IconProps) => {
-  const { name, className } = props
+  const { name, styleSheet } = props
   const Icon = icons[name]
 
   if (!Icon) {
     throw new Error('Invalid icon name')
   }
 
-  return <Icon className={classnames(className)} />
+  return <Icon className={css(styleSheet.root)} />
+}
+
+Icon.defaultProps = {
+  styleSheet: {}
 }
 
 module.exports = Icon

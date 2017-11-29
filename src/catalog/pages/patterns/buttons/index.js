@@ -5,10 +5,11 @@ import { Page } from 'catalog'
 
 import Button from '../../../../lib/components/button'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
-import getStyle from './style.css'
+import { StyleSheet, css } from '../../../../lib/css'
+import styleSheet from './style.css'
 
 const ButtonDocumentation = () => {
-  const style: Object = getStyle()
+  const classNames = StyleSheet.create(styleSheet)
 
   return (
     <Page>
@@ -38,24 +39,24 @@ const ButtonDocumentation = () => {
           <Button volume="whisper">whisper</Button>   
         `}
       >
-        <div className={style.wrapper}>
-          <Button className={style.button} volume='scream'>
+        <div className={css(classNames.wrapper)}>
+          <Button styleSheet={{ root: classNames.button }} volume='scream'>
             scream
           </Button>
-          <Button className={style.button} volume='yell'>
+          <Button styleSheet={{ root: classNames.button }} volume='yell'>
             yell
           </Button>
-          <Button className={style.button} volume='shout'>
+          <Button styleSheet={{ root: classNames.button }} volume='shout'>
             shout
           </Button>
-          <Button className={style.button} volume='cheer'>
+          <Button styleSheet={{ root: classNames.button }} volume='cheer'>
             cheer
           </Button>
-          <Button className={style.button}>murmur</Button>
-          <Button className={style.button} volume='whistle'>
+          <Button styleSheet={{ root: classNames.button }}>murmur</Button>
+          <Button styleSheet={{ root: classNames.button }} volume='whistle'>
             whistle
           </Button>
-          <Button className={style.button} volume='whisper'>
+          <Button styleSheet={{ root: classNames.button }} volume='whisper'>
             whisper
           </Button>
         </div>

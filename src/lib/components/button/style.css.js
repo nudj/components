@@ -1,8 +1,8 @@
 const { merge } = require('@nudj/library')
 
-const { css, colors, typography, sizes } = require('../../css')
+const { StyleSheet, colors, typography, sizes } = require('../../css')
 
-const style = {
+const stylesheet = StyleSheet.create({
   root: merge(typography.type.regular, {
     border: `1px solid`,
     borderRadius: sizes.largeIi,
@@ -113,6 +113,6 @@ const style = {
       boxShadow: 'none'
     }
   }
-}
+})
 
-module.exports = css(style)
+module.exports = stylesheet

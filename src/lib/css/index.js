@@ -1,3 +1,4 @@
+// @flow
 const { StyleSheet } = require('aphrodite/no-important')
 
 const typography = require('./typography')
@@ -7,7 +8,11 @@ const utilities = require('./utilities')
 
 const Extended = StyleSheet.extend([])
 
-const mergeStyleSheets = (...stylesheets) => {
+type StyleSheetType = {
+  [string]: Object
+}
+
+const mergeStyleSheets = (...stylesheets: Array<StyleSheetType>) => {
   const keys = Object.keys(...stylesheets)
 
   return keys.reduce((classList, className) => {

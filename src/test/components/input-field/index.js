@@ -12,52 +12,22 @@ describe('InputField', () => {
       const component = shallow(
         <InputField label='Test' classNames={{ label: 'labelClass' }} />
       )
-      const label = component.find({ className: 'labelClass' })
+      const label = component.find('label')
       expect(label.text()).to.equal('Test')
     })
 
     it('takes required boolean', () => {
-      const component = shallow(
-        <InputField
-          label='Test'
-          classNames={{ label: 'labelClass' }}
-          required
-        />
-      )
-      const label = component.find({ className: 'labelClass' })
+      const component = shallow(<InputField label='Test' required />)
+      const label = component.find('label')
       expect(label.text()).to.equal('Test*')
     })
 
     it('takes htmlFor prop as htmlFor on field label', () => {
       const component = shallow(
-        <InputField
-          label='Test'
-          htmlFor='TestId'
-          classNames={{ label: 'labelClass' }}
-          required
-        />
+        <InputField label='Test' htmlFor='TestId' required />
       )
-      const label = component.find({ className: 'labelClass' })
+      const label = component.find('label')
       expect(label.props().htmlFor).to.equal('TestId')
-    })
-  })
-
-  describe('classes', () => {
-    it('takes a label className', () => {
-      const component = shallow(
-        <InputField classNames={{ label: 'labelClass' }} />
-      )
-      const label = component.find({ className: 'labelClass' })
-      expect(label.type()).to.equal('label')
-    })
-
-    it('takes a required notice className', () => {
-      const component = shallow(
-        <InputField classNames={{ requiredNotice: 'requireClass' }} required />
-      )
-      const notice = component.find({ className: 'requireClass' })
-      expect(notice.exists()).to.be.true()
-      expect(notice.text()).to.equal('*')
     })
   })
 })

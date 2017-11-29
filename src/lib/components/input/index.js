@@ -1,7 +1,7 @@
 // @flow
 const React = require('react')
 
-const { aphrodite } = require('../../css')
+const { css, mergeStyleSheets } = require('../../css')
 const defaultStylesheet = require('./style.css')
 
 type classList = {
@@ -64,26 +64,16 @@ const Input = (props: InputProps) => {
   }
 
   const InputComponent = type === 'textarea' ? 'textarea' : 'input'
+  const classNames = mergeStyleSheets(defaultStylesheet, stylesheet)
 
   const errorSection = () => (
-    <ErrorWrapper
-      className={aphrodite.css(defaultStylesheet.error, stylesheet.error)}
-    >
-      {error}
-    </ErrorWrapper>
+    <ErrorWrapper className={css(classNames.error)}>{error}</ErrorWrapper>
   )
 
-  console.log(defaultStylesheet)
-
   return (
-    <Wrapper className={aphrodite.css(defaultStylesheet.root, stylesheet.root)}>
+    <Wrapper className={css(classNames.root)}>
       <InputComponent
-        className={aphrodite.css(
-          defaultStylesheet.input,
-          stylesheet.input,
-          error && defaultStylesheet.inputError,
-          error && stylesheet.inputError
-        )}
+        className={css(classNames.input, error && classNames.inputError)}
         id={id}
         name={name}
         type={type}

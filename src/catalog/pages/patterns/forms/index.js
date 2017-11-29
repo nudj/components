@@ -9,6 +9,14 @@ import Select from '../../../../lib/components/select'
 import Checkbox from '../../../../lib/components/checkbox'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
 
+const { aphrodite } = require('../../../../lib/css')
+
+const stylesheet = aphrodite.StyleSheet.create({
+  input: {
+    color: 'pink'
+  }
+})
+
 type Props = {}
 
 type State = {
@@ -71,6 +79,7 @@ export default class FormDocumentation extends Component<Props, State> {
             name='input'
             placeholder='Example input'
             value={input}
+            stylesheet={stylesheet}
           />
         </ReactCodeSpecimen>
         <h3>Input with error</h3>

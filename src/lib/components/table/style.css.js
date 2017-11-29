@@ -1,16 +1,14 @@
-const { css } = require('../../css')
-const colors = require('../../css/colors')
-const sizes = require('../../css/sizes')
-const { type, fontWeight } = require('../../css/typography')
 const { merge } = require('@nudj/library')
 
-const styles = {
-  root: type.regular,
+const { StyleSheet, colors, sizes, typography } = require('../../css')
+
+const styleSheet = StyleSheet.create({
+  root: typography.type.regular,
   header: {},
   headerRow: {},
   heading: {
     color: colors.primary,
-    fontWeight: fontWeight.bold,
+    fontWeight: typography.fontWeight.bold,
     paddingBottom: sizes.smallI,
     paddingLeft: sizes.smallIi,
     paddingRight: sizes.smallIi,
@@ -19,13 +17,13 @@ const styles = {
   },
   body: {},
   row: {},
-  cell: merge(type.regular, {
+  cell: merge(typography.type.regular, {
     color: colors.text,
     paddingBottom: sizes.smallI,
     paddingLeft: sizes.smallIi,
     paddingRight: sizes.smallIi,
     paddingTop: sizes.smallI
   })
-}
+})
 
-module.exports = css(styles)
+module.exports = styleSheet

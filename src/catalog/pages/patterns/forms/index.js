@@ -1,14 +1,14 @@
 // @flow
-import React, { Component } from "react";
-import dedent from "dedent";
-import { Page } from "catalog";
+import React, { Component } from 'react'
+import dedent from 'dedent'
+import { Page } from 'catalog'
 
-import Input from "../../../../lib/components/input";
-import InputField from "../../../../lib/components/input-field";
-import Select from "../../../../lib/components/select";
-import Checkbox from "../../../../lib/components/checkbox";
-import CheckboxGroup from "../../../../lib/components/checkbox-group";
-import ReactCodeSpecimen from "../../../components/ReactCodeSpecimen";
+import Input from '../../../../lib/components/input'
+import InputField from '../../../../lib/components/input-field'
+import Select from '../../../../lib/components/select'
+import Checkbox from '../../../../lib/components/checkbox'
+import CheckboxGroup from '../../../../lib/components/checkbox-group'
+import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
 
 type Props = {};
 
@@ -26,23 +26,23 @@ export default class FormDocumentation extends Component<Props, State> {
   handleArrayChange: ({ name: string, values: Array<string> }) => void;
   handleToggle: ({ name: string, value: boolean }) => void;
 
-  constructor(props: Object) {
-    super(props);
+  constructor (props: Object) {
+    super(props)
 
     this.state = {
-      input: "",
-      error: "Invalid input",
+      input: '',
+      error: 'Invalid input',
       checkbox: false,
-      inputField: "",
-      select: "",
+      inputField: '',
+      select: '',
       checkboxGroup: []
-    };
+    }
   }
 
   handleChange = ({ name, value }: { name: string, value: string }) => {
     this.setState({
       [name]: value
-    });
+    })
   };
 
   handleArrayChange = ({
@@ -54,16 +54,16 @@ export default class FormDocumentation extends Component<Props, State> {
   }) => {
     this.setState({
       [name]: values
-    });
+    })
   };
 
   handleToggle = ({ name, checked }: { name: string, checked: boolean }) => {
     this.setState({
       [name]: checked
-    });
+    })
   };
 
-  render() {
+  render () {
     const {
       input,
       error,
@@ -71,7 +71,7 @@ export default class FormDocumentation extends Component<Props, State> {
       inputField,
       select,
       checkboxGroup
-    } = this.state;
+    } = this.state
 
     return (
       <Page>
@@ -90,9 +90,9 @@ export default class FormDocumentation extends Component<Props, State> {
         >
           <Input
             onChange={this.handleChange}
-            id="input"
-            name="input"
-            placeholder="Example input"
+            id='input'
+            name='input'
+            placeholder='Example input'
             value={input}
           />
         </ReactCodeSpecimen>
@@ -115,10 +115,10 @@ export default class FormDocumentation extends Component<Props, State> {
         >
           <Input
             onChange={this.handleChange}
-            id="errored-input"
-            name="error"
+            id='errored-input'
+            name='error'
             value={error}
-            error="Enter a valid value"
+            error='Enter a valid value'
           />
         </ReactCodeSpecimen>
         <h3>Checkbox</h3>
@@ -140,11 +140,11 @@ export default class FormDocumentation extends Component<Props, State> {
         >
           <Checkbox
             checked={checkbox}
-            label="Subscribe"
+            label='Subscribe'
             onChange={this.handleToggle}
-            name="checkbox"
-            value="checkbox"
-            id="checkbox"
+            name='checkbox'
+            value='checkbox'
+            id='checkbox'
           />
         </ReactCodeSpecimen>
         <h3>Select</h3>
@@ -169,14 +169,14 @@ export default class FormDocumentation extends Component<Props, State> {
           `}
         >
           <Select
-            id="select"
-            name="select"
+            id='select'
+            name='select'
             value={select}
             onChange={this.handleChange}
           >
-            <option value="javascript">JavaScript 💫</option>
-            <option value="ruby">Ruby 💎</option>
-            <option value="go">Go 🏃</option>
+            <option value='javascript'>JavaScript 💫</option>
+            <option value='ruby'>Ruby 💎</option>
+            <option value='go'>Go 🏃</option>
           </Select>
         </ReactCodeSpecimen>
         <h3>Checkbox Group</h3>
@@ -199,14 +199,14 @@ export default class FormDocumentation extends Component<Props, State> {
           </CheckboxGroup>`}
         >
           <CheckboxGroup
-            name="checkboxGroup"
+            name='checkboxGroup'
             onChange={this.handleArrayChange}
             values={checkboxGroup}
           >
             {Checkbox => (
               <div>
-                <Checkbox value="1" label="One" />
-                <Checkbox value="2" label="Two" />
+                <Checkbox value='1' label='One' />
+                <Checkbox value='2' label='Two' />
               </div>
             )}
           </CheckboxGroup>
@@ -234,21 +234,21 @@ export default class FormDocumentation extends Component<Props, State> {
           `}
         >
           <InputField
-            htmlFor="inputField"
-            label="Name"
+            htmlFor='inputField'
+            label='Name'
             required
-            description="What your parents called you"
+            description='What your parents called you'
           >
             <Input
               onChange={this.handleChange}
-              id="inputField"
-              name="inputField"
+              id='inputField'
+              name='inputField'
               value={inputField}
               required
             />
           </InputField>
         </ReactCodeSpecimen>
       </Page>
-    );
+    )
   }
 }

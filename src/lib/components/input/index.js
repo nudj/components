@@ -21,19 +21,11 @@ type HandlerArgs = {
 type InputProps = {
   id: string,
   type: 'text' | 'email' | 'password' | 'search' | 'url' | 'textarea',
-<<<<<<< HEAD
   Wrapper: React.ElementType,
   ErrorWrapper: React.ElementType,
-  onChange: Function,
-  onBlur: Function,
-  onFocus: Function,
-=======
-  Wrapper: Function,
-  ErrorWrapper: Function,
   onChange: HandlerArgs => mixed,
   onBlur: HandlerArgs => mixed,
   onFocus: HandlerArgs => mixed,
->>>>>>> Implement checkbox group
   error?: string,
   required?: boolean,
   name: string,

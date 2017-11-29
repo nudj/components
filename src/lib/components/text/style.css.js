@@ -1,8 +1,7 @@
-const { css } = require('../../css')
-const { type } = require('../../css/typography')
+const { StyleSheet, typography } = require('../../css')
 
-const style = {
-  root: type.regular
-}
+const styleSheet = StyleSheet.create({
+  root: typography.type.regular
+})
 
-module.exports = css(style)
+module.exports = styleSheet

@@ -1,12 +1,11 @@
 // @flow
 const React = require('react')
-const classnames = require('classnames')
-const { merge } = require('@nudj/library')
 
+const { mergeStyleSheets, css } = require('../../css')
 const Icon = require('../icon')
-const getStyle = require('./style.css')
+const defaultStyleSheet = require('./style.css')
 
-type classList = {
+type StyleSheet = {
   root?: string,
   select?: string,
   chevron?: string
@@ -20,7 +19,7 @@ type SelectProps = {
   onBlur: Function,
   onFocus: Function,
   required?: boolean,
-  classNames: classList,
+  styleSheet: StyleSheet,
   children: React.ChildrenArray<React.Element<'option'>>
 }
 
@@ -39,7 +38,7 @@ const Select = (props: SelectProps) => {
     name,
     required,
     value,
-    classNames,
+    styleSheet,
     onChange,
     onBlur,
     onFocus,
@@ -56,13 +55,12 @@ const Select = (props: SelectProps) => {
     })
   }
 
-  const defaultStyles = getStyle()
-  const styles = merge(defaultStyles, classNames)
+  const classNames = mergeStyleSheets(defaultStyleSheet, styleSheet)
 
   return (
-    <div className={styles.root}>
+    <div className={css(classNames.root)}>
       <select
-        className={classnames(styles.select)}
+        className={css(classNames.select)}
         id={id}
         name={name}
         onChange={handleEvent('onChange')}
@@ -73,13 +71,13 @@ const Select = (props: SelectProps) => {
       >
         {children}
       </select>
-      <Icon name='chevron' className={styles.chevron} />
+      <Icon name='chevron' className={css(classNames.chevron)} />
     </div>
   )
 }
 
 Select.defaultProps = {
-  classNames: {},
+  styleSheet: {},
   onChange: noopHandler,
   onBlur: noopHandler,
   onFocus: noopHandler

@@ -7,16 +7,6 @@ const utilities = require('./utilities')
 
 const Extended = StyleSheet.extend([])
 
-// const createGetStyle = stylesheet => {
-//   return () => {
-//     const styles = Extended.StyleSheet.create(stylesheet)
-//     return Object.keys(stylesheet).reduce((classList, className) => {
-//       classList[className] = Extended.css(styles[className])
-//       return classList
-//     }, {})
-//   }
-// }
-
 const mergeStyleSheets = (...stylesheets) => {
   const keys = Object.keys(...stylesheets)
 
@@ -32,16 +22,10 @@ const mergeStyleSheets = (...stylesheets) => {
 }
 
 module.exports = {
-  // legacy helpers
-  // createGetStyle,
-
-  // aphrodite helpers
   aphrodite: Extended,
   css: Extended.css,
   StyleSheet: Extended.StyleSheet,
   mergeStyleSheets,
-
-  // variables
   typography,
   colors,
   sizes,

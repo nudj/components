@@ -5,7 +5,7 @@ import { Page } from 'catalog'
 
 import Button from '../../../../lib/components/button'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
-import styleSheet from './style.css'
+import style from './style.css'
 
 /**
  * NOTE: using import here instead of require makes flow blow up due to destructuring
@@ -41,24 +41,24 @@ const ButtonDocumentation = () => {
           <Button volume="whisper">whisper</Button>   
         `}
       >
-        <div className={css(styleSheet.wrapper)}>
-          <Button style={styleSheet.button} volume='scream'>
+        <div className={css(style.wrapper)}>
+          <Button style={style.button} volume='scream'>
             scream
           </Button>
-          <Button style={styleSheet.button} volume='yell'>
+          <Button style={style.button} volume='yell'>
             yell
           </Button>
-          <Button style={styleSheet.button} volume='shout'>
+          <Button style={style.button} volume='shout'>
             shout
           </Button>
-          <Button style={styleSheet.button} volume='cheer'>
+          <Button style={style.button} volume='cheer'>
             cheer
           </Button>
-          <Button style={styleSheet.button}>murmur</Button>
-          <Button style={styleSheet.button} volume='whistle'>
+          <Button style={style.button}>murmur</Button>
+          <Button style={style.button} volume='whistle'>
             whistle
           </Button>
-          <Button style={styleSheet.button} volume='whisper'>
+          <Button style={style.button} volume='whisper'>
             whisper
           </Button>
         </div>

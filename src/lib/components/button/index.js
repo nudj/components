@@ -1,8 +1,8 @@
 // @flow
 const React = require('react')
-const classnames = require('classnames')
 
-const getStyle = require('./style.css')
+const { css } = require('../../css')
+const stylesheet = require('./style.css')
 
 type Props = {
   volume:
@@ -15,17 +15,16 @@ type Props = {
     | 'whisper',
   type: 'submit' | 'reset' | 'button',
   children: React.Node,
-  className?: string
+  style: Object
 }
 
 const Button = (props: Props) => {
-  const { volume, type, children, className } = props
-  const style: Object = getStyle()
+  const { volume, type, children, style } = props
 
   return (
     <button
       type={type}
-      className={classnames(style.root, style[volume], className)}
+      className={css(stylesheet.root, stylesheet[volume], style)}
     >
       {children}
     </button>

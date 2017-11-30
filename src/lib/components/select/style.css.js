@@ -1,8 +1,14 @@
 const { merge } = require('@nudj/library')
 
-const { css, typography, colors, sizes, utilities } = require('../../css')
+const {
+  StyleSheet,
+  typography,
+  colors,
+  sizes,
+  utilities
+} = require('../../css')
 
-const styles = {
+const styleSheet = StyleSheet.create({
   root: {
     position: 'relative'
   },
@@ -37,6 +43,6 @@ const styles = {
     top: '50%',
     transform: 'translateY(-50%) rotate(180deg)'
   }
-}
+})
 
-module.exports = css(styles)
+module.exports = styleSheet

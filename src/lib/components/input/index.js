@@ -1,14 +1,14 @@
 // @flow
 const React = require('react')
-const classnames = require('classnames')
-const { merge } = require('@nudj/library')
 
-const getStyle = require('./style.css')
+const { css, mergeStyleSheets } = require('../../css')
+const defaultStylesheet = require('./style.css')
 
-type classList = {
+type StyleSheetType = {
   root?: string,
   error?: string,
-  wrapper?: string
+  input?: string,
+  inputError?: string
 }
 
 type InputProps = {
@@ -22,7 +22,7 @@ type InputProps = {
   error?: string,
   required?: boolean,
   name: string,
-  classNames?: classList,
+  styleSheet: StyleSheetType,
   placeholder?: string,
   value?: string
 }
@@ -44,7 +44,7 @@ const Input = (props: InputProps) => {
     required,
     placeholder,
     value,
-    classNames,
+    styleSheet,
     onChange,
     onBlur,
     onFocus,
@@ -63,18 +63,17 @@ const Input = (props: InputProps) => {
     })
   }
 
-  const defaultStyles = getStyle()
-  const styles = merge(defaultStyles, classNames)
   const InputComponent = type === 'textarea' ? 'textarea' : 'input'
+  const style = mergeStyleSheets(defaultStylesheet, styleSheet)
 
   const errorSection = () => (
-    <ErrorWrapper className={classnames(styles.error)}>{error}</ErrorWrapper>
+    <ErrorWrapper className={css(style.error)}>{error}</ErrorWrapper>
   )
 
   return (
-    <Wrapper className={classnames(styles.root)}>
+    <Wrapper className={css(style.root)}>
       <InputComponent
-        className={classnames(styles.input, error ? styles.inputError : null)}
+        className={css(style.input, error && style.inputError)}
         id={id}
         name={name}
         type={type}
@@ -92,7 +91,7 @@ const Input = (props: InputProps) => {
 
 Input.defaultProps = {
   type: 'text',
-  classNames: {},
+  styleSheet: {},
   onChange: noopHandler,
   onBlur: noopHandler,
   onFocus: noopHandler,

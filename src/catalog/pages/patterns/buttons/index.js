@@ -5,11 +5,14 @@ import { Page } from 'catalog'
 
 import Button from '../../../../lib/components/button'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
-import getStyle from './style.css'
+import style from './style.css'
+
+/**
+ * NOTE: using import here instead of require makes flow blow up due to destructuring
+ */
+const { css } = require('../../../../lib/css')
 
 const ButtonDocumentation = () => {
-  const style: Object = getStyle()
-
   return (
     <Page>
       <p>
@@ -38,24 +41,24 @@ const ButtonDocumentation = () => {
           <Button volume="whisper">whisper</Button>   
         `}
       >
-        <div className={style.wrapper}>
-          <Button className={style.button} volume='scream'>
+        <div className={css(style.wrapper)}>
+          <Button style={style.button} volume='scream'>
             scream
           </Button>
-          <Button className={style.button} volume='yell'>
+          <Button style={style.button} volume='yell'>
             yell
           </Button>
-          <Button className={style.button} volume='shout'>
+          <Button style={style.button} volume='shout'>
             shout
           </Button>
-          <Button className={style.button} volume='cheer'>
+          <Button style={style.button} volume='cheer'>
             cheer
           </Button>
-          <Button className={style.button}>murmur</Button>
-          <Button className={style.button} volume='whistle'>
+          <Button style={style.button}>murmur</Button>
+          <Button style={style.button} volume='whistle'>
             whistle
           </Button>
-          <Button className={style.button} volume='whisper'>
+          <Button style={style.button} volume='whisper'>
             whisper
           </Button>
         </div>

@@ -1,6 +1,7 @@
 // @flow
 const React = require('react')
-const classnames = require('classnames')
+
+const { css } = require('../../css')
 
 const icons = {
   briefcase: require('./icons/briefcase'),
@@ -25,18 +26,18 @@ const icons = {
 
 type IconProps = {
   name: string,
-  className?: string
+  style?: Object
 }
 
 const Icon = (props: IconProps) => {
-  const { name, className } = props
+  const { name, style } = props
   const Icon = icons[name]
 
   if (!Icon) {
     throw new Error('Invalid icon name')
   }
 
-  return <Icon className={classnames(className)} />
+  return <Icon className={css(style)} />
 }
 
 module.exports = Icon

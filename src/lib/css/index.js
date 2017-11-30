@@ -1,4 +1,7 @@
+// @flow
 const { StyleSheet } = require('aphrodite/no-important')
+const isEmpty = require('lodash/isEmpty')
+
 const typography = require('./typography')
 const colors = require('./colors')
 const sizes = require('./sizes')
@@ -6,18 +9,32 @@ const utilities = require('./utilities')
 
 const Extended = StyleSheet.extend([])
 
-const css = stylesheet => {
-  return () => {
-    const styles = Extended.StyleSheet.create(stylesheet)
-    return Object.keys(stylesheet).reduce((classList, className) => {
-      classList[className] = Extended.css(styles[className])
-      return classList
-    }, {})
-  }
+type StyleSheetType = {
+  [string]: Object
 }
 
+const mergeStyleSheets = (...stylesheets: Array<StyleSheetType>) => {
+  const keys = Object.keys(...stylesheets)
+
+  return keys.reduce((classList, className) => {
+    const names = stylesheets
+      .filter(sheet => sheet != null)
+      .filter(sheet => !!sheet[className])
+      .map(sheet => sheet[className])
+    classList[className] = names
+
+    return classList
+  }, {})
+}
+
+const css = (...args: Array<Object>) =>
+  Extended.css(args.filter(arg => !isEmpty(arg)))
+
 module.exports = {
+  aphrodite: Extended,
   css,
+  StyleSheet: Extended.StyleSheet,
+  mergeStyleSheets,
   typography,
   colors,
   sizes,

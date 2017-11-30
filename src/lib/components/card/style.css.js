@@ -1,13 +1,12 @@
-const { css } = require('../../css')
-const { colors, sizes, utilities } = require('../../css')
+const { StyleSheet, colors, sizes, utilities } = require('../../css')
 
-const style = {
+const stylesheet = StyleSheet.create({
   root: {
     backgroundColor: colors.white,
     borderRadius: utilities.borderRadius,
     boxShadow: utilities.boxShadow[10].narrow,
     padding: sizes.regular
   }
-}
+})
 
-module.exports = css(style)
+module.exports = stylesheet

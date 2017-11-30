@@ -6,11 +6,11 @@ const styleSheet = require('./style.css')
 
 type Props = {
   children: React.Node,
-  styles?: Object
+  style?: Object
 }
 
-const Card = ({ children, styles }: Props) => (
-  <div className={css(styleSheet.root, styles)}>{children}</div>
+const Card = ({ children, style }: Props) => (
+  <div className={css(styleSheet.root, style)}>{children}</div>
 )
 
 module.exports = Card

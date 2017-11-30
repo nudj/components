@@ -5,7 +5,7 @@ const { mergeStyleSheets, css } = require('../../css')
 const Icon = require('../icon')
 const defaultStyleSheet = require('./style.css')
 
-type StyleSheet = {
+type StyleSheetType = {
   root?: string,
   select?: string,
   chevron?: string
@@ -19,7 +19,7 @@ type SelectProps = {
   onBlur: Function,
   onFocus: Function,
   required?: boolean,
-  styleSheet: StyleSheet,
+  styleSheet: StyleSheetType,
   children: React.ChildrenArray<React.Element<'option'>>
 }
 
@@ -55,12 +55,12 @@ const Select = (props: SelectProps) => {
     })
   }
 
-  const classNames = mergeStyleSheets(defaultStyleSheet, styleSheet)
+  const style = mergeStyleSheets(defaultStyleSheet, styleSheet)
 
   return (
-    <div className={css(classNames.root)}>
+    <div className={css(style.root)}>
       <select
-        className={css(classNames.select)}
+        className={css(style.select)}
         id={id}
         name={name}
         onChange={handleEvent('onChange')}
@@ -71,7 +71,7 @@ const Select = (props: SelectProps) => {
       >
         {children}
       </select>
-      <Icon name='chevron' styles={classNames.chevron} />
+      <Icon name='chevron' style={style.chevron} />
     </div>
   )
 }

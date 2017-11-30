@@ -15,16 +15,16 @@ type Props = {
     | 'whisper',
   type: 'submit' | 'reset' | 'button',
   children: React.Node,
-  styles: Object
+  style: Object
 }
 
 const Button = (props: Props) => {
-  const { volume, type, children, styles } = props
+  const { volume, type, children, style } = props
 
   return (
     <button
       type={type}
-      className={css(stylesheet.root, stylesheet[volume], styles)}
+      className={css(stylesheet.root, stylesheet[volume], style)}
     >
       {children}
     </button>

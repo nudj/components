@@ -42,23 +42,23 @@ const ButtonDocumentation = () => {
         `}
       >
         <div className={css(styleSheet.wrapper)}>
-          <Button styles={styleSheet.button} volume='scream'>
+          <Button style={styleSheet.button} volume='scream'>
             scream
           </Button>
-          <Button styles={styleSheet.button} volume='yell'>
+          <Button style={styleSheet.button} volume='yell'>
             yell
           </Button>
-          <Button styles={styleSheet.button} volume='shout'>
+          <Button style={styleSheet.button} volume='shout'>
             shout
           </Button>
-          <Button styles={styleSheet.button} volume='cheer'>
+          <Button style={styleSheet.button} volume='cheer'>
             cheer
           </Button>
-          <Button styles={styleSheet.button}>murmur</Button>
-          <Button styles={styleSheet.button} volume='whistle'>
+          <Button style={styleSheet.button}>murmur</Button>
+          <Button style={styleSheet.button} volume='whistle'>
             whistle
           </Button>
-          <Button styles={styleSheet.button} volume='whisper'>
+          <Button style={styleSheet.button} volume='whisper'>
             whisper
           </Button>
         </div>

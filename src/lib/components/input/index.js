@@ -4,7 +4,7 @@ const React = require('react')
 const { css, mergeStyleSheets } = require('../../css')
 const defaultStylesheet = require('./style.css')
 
-type classList = {
+type StyleSheetType = {
   root?: string,
   error?: string,
   input?: string,
@@ -22,7 +22,7 @@ type InputProps = {
   error?: string,
   required?: boolean,
   name: string,
-  stylesheet: classList,
+  styleSheet: StyleSheetType,
   placeholder?: string,
   value?: string
 }
@@ -44,7 +44,7 @@ const Input = (props: InputProps) => {
     required,
     placeholder,
     value,
-    stylesheet,
+    styleSheet,
     onChange,
     onBlur,
     onFocus,
@@ -64,16 +64,16 @@ const Input = (props: InputProps) => {
   }
 
   const InputComponent = type === 'textarea' ? 'textarea' : 'input'
-  const classNames = mergeStyleSheets(defaultStylesheet, stylesheet)
+  const style = mergeStyleSheets(defaultStylesheet, styleSheet)
 
   const errorSection = () => (
-    <ErrorWrapper className={css(classNames.error)}>{error}</ErrorWrapper>
+    <ErrorWrapper className={css(style.error)}>{error}</ErrorWrapper>
   )
 
   return (
-    <Wrapper className={css(classNames.root)}>
+    <Wrapper className={css(style.root)}>
       <InputComponent
-        className={css(classNames.input, error && classNames.inputError)}
+        className={css(style.input, error && style.inputError)}
         id={id}
         name={name}
         type={type}
@@ -91,7 +91,7 @@ const Input = (props: InputProps) => {
 
 Input.defaultProps = {
   type: 'text',
-  stylesheet: {},
+  styleSheet: {},
   onChange: noopHandler,
   onBlur: noopHandler,
   onFocus: noopHandler,

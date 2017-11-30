@@ -26,18 +26,18 @@ const icons = {
 
 type IconProps = {
   name: string,
-  styles?: Object
+  style?: Object
 }
 
 const Icon = (props: IconProps) => {
-  const { name, styles } = props
+  const { name, style } = props
   const Icon = icons[name]
 
   if (!Icon) {
     throw new Error('Invalid icon name')
   }
 
-  return <Icon className={css(styles)} />
+  return <Icon className={css(style)} />
 }
 
 module.exports = Icon

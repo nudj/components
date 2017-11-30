@@ -4,7 +4,7 @@ const React = require('react')
 const { mergeStyleSheets, css } = require('../../css')
 const defaultStyleSheet = require('./style.css')
 
-type StyleSheet = {
+type StyleSheetType = {
   root?: string,
   checkbox?: string,
   wrapper?: string,
@@ -20,7 +20,7 @@ type HandlerArgs = {
 }
 
 type CheckboxProps = {
-  styleSheet: StyleSheet,
+  styleSheet: StyleSheetType,
   checked: boolean,
   Wrapper: React.ElementType,
   onChange: HandlerArgs => mixed,
@@ -52,22 +52,22 @@ const Checkbox = (props: CheckboxProps) => {
     })
   }
 
-  const classNames = mergeStyleSheets(defaultStyleSheet, styleSheet)
+  const style = mergeStyleSheets(defaultStyleSheet, styleSheet)
 
   return (
-    <Wrapper className={css(classNames.wrapper)}>
+    <Wrapper className={css(style.wrapper)}>
       <input
         type='checkbox'
         name={name}
         value={value}
-        className={css(classNames.root)}
+        className={css(style.root)}
         checked={checked}
         id={id}
         onChange={onChangeHandler}
       />
       <label htmlFor={id}>
         <svg
-          className={css(classNames.checkbox)}
+          className={css(style.checkbox)}
           width='1em'
           height='1em'
           viewBox='0 0 24 24'
@@ -89,7 +89,7 @@ const Checkbox = (props: CheckboxProps) => {
             )}
           </g>
         </svg>
-        <span className={css(classNames.label)}>{label}</span>
+        <span className={css(style.label)}>{label}</span>
       </label>
     </Wrapper>
   )

@@ -1,5 +1,6 @@
 // @flow
 const { StyleSheet } = require('aphrodite/no-important')
+const isEmpty = require('lodash/isEmpty')
 
 const typography = require('./typography')
 const colors = require('./colors')
@@ -26,9 +27,12 @@ const mergeStyleSheets = (...stylesheets: Array<StyleSheetType>) => {
   }, {})
 }
 
+const css = (...args: Array<Object>) =>
+  Extended.css(args.filter(arg => !isEmpty(arg)))
+
 module.exports = {
   aphrodite: Extended,
-  css: Extended.css,
+  css,
   StyleSheet: Extended.StyleSheet,
   mergeStyleSheets,
   typography,

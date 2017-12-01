@@ -7,9 +7,9 @@ const stylesheet = StyleSheet.create({
     border: `1px solid`,
     borderRadius: sizes.largeIi,
     fontWeight: typography.fontWeight.bold,
-    paddingTop: sizes.smallIi,
+    paddingTop: sizes.smallI,
     paddingRight: sizes.largeI,
-    paddingBottom: sizes.smallIi,
+    paddingBottom: sizes.smallI,
     paddingLeft: sizes.largeI,
     transition: 'all 150ms',
     ':active': {

@@ -13,33 +13,38 @@ type Props = {
     | 'murmur'
     | 'whistle'
     | 'whisper',
-  type: 'submit' | 'reset' | 'button',
   children: React.Node,
   style: Object,
-  onClick: Object => void,
-  value?: string,
-  Component: 'button'
+  Component: React.ElementType,
+  href: string,
+  isReactRouter?: boolean
 }
 
 const Button = (props: Props) => {
-  const { volume, type, children, style, onClick, value } = props
+  const { volume, children, style, href, Component, isReactRouter } = props
+
+  const routingProps = isReactRouter
+    ? {
+        to: href
+      }
+    : {
+        href
+      }
 
   return (
-    <button
-      type={type}
+    <Component
+      {...routingProps}
       className={css(stylesheet.root, stylesheet[volume], style)}
-      onClick={onClick}
-      value={value}
     >
       {children}
-    </button>
+    </Component>
   )
 }
 
 Button.defaultProps = {
   volume: 'murmur',
   type: 'button',
-  onClick: () => {}
+  Component: 'a'
 }
 
 module.exports = Button

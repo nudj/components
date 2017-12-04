@@ -15,16 +15,28 @@ type Props = {
     | 'whisper',
   type: 'submit' | 'reset' | 'button',
   children: React.Node,
-  style: Object
+  style: Object,
+  onClick: Object => void,
+  value?: string,
+  Component: 'button'
 }
 
-const Button = (props: Props) => {
-  const { volume, type, children, style } = props
-
+const Button = ({
+  volume,
+  type,
+  children,
+  style,
+  onClick,
+  value,
+  ...rest
+}: Props) => {
   return (
     <button
+      {...rest}
       type={type}
       className={css(stylesheet.root, stylesheet[volume], style)}
+      onClick={onClick}
+      value={value}
     >
       {children}
     </button>
@@ -33,7 +45,8 @@ const Button = (props: Props) => {
 
 Button.defaultProps = {
   volume: 'murmur',
-  type: 'button'
+  type: 'button',
+  onClick: () => {}
 }
 
 module.exports = Button

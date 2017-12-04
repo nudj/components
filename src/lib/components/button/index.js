@@ -1,7 +1,7 @@
 // @flow
 const React = require('react')
 
-const InlineAction = require('../InlineAction')
+const InlineAction = require('../inline-action')
 
 type Props = {
   type?: 'submit' | 'reset' | 'button',

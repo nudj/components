@@ -4,7 +4,7 @@ import dedent from 'dedent'
 import { Page } from 'catalog'
 
 import Button from '../../../../lib/components/button'
-import Link from '../../../../lib/components/Link'
+import Link from '../../../../lib/components/link'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
 import style from './style.css'
 

@@ -1,50 +1,28 @@
 // @flow
 const React = require('react')
 
-const { css } = require('../../css')
-const stylesheet = require('./style.css')
+const InlineAction = require('../InlineAction')
 
 type Props = {
-  volume:
-    | 'scream'
-    | 'yell'
-    | 'shout'
-    | 'cheer'
-    | 'murmur'
-    | 'whistle'
-    | 'whisper',
   children: React.Node,
-  style: Object,
   Component: React.ElementType,
   href: string,
-  isReactRouter?: boolean
+  rest?: Array<mixed>
 }
 
-const Button = (props: Props) => {
-  const { volume, children, style, href, Component, isReactRouter } = props
-
-  const routingProps = isReactRouter
-    ? {
-        to: href
-      }
-    : {
-        href
-      }
+const Link = (props: Props) => {
+  const { children, Component, href, ...rest } = props
 
   return (
-    <Component
-      {...routingProps}
-      className={css(stylesheet.root, stylesheet[volume], style)}
-    >
+    <InlineAction {...rest} href={href} Component={Component}>
       {children}
-    </Component>
+    </InlineAction>
   )
 }
 
-Button.defaultProps = {
+Link.defaultProps = {
   volume: 'murmur',
-  type: 'button',
   Component: 'a'
 }
 
-module.exports = Button
+module.exports = Link

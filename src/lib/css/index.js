@@ -22,9 +22,7 @@ const mergeStyleSheets = (...stylesheets: Array<StyleSheetType>) => {
       stylesheets
         .filter(sheet => sheet != null)
         .filter(sheet => !!sheet[className])
-        .map(sheet => {
-          return sheet[className]
-        })
+        .map(sheet => sheet[className])
     )
 
     classList[className] = names

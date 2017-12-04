@@ -128,7 +128,7 @@ export default class FormDocumentation extends Component<Props, State> {
         <h3>Icon Input</h3>
         <p>
           Use an icon input where it may be beneficial to the user to give them
-          a visual cue as to what the input's value should be
+          a visual cue as to what the input&#39;s value should be
         </p>
         <ReactCodeSpecimen
           code={dedent`

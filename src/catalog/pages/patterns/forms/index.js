@@ -4,27 +4,29 @@ import dedent from 'dedent'
 import { Page } from 'catalog'
 
 import Input from '../../../../lib/components/input'
+import IconInput from '../../../../lib/components/icon-input'
 import InputField from '../../../../lib/components/input-field'
 import Select from '../../../../lib/components/select'
 import Checkbox from '../../../../lib/components/checkbox'
 import CheckboxGroup from '../../../../lib/components/checkbox-group'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
 
-type Props = {};
+type Props = {}
 
 type State = {
   input: string,
   error: string,
+  iconInput: string,
   checkbox: boolean,
   inputField: string,
   select: string,
   checkboxGroup: Array<string>
-};
+}
 
 export default class FormDocumentation extends Component<Props, State> {
-  handleChange: ({ name: string, value: string }) => void;
-  handleArrayChange: ({ name: string, values: Array<string> }) => void;
-  handleToggle: ({ name: string, value: boolean }) => void;
+  handleChange: ({ name: string, value: string }) => void
+  handleArrayChange: ({ name: string, values: Array<string> }) => void
+  handleToggle: ({ name: string, value: boolean }) => void
 
   constructor (props: Object) {
     super(props)
@@ -32,6 +34,7 @@ export default class FormDocumentation extends Component<Props, State> {
     this.state = {
       input: '',
       error: 'Invalid input',
+      iconInput: '',
       checkbox: false,
       inputField: '',
       select: '',
@@ -43,7 +46,7 @@ export default class FormDocumentation extends Component<Props, State> {
     this.setState({
       [name]: value
     })
-  };
+  }
 
   handleArrayChange = ({
     name,
@@ -55,18 +58,19 @@ export default class FormDocumentation extends Component<Props, State> {
     this.setState({
       [name]: values
     })
-  };
+  }
 
   handleToggle = ({ name, checked }: { name: string, checked: boolean }) => {
     this.setState({
       [name]: checked
     })
-  };
+  }
 
   render () {
     const {
       input,
       error,
+      iconInput,
       checkbox,
       inputField,
       select,
@@ -119,6 +123,31 @@ export default class FormDocumentation extends Component<Props, State> {
             name='error'
             value={error}
             error='Enter a valid value'
+          />
+        </ReactCodeSpecimen>
+        <h3>Icon Input</h3>
+        <p>
+          Use an icon input where it may be beneficial to the user to give them
+          a visual cue as to what the input&#39;s value should be
+        </p>
+        <ReactCodeSpecimen
+          code={dedent`
+            <IconInput
+              id="iconInput"
+              name="iconInput"
+              iconName="email"
+              placeholder="e.g., nu@dj.co"
+              onChange={this.handleChange}
+              value={iconInput}
+            />`}
+        >
+          <IconInput
+            id='iconInput'
+            name='iconInput'
+            iconName='email'
+            placeholder='e.g., nu@dj.co'
+            onChange={this.handleChange}
+            value={iconInput}
           />
         </ReactCodeSpecimen>
         <h3>Checkbox</h3>

@@ -1,4 +1,5 @@
 // @flow
+const flatten = require('lodash/flatten')
 const { StyleSheet } = require('aphrodite/no-important')
 const isEmpty = require('lodash/isEmpty')
 
@@ -17,10 +18,13 @@ const mergeStyleSheets = (...stylesheets: Array<StyleSheetType>) => {
   const keys = Object.keys(...stylesheets)
 
   return keys.reduce((classList, className) => {
-    const names = stylesheets
-      .filter(sheet => sheet != null)
-      .filter(sheet => !!sheet[className])
-      .map(sheet => sheet[className])
+    const names = flatten(
+      stylesheets
+        .filter(sheet => sheet != null)
+        .filter(sheet => !!sheet[className])
+        .map(sheet => sheet[className])
+    )
+
     classList[className] = names
 
     return classList

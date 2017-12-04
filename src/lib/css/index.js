@@ -12,7 +12,7 @@ const Extended = StyleSheet.extend([])
 
 type StyleSheetType = {
   [string]: Object
-};
+}
 
 const mergeStyleSheets = (...stylesheets: Array<StyleSheetType>) => {
   const keys = Object.keys(...stylesheets)

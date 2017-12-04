@@ -11,7 +11,7 @@ import Checkbox from '../../../../lib/components/checkbox'
 import CheckboxGroup from '../../../../lib/components/checkbox-group'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
 
-type Props = {};
+type Props = {}
 
 type State = {
   input: string,
@@ -21,12 +21,12 @@ type State = {
   inputField: string,
   select: string,
   checkboxGroup: Array<string>
-};
+}
 
 export default class FormDocumentation extends Component<Props, State> {
-  handleChange: ({ name: string, value: string }) => void;
-  handleArrayChange: ({ name: string, values: Array<string> }) => void;
-  handleToggle: ({ name: string, value: boolean }) => void;
+  handleChange: ({ name: string, value: string }) => void
+  handleArrayChange: ({ name: string, values: Array<string> }) => void
+  handleToggle: ({ name: string, value: boolean }) => void
 
   constructor (props: Object) {
     super(props)
@@ -46,7 +46,7 @@ export default class FormDocumentation extends Component<Props, State> {
     this.setState({
       [name]: value
     })
-  };
+  }
 
   handleArrayChange = ({
     name,
@@ -58,13 +58,13 @@ export default class FormDocumentation extends Component<Props, State> {
     this.setState({
       [name]: values
     })
-  };
+  }
 
   handleToggle = ({ name, checked }: { name: string, checked: boolean }) => {
     this.setState({
       [name]: checked
     })
-  };
+  }
 
   render () {
     const {

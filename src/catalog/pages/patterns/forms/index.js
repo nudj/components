@@ -7,21 +7,24 @@ import Input from '../../../../lib/components/input'
 import InputField from '../../../../lib/components/input-field'
 import Select from '../../../../lib/components/select'
 import Checkbox from '../../../../lib/components/checkbox'
+import CheckboxGroup from '../../../../lib/components/checkbox-group'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
 
-type Props = {}
+type Props = {};
 
 type State = {
   input: string,
   error: string,
   checkbox: boolean,
   inputField: string,
-  select: string
-}
+  select: string,
+  checkboxGroup: Array<string>
+};
 
 export default class FormDocumentation extends Component<Props, State> {
-  handleChange: Function
-  handleToggle: Function
+  handleChange: ({ name: string, value: string }) => void;
+  handleArrayChange: ({ name: string, values: Array<string> }) => void;
+  handleToggle: ({ name: string, value: boolean }) => void;
 
   constructor (props: Object) {
     super(props)
@@ -31,7 +34,8 @@ export default class FormDocumentation extends Component<Props, State> {
       error: 'Invalid input',
       checkbox: false,
       inputField: '',
-      select: ''
+      select: '',
+      checkboxGroup: []
     }
   }
 
@@ -39,16 +43,35 @@ export default class FormDocumentation extends Component<Props, State> {
     this.setState({
       [name]: value
     })
-  }
+  };
+
+  handleArrayChange = ({
+    name,
+    values
+  }: {
+    name: string,
+    values: Array<string>
+  }) => {
+    this.setState({
+      [name]: values
+    })
+  };
 
   handleToggle = ({ name, checked }: { name: string, checked: boolean }) => {
     this.setState({
       [name]: checked
     })
-  }
+  };
 
   render () {
-    const { input, error, checkbox, inputField, select } = this.state
+    const {
+      input,
+      error,
+      checkbox,
+      inputField,
+      select,
+      checkboxGroup
+    } = this.state
 
     return (
       <Page>
@@ -58,9 +81,9 @@ export default class FormDocumentation extends Component<Props, State> {
           code={dedent`
             <Input
               onChange={this.handleChange}
-              id="1"
-              name="input"
-              placeholder="Example input"
+              id='1'
+              name='input'
+              placeholder='Example input'
               value={value}
             />
           `}
@@ -82,11 +105,11 @@ export default class FormDocumentation extends Component<Props, State> {
           code={dedent`
             <Input
               onChange={this.handleChange}
-              id="errored-input"
-              name="input"
-              placeholder="Example input"
+              id='errored-input'
+              name='input'
+              placeholder='Example input'
               value={value}
-              error="Enter a valid value"
+              error='Enter a valid value'
             />
           `}
         >
@@ -156,6 +179,38 @@ export default class FormDocumentation extends Component<Props, State> {
             <option value='go'>Go 🏃</option>
           </Select>
         </ReactCodeSpecimen>
+        <h3>Checkbox Group</h3>
+        <p>
+          Use the checkbox group component where you have a set of related
+          binary options, such as a facetted search.
+        </p>
+        <ReactCodeSpecimen
+          code={dedent`<CheckboxGroup
+            name='checkboxGroup'
+            onChange={this.handleArrayChange}
+            values={checkboxGroup}
+          >
+            {Checkbox => (
+              <div>
+                <Checkbox value='1' label='One' />
+                <Checkbox value='2' label='Two' />
+              </div>
+            )}
+          </CheckboxGroup>`}
+        >
+          <CheckboxGroup
+            name='checkboxGroup'
+            onChange={this.handleArrayChange}
+            values={checkboxGroup}
+          >
+            {Checkbox => (
+              <div>
+                <Checkbox value='1' label='One' />
+                <Checkbox value='2' label='Two' />
+              </div>
+            )}
+          </CheckboxGroup>
+        </ReactCodeSpecimen>
         <h3>Input field</h3>
         <p>
           Add context to inputs by wrapping them in an input field component.
@@ -163,15 +218,15 @@ export default class FormDocumentation extends Component<Props, State> {
         <ReactCodeSpecimen
           code={dedent`
             <InputField
-              htmlFor="inputField"
-              label="Name"
+              htmlFor='inputField'
+              label='Name'
               required
-              description="What your parents called you"
+              description='What your parents called you'
             >
               <Input
                 onChange={this.handleChange}
-                id="inputField"
-                name="inputField"
+                id='inputField'
+                name='inputField'
                 value={inputField}
                 required
               />

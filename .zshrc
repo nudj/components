@@ -18,6 +18,8 @@ alias fdd='./node_modules/.bin/nodemon \
 	--delay 250ms \
 	-x "./node_modules/.bin/flow --quiet || exit 1"'
 
+alias standardFix='./node_modules/.bin/standard --fix'
+
 alias ll="ls -la"
 alias d="docker"
 alias dm="docker-machine"

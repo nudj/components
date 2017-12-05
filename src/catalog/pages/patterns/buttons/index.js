@@ -24,8 +24,8 @@ const ButtonDocumentation = () => {
       <p>
         To help the user with wayfinding, we use{' '}
         <a
-          href="https://www.viget.com/articles/visual-loudness"
-          target="_blank"
+          href='https://www.viget.com/articles/visual-loudness'
+          target='_blank'
         >
           visual loudness
         </a>{' '}
@@ -44,23 +44,23 @@ const ButtonDocumentation = () => {
         `}
       >
         <div className={css(style.wrapper)}>
-          <Button style={style.button} volume="scream">
+          <Button style={style.button} volume='scream'>
             scream
           </Button>
-          <Button style={style.button} volume="yell">
+          <Button style={style.button} volume='yell'>
             yell
           </Button>
-          <Button style={style.button} volume="shout">
+          <Button style={style.button} volume='shout'>
             shout
           </Button>
-          <Button style={style.button} volume="cheer">
+          <Button style={style.button} volume='cheer'>
             cheer
           </Button>
           <Button style={style.button}>murmur</Button>
-          <Button style={style.button} volume="whistle">
+          <Button style={style.button} volume='whistle'>
             whistle
           </Button>
-          <Button style={style.button} volume="whisper">
+          <Button style={style.button} volume='whisper'>
             whisper
           </Button>
         </div>
@@ -84,25 +84,25 @@ const ButtonDocumentation = () => {
         `}
       >
         <div className={css(style.wrapper)}>
-          <Link href="#" style={style.button} volume="scream">
+          <Link href='#' style={style.button} volume='scream'>
             scream
           </Link>
-          <Link href="#" style={style.button} volume="yell">
+          <Link href='#' style={style.button} volume='yell'>
             yell
           </Link>
-          <Link href="#" style={style.button} volume="shout">
+          <Link href='#' style={style.button} volume='shout'>
             shout
           </Link>
-          <Link href="#" style={style.button} volume="cheer">
+          <Link href='#' style={style.button} volume='cheer'>
             cheer
           </Link>
-          <Link href="#" style={style.button}>
+          <Link href='#' style={style.button}>
             murmur
           </Link>
-          <Link href="#" style={style.button} volume="whistle">
+          <Link href='#' style={style.button} volume='whistle'>
             Link
           </Link>
-          <Link href="#" style={style.button} volume="whisper">
+          <Link href='#' style={style.button} volume='whisper'>
             whisper
           </Link>
         </div>

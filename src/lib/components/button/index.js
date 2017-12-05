@@ -5,7 +5,7 @@ const InlineAction = require('../inline-action')
 
 type Props = {
   type?: 'submit' | 'reset' | 'button',
-  onClick: (SyntheticInputEvent<*>) => void,
+  onClick: Object => void,
   value?: string,
   children: React.Node,
   Component: React.ElementType,

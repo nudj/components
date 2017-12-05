@@ -5,7 +5,7 @@ const React = require('react')
 const { shallow } = require('enzyme')
 const sinon = require('sinon')
 
-const Select = require('../../../lib/components/select')
+const { Select } = require('../../../lib')
 
 describe('Select', () => {
   describe('events', () => {

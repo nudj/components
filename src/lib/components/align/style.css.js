@@ -1,21 +1,18 @@
 const { StyleSheet } = require('../../css')
 
 const side = {
-  flexBasis: '1%',
-  verticalAlign: 'middle',
-  whiteSpace: 'nowrap'
+  flexGrow: 0,
+  alignItems: 'center'
 }
 
 const stylesheet = StyleSheet.create({
   root: {
-    display: 'flex',
-    width: '100%'
+    display: 'flex'
   },
   left: side,
   right: side,
   large: {
-    flexBasis: '99%',
-    whiteSpace: 'inherit'
+    flexGrow: 1
   }
 })
 

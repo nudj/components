@@ -59,10 +59,13 @@ const PrimitivesDocumentation = () => (
     <ReactCodeSpecimen
       code={dedent`
         const Status = <p>I'm the primary side!</p>
-        const Button = <button type="submit">Continue</button>
+        const Button = <button>Continue</button>
 
         <Card>
-          <Align leftChildren={Status} rightChildren={Button} />
+          <Align
+            leftChildren={Status}
+            rightChildren={Button}
+          />
         </Card>
       `}
     >

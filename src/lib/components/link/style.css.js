@@ -6,7 +6,7 @@ const stylesheet = StyleSheet.create({
   root: merge(typography.type.regular, {
     border: `1px solid`,
     borderRadius: sizes.largeIi,
-    cursor: 'default',
+    cursor: 'pointer',
     fontWeight: typography.fontWeight.bold,
     paddingTop: sizes.smallI,
     paddingRight: sizes.largeI,
@@ -87,6 +87,7 @@ const stylesheet = StyleSheet.create({
     backgroundColor: 'transparent',
     borderColor: 'transparent',
     color: colors.primary,
+    cursor: 'pointer',
     textDecoration: 'underline',
     ':hover': {
       color: colors.primaryLight

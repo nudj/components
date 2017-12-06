@@ -2,17 +2,19 @@ const { merge } = require('@nudj/library')
 
 const { StyleSheet, colors, typography, sizes } = require('../../css')
 
-const stylesheet = StyleSheet.create({
+module.exports.buttonStyleSheet = StyleSheet.create({
   root: merge(typography.type.regular, {
     border: `1px solid`,
     borderRadius: sizes.largeIi,
     cursor: 'default',
+    display: 'inline-block',
     fontWeight: typography.fontWeight.bold,
-    paddingTop: sizes.smallI,
+    paddingTop: sizes.smallIi,
     paddingRight: sizes.largeI,
-    paddingBottom: sizes.smallI,
+    paddingBottom: sizes.smallIi,
     paddingLeft: sizes.largeI,
     textAlign: 'center',
+    textDecoration: 'none',
     transition: 'all 150ms',
     ':active': {
       boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.1)'
@@ -69,36 +71,25 @@ const stylesheet = StyleSheet.create({
       backgroundColor: colors.dangerLight,
       borderColor: colors.dangerLight
     }
-  },
-  yell: {
-    backgroundColor: colors.secondary,
-    borderColor: colors.secondary,
-    color: colors.white,
-    ':hover': {
-      backgroundColor: colors.secondaryLight,
-      borderColor: colors.secondaryLight
-    },
-    ':focus': {
-      backgroundColor: colors.secondaryLight,
-      borderColor: colors.secondaryLight
-    }
-  },
-  whistle: {
-    backgroundColor: 'transparent',
-    borderColor: 'transparent',
-    color: colors.primary,
+  }
+})
+
+module.exports.linkStyleSheet = StyleSheet.create({
+  root: merge(typography.type.regular, {
+    display: 'inline-block',
+    fontWeight: typography.fontWeight.bold,
+    paddingTop: sizes.smallI,
+    paddingRight: sizes.largeI,
+    paddingBottom: sizes.smallI,
+    paddingLeft: sizes.largeI,
+    textAlign: 'center',
+    transition: 'all 150ms',
+    borderWidth: 0,
+    cursor: 'pointer',
     textDecoration: 'underline',
-    ':hover': {
-      color: colors.primaryLight
-    },
-    ':focus': {
-      color: colors.primaryLight
-    },
-    ':active': {
-      boxShadow: 'none'
-    }
-  },
-  whisper: {
+    backgroundColor: 'transparent'
+  }),
+  murmur: {
     backgroundColor: 'transparent',
     borderColor: 'transparent',
     color: colors.greyDark,
@@ -109,11 +100,42 @@ const stylesheet = StyleSheet.create({
     },
     ':focus': {
       color: colors.grey
+    }
+  },
+  cheer: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    color: colors.primary,
+    textDecoration: 'underline',
+    ':hover': {
+      color: colors.primaryLight
     },
-    ':active': {
-      boxShadow: 'none'
+    ':focus': {
+      color: colors.primaryLight
+    }
+  },
+  shout: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    color: colors.success,
+    textDecoration: 'underline',
+    ':hover': {
+      color: colors.successLight
+    },
+    ':focus': {
+      color: colors.successLight
+    }
+  },
+  scream: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    color: colors.danger,
+    textDecoration: 'underline',
+    ':hover': {
+      color: colors.dangerLight
+    },
+    ':focus': {
+      color: colors.dangerLight
     }
   }
 })
-
-module.exports = stylesheet

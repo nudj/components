@@ -7,19 +7,33 @@ const styleSheet = require('./style.css')
 type TextProps = {
   children: React.Node,
   style?: Object,
-  element: React.ElementType
+  element: React.ElementType,
+  size:
+    | 'largeVi'
+    | 'largeV'
+    | 'largeIv'
+    | 'largeIii'
+    | 'largeIi'
+    | 'largeI'
+    | 'regular'
+    | 'smallI'
+    | 'smallIi',
+  rest?: Array<mixed>
 }
 
 const Text = (props: TextProps) => {
-  const { style, children, element: Component } = props
+  const { style, size, children, element: Component, ...rest } = props
 
   return (
-    <Component className={css(styleSheet.root, style)}>{children}</Component>
+    <Component {...rest} className={css(styleSheet[size], style)}>
+      {children}
+    </Component>
   )
 }
 
 Text.defaultProps = {
-  element: 'span'
+  element: 'span',
+  size: 'regular'
 }
 
 module.exports = Text

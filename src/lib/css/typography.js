@@ -29,15 +29,15 @@ const fontSize = {
 }
 
 const lineHeight = {
-  largeVi: 1,
-  larveV: 1,
-  largeIv: 1,
-  largeIii: 1,
-  largeIi: 1,
-  largeI: 1,
-  regular: 1,
-  smallI: 1,
-  smallIi: 1
+  largeVi: 1.5,
+  larveV: 1.5,
+  largeIv: 1.5,
+  largeIii: 1.5,
+  largeIi: 1.5,
+  largeI: 1.5,
+  regular: 1.5,
+  smallI: 1.5,
+  smallIi: 1.5
 }
 
 const letterSpacing = {

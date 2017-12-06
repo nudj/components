@@ -1,9 +1,9 @@
 /* global Style */
 // @flow
 const React = require('react')
-const flatten = require('lodash/flatten')
 
 const defaultStyle = require('./style.css')
+const { mergeStyle } = require('../../css')
 const InlineAction = require('../inline-action')
 
 type Props = {
@@ -17,10 +17,7 @@ type Props = {
 
 const Link = (props: Props) => {
   const { children, Component, href, inline, style, ...rest } = props
-  const composedStyle = flatten([
-    inline ? defaultStyle.inline : null,
-    style
-  ]).filter(ss => ss != null)
+  const composedStyle = mergeStyle(inline ? defaultStyle.inline : null, style)
 
   return (
     <InlineAction

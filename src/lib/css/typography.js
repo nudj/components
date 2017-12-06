@@ -1,9 +1,5 @@
 const fontFamily = {
   jan: [
-    // TODO: Remove
-    // Local copy
-    'f37 jan',
-    // @font-face copy
     '"jan"',
     '"-apple-system"',
     '"BlinkMacSystemFont"',

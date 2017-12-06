@@ -56,8 +56,8 @@ const ButtonDocumentation = () => {
       <h4>Reduced affordance</h4>
       <p>
         In some cases, it may be appropriate to reduce a button affordance even
-        further than normal. Although this won't be a common occurance, you can
-        do this by providing the `subtle` prop.
+        further than normal. Although this won&#39;t be a common occurance, you
+        can do this by providing the `subtle` prop.
       </p>
       <ReactCodeSpecimen
         code={dedent`

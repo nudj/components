@@ -1,7 +1,8 @@
+/* global Style */
 // @flow
-const flatten = require('lodash/flatten')
 const { StyleSheet } = require('aphrodite/no-important')
 const isEmpty = require('lodash/isEmpty')
+const flatten = require('lodash/flattenDeep')
 
 const typography = require('./typography')
 const colors = require('./colors')
@@ -31,14 +32,19 @@ const mergeStyleSheets = (...stylesheets: Array<StyleSheetType>) => {
   }, {})
 }
 
+const mergeStyle = (...styles: Array<Style>) => {
+  return flatten(styles).filter(style => style != null)
+}
+
 const css = (...args: Array<Object>) =>
-  Extended.css(args.filter(arg => !isEmpty(arg)))
+  Extended.css(flatten(args).filter(arg => !isEmpty(arg)))
 
 module.exports = {
   aphrodite: Extended,
   css,
   StyleSheet: Extended.StyleSheet,
   mergeStyleSheets,
+  mergeStyle,
   typography,
   colors,
   sizes,

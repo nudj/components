@@ -7,6 +7,7 @@ const stylesheet = StyleSheet.create({
     border: `1px solid`,
     borderRadius: sizes.largeIi,
     cursor: 'default',
+    display: 'inline-block',
     fontWeight: typography.fontWeight.bold,
     paddingTop: sizes.smallI,
     paddingRight: sizes.largeI,

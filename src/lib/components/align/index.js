@@ -1,6 +1,5 @@
 // @flow
 const React = require('react')
-const classnames = require('classnames')
 
 const { css, mergeStyleSheets } = require('../../css')
 const defaultStyleSheet = require('./style.css')
@@ -30,16 +29,8 @@ const Align = (props: AlignProps) => {
   } = props
 
   const style = mergeStyleSheets(defaultStyleSheet, styleSheet)
-
-  const leftClasses = classnames(
-    css(style.left),
-    primarySide === 'left' ? css(style.large) : null
-  )
-
-  const rightClasses = classnames(
-    css(style.right),
-    primarySide === 'right' ? css(style.large) : null
-  )
+  const leftClasses = css(style.left, primarySide === 'left' && style.large)
+  const rightClasses = css(style.right, primarySide === 'right' && style.large)
 
   return (
     <div {...rest} className={css(style.root)}>

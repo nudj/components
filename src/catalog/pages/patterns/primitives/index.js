@@ -68,7 +68,7 @@ const PrimitivesDocumentation = () => (
     >
       <Card>
         <Align
-          leftChildren={<p>I'm the primary side!</p>}
+          leftChildren={<p>I&#39;m the primary side!</p>}
           rightChildren={<button>Continue</button>}
         />
       </Card>

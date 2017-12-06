@@ -1,24 +1,20 @@
 const { StyleSheet } = require('../../css')
 
+const side = {
+  flexBasis: '1%',
+  verticalAlign: 'middle',
+  whiteSpace: 'nowrap'
+}
+
 const stylesheet = StyleSheet.create({
   root: {
-    display: 'table',
+    display: 'flex',
     width: '100%'
   },
-  left: {
-    display: 'table-cell',
-    width: '1%',
-    verticalAlign: 'middle',
-    whiteSpace: 'nowrap'
-  },
-  right: {
-    display: 'table-cell',
-    width: '1%',
-    verticalAlign: 'middle',
-    whiteSpace: 'nowrap'
-  },
+  left: side,
+  right: side,
   large: {
-    width: '99%',
+    flexBasis: '99%',
     whiteSpace: 'inherit'
   }
 })

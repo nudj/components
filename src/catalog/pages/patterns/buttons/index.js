@@ -35,20 +35,14 @@ const ButtonDocumentation = () => {
       <ReactCodeSpecimen
         code={dedent`
           <Button volume="scream">scream</Button>
-          <Button volume="yell">yell</Button>
           <Button volume="shout">shout</Button>
           <Button volume="cheer">cheer</Button>
           <Button>murmur</Button>
-          <Button volume="whistle">whistle</Button>
-          <Button volume="whisper">whisper</Button>   
         `}
       >
         <div className={css(style.wrapper)}>
           <Button style={style.button} volume='scream'>
             scream
-          </Button>
-          <Button style={style.button} volume='yell'>
-            yell
           </Button>
           <Button style={style.button} volume='shout'>
             shout
@@ -57,38 +51,55 @@ const ButtonDocumentation = () => {
             cheer
           </Button>
           <Button style={style.button}>murmur</Button>
-          <Button style={style.button} volume='whistle'>
-            whistle
+        </div>
+      </ReactCodeSpecimen>
+      <h4>Reduced affordance</h4>
+      <p>
+        In some cases, it may be appropriate to reduce a button affordance even
+        further than normal. Although this won't be a common occurance, you can
+        do this by providing the `subtle` prop.
+      </p>
+      <ReactCodeSpecimen
+        code={dedent`
+          <Button subtle volume="scream">scream</Button>
+          <Button subtle volume="shout">shout</Button>
+          <Button subtle volume="cheer">cheer</Button>
+          <Button subtle>murmur</Button>
+        `}
+      >
+        <div className={css(style.wrapper)}>
+          <Button subtle style={style.button} volume='scream'>
+            scream
           </Button>
-          <Button style={style.button} volume='whisper'>
-            whisper
+          <Button subtle style={style.button} volume='shout'>
+            shout
+          </Button>
+          <Button subtle style={style.button} volume='cheer'>
+            cheer
+          </Button>
+          <Button subtle style={style.button}>
+            murmur
           </Button>
         </div>
       </ReactCodeSpecimen>
       <h3>Link</h3>
       <p>
-        In some cases, you may need to render a link to look the same as a
-        button. This is useful where the desired action can be achieved through
-        navigation, e.g., progressing to the next stage within a wizard-style
-        flow, or opening a mailto link.
+        By default, links are rendered to look the same as a button. This is
+        useful where the desired action can be achieved through navigation,
+        e.g., progressing to the next stage within a wizard-style flow, or
+        opening a mailto link.
       </p>
       <ReactCodeSpecimen
         code={dedent`
           <Link volume="scream">scream</Link>
-          <Link volume="yell">yell</Link>
           <Link volume="shout">shout</Link>
           <Link volume="cheer">cheer</Link>
           <Link>murmur</Link>
-          <Link volume="whistle">whistle</Link>
-          <Link volume="whisper">whisper</Link>   
         `}
       >
         <div className={css(style.wrapper)}>
           <Link href='#' style={style.button} volume='scream'>
             scream
-          </Link>
-          <Link href='#' style={style.button} volume='yell'>
-            yell
           </Link>
           <Link href='#' style={style.button} volume='shout'>
             shout
@@ -99,11 +110,33 @@ const ButtonDocumentation = () => {
           <Link href='#' style={style.button}>
             murmur
           </Link>
-          <Link href='#' style={style.button} volume='whistle'>
-            Link
+        </div>
+      </ReactCodeSpecimen>
+      <h4>Regular affordance</h4>
+      <p>
+        Typically, you will use links with the `subtle` property, used the same
+        way as the button component
+      </p>
+      <ReactCodeSpecimen
+        code={dedent`
+          <Link subtle volume="scream">scream</Link>
+          <Link subtle volume="shout">shout</Link>
+          <Link subtle volume="cheer">cheer</Link>
+          <Link subtle>murmur</Link>
+        `}
+      >
+        <div className={css(style.wrapper)}>
+          <Link subtle href='#' style={style.button} volume='scream'>
+            scream
           </Link>
-          <Link href='#' style={style.button} volume='whisper'>
-            whisper
+          <Link subtle href='#' style={style.button} volume='shout'>
+            shout
+          </Link>
+          <Link subtle href='#' style={style.button} volume='cheer'>
+            cheer
+          </Link>
+          <Link subtle href='#' style={style.button}>
+            murmur
           </Link>
         </div>
       </ReactCodeSpecimen>

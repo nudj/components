@@ -2,7 +2,7 @@ const { StyleSheet } = require('../../css')
 
 const side = {
   flexGrow: 0,
-  alignItems: 'center'
+  alignSelf: 'center'
 }
 
 const stylesheet = StyleSheet.create({

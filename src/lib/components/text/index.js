@@ -17,14 +17,17 @@ type TextProps = {
     | 'largeI'
     | 'regular'
     | 'smallI'
-    | 'smallIi'
+    | 'smallIi',
+  rest?: Array<mixed>
 }
 
 const Text = (props: TextProps) => {
-  const { style, size, children, element: Component } = props
+  const { style, size, children, element: Component, ...rest } = props
 
   return (
-    <Component className={css(styleSheet[size], style)}>{children}</Component>
+    <Component {...rest} className={css(styleSheet[size], style)}>
+      {children}
+    </Component>
   )
 }
 

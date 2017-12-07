@@ -5,7 +5,7 @@ const uniqueId = require('lodash/uniqueId')
 const { css } = require('../../css')
 const Checkbox = require('../checkbox')
 
-type ChildType = {
+type ChildPropTypes = {
   value: string,
   label: string
 }
@@ -24,18 +24,18 @@ type HandlerArgs = {
   stopPropagation: Function
 }
 
-type CheckboxProps = {
+type CheckboxGroupPropTypes = {
   Input: React.ElementType,
   required?: boolean,
   checkboxStyleSheet: CheckboxClassList,
-  children: React.ElementType => React.Node,
+  children: Function => React.Node,
   onChange: HandlerArgs => mixed,
   values: Array<string>,
   styles?: Object,
   name: string
 }
 
-const CheckboxGroup = (props: CheckboxProps) => {
+const CheckboxGroup = (props: CheckboxGroupPropTypes) => {
   const {
     Input,
     required,
@@ -75,7 +75,7 @@ const CheckboxGroup = (props: CheckboxProps) => {
   return (
     <div className={css(styles)}>
       {children &&
-        children((childProps: ChildType) => {
+        children((childProps: ChildPropTypes) => {
           const checked = values.includes(childProps.value)
 
           return (

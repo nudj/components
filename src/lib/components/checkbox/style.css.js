@@ -37,7 +37,8 @@ const styleSheet = StyleSheet.create({
     display: 'inline-block',
     verticalAlign: 'middle',
     color: colors.text,
-    paddingLeft: sizes.smallIi
+    paddingLeft: sizes.smallIi,
+    userSelect: 'none'
   })
 })
 

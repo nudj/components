@@ -232,10 +232,10 @@ export default class FormDocumentation extends Component<Props, State> {
             onChange={this.handleArrayChange}
             values={checkboxGroup}
           >
-            {Checkbox => (
+            {checkbox => (
               <div>
-                <Checkbox value='1' label='One' />
-                <Checkbox value='2' label='Two' />
+                {checkbox({ id: '1', key: '1', value: '1', label: 'One' })}
+                {checkbox({ id: '2', key: '2', value: '2', label: 'Two' })}
               </div>
             )}
           </CheckboxGroup>

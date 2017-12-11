@@ -22,6 +22,11 @@ const patterns = orderBy(
       path: '/patterns/buttons',
       title: 'Buttons',
       content: require('./buttons')
+    },
+    {
+      path: '/patterns/dropzone',
+      title: 'Dropzone',
+      content: require('./dropzone')
     }
   ],
   'title'

@@ -3,6 +3,7 @@ module.exports = {
   Button: require('./components/button'),
   Card: require('./components/card'),
   Checkbox: require('./components/checkbox'),
+  Dropzone: require('./components/dropzone'),
   Icon: require('./components/icon'),
   Input: require('./components/input'),
   InputField: require('./components/input-field'),

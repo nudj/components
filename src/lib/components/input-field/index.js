@@ -1,47 +1,52 @@
 // @flow
 const React = require('react')
-const classnames = require('classnames')
-const { merge } = require('@nudj/library')
 
-const getStyle = require('./style.css')
+const { mergeStyleSheets, css } = require('../../css')
+const defaultStyleSheet = require('./style.css')
 
-type classList = {
+type StyleSheetType = {
   root?: string,
   label?: string,
-  requiredNotice?: string
+  requiredNotice?: string,
+  description?: string,
+  inputContainer?: string
 }
 
 type InputProps = {
-  id?: string,
   htmlFor?: string,
   label: string,
   required?: boolean,
-  classNames?: classList,
-  children: React.Node
+  styleSheet: StyleSheetType,
+  children: React.Node,
+  description?: React.Node
 }
 
 const InputField = (props: InputProps) => {
-  const { classNames = {} } = props
-  const defaultStyles = getStyle()
-  const style = merge(defaultStyles, classNames)
+  const { label, required, styleSheet, description, htmlFor, children } = props
+  const style = mergeStyleSheets(defaultStyleSheet, styleSheet)
 
   const requiredNotice = () => (
-    <span className={classnames(style.requiredNotice)}>(required)</span>
+    <span className={css(style.requiredNotice)}>*</span>
+  )
+
+  const descriptionContainer = () => (
+    <div className={css(style.description)}>{description}</div>
   )
 
   return (
-    <div className={classnames(style.root)}>
-      <label
-        className={classnames(style.label)}
-        id={props.id}
-        htmlFor={props.htmlFor}
-      >
-        {props.label}
-        {props.required ? requiredNotice() : null}
+    <div className={css(style.root)}>
+      <label className={css(style.label)} htmlFor={htmlFor}>
+        {label}
+        {required && requiredNotice()}
       </label>
-      {props.children}
+      <div className={css(style.inputContainer)}>{children}</div>
+      {description && descriptionContainer()}
     </div>
   )
+}
+
+InputField.defaultProps = {
+  styleSheet: {}
 }
 
 module.exports = InputField

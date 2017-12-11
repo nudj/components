@@ -1,82 +1,82 @@
 // @flow
 const React = require('react')
-const classnames = require('classnames')
 const get = require('lodash/get')
-const { merge } = require('@nudj/library')
 
-const getStyle = require('./style.css')
+const { mergeStyleSheets, css } = require('../../css')
+
+const defaultStylesheet = require('./style.css')
+
+type Row = {
+  id: string | number
+}
 
 type Column = {
   heading: string,
   name: string
 }
 
-type ClassList = {
-  table?: string,
-  header?: string,
-  headerRow?: string,
-  heading?: string,
-  body?: string,
-  row?: string,
-  cell?: string
+type StyleSheetType = {
+  root?: Object,
+  header?: Object,
+  headerRow?: Object,
+  heading?: Object,
+  body?: Object,
+  row?: Object,
+  cell?: Object
 }
 
 type TableProps = {
-  component?: Function,
-  Body?: Function,
-  Head?: Function,
-  HeaderCell?: Function,
-  HeaderRow?: Function,
-  Row?: Function,
-  Cell?: Function,
-  data: Array<Object>,
+  component: React.ElementType,
+  Body: React.ElementType,
+  Head: React.ElementType,
+  HeaderCell: React.ElementType,
+  HeaderRow: React.ElementType,
+  Row: React.ElementType,
+  Cell: React.ElementType,
+  data: Array<Row>,
   columns: Array<Column>,
-  classNames?: ClassList,
-  headingRenderer?: Function,
-  cellRenderer?: Function
+  styleSheet: StyleSheetType,
+  headingRenderer?: (column: Column, defaultValue: string) => React.Node,
+  cellRenderer?: (column: Column, row: Row, defaultValue: string) => React.Node
 }
 
 const Table = (props: TableProps) => {
   const {
-    component: Table = props => <table {...props} />,
-    Body = props => <tbody {...props} />,
-    Head = props => <thead {...props} />,
-    Cell = props => <td {...props} />,
-    HeaderRow = props => <tr {...props} />,
-    Row = props => <tr {...props} />,
-    HeaderCell = props => <th {...props} />,
+    component: Table,
+    Body,
+    Head,
+    Cell,
+    HeaderRow,
+    Row,
+    HeaderCell,
     cellRenderer = (row, column, defaultValue) => defaultValue,
     headingRenderer = (column, defaultValue) => defaultValue,
-    data = [],
-    columns = [],
-    classNames = {}
+    data,
+    columns,
+    styleSheet
   } = props
 
-  const defaultStyles = getStyle()
-  const style = merge(defaultStyles, classNames)
+  const style = mergeStyleSheets(defaultStylesheet, styleSheet)
 
   return (
-    <Table className={classnames(style.table)}>
-      <Head className={classnames(style.header)}>
-        <HeaderRow className={classnames(style.headerRow)}>
+    <Table className={css(style.root)}>
+      <Head className={css(style.header)}>
+        <HeaderRow className={css(style.headerRow)}>
           {columns.map((column: Column) => (
-            <HeaderCell
-              className={classnames(style.heading)}
-              key={column.name}
-            >
-              {headingRenderer(column, get(column, 'heading', ''))}
+            <HeaderCell className={css(style.heading)} key={column.name}>
+              {headingRenderer(column, column.heading)}
             </HeaderCell>
           ))}
         </HeaderRow>
       </Head>
-      <Body className={classnames(style.body)}>
+      <Body className={css(style.body)}>
         {data.map((row: Object) => (
-          <Row className={classnames(style.row)} key={row.id}>
+          <Row className={css(style.row)} key={row.id}>
             {columns.map((column: Column) => {
               const defaultValue: string = get(row, column.name, '')
               return (
                 <Cell
-                  className={classnames(style.cell)}
+                  className={css(style.cell)}
                   key={`${row.id}-${column.name}`}
                 >
                   {cellRenderer(column, row, defaultValue)}
@@ -88,6 +88,19 @@ const Table = (props: TableProps) => {
       </Body>
     </Table>
   )
+}
+
+Table.defaultProps = {
+  component: 'table',
+  Head: 'thead',
+  HeaderRow: 'tr',
+  HeaderCell: 'th',
+  Body: 'tbody',
+  Row: 'tr',
+  Cell: 'td',
+  styleSheet: {},
+  data: [],
+  columns: []
 }
 
 module.exports = Table

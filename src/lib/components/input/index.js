@@ -1,28 +1,14 @@
 // @flow
 const React = require('react')
-const classnames = require('classnames')
-const { merge } = require('@nudj/library')
 
-const getStyle = require('./style.css')
+const { css, mergeStyleSheets } = require('../../css')
+const defaultStylesheet = require('./style.css')
 
-type classList = {
+type StyleSheetType = {
   root?: string,
   error?: string,
-  wrapper?: string
-}
-
-type InputProps = {
-  id: string,
-  type?: 'text' | 'email' | 'password' | 'search' | 'url' | 'textarea',
-  Wrapper?: Function,
-  ErrorWrapper?: Function,
-  onChange?: Function,
-  onBlur?: Function,
-  onFocus?: Function,
-  error?: string,
-  required?: boolean,
-  name: string,
-  classNames?: classList
+  input?: string,
+  inputError?: string
 }
 
 type HandlerArgs = {
@@ -32,55 +18,85 @@ type HandlerArgs = {
   stopPropagation: Function
 }
 
+type InputProps = {
+  id: string,
+  type: 'text' | 'email' | 'password' | 'search' | 'url' | 'textarea',
+  Wrapper: React.ElementType,
+  ErrorWrapper: React.ElementType,
+  onChange: HandlerArgs => mixed,
+  onBlur: HandlerArgs => mixed,
+  onFocus: HandlerArgs => mixed,
+  error?: string,
+  required?: boolean,
+  name: string,
+  styleSheet: StyleSheetType,
+  placeholder?: string,
+  value?: string
+}
+
 const noopHandler = (args: HandlerArgs) => {}
 
 const Input = (props: InputProps) => {
   const {
-    required = false,
-    classNames = {},
-    onChange = noopHandler,
-    onBlur = noopHandler,
-    onFocus = noopHandler,
-    type = 'text',
-    Wrapper = props => <div {...props} />,
-    ErrorWrapper = props => <div {...props} />,
+    id,
     name,
+    type,
+    required,
+    placeholder,
+    value,
+    styleSheet,
+    onChange,
+    onBlur,
+    onFocus,
+    Wrapper,
+    ErrorWrapper,
     error
   } = props
 
   const handleEvent = type => event => {
     const actions = { onChange, onBlur, onFocus }
     return actions[type]({
-      name,
+      name: name,
       value: event.target.value,
       preventDefault: event.preventDefault,
       stopPropagation: event.stopPropagation
     })
   }
 
-  const defaultStyles = getStyle()
-  const styles = merge(defaultStyles, classNames)
   const InputComponent = type === 'textarea' ? 'textarea' : 'input'
+  const style = mergeStyleSheets(defaultStylesheet, styleSheet)
 
   const errorSection = () => (
-    <ErrorWrapper className={classnames(styles.error)}>{error}</ErrorWrapper>
+    <ErrorWrapper className={css(style.error)}>{error}</ErrorWrapper>
   )
 
   return (
-    <Wrapper className={classnames(styles.wrapper)}>
+    <Wrapper className={css(style.root)}>
       <InputComponent
-        className={classnames(styles.root)}
-        id={props.id}
+        className={css(style.input, error && style.inputError)}
+        id={id}
         name={name}
         type={type}
         onChange={handleEvent('onChange')}
         onBlur={handleEvent('onBlur')}
         onFocus={handleEvent('onFocus')}
         required={required}
+        placeholder={placeholder}
+        value={value}
       />
       {error ? errorSection() : null}
     </Wrapper>
   )
+}
+
+Input.defaultProps = {
+  type: 'text',
+  styleSheet: {},
+  onChange: noopHandler,
+  onBlur: noopHandler,
+  onFocus: noopHandler,
+  Wrapper: 'div',
+  ErrorWrapper: 'div'
 }
 
 module.exports = Input

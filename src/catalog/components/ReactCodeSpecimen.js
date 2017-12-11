@@ -7,17 +7,25 @@ const getStyle = () => ({
   }
 })
 
-const ReactCodeSpecimen = ({ children, code }) => {
+const ReactCodeSpecimen = ({ children, code, span, ...rest }) => {
   const styles = getStyle()
 
   return (
-    <div>
-      <ReactSpecimen noSource>{children}</ReactSpecimen>
+    <div style={{ minWidth: '600px' }}>
+      <ReactSpecimen {...rest} span={span} noSource>
+        {children}
+      </ReactSpecimen>
       <div style={styles.codeSpecimenWrapper}>
-        <CodeSpecimen lang='jsx'>{code}</CodeSpecimen>
+        <CodeSpecimen {...rest} span={span} lang='jsx'>
+          {code}
+        </CodeSpecimen>
       </div>
     </div>
   )
+}
+
+ReactCodeSpecimen.defaultProps = {
+  span: 5
 }
 
 export default ReactCodeSpecimen

@@ -1,3 +1,4 @@
+// @flow
 import React from 'react'
 import dedent from 'dedent'
 import { Page } from 'catalog'
@@ -10,8 +11,8 @@ const columns = [
 ]
 
 const data = [
-  { name: 'Tim Robinson', company: 'nudj' },
-  { name: 'Richard Palmer', company: 'nudj' }
+  { id: 1, name: 'Tim Robinson', company: 'nudj' },
+  { id: 2, name: 'Richard Palmer', company: 'nudj' }
 ]
 
 const TableDocumentation = () => (
@@ -24,6 +25,7 @@ const TableDocumentation = () => (
       The table retrieves key values from the data based on the value of the
       heading key of the appropriate column.
     </p>
+
     <ReactCodeSpecimen
       code={dedent`
         const columns = [

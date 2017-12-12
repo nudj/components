@@ -1,8 +1,9 @@
 // @flow
 const React = require('react')
 let ReactDropzone = require('react-dropzone')
-let styles = require('./style')
 ReactDropzone = ReactDropzone.default || ReactDropzone
+
+const styles = require('./style')
 
 type Props = {
   accept: string,

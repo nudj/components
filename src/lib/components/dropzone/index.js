@@ -1,3 +1,4 @@
+/* global Style */
 // @flow
 const React = require('react')
 let ReactDropzone = require('react-dropzone')
@@ -9,11 +10,11 @@ type Props = {
   accept: string,
   className: string,
   rejectClassName?: string,
-  style?: Object,
-  acceptStyle?: Object,
-  activeStyle?: Object,
-  disabledStyle?: Object,
-  rejectStyle?: Object,
+  style?: Style,
+  acceptStyle?: Style,
+  activeStyle?: Style,
+  disabledStyle?: Style,
+  rejectStyle?: Style,
   children: Function,
   rest?: Array<mixed>
 }

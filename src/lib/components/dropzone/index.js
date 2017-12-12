@@ -13,7 +13,16 @@ type Props = {
   activeStyle?: Object,
   disabledStyle?: Object,
   rejectStyle?: Object,
+  children: Function,
   rest?: Array<mixed>
+}
+
+const renderChildrenWrapper = (children, isMimeType) => {
+  if (!isMimeType) {
+    return ({ isDragReject, ...rest }) => children(rest)
+  }
+
+  return props => children(props)
 }
 
 const Dropzone = (props: Props) => {
@@ -26,6 +35,7 @@ const Dropzone = (props: Props) => {
     activeStyle,
     disabledStyle,
     rejectStyle,
+    children,
     ...rest
   } = props
 
@@ -38,26 +48,28 @@ const Dropzone = (props: Props) => {
     !rejectStyle &&
     !disabledStyle
 
-  const styleProps = {
-    style: style || styles.default,
-    activeStyle: activeStyle || styles.active,
-    acceptStyle: acceptStyle || styles.active,
-    rejectStyle: rejectStyle || styles.rejected,
-    disabledStyle: disabledStyle || styles.disabled
+  const styleProps = {}
+
+  if (noStyle) {
+    styleProps.style = styles.default
+    styleProps.activeStyle = styles.active
+    styleProps.acceptStyle = styles.active
+    styleProps.rejectStyle = isMimeType ? styles.rejected : {}
+    styleProps.disabledStyle = styles.disabled
   }
 
-  let rejectCn = isMimeType ? rejectClassName : ''
-
-  if (noStyle && !isMimeType) {
-    styleProps.rejectStyle = {}
+  const classNameProps = {
+    className,
+    rejectClassName: isMimeType ? rejectClassName : ''
   }
 
   return (
     <ReactDropzone
       {...rest}
       {...styleProps}
-      rejectClassName={rejectCn}
+      {...classNameProps}
       accept={accept}
+      children={renderChildrenWrapper(children, isMimeType)}
     />
   )
 }

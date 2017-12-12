@@ -8,6 +8,7 @@ module.exports = {
   Input: require('./components/input'),
   InputField: require('./components/input-field'),
   Link: require('./components/link'),
+  Loader: require('./components/loader'),
   StyleChild: require('./components/style-child'),
   Select: require('./components/select'),
   Table: require('./components/table'),

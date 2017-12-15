@@ -9,6 +9,7 @@ module.exports = {
   InputField: require('./components/input-field'),
   Link: require('./components/link'),
   Loader: require('./components/loader'),
+  Pill: require('./components/pill'),
   StyleChild: require('./components/style-child'),
   Select: require('./components/select'),
   Table: require('./components/table'),

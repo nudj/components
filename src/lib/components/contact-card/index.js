@@ -61,8 +61,10 @@ const ContactCard = (props: ContactCardProps) => {
             Recommended for
           </Text>
           <div className={css(style.recommendedForItems)}>
-            {recommendations.map(recommendation => (
-              <Pill style={style.recommendedForItem}>{recommendation}</Pill>
+            {recommendations.map((recommendation, i) => (
+              <Pill style={style.recommendedForItem} key={i}>
+                {recommendation}
+              </Pill>
             ))}
             {otherRecommendationCount > 0 && (
               <Pill style={style.recommendedForItem} volume='whisper'>

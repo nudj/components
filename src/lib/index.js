@@ -2,6 +2,7 @@ module.exports = {
   Align: require('./components/align'),
   Button: require('./components/button'),
   Card: require('./components/card'),
+  ContactCard: require('./components/contact-card'),
   Checkbox: require('./components/checkbox'),
   Dropzone: require('./components/dropzone'),
   Icon: require('./components/icon'),

@@ -1,6 +1,8 @@
 // @flow
 const React = require('react')
 const chunk = require('lodash/chunk')
+const uniqBy = require('lodash/uniqBy')
+const method = require('lodash/method')
 
 const { css, mergeStyleSheets } = require('../../css')
 const Card = require('../card')
@@ -61,11 +63,13 @@ const ContactCard = (props: ContactCardProps) => {
             Recommended for
           </Text>
           <div className={css(style.recommendedForItems)}>
-            {recommendations.map((recommendation, i) => (
-              <Pill style={style.recommendedForItem} key={i}>
-                {recommendation}
-              </Pill>
-            ))}
+            {uniqBy(recommendations, method('toLowerCase'))
+              .filter(recommendation => recommendation)
+              .map(recommendation => (
+                <Pill style={style.recommendedForItem} key={recommendation}>
+                  {recommendation}
+                </Pill>
+              ))}
             {otherRecommendationCount > 0 && (
               <Pill style={style.recommendedForItem} volume='whisper'>
                 + {otherRecommendationCount} others

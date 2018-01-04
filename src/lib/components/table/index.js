@@ -71,7 +71,7 @@ const Table = (props: TableProps) => {
       </Head>
       <Body className={css(style.body)}>
         {data.map((row: Object) => (
-          <Row className={css(style.row)} key={row.id}>
+          <Row {...row} className={css(style.row)} key={row.id}>
             {columns.map((column: Column) => {
               const defaultValue: string = get(row, column.name, '')
               return (
@@ -96,7 +96,7 @@ Table.defaultProps = {
   HeaderRow: 'tr',
   HeaderCell: 'th',
   Body: 'tbody',
-  Row: 'tr',
+  Row: ({ className, children }) => <tr className={className}>{children}</tr>,
   Cell: 'td',
   styleSheet: {},
   data: [],

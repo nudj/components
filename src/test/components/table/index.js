@@ -67,7 +67,7 @@ describe('Table', () => {
 
     it('creates rows based on provided data', () => {
       const component = shallow(<Table data={data} columns={columns} />)
-      const rows = component.find('tbody').find('tr')
+      const rows = component.find('tbody').find(Table.defaultProps.Row)
       expect(rows).to.have.length(data.length)
     })
 
@@ -127,8 +127,9 @@ describe('Table', () => {
       )
       const row = component
         .find('tbody')
-        .find('tr')
+        .find(Table.defaultProps.Row)
         .first()
+
       const cells = row.children()
       const cellData = cells.map(cell => cell.props().children)
       expect(cellData).to.deep.equal([
@@ -163,7 +164,7 @@ describe('Table', () => {
 
       const cell = customComponent
         .find('tbody')
-        .find('tr')
+        .find(Table.defaultProps.Row)
         .children()
         .first()
 

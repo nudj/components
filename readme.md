@@ -18,7 +18,10 @@ Reusable React components from the nudj platform
 ### Release
 
 1. Increment `package.json` version
-1. Merge into `master`
+1. Push new version to `develop` branch, with the commit message `Set [x.x.x]`
+1. Checkout to latest master
+1. Merge in the develop branch with a commit message of `Release [x.x.x]`
+1. Push to master
 1. Codefresh will publish to npm
 
 ## Usage

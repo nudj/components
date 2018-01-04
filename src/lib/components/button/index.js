@@ -25,7 +25,8 @@ const Button = (props: Props) => {
 Button.defaultProps = {
   volume: 'murmur',
   onClick: () => {},
-  Component: 'button'
+  Component: 'button',
+  type: 'button'
 }
 
 module.exports = Button

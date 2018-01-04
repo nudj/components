@@ -32,6 +32,16 @@ const patterns = orderBy(
       path: '/patterns/loader',
       title: 'Loader',
       content: require('./loader')
+    },
+    {
+      path: '/patterns/pills',
+      title: 'Pills',
+      content: require('./pills')
+    },
+    {
+      path: '/patterns/cards',
+      title: 'Cards',
+      content: require('./cards')
     }
   ],
   'title'

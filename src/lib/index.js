@@ -13,6 +13,7 @@ module.exports = {
   Modal: require('./components/modal'),
   Pill: require('./components/pill'),
   RadioButton: require('./components/radio-button'),
+  RadioGroup: require('./components/radio-group'),
   Select: require('./components/select'),
   StyleChild: require('./components/style-child'),
   Table: require('./components/table'),

@@ -9,6 +9,8 @@ import InputField from '../../../../lib/components/input-field'
 import Select from '../../../../lib/components/select'
 import Checkbox from '../../../../lib/components/checkbox'
 import CheckboxGroup from '../../../../lib/components/checkbox-group'
+import RadioButton from '../../../../lib/components/radio-button'
+import RadioGroup from '../../../../lib/components/radio-group'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
 
 type Props = {}
@@ -22,6 +24,7 @@ type State = {
   select: string,
   checkboxGroup: Array<string>,
   radio: boolean,
+  radioGroup: string
 }
 
 export default class FormDocumentation extends Component<Props, State> {
@@ -41,6 +44,7 @@ export default class FormDocumentation extends Component<Props, State> {
       select: '',
       checkboxGroup: [],
       radio: false,
+      radioGroup: ''
     }
   }
 
@@ -78,6 +82,7 @@ export default class FormDocumentation extends Component<Props, State> {
       select,
       checkboxGroup,
       radio,
+      radioGroup
     } = this.state
 
     return (
@@ -274,14 +279,39 @@ export default class FormDocumentation extends Component<Props, State> {
             id='radio'
           />
         </ReactCodeSpecimen>
+        <h3>Radio Group</h3>
+        <p>
+          Use a RadioGroup where the user needs to choose one
+          option from many.
+        </p>
+        <ReactCodeSpecimen
+          code={dedent`
+            <RadioGroup
+              name='RadioGroup'
+              onChange={this.handleChange}
+              value={radioGroup}
+            >
+              {radio => (
+                <div>
+                  {radio({ key: '1', value: '1', label: 'One' })}
+                  {radio({ key: '2', value: '2', label: 'Two' })}
+                </div>
+              )}
+            </RadioGroup>
+          `}
+        >
+          <RadioGroup
+            name='radioGroup'
+            onChange={this.handleChange}
+            value={radioGroup}
           >
-            {checkbox => (
+            {radio => (
               <div>
-                {checkbox({ id: '1', key: '1', value: '1', label: 'One' })}
-                {checkbox({ id: '2', key: '2', value: '2', label: 'Two' })}
+                {radio({ key: '1', value: '1', label: 'One' })}
+                {radio({ key: '2', value: '2', label: 'Two' })}
               </div>
             )}
-          </CheckboxGroup>
+          </RadioGroup>
         </ReactCodeSpecimen>
         <h3>Input field</h3>
         <p>

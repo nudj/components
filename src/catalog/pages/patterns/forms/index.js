@@ -20,7 +20,8 @@ type State = {
   checkbox: boolean,
   inputField: string,
   select: string,
-  checkboxGroup: Array<string>
+  checkboxGroup: Array<string>,
+  radio: boolean,
 }
 
 export default class FormDocumentation extends Component<Props, State> {
@@ -38,7 +39,8 @@ export default class FormDocumentation extends Component<Props, State> {
       checkbox: false,
       inputField: '',
       select: '',
-      checkboxGroup: []
+      checkboxGroup: [],
+      radio: false,
     }
   }
 
@@ -74,7 +76,8 @@ export default class FormDocumentation extends Component<Props, State> {
       checkbox,
       inputField,
       select,
-      checkboxGroup
+      checkboxGroup,
+      radio,
     } = this.state
 
     return (
@@ -214,23 +217,63 @@ export default class FormDocumentation extends Component<Props, State> {
           binary options, such as a facetted search.
         </p>
         <ReactCodeSpecimen
-          code={dedent`<CheckboxGroup
-            name='checkboxGroup'
-            onChange={this.handleArrayChange}
-            values={checkboxGroup}
-          >
-            {Checkbox => (
-              <div>
-                <Checkbox value='1' label='One' />
-                <Checkbox value='2' label='Two' />
-              </div>
-            )}
-          </CheckboxGroup>`}
+          code={dedent`
+            <CheckboxGroup
+              name='checkboxGroup'
+              onChange={this.handleArrayChange}
+              values={checkboxGroup}
+            >
+              {Checkbox => (
+                <div>
+                  {checkbox({ key: '1', value: '1', label: 'One' })}
+                  {checkbox({ key: '2', value: '2', label: 'Two' })}
+                </div>
+              )}
+            </CheckboxGroup>
+          `}
         >
           <CheckboxGroup
             name='checkboxGroup'
             onChange={this.handleArrayChange}
             values={checkboxGroup}
+          >
+            {checkbox => (
+              <div>
+                {checkbox({ key: '1', value: '1', label: 'One' })}
+                {checkbox({ key: '2', value: '2', label: 'Two' })}
+              </div>
+            )}
+          </CheckboxGroup>
+        </ReactCodeSpecimen>
+        <h3>Radio Button</h3>
+        <p>
+          Using a radio button used on its own is ill advised, as there are
+          little to no scenarios where it is an appropriate choice for an
+          interface. Use this component only where you need different control to
+          that a the RadioGroup provides you. Otherwise, refer to
+          the RadioGroup&#39;s documentation
+        </p>
+        <ReactCodeSpecimen
+          code={dedent`
+            <RadioButton
+              checked={this.state.checked}
+              onChange={this.handleChange}
+              label='Subscribe'
+              name='subscription'
+              value='nudj-newsletter'
+              id='subscription'
+            />
+          `}
+        >
+          <RadioButton
+            checked={radio}
+            label='Subscribe'
+            onChange={this.handleToggle}
+            name='radio'
+            value='radio'
+            id='radio'
+          />
+        </ReactCodeSpecimen>
           >
             {checkbox => (
               <div>

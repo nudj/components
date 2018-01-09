@@ -12,6 +12,7 @@ module.exports = {
   Loader: require('./components/loader'),
   Modal: require('./components/modal'),
   Pill: require('./components/pill'),
+  RadioButton: require('./components/radio-button'),
   Select: require('./components/select'),
   StyleChild: require('./components/style-child'),
   Table: require('./components/table'),

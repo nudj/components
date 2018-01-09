@@ -47,6 +47,7 @@ ssh:
 	-@docker rm -f components-container 2> /dev/null || true
 	@docker run --rm -it \
 		--name components-container \
+		-e NPM_TOKEN=${NPM_TOKEN} \
 		-p 0.0.0.0:4000:4000 \
 		-v $(CWD)/.zshrc:/root/.zshrc \
 		-v $(CWD)/src/lib:/usr/src/lib \

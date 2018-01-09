@@ -28,6 +28,11 @@ const greyLight = '#ECECEB'
 const greyLightest = '#F7F7F6'
 const white = '#FFFFFF'
 
+const overlay = {
+  // greyDarker @ 50% opacity
+  50: 'rgba(66, 63, 60, 0.5)'
+}
+
 module.exports = {
   // Brand
   royalBlue: royalBlue,
@@ -61,5 +66,8 @@ module.exports = {
   grey: grey,
   greyLight: greyLight,
   greyLightest: greyLightest,
-  white: white
+  white: white,
+
+  // Overlays
+  overlay
 }

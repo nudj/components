@@ -19,8 +19,12 @@
   "homepage": "https://github.com/nudj/components#readme",
   "standard": {
     "parser": "babel-eslint",
-    "plugins": [ "flowtype" ],
-    "ignore": [ "flow-typed" ]
+    "plugins": [
+      "flowtype"
+    ],
+    "ignore": [
+      "flow-typed"
+    ]
   },
   "dependencies": {
     "@nudj/library": "1.1.0",
@@ -33,7 +37,8 @@
     "prop-types": "15.5.10",
     "react": "15.6.2",
     "react-dom": "15.6.2",
-    "react-dropzone": "4.2.3"
+    "react-dropzone": "4.2.3",
+    "react-modal": "^3.1.10"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",

@@ -71,6 +71,10 @@ module.exports.buttonStyleSheet = StyleSheet.create({
       backgroundColor: colors.dangerLight,
       borderColor: colors.dangerLight
     }
+  },
+  disabled: {
+    pointerEvents: 'none',
+    opacity: 0.25
   }
 })
 
@@ -137,5 +141,9 @@ module.exports.linkStyleSheet = StyleSheet.create({
     ':focus': {
       color: colors.dangerLight
     }
+  },
+  disabled: {
+    pointerEvents: 'none',
+    opacity: 0.25
   }
 })

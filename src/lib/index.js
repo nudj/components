@@ -17,5 +17,6 @@ module.exports = {
   Select: require('./components/select'),
   StyleChild: require('./components/style-child'),
   Table: require('./components/table'),
-  Text: require('./components/text')
+  Text: require('./components/text'),
+  Textarea: require('./components/textarea')
 }

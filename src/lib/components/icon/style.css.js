@@ -16,6 +16,15 @@ const styleSheet = StyleSheet.create({
   /**
    * Stroke based icons
    */
+  close: {
+    stroke: 'currentColor',
+    fill: 'transparent'
+  },
+
+  /**
+   * Legacy
+   * Stroke based icons
+   */
   briefcase: {
     stroke: 'currentColor',
     fill: 'transparent'

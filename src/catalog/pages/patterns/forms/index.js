@@ -137,6 +137,29 @@ export default class FormDocumentation extends Component<Props, State> {
             error='Enter a valid value'
           />
         </ReactCodeSpecimen>
+        <h3>Clearable Input</h3>
+        <p>When the user may frequently be clearing the value of an input, you can make this easy for them by including an `onClear` function</p>
+        <ReactCodeSpecimen
+          code={dedent`
+            <Input
+              onChange={this.handleChange}
+              id='1'
+              name='input'
+              placeholder='Example input'
+              value={value}
+              onClear={this.handleClear}
+            />
+          `}
+        >
+          <Input
+            onChange={this.handleChange}
+            id='input'
+            name='input'
+            placeholder='Example input'
+            value={input}
+            onClear={this.handleChange}
+          />
+        </ReactCodeSpecimen>
         <h3>Icon Input</h3>
         <p>
           Use an icon input where it may be beneficial to the user to give them

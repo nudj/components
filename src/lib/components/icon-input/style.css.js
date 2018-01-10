@@ -7,8 +7,8 @@ const styleSheet = StyleSheet.create({
   icon: {
     pointerEvents: 'none',
     position: 'absolute',
-    top: '50%',
-    transform: `translate(${sizes.regular}, -50%)`
+    left: sizes.regular,
+    top: sizes.regular
   },
   input: {
     paddingLeft: sizes.largeIii

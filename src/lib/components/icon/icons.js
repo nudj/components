@@ -1,4 +1,6 @@
 const icons = {
+  close: require('./icons/close-icon'),
+  // legacy names
   briefcase: require('./icons/briefcase'),
   buildings: require('./icons/buildings'),
   candidates: require('./icons/candidates'),

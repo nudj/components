@@ -24,7 +24,7 @@ type HandlerArgs = {
   stopPropagation: Function
 }
 
-type CheckboxProps = {
+type RadioButtonProps = {
   styleSheet: StyleSheetType,
   checked: boolean,
   Wrapper: React.ElementType,
@@ -35,7 +35,7 @@ type CheckboxProps = {
   label: string
 }
 
-const Checkbox = (props: CheckboxProps) => {
+const RadioButton = (props: RadioButtonProps) => {
   const {
     styleSheet,
     label,
@@ -92,9 +92,9 @@ const Checkbox = (props: CheckboxProps) => {
   )
 }
 
-Checkbox.defaultProps = {
+RadioButton.defaultProps = {
   styleSheet: {},
   Wrapper: 'div'
 }
 
-module.exports = Checkbox
+module.exports = RadioButton

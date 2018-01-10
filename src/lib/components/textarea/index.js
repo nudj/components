@@ -1,8 +1,11 @@
 // @flow
 const React = require('react')
+const ReactTextareaAutosize = require('react-textarea-autosize')
 
 const { css, mergeStyleSheets } = require('../../css')
 const defaultStylesheet = require('./style.css')
+
+const TextareaAutosize = ReactTextareaAutosize.default || ReactTextareaAutosize
 
 type StyleSheetType = {
   root?: string,
@@ -18,9 +21,8 @@ type HandlerArgs = {
   stopPropagation: Function
 }
 
-type InputProps = {
+type TextareaProps = {
   id: string,
-  type: 'text' | 'email' | 'password' | 'search' | 'url',
   Wrapper: React.ElementType,
   ErrorWrapper: React.ElementType,
   onChange: HandlerArgs => mixed,
@@ -31,16 +33,17 @@ type InputProps = {
   name: string,
   styleSheet: StyleSheetType,
   placeholder?: string,
-  value?: string
+  value?: string,
+  autosize?: boolean,
+  rest?: Array<mixed>
 }
 
 const noopHandler = (args: HandlerArgs) => {}
 
-const Input = (props: InputProps) => {
+const Textarea = (props: TextareaProps) => {
   const {
     id,
     name,
-    type,
     required,
     placeholder,
     value,
@@ -50,7 +53,9 @@ const Input = (props: InputProps) => {
     onFocus,
     Wrapper,
     ErrorWrapper,
-    error
+    error,
+    autosize,
+    ...rest
   } = props
 
   const handleEvent = type => event => {
@@ -69,13 +74,21 @@ const Input = (props: InputProps) => {
     <ErrorWrapper className={css(style.error)}>{error}</ErrorWrapper>
   )
 
+  const InputComponent = autosize ? TextareaAutosize : 'textarea'
+
+  if (autosize && (value == null || value === '')) {
+    console.warn(
+      'Initially rendering an autosizing textarea without a value will cause the element to render smaller than desired'
+    )
+  }
+
   return (
     <Wrapper className={css(style.root)}>
-      <input
+      <InputComponent
+        {...rest}
         className={css(style.input, error && style.inputError)}
         id={id}
         name={name}
-        type={type}
         onChange={handleEvent('onChange')}
         onBlur={handleEvent('onBlur')}
         onFocus={handleEvent('onFocus')}
@@ -88,8 +101,7 @@ const Input = (props: InputProps) => {
   )
 }
 
-Input.defaultProps = {
-  type: 'text',
+Textarea.defaultProps = {
   styleSheet: {},
   onChange: noopHandler,
   onBlur: noopHandler,
@@ -98,4 +110,4 @@ Input.defaultProps = {
   ErrorWrapper: 'div'
 }
 
-module.exports = Input
+module.exports = Textarea

@@ -11,6 +11,7 @@ import Checkbox from '../../../../lib/components/checkbox'
 import CheckboxGroup from '../../../../lib/components/checkbox-group'
 import RadioButton from '../../../../lib/components/radio-button'
 import RadioGroup from '../../../../lib/components/radio-group'
+import Textarea from '../../../../lib/components/textarea'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
 
 type Props = {}
@@ -24,7 +25,8 @@ type State = {
   select: string,
   checkboxGroup: Array<string>,
   radio: boolean,
-  radioGroup: string
+  radioGroup: string,
+  textarea: string,
 }
 
 export default class FormDocumentation extends Component<Props, State> {
@@ -44,7 +46,8 @@ export default class FormDocumentation extends Component<Props, State> {
       select: '',
       checkboxGroup: [],
       radio: false,
-      radioGroup: ''
+      radioGroup: '',
+      textarea: ''
     }
   }
 
@@ -82,7 +85,8 @@ export default class FormDocumentation extends Component<Props, State> {
       select,
       checkboxGroup,
       radio,
-      radioGroup
+      radioGroup,
+      textarea
     } = this.state
 
     return (
@@ -156,6 +160,50 @@ export default class FormDocumentation extends Component<Props, State> {
             placeholder='e.g., nu@dj.co'
             onChange={this.handleChange}
             value={iconInput}
+          />
+        </ReactCodeSpecimen>
+        <h3>Textarea</h3>
+        <p>For longer, text based input, use a `Textarea` component as opposed to an Input.</p>
+        <ReactCodeSpecimen
+          code={dedent`
+            <Textarea
+              id='textarea'
+              name='textarea'
+              onChange={this.handleChange}
+              placeholder='Example textarea'
+              value={value}
+            />
+          `}
+        >
+          <Textarea
+            id='textarea'
+            name='textarea'
+            onChange={this.handleChange}
+            placeholder='Example textarea'
+            value={textarea}
+          />
+        </ReactCodeSpecimen>
+        <h3>Textarea with autosizing</h3>
+        <p>In cases where its hard to predict the length of the content, the textarea can be made to resize itself, using <a href='https://github.com/andreypopp/react-textarea-autosize'>react-textarea-autosize</a>.</p>
+        <ReactCodeSpecimen
+          code={dedent`
+            <Textarea
+              id='textarea'
+              name='textarea'
+              onChange={this.handleChange}
+              placeholder='Example textarea'
+              value={value}
+              autosize
+            />
+          `}
+        >
+          <Textarea
+            id='textarea'
+            name='textarea'
+            onChange={this.handleChange}
+            placeholder='Example textarea'
+            value={textarea}
+            autosize
           />
         </ReactCodeSpecimen>
         <h3>Checkbox</h3>

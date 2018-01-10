@@ -38,7 +38,8 @@
     "react": "15.6.2",
     "react-dom": "15.6.2",
     "react-dropzone": "4.2.3",
-    "react-modal": "^3.1.10"
+    "react-modal": "^3.1.10",
+    "react-textarea-autosize": "^5.2.1"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",

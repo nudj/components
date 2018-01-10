@@ -1,6 +1,5 @@
 // @flow
 const React = require('react')
-const uniqueId = require('lodash/uniqueId')
 
 const { css } = require('../../css')
 const Checkbox = require('../checkbox')
@@ -80,7 +79,6 @@ const CheckboxGroup = (props: CheckboxGroupPropTypes) => {
 
           return (
             <Input
-              id={uniqueId(name)}
               name={name}
               classNames={checkboxStyleSheet}
               value={childProps.value}

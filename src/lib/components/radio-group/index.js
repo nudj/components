@@ -1,6 +1,5 @@
 // @flow
 const React = require('react')
-const uniqueId = require('lodash/uniqueId')
 
 const { css } = require('../../css')
 const RadioButton = require('../radio-button')
@@ -72,7 +71,6 @@ const RadioGroup = (props: RadioGroupPropTypes) => {
 
           return (
             <Input
-              id={uniqueId(name)}
               name={name}
               classNames={radioButtonStyleSheet}
               value={childProps.value}

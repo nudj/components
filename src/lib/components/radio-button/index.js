@@ -7,6 +7,7 @@ const defaultStyleSheet = require('./style.css')
 type StyleSheetType = {
   root?: string,
   input?: string,
+  labelContainer?: string,
   icon?: string,
   iconBox?: string,
   iconCheckmark?: string,
@@ -69,7 +70,7 @@ const Checkbox = (props: CheckboxProps) => {
         id={id}
         onChange={onChangeHandler}
       />
-      <label htmlFor={id}>
+      <label htmlFor={id} className={css(style.labelContainer)}>
         <svg className={css(style.icon)} viewBox='0 0 24 24'>
           <rect
             className={css(style.iconCircle)}

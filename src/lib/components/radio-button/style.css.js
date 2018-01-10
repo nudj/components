@@ -10,11 +10,14 @@ const styleSheet = StyleSheet.create({
     opacity: 0,
     position: 'absolute'
   },
+  labelContainer: {
+    display: 'flex',
+    alignItems: 'center'
+  },
   icon: {
     width: '1.5em',
     height: '1.5em',
-    display: 'inline-block',
-    verticalAlign: 'middle'
+    flexShrink: 0
   },
   iconCircle: {
     fill: 'transparent',
@@ -35,8 +38,6 @@ const styleSheet = StyleSheet.create({
     transform: 'scale(1)'
   },
   label: merge(typography.type.regular, {
-    display: 'inline-block',
-    verticalAlign: 'middle',
     color: colors.text,
     paddingLeft: sizes.smallIi,
     userSelect: 'none'

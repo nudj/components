@@ -69,7 +69,7 @@ const Checkbox = (props: CheckboxProps) => {
         id={id}
         onChange={onChangeHandler}
       />
-      <label htmlFor={id}>
+      <label htmlFor={id} className={css(style.labelContainer)}>
         <svg className={css(style.icon)} viewBox='0 0 24 24'>
           <g transform='translate(3 4)' fill='none' fillRule='evenodd'>
             <rect

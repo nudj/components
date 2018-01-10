@@ -10,11 +10,14 @@ const styleSheet = StyleSheet.create({
     opacity: 0,
     position: 'absolute'
   },
+  labelContainer: {
+    display: 'flex',
+    alignItems: 'center'
+  },
   icon: {
     width: '1.5em',
     height: '1.5em',
-    display: 'inline-block',
-    verticalAlign: 'middle'
+    flexShrink: 0
   },
   iconBox: {
     stroke: colors.grey,

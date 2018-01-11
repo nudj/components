@@ -2,6 +2,8 @@
 const React = require('react')
 
 const { css, mergeStyleSheets } = require('../../css')
+const Icon = require('../icon')
+const ButtonContainer = require('../button-container')
 const defaultStylesheet = require('./style.css')
 
 type StyleSheetType = {
@@ -31,7 +33,8 @@ type InputProps = {
   name: string,
   styleSheet: StyleSheetType,
   placeholder?: string,
-  value?: string
+  value?: string,
+  clearable?: boolean
 }
 
 const noopHandler = (args: HandlerArgs) => {}
@@ -50,7 +53,8 @@ const Input = (props: InputProps) => {
     onFocus,
     Wrapper,
     ErrorWrapper,
-    error
+    error,
+    clearable
   } = props
 
   const handleEvent = type => event => {
@@ -63,6 +67,17 @@ const Input = (props: InputProps) => {
     })
   }
 
+  const handleClear = event => {
+    if (clearable) {
+      return onChange({
+        name: name,
+        value: '',
+        preventDefault: event.preventDefault,
+        stopPropagation: event.stopPropagation
+      })
+    }
+  }
+
   const style = mergeStyleSheets(defaultStylesheet, styleSheet)
 
   const errorSection = () => (
@@ -71,18 +86,29 @@ const Input = (props: InputProps) => {
 
   return (
     <Wrapper className={css(style.root)}>
-      <input
-        className={css(style.input, error && style.inputError)}
-        id={id}
-        name={name}
-        type={type}
-        onChange={handleEvent('onChange')}
-        onBlur={handleEvent('onBlur')}
-        onFocus={handleEvent('onFocus')}
-        required={required}
-        placeholder={placeholder}
-        value={value}
-      />
+      <div className={css(style.inputContainer)}>
+        <input
+          className={css(
+            style.input,
+            error && style.inputError,
+            clearable && style.inputWithClear
+          )}
+          id={id}
+          name={name}
+          type={type}
+          onChange={handleEvent('onChange')}
+          onBlur={handleEvent('onBlur')}
+          onFocus={handleEvent('onFocus')}
+          required={required}
+          placeholder={placeholder}
+          value={value}
+        />
+        {clearable && value && (
+          <ButtonContainer style={style.clearButton} onClick={handleClear}>
+            <Icon style={style.icon} name='close' />
+          </ButtonContainer>
+        )}
+      </div>
       {error ? errorSection() : null}
     </Wrapper>
   )

@@ -10,6 +10,9 @@ const {
 
 const stylesheet = StyleSheet.create({
   root: {},
+  inputContainer: {
+    position: 'relative'
+  },
   input: merge(typography.type.regular, {
     backgroundColor: colors.white,
     border: `1px solid ${colors.grey}`,
@@ -39,6 +42,16 @@ const stylesheet = StyleSheet.create({
     ':focus': {
       borderColor: colors.danger
     }
+  },
+  inputWithClear: {
+    paddingRight: sizes.largeIii
+  },
+  clearButton: {
+    position: 'absolute',
+    left: 'auto',
+    right: sizes.regular,
+    top: sizes.regular,
+    lineHeight: 0
   },
   error: merge(typography.type.regular, {
     paddingBottom: sizes.smallI,

@@ -61,8 +61,8 @@ describe('Input', () => {
     })
 
     it('renders an clear button when `clearable` is passed in and the input has a value', () => {
-      const clearableComponent = shallow(<Input value='someval' clearable />)
-      const notClearableComponent = shallow(<Input clearable />)
+      const clearableComponent = shallow(<Input value='someval' onClear={() => {}} />)
+      const notClearableComponent = shallow(<Input onClear={() => {}} />)
       let icon = clearableComponent.find(Icon)
       expect(icon.exists()).to.be.true()
 

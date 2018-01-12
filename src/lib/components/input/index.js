@@ -28,13 +28,14 @@ type InputProps = {
   onChange: HandlerArgs => mixed,
   onBlur: HandlerArgs => mixed,
   onFocus: HandlerArgs => mixed,
+  onClear: HandlerArgs => mixed,
   error?: string,
   required?: boolean,
   name: string,
   styleSheet: StyleSheetType,
   placeholder?: string,
   value?: string,
-  clearable?: boolean
+  onClear?: HandlerArgs => mixed
 }
 
 const noopHandler = (args: HandlerArgs) => {}
@@ -54,8 +55,12 @@ const Input = (props: InputProps) => {
     Wrapper,
     ErrorWrapper,
     error,
-    clearable
+    onClear
   } = props
+
+  const clearable = typeof onClear === 'function'
+  // hack to prevent flow from complaining about `onClear` being optional
+  let onClearHandler = onClear || (_ => {})
 
   const handleEvent = type => event => {
     const actions = { onChange, onBlur, onFocus }
@@ -69,7 +74,10 @@ const Input = (props: InputProps) => {
 
   const handleClear = event => {
     if (clearable) {
-      return onChange({
+      event.preventDefault()
+      if (input != null) input.focus()
+
+      onClearHandler({
         name: name,
         value: '',
         preventDefault: event.preventDefault,
@@ -84,10 +92,16 @@ const Input = (props: InputProps) => {
     <ErrorWrapper className={css(style.error)}>{error}</ErrorWrapper>
   )
 
+  // ref
+  let input = null
+
   return (
     <Wrapper className={css(style.root)}>
       <div className={css(style.inputContainer)}>
         <input
+          ref={c => {
+            input = c
+          }}
           className={css(
             style.input,
             error && style.inputError,
@@ -103,11 +117,12 @@ const Input = (props: InputProps) => {
           placeholder={placeholder}
           value={value}
         />
-        {clearable && value && (
-          <ButtonContainer style={style.clearButton} onClick={handleClear}>
-            <Icon style={style.icon} name='close' />
-          </ButtonContainer>
-        )}
+        {clearable &&
+          value && (
+            <ButtonContainer style={style.clearButton} onClick={handleClear}>
+              <Icon style={style.icon} name='close' />
+            </ButtonContainer>
+          )}
       </div>
       {error ? errorSection() : null}
     </Wrapper>
@@ -120,6 +135,7 @@ Input.defaultProps = {
   onChange: noopHandler,
   onBlur: noopHandler,
   onFocus: noopHandler,
+  onClear: noopHandler,
   Wrapper: 'div',
   ErrorWrapper: 'div'
 }

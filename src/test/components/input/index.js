@@ -141,11 +141,11 @@ describe('Input', () => {
       })
     })
 
-    it('takes fires the onChange function with an empty string when cleared', () => {
-      const onChange = sinon.stub()
+    it('takes fires the onClear function with an empty string when cleared', () => {
+      const onClear = sinon.stub()
       const inputName = 'myInput'
       const component = shallow(
-        <Input name={inputName} onChange={onChange} value='foo' clearable />
+        <Input name={inputName} onClear={onClear} value='foo' clearable />
       )
       const clearButton = component.find(ButtonContainer)
 
@@ -156,7 +156,7 @@ describe('Input', () => {
 
       clearButton.simulate('click', event)
 
-      expect(onChange).to.have.been.calledWith({
+      expect(onClear).to.have.been.calledWith({
         name: inputName,
         value: '',
         preventDefault: event.preventDefault,

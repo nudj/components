@@ -135,7 +135,6 @@ Input.defaultProps = {
   onChange: noopHandler,
   onBlur: noopHandler,
   onFocus: noopHandler,
-  onClear: noopHandler,
   Wrapper: 'div',
   ErrorWrapper: 'div'
 }

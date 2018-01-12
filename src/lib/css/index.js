@@ -16,7 +16,7 @@ type StyleSheetType = {
 }
 
 const mergeStyleSheets = (...stylesheets: Array<StyleSheetType>) => {
-  const keys = Object.keys(...stylesheets)
+  const keys = Object.keys(Object.assign({}, ...stylesheets))
 
   return keys.reduce((classList, className) => {
     const names = flatten(

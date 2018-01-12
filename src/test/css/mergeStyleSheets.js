@@ -44,6 +44,22 @@ describe('mergeStyleSheets', () => {
     })
   })
 
+  it('allows the introduction of new styles', () => {
+    expect(
+      mergeStyleSheets(
+        inputOne,
+        {
+          'darth': 'maul'
+        }
+      )
+    ).to.eql({
+      root: ['Obi'],
+      foo: ['Luke'],
+      baz: ['Jar Jar'],
+      darth: ['maul']
+    })
+  })
+
   it('accepts undefined or null sheets', () => {
     expect(mergeStyleSheets(inputOne, undefined)).to.eql({
       root: ['Obi'],

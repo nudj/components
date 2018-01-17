@@ -10,7 +10,8 @@ import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
 type Props = {}
 
 type State = {
-  active: boolean
+  active: boolean,
+  activeOverflow: boolean
 }
 
 export default class ModalDocumentation extends Component<Props, State> {

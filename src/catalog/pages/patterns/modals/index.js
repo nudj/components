@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import dedent from 'dedent'
 import { Page } from 'catalog'
+import lorem from 'lorem-ipsum'
 
 import { Modal } from '../../../../lib'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
@@ -9,7 +10,8 @@ import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
 type Props = {}
 
 type State = {
-  active: boolean
+  active: boolean,
+  activeOverflow: boolean
 }
 
 export default class ModalDocumentation extends Component<Props, State> {
@@ -17,7 +19,8 @@ export default class ModalDocumentation extends Component<Props, State> {
     super(props)
 
     this.state = {
-      active: false
+      active: false,
+      activeOverflow: false
     }
   }
 
@@ -25,12 +28,22 @@ export default class ModalDocumentation extends Component<Props, State> {
     this.setState({ active: true })
   }
 
+  handleOpenOverflow = () => {
+    this.setState({ activeOverflow: true })
+  }
+
   handleClose = () => {
-    this.setState({ active: false })
+    this.setState({
+      active: false,
+      activeOverflow: false
+    })
   }
 
   render () {
-    const { active } = this.state
+    const {
+      active,
+      activeOverflow
+    } = this.state
 
     return (
       <Page>
@@ -53,6 +66,12 @@ export default class ModalDocumentation extends Component<Props, State> {
           <div>
             <button onClick={this.handleOpen}>Open modal</button>
             <Modal isOpen={active} onRequestClose={this.handleClose}>
+              <button onClick={this.handleClose}>Close modal</button>
+            </Modal>
+            <button onClick={this.handleOpenOverflow}>Open overflowing modal</button>
+            <Modal isOpen={activeOverflow} onRequestClose={this.handleClose}>
+              <button onClick={this.handleClose}>Close modal</button>
+              {lorem({ units: 'paragraphs', count: 20 }).split('\n\n').map((para, i) => <p key={`para${i}`}>{para}</p>)}
               <button onClick={this.handleClose}>Close modal</button>
             </Modal>
           </div>

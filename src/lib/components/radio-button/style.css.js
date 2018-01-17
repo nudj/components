@@ -19,26 +19,25 @@ const styleSheet = StyleSheet.create({
     height: '1.5em',
     flexShrink: 0
   },
-  iconBox: {
+  iconCircle: {
+    fill: 'transparent',
     stroke: colors.grey,
     strokeWidth: '2px'
   },
-  iconCheckmark: {
+  iconDot: {
     fill: colors.midRed,
     transformOrigin: '50% 50%',
     transition: 'transform 150ms, opacity 150ms'
   },
-  iconCheckmarkUnchecked: {
+  iconDotUnchecked: {
     opacity: 0,
     transform: 'scale(0)'
   },
-  iconCheckmarkChecked: {
+  iconDotChecked: {
     opacity: 1,
     transform: 'scale(1)'
   },
   label: merge(typography.type.regular, {
-    display: 'inline-block',
-    verticalAlign: 'middle',
     color: colors.text,
     paddingLeft: sizes.smallIi,
     userSelect: 'none'

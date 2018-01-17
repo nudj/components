@@ -9,6 +9,9 @@ import InputField from '../../../../lib/components/input-field'
 import Select from '../../../../lib/components/select'
 import Checkbox from '../../../../lib/components/checkbox'
 import CheckboxGroup from '../../../../lib/components/checkbox-group'
+import RadioButton from '../../../../lib/components/radio-button'
+import RadioGroup from '../../../../lib/components/radio-group'
+import Textarea from '../../../../lib/components/textarea'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
 
 type Props = {}
@@ -20,7 +23,10 @@ type State = {
   checkbox: boolean,
   inputField: string,
   select: string,
-  checkboxGroup: Array<string>
+  checkboxGroup: Array<string>,
+  radio: boolean,
+  radioGroup: string,
+  textarea: string,
 }
 
 export default class FormDocumentation extends Component<Props, State> {
@@ -38,7 +44,10 @@ export default class FormDocumentation extends Component<Props, State> {
       checkbox: false,
       inputField: '',
       select: '',
-      checkboxGroup: []
+      checkboxGroup: [],
+      radio: false,
+      radioGroup: '',
+      textarea: ''
     }
   }
 
@@ -74,7 +83,10 @@ export default class FormDocumentation extends Component<Props, State> {
       checkbox,
       inputField,
       select,
-      checkboxGroup
+      checkboxGroup,
+      radio,
+      radioGroup,
+      textarea
     } = this.state
 
     return (
@@ -125,6 +137,29 @@ export default class FormDocumentation extends Component<Props, State> {
             error='Enter a valid value'
           />
         </ReactCodeSpecimen>
+        <h3>Clearable Input</h3>
+        <p>When the user may frequently be clearing the value of an input, you can make this easy for them by including an `onClear` function</p>
+        <ReactCodeSpecimen
+          code={dedent`
+            <Input
+              onChange={this.handleChange}
+              id='1'
+              name='input'
+              placeholder='Example input'
+              value={value}
+              onClear={this.handleClear}
+            />
+          `}
+        >
+          <Input
+            onChange={this.handleChange}
+            id='input'
+            name='input'
+            placeholder='Example input'
+            value={input}
+            onClear={this.handleChange}
+          />
+        </ReactCodeSpecimen>
         <h3>Icon Input</h3>
         <p>
           Use an icon input where it may be beneficial to the user to give them
@@ -148,6 +183,50 @@ export default class FormDocumentation extends Component<Props, State> {
             placeholder='e.g., nu@dj.co'
             onChange={this.handleChange}
             value={iconInput}
+          />
+        </ReactCodeSpecimen>
+        <h3>Textarea</h3>
+        <p>For longer, text based input, use a `Textarea` component as opposed to an Input.</p>
+        <ReactCodeSpecimen
+          code={dedent`
+            <Textarea
+              id='textarea'
+              name='textarea'
+              onChange={this.handleChange}
+              placeholder='Example textarea'
+              value={value}
+            />
+          `}
+        >
+          <Textarea
+            id='textarea'
+            name='textarea'
+            onChange={this.handleChange}
+            placeholder='Example textarea'
+            value={textarea}
+          />
+        </ReactCodeSpecimen>
+        <h3>Textarea with autosizing</h3>
+        <p>In cases where its hard to predict the length of the content, the textarea can be made to resize itself, using <a href='https://github.com/andreypopp/react-textarea-autosize'>react-textarea-autosize</a>.</p>
+        <ReactCodeSpecimen
+          code={dedent`
+            <Textarea
+              id='textarea'
+              name='textarea'
+              onChange={this.handleChange}
+              placeholder='Example textarea'
+              value={value}
+              autosize
+            />
+          `}
+        >
+          <Textarea
+            id='textarea'
+            name='textarea'
+            onChange={this.handleChange}
+            placeholder='Example textarea'
+            value={textarea}
+            autosize
           />
         </ReactCodeSpecimen>
         <h3>Checkbox</h3>
@@ -214,18 +293,20 @@ export default class FormDocumentation extends Component<Props, State> {
           binary options, such as a facetted search.
         </p>
         <ReactCodeSpecimen
-          code={dedent`<CheckboxGroup
-            name='checkboxGroup'
-            onChange={this.handleArrayChange}
-            values={checkboxGroup}
-          >
-            {Checkbox => (
-              <div>
-                <Checkbox value='1' label='One' />
-                <Checkbox value='2' label='Two' />
-              </div>
-            )}
-          </CheckboxGroup>`}
+          code={dedent`
+            <CheckboxGroup
+              name='checkboxGroup'
+              onChange={this.handleArrayChange}
+              values={checkboxGroup}
+            >
+              {Checkbox => (
+                <div>
+                  {checkbox({ key: '1', value: '1', label: 'One' })}
+                  {checkbox({ key: '2', value: '2', label: 'Two' })}
+                </div>
+              )}
+            </CheckboxGroup>
+          `}
         >
           <CheckboxGroup
             name='checkboxGroup'
@@ -234,11 +315,74 @@ export default class FormDocumentation extends Component<Props, State> {
           >
             {checkbox => (
               <div>
-                {checkbox({ id: '1', key: '1', value: '1', label: 'One' })}
-                {checkbox({ id: '2', key: '2', value: '2', label: 'Two' })}
+                {checkbox({ key: '1', value: '1', label: 'One' })}
+                {checkbox({ key: '2', value: '2', label: 'Two' })}
               </div>
             )}
           </CheckboxGroup>
+        </ReactCodeSpecimen>
+        <h3>Radio Button</h3>
+        <p>
+          Using a radio button used on its own is ill advised, as there are
+          little to no scenarios where it is an appropriate choice for an
+          interface. Use this component only where you need different control to
+          that a the RadioGroup provides you. Otherwise, refer to
+          the RadioGroup&#39;s documentation
+        </p>
+        <ReactCodeSpecimen
+          code={dedent`
+            <RadioButton
+              checked={this.state.checked}
+              onChange={this.handleChange}
+              label='Subscribe'
+              name='subscription'
+              value='nudj-newsletter'
+              id='subscription'
+            />
+          `}
+        >
+          <RadioButton
+            checked={radio}
+            label='Subscribe'
+            onChange={this.handleToggle}
+            name='radio'
+            value='radio'
+            id='radio'
+          />
+        </ReactCodeSpecimen>
+        <h3>Radio Group</h3>
+        <p>
+          Use a RadioGroup where the user needs to choose one
+          option from many.
+        </p>
+        <ReactCodeSpecimen
+          code={dedent`
+            <RadioGroup
+              name='RadioGroup'
+              onChange={this.handleChange}
+              value={radioGroup}
+            >
+              {radio => (
+                <div>
+                  {radio({ key: '1', value: '1', label: 'One' })}
+                  {radio({ key: '2', value: '2', label: 'Two' })}
+                </div>
+              )}
+            </RadioGroup>
+          `}
+        >
+          <RadioGroup
+            name='radioGroup'
+            onChange={this.handleChange}
+            value={radioGroup}
+          >
+            {radio => (
+              <div>
+                {radio({ key: '1', value: '1', label: 'One' })}
+                {radio({ key: '2', value: '2', label: 'Two' })}
+              </div>
+            )}
+          </RadioGroup>
         </ReactCodeSpecimen>
         <h3>Input field</h3>
         <p>

@@ -11,17 +11,29 @@ type Props = {
   Component: React.ElementType,
   href: string,
   inline?: boolean,
+  disabled?: boolean,
   style: Style,
   rest?: Array<mixed>
 }
 
 const Link = (props: Props) => {
-  const { children, Component, href, inline, style, ...rest } = props
+  const {
+    children,
+    Component,
+    href: intendedHref,
+    inline,
+    style,
+    disabled,
+    ...rest
+  } = props
   const composedStyle = mergeStyle(inline ? defaultStyle.inline : null, style)
+
+  const href = disabled ? '' : intendedHref
 
   return (
     <InlineAction
       {...rest}
+      disabled={disabled}
       href={href}
       Component={Component}
       style={composedStyle}

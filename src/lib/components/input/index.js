@@ -2,6 +2,8 @@
 const React = require('react')
 
 const { css, mergeStyleSheets } = require('../../css')
+const Icon = require('../icon')
+const ButtonContainer = require('../button-container')
 const defaultStylesheet = require('./style.css')
 
 type StyleSheetType = {
@@ -20,18 +22,20 @@ type HandlerArgs = {
 
 type InputProps = {
   id: string,
-  type: 'text' | 'email' | 'password' | 'search' | 'url' | 'textarea',
+  type: 'text' | 'email' | 'password' | 'search' | 'url',
   Wrapper: React.ElementType,
   ErrorWrapper: React.ElementType,
   onChange: HandlerArgs => mixed,
   onBlur: HandlerArgs => mixed,
   onFocus: HandlerArgs => mixed,
+  onClear: HandlerArgs => mixed,
   error?: string,
   required?: boolean,
   name: string,
   styleSheet: StyleSheetType,
   placeholder?: string,
-  value?: string
+  value?: string,
+  onClear?: HandlerArgs => mixed
 }
 
 const noopHandler = (args: HandlerArgs) => {}
@@ -50,8 +54,13 @@ const Input = (props: InputProps) => {
     onFocus,
     Wrapper,
     ErrorWrapper,
-    error
+    error,
+    onClear
   } = props
+
+  const clearable = typeof onClear === 'function'
+  // hack to prevent flow from complaining about `onClear` being optional
+  let onClearHandler = onClear || (_ => {})
 
   const handleEvent = type => event => {
     const actions = { onChange, onBlur, onFocus }
@@ -63,27 +72,58 @@ const Input = (props: InputProps) => {
     })
   }
 
-  const InputComponent = type === 'textarea' ? 'textarea' : 'input'
+  const handleClear = event => {
+    if (clearable) {
+      event.preventDefault()
+      if (input != null) input.focus()
+
+      onClearHandler({
+        name: name,
+        value: '',
+        preventDefault: event.preventDefault,
+        stopPropagation: event.stopPropagation
+      })
+    }
+  }
+
   const style = mergeStyleSheets(defaultStylesheet, styleSheet)
 
   const errorSection = () => (
     <ErrorWrapper className={css(style.error)}>{error}</ErrorWrapper>
   )
 
+  // ref
+  let input = null
+
   return (
     <Wrapper className={css(style.root)}>
-      <InputComponent
-        className={css(style.input, error && style.inputError)}
-        id={id}
-        name={name}
-        type={type}
-        onChange={handleEvent('onChange')}
-        onBlur={handleEvent('onBlur')}
-        onFocus={handleEvent('onFocus')}
-        required={required}
-        placeholder={placeholder}
-        value={value}
-      />
+      <div className={css(style.inputContainer)}>
+        <input
+          ref={c => {
+            input = c
+          }}
+          className={css(
+            style.input,
+            error && style.inputError,
+            clearable && style.inputWithClear
+          )}
+          id={id}
+          name={name}
+          type={type}
+          onChange={handleEvent('onChange')}
+          onBlur={handleEvent('onBlur')}
+          onFocus={handleEvent('onFocus')}
+          required={required}
+          placeholder={placeholder}
+          value={value}
+        />
+        {clearable &&
+          value && (
+            <ButtonContainer style={style.clearButton} onClick={handleClear}>
+              <Icon style={style.icon} name='close' />
+            </ButtonContainer>
+          )}
+      </div>
       {error ? errorSection() : null}
     </Wrapper>
   )

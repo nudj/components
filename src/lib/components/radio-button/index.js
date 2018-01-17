@@ -7,6 +7,7 @@ const defaultStyleSheet = require('./style.css')
 type StyleSheetType = {
   root?: string,
   input?: string,
+  labelContainer?: string,
   icon?: string,
   iconBox?: string,
   iconCheckmark?: string,
@@ -23,7 +24,7 @@ type HandlerArgs = {
   stopPropagation: Function
 }
 
-type CheckboxProps = {
+type RadioButtonProps = {
   styleSheet: StyleSheetType,
   checked: boolean,
   Wrapper: React.ElementType,
@@ -34,7 +35,7 @@ type CheckboxProps = {
   label: string
 }
 
-const Checkbox = (props: CheckboxProps) => {
+const RadioButton = (props: RadioButtonProps) => {
   const {
     styleSheet,
     label,
@@ -61,7 +62,7 @@ const Checkbox = (props: CheckboxProps) => {
   return (
     <Wrapper className={css(style.wrapper)}>
       <input
-        type='checkbox'
+        type='radio'
         name={name}
         value={value}
         className={css(style.input)}
@@ -71,25 +72,19 @@ const Checkbox = (props: CheckboxProps) => {
       />
       <label htmlFor={id} className={css(style.labelContainer)}>
         <svg className={css(style.icon)} viewBox='0 0 24 24'>
-          <g transform='translate(3 4)' fill='none' fillRule='evenodd'>
-            <rect
-              className={css(style.iconBox)}
-              x={1}
-              y={1}
-              width={14}
-              height={14}
-              rx={4}
-            />
-            <path
-              className={css(
-                style.iconCheckmark,
-                checked
-                  ? style.iconCheckmarkChecked
-                  : style.iconCheckmarkUnchecked
-              )}
-              d='M8 12L3 7l2-2 3 3 8-8 2 2z'
-            />
-          </g>
+          <rect
+            className={css(style.iconCircle)}
+            x='5' y='5' width='14' height='14' rx='7'
+          />
+          <circle
+            className={css(
+              style.iconDot,
+              checked ? style.iconDotChecked : style.iconDotUnchecked
+            )}
+            cx='12'
+            cy='12'
+            r='4'
+          />
         </svg>
         <span className={css(style.label)}>{label}</span>
       </label>
@@ -97,9 +92,9 @@ const Checkbox = (props: CheckboxProps) => {
   )
 }
 
-Checkbox.defaultProps = {
+RadioButton.defaultProps = {
   styleSheet: {},
   Wrapper: 'div'
 }
 
-module.exports = Checkbox
+module.exports = RadioButton

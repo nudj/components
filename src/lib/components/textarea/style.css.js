@@ -10,9 +10,6 @@ const {
 
 const stylesheet = StyleSheet.create({
   root: {},
-  inputContainer: {
-    position: 'relative'
-  },
   input: merge(typography.type.regular, {
     backgroundColor: colors.white,
     border: `1px solid ${colors.grey}`,
@@ -25,6 +22,8 @@ const stylesheet = StyleSheet.create({
     paddingTop: sizes.smallI,
     transition: 'box-shadow 150ms ease-in-out',
     width: '100%',
+    minHeight: '2.884615385rem',
+    verticalAlign: 'top',
     ':focus': {
       boxShadow: utilities.boxShadow[10].wide,
       borderColor: colors.primary,
@@ -42,16 +41,6 @@ const stylesheet = StyleSheet.create({
     ':focus': {
       borderColor: colors.danger
     }
-  },
-  inputWithClear: {
-    paddingRight: sizes.largeIii
-  },
-  clearButton: {
-    position: 'absolute',
-    left: 'auto',
-    right: sizes.regular,
-    top: sizes.regular,
-    lineHeight: 0
   },
   error: merge(typography.type.regular, {
     paddingBottom: sizes.smallI,

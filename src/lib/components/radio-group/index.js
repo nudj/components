@@ -2,45 +2,45 @@
 const React = require('react')
 
 const { css } = require('../../css')
-const Checkbox = require('../checkbox')
+const RadioButton = require('../radio-button')
 
 type ChildPropTypes = {
   value: string,
   label: string
 }
 
-type CheckboxClassList = {
+type RadioButtonClassList = {
   root?: string,
-  checkbox?: string,
+  radioButton?: string,
   wrapper?: string,
   label?: string
 }
 
 type HandlerArgs = {
   name: string,
-  values: Array<string>,
+  value: string,
   preventDefault: Function,
   stopPropagation: Function
 }
 
-type CheckboxGroupPropTypes = {
+type RadioGroupPropTypes = {
   Input: React.ElementType,
   required?: boolean,
-  checkboxStyleSheet: CheckboxClassList,
+  radioButtonStyleSheet: RadioButtonClassList,
   children: Function => React.Node,
   onChange: HandlerArgs => mixed,
-  values: Array<string>,
+  value: string,
   styles?: Object,
   name: string
 }
 
-const CheckboxGroup = (props: CheckboxGroupPropTypes) => {
+const RadioGroup = (props: RadioGroupPropTypes) => {
   const {
     Input,
     required,
-    checkboxStyleSheet,
+    radioButtonStyleSheet,
     children,
-    values,
+    value,
     name,
     onChange,
     styles
@@ -55,17 +55,9 @@ const CheckboxGroup = (props: CheckboxGroupPropTypes) => {
     preventDefault: Function,
     stopPropagation: Function
   }) => {
-    let newValues
-
-    if (values.includes(value)) {
-      newValues = values.filter(val => val !== value)
-    } else {
-      newValues = [...values, value]
-    }
-
     onChange({
       name,
-      values: newValues,
+      value: value,
       preventDefault: preventDefault,
       stopPropagation: stopPropagation
     })
@@ -75,12 +67,12 @@ const CheckboxGroup = (props: CheckboxGroupPropTypes) => {
     <div className={css(styles)}>
       {children &&
         children((childProps: ChildPropTypes) => {
-          const checked = values.includes(childProps.value)
+          const checked = value === childProps.value
 
           return (
             <Input
               name={name}
-              classNames={checkboxStyleSheet}
+              classNames={radioButtonStyleSheet}
               value={childProps.value}
               label={childProps.label}
               onChange={handleChange}
@@ -94,11 +86,11 @@ const CheckboxGroup = (props: CheckboxGroupPropTypes) => {
   )
 }
 
-CheckboxGroup.defaultProps = {
-  Input: Checkbox,
+RadioGroup.defaultProps = {
+  Input: RadioButton,
   values: [],
   required: false,
-  checkboxStyleSheet: {}
+  radioButtonStyleSheet: {}
 }
 
-module.exports = CheckboxGroup
+module.exports = RadioGroup

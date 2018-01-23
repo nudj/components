@@ -29,6 +29,13 @@ type ContactCardProps = {
   styleSheet: StyleSheetType
 }
 
+const renderContactInfo = (jobTitle, company) => {
+  if (!jobTitle && !company) return ''
+  if (!jobTitle) return `Works at ${company}`
+  if (!company) return jobTitle
+  return `${jobTitle} at ${company}`
+}
+
 const ContactCard = (props: ContactCardProps) => {
   const {
     name,
@@ -51,7 +58,7 @@ const ContactCard = (props: ContactCardProps) => {
         {name}
       </Text>
       <Text element='span' size='smallI' style={style.attributes}>
-        {jobTitle} at {company}
+        {renderContactInfo(jobTitle, company)}
       </Text>
       {recommendedFor.length > 0 && (
         <div className={css(style.recommendedForContainer)}>

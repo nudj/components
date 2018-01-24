@@ -31,7 +31,7 @@ type ContactCardProps = {
 
 const renderContactInfo = (jobTitle, company) => {
   if (!jobTitle && !company) return ''
-  if (!jobTitle) return `Works at ${company}`
+  if (!jobTitle) return company
   if (!company) return jobTitle
   return `${jobTitle} at ${company}`
 }

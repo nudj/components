@@ -286,13 +286,13 @@ const modifiers = StyleSheet.create({
 
   // Typography
   i: { fontStyle: 'italic' },
-  
+
   left: { textAlign: 'left' },
   center: { textAlign: 'center' },
   right: { textAlign: 'right' },
 
   // Misc
-  ofHide: { overflow: 'hidden' },
+  ofHide: { overflow: 'hidden' }
 })
 
 module.exports = modifiers

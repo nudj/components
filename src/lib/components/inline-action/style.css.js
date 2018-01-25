@@ -15,7 +15,7 @@ module.exports.buttonStyleSheet = StyleSheet.create({
     paddingLeft: sizes.largeI,
     textAlign: 'center',
     textDecoration: 'none',
-    transition: 'all 150ms',
+    transition: 'backgroundColor 150ms',
     ':active': {
       boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.1)'
     }

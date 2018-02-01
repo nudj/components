@@ -25,6 +25,7 @@ const stylesheet = StyleSheet.create({
     paddingTop: sizes.smallI,
     transition: 'box-shadow 150ms ease-in-out',
     width: '100%',
+    appearance: 'none',
     ':focus': {
       boxShadow: utilities.boxShadow[10].wide,
       borderColor: colors.primary,

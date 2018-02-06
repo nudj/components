@@ -292,7 +292,10 @@ const modifiers = StyleSheet.create({
   right: { textAlign: 'right' },
 
   // Misc
-  ofHide: { overflow: 'hidden' }
+  ofHide: { overflow: 'hidden' },
+  rotate90: { transform: 'rotate(90deg)' },
+  rotate180: { transform: 'rotate(180deg)' },
+  rotate270: { transform: 'rotate(270deg)' }
 })
 
 module.exports = modifiers

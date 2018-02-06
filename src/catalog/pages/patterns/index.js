@@ -47,6 +47,11 @@ const patterns = orderBy(
       path: '/patterns/modals',
       title: 'Modals',
       content: require('./modals')
+    },
+    {
+      path: '/patterns/data-visualisation',
+      title: 'Data Visualisation',
+      content: require('./data-visualisation')
     }
   ],
   'title'

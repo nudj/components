@@ -1,3 +1,4 @@
+/* global Style */
 // @flow
 const React = require('react')
 
@@ -7,7 +8,7 @@ const icons = require('./icons')
 
 type IconProps = {
   name: string,
-  style?: Object
+  style?: Style,
 }
 
 const Icon = (props: IconProps) => {

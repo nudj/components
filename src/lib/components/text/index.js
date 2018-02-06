@@ -1,3 +1,4 @@
+/* global Style */
 // @flow
 const React = require('react')
 
@@ -6,7 +7,7 @@ const styleSheet = require('./style.css')
 
 type TextProps = {
   children: React.Node,
-  style?: Object,
+  style?: Style,
   element: React.ElementType,
   size:
     | 'largeVi'

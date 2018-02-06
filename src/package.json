@@ -1,6 +1,6 @@
 {
   "name": "@nudj/components",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Nudj React Component Library",
   "main": "lib/index.js",
   "repository": {

@@ -1,6 +1,7 @@
 const { StyleSheet } = require('./')
 const colors = require('./colors')
 const sizes = require('./sizes')
+const typography = require('./typography')
 
 const modifiers = StyleSheet.create({
   // Padding
@@ -285,11 +286,36 @@ const modifiers = StyleSheet.create({
   bgWhite: { backgroundColor: colors.white },
 
   // Typography
+  bold: { fontWeight: typography.fontWeight.bold },
+  light: { fontWeight: typography.fontWeight.light },
+
+  noUnderline: { textDecoriation: 'none' },
+  underline: { textDecoriation: 'underline' },
+
+  uppercase: { textTransform: 'uppercase' },
+  lowercase: { textTransform: 'lowercase' },
+  sentencecase: { textTransform: 'normal' },
+
+  wrap: { whiteSpace: 'normal' },
+  nowrap: { whiteSpace: 'nowrap' },
+
   i: { fontStyle: 'italic' },
+  roman: { fontStyle: 'normal' },
 
   left: { textAlign: 'left' },
   center: { textAlign: 'center' },
   right: { textAlign: 'right' },
+
+  // Display
+  dib: { display: 'inline-block' },
+  di: { display: 'inline' },
+  db: { display: 'block' },
+
+  // Position
+  relative: { position: 'relative' },
+  absolute: { position: 'absolute' },
+  static: { position: 'static' },
+  fixed: { position: 'absolute' },
 
   // Misc
   ofHide: { overflow: 'hidden' },

@@ -1,4 +1,4 @@
-const { StyleSheet, colors } = require('../../css')
+const { StyleSheet, sizes, colors } = require('../../css')
 
 const stylesheet = StyleSheet.create({
   root: {
@@ -22,6 +22,10 @@ const stylesheet = StyleSheet.create({
   },
   label: {
     marginLeft: 0
+  },
+  comparator: {
+    color: colors.grey,
+    marginTop: sizes.smallIi
   }
 })
 

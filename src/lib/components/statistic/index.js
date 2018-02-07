@@ -21,6 +21,7 @@ type Props = {
   label: React.Node,
   direction?: 'asc' | 'desc',
   correlation?: 'positive' | 'negative',
+  comparator?: string,
   styleSheet: StyleSheet,
 }
 
@@ -35,7 +36,15 @@ const getDirectionIcon = (direction, style) => {
   }
 }
 
-const Statistic = ({ value, label, direction, correlation, styleSheet }: Props) => {
+const Statistic = (props: Props) => {
+  const {
+    value,
+    label,
+    direction,
+    correlation,
+    comparator,
+    styleSheet
+  } = props
   const style = mergeStyleSheets(defaultStyleSheet, styleSheet)
 
   return (
@@ -51,6 +60,15 @@ const Statistic = ({ value, label, direction, correlation, styleSheet }: Props) 
       <Text element='dd' style={style.label}>
         {label}
       </Text>
+      { comparator && (
+        <Text
+          element='div'
+          size='smallI'
+          style={style.comparator}
+        >
+          {comparator}
+        </Text>
+      )}
     </div>
   )
 }

@@ -17,6 +17,7 @@ const styleSheet = StyleSheet.create({
     width: 'auto',
     background: 'transparent',
     borderColor: 'transparent',
+    borderWidth: 0,
     color: 'currentColor',
     ':hover': {
       background: 'transparent',

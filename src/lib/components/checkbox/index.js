@@ -31,7 +31,8 @@ type CheckboxProps = {
   id: string,
   name: string,
   value: string,
-  label: string
+  label: string,
+  presentation?: boolean
 }
 
 const Checkbox = (props: CheckboxProps) => {
@@ -43,7 +44,8 @@ const Checkbox = (props: CheckboxProps) => {
     onChange,
     name,
     value,
-    id
+    id,
+    presentation
   } = props
 
   const onChangeHandler = event => {
@@ -68,6 +70,7 @@ const Checkbox = (props: CheckboxProps) => {
         checked={checked}
         id={id}
         onChange={onChangeHandler}
+        tabIndex={presentation ? -1 : 0}
       />
       <label htmlFor={id} className={css(style.labelContainer)}>
         <svg className={css(style.icon)} viewBox='0 0 24 24'>
@@ -99,7 +102,8 @@ const Checkbox = (props: CheckboxProps) => {
 
 Checkbox.defaultProps = {
   styleSheet: {},
-  Wrapper: 'div'
+  Wrapper: 'div',
+  onChange: () => {}
 }
 
 module.exports = Checkbox

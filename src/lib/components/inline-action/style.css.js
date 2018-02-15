@@ -87,7 +87,7 @@ module.exports.linkStyleSheet = StyleSheet.create({
     paddingBottom: sizes.smallI,
     paddingLeft: sizes.largeI,
     textAlign: 'center',
-    transition: 'all 150ms',
+    transition: 'color 150ms',
     borderWidth: 0,
     cursor: 'pointer',
     textDecoration: 'underline',

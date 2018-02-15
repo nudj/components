@@ -1,6 +1,7 @@
 module.exports = {
   Align: require('./components/align'),
   Button: require('./components/button'),
+  ButtonContainer: require('./components/button-container'),
   Card: require('./components/card'),
   Checkbox: require('./components/checkbox'),
   ContactCard: require('./components/contact-card'),

@@ -8,11 +8,13 @@ const styleSheet = StyleSheet.create({
   },
   input: {
     opacity: 0,
-    position: 'absolute'
+    position: 'absolute',
+    cursor: 'inherit'
   },
   labelContainer: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    cursor: 'inherit'
   },
   icon: {
     width: '1.5em',

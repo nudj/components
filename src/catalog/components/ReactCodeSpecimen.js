@@ -3,7 +3,7 @@ import { ReactSpecimen, CodeSpecimen } from 'catalog'
 
 const getStyle = () => ({
   codeSpecimenWrapper: {
-    marginTop: '-48px'
+    marginTop: '-24px'
   }
 })
 

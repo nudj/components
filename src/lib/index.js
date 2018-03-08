@@ -4,6 +4,7 @@ module.exports = {
   ButtonContainer: require('./components/button-container'),
   Card: require('./components/card'),
   Checkbox: require('./components/checkbox'),
+  CheckboxGroup: require('./components/checkbox-group'),
   ContactCard: require('./components/contact-card'),
   Dropzone: require('./components/dropzone'),
   Icon: require('./components/icon'),

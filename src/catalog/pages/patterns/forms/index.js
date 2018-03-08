@@ -9,6 +9,7 @@ import InputField from '../../../../lib/components/input-field'
 import Select from '../../../../lib/components/select'
 import Checkbox from '../../../../lib/components/checkbox'
 import CheckboxGroup from '../../../../lib/components/checkbox-group'
+import SegmentedControl from '../../../../lib/components/segmented-control'
 import RadioButton from '../../../../lib/components/radio-button'
 import RadioGroup from '../../../../lib/components/radio-group'
 import Textarea from '../../../../lib/components/textarea'
@@ -26,6 +27,7 @@ type State = {
   checkboxGroup: Array<string>,
   radio: boolean,
   radioGroup: string,
+  segmentedControl: string,
   textarea: string,
 }
 
@@ -47,6 +49,7 @@ export default class FormDocumentation extends Component<Props, State> {
       checkboxGroup: [],
       radio: false,
       radioGroup: '',
+      segmentedControl: '',
       textarea: ''
     }
   }
@@ -86,6 +89,7 @@ export default class FormDocumentation extends Component<Props, State> {
       checkboxGroup,
       radio,
       radioGroup,
+      segmentedControl,
       textarea
     } = this.state
 
@@ -384,6 +388,40 @@ export default class FormDocumentation extends Component<Props, State> {
             )}
           </RadioGroup>
         </ReactCodeSpecimen>
+        <h3>Segmented Control</h3>
+        <p>Similar to a RadioGroup, you should use a Segmented Control where the user must choose one option from many, however with the subtle difference that it must display a different view.</p>
+        <ReactCodeSpecimen
+          code={dedent`
+            <SegmentedControl
+              name='segmentedControl'
+              onChange={this.handleChange}
+              value={segmentedControl}
+            >
+              {segment => (
+                <div>
+                  {segment({ id: '1', key: '1', value: '1', label: 'One' })}
+                  {segment({ id: '2', key: '2', value: '2', label: 'Two' })}
+                  {segment({ id: '3', key: '3', value: '3', label: 'Three' })}
+                </div>
+              )}
+            </SegmentedControl>
+          `}
+        >
+          <SegmentedControl
+            name='segmentedControl'
+            onChange={this.handleChange}
+            value={segmentedControl}
+          >
+            {segment => (
+              <div>
+                {segment({ id: '1', key: '1', value: '1', label: 'One' })}
+                {segment({ id: '2', key: '2', value: '2', label: 'Two' })}
+                {segment({ id: '3', key: '3', value: '3', label: 'Three' })}
+              </div>
+            )}
+          </SegmentedControl>
+        </ReactCodeSpecimen>
+
         <h3>Input field</h3>
         <p>
           Add context to inputs by wrapping them in an input field component.

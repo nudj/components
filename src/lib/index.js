@@ -17,6 +17,8 @@ module.exports = {
   RadioButton: require('./components/radio-button'),
   RadioGroup: require('./components/radio-group'),
   Select: require('./components/select'),
+  SelectablePill: require('./components/selectable-pill'),
+  SelectablePillGroup: require('./components/selectable-pill-group'),
   Statistic: require('./components/statistic'),
   StyleChild: require('./components/style-child'),
   Table: require('./components/table'),

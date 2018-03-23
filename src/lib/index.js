@@ -1,5 +1,6 @@
 module.exports = {
   Align: require('./components/align'),
+  AnimateHeight: require('./components/animate-height'),
   Button: require('./components/button'),
   ButtonContainer: require('./components/button-container'),
   Card: require('./components/card'),

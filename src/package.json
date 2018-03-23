@@ -37,6 +37,7 @@
     "lorem-ipsum": "^1.0.4",
     "prop-types": "15.5.10",
     "react": "15.6.2",
+    "react-animate-height": "^0.10.10",
     "react-dom": "15.6.2",
     "react-dropzone": "4.2.3",
     "react-modal": "^3.1.10",

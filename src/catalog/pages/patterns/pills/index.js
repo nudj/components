@@ -4,6 +4,7 @@ import dedent from 'dedent'
 import { Page } from 'catalog'
 
 import Pill from '../../../../lib/components/pill'
+import PillGroup from '../../../../lib/components/pill-group'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
 import style from './style.css'
 
@@ -31,6 +32,18 @@ const PillDocumentation = () => {
             whisper
           </Pill>
         </div>
+      </ReactCodeSpecimen>
+      <h3>Pill Group</h3>
+      <p>
+        Use a pill group where you need to represent many related yet simple
+        information points in a compact way
+      </p>
+      <ReactCodeSpecimen
+        code={dedent`
+          <PillGroup values={['One', 'Two', 'Three', 'Four']} />
+        `}
+      >
+        <PillGroup values={['One', 'Two', 'Three', 'Four']} />
       </ReactCodeSpecimen>
     </Page>
   )

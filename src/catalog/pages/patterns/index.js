@@ -52,6 +52,11 @@ const patterns = orderBy(
       path: '/patterns/data-visualisation',
       title: 'Data Visualisation',
       content: require('./data-visualisation')
+    },
+    {
+      path: '/patterns/animation',
+      title: 'Animation',
+      content: require('./animation')
     }
   ],
   'title'

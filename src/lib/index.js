@@ -15,6 +15,7 @@ module.exports = {
   Loader: require('./components/loader'),
   Modal: require('./components/modal'),
   Pill: require('./components/pill'),
+  PillGroup: require('./components/pill-group'),
   RadioButton: require('./components/radio-button'),
   RadioGroup: require('./components/radio-group'),
   Select: require('./components/select'),

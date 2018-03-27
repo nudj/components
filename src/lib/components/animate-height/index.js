@@ -1,2 +1,2 @@
 const AnimateHeight = require('react-animate-height')
-module.exports = AnimateHeight
+module.exports = AnimateHeight.default || AnimateHeight

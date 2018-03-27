@@ -9,8 +9,11 @@ import InputField from '../../../../lib/components/input-field'
 import Select from '../../../../lib/components/select'
 import Checkbox from '../../../../lib/components/checkbox'
 import CheckboxGroup from '../../../../lib/components/checkbox-group'
+import SegmentedControl from '../../../../lib/components/segmented-control'
 import RadioButton from '../../../../lib/components/radio-button'
 import RadioGroup from '../../../../lib/components/radio-group'
+import SelectablePill from '../../../../lib/components/selectable-pill'
+import SelectablePillGroup from '../../../../lib/components/selectable-pill-group'
 import Textarea from '../../../../lib/components/textarea'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
 
@@ -26,6 +29,9 @@ type State = {
   checkboxGroup: Array<string>,
   radio: boolean,
   radioGroup: string,
+  segmentedControl: string,
+  selectablePill: boolean,
+  selectablePillGroup: Array<string>,
   textarea: string,
 }
 
@@ -47,6 +53,9 @@ export default class FormDocumentation extends Component<Props, State> {
       checkboxGroup: [],
       radio: false,
       radioGroup: '',
+      segmentedControl: '',
+      selectablePill: false,
+      selectablePillGroup: [],
       textarea: ''
     }
   }
@@ -86,6 +95,9 @@ export default class FormDocumentation extends Component<Props, State> {
       checkboxGroup,
       radio,
       radioGroup,
+      segmentedControl,
+      selectablePill,
+      selectablePillGroup,
       textarea
     } = this.state
 
@@ -301,8 +313,8 @@ export default class FormDocumentation extends Component<Props, State> {
             >
               {Checkbox => (
                 <div>
-                  {checkbox({ key: '1', value: '1', label: 'One' })}
-                  {checkbox({ key: '2', value: '2', label: 'Two' })}
+                  {checkbox({ id: 'checkbox-1', key: 'checkbox-1', value: '1', label: 'One' })}
+                  {checkbox({ id: 'checkbox-2', key: 'checkbox-2', value: '2', label: 'Two' })}
                 </div>
               )}
             </CheckboxGroup>
@@ -315,8 +327,9 @@ export default class FormDocumentation extends Component<Props, State> {
           >
             {checkbox => (
               <div>
-                {checkbox({ key: '1', value: '1', label: 'One' })}
-                {checkbox({ key: '2', value: '2', label: 'Two' })}
+                {checkbox({ id: 'checkbox-1', key: 'checkbox-1', value: '1', label: 'One' })}
+                {checkbox({ id: 'checkbox-2', key: 'checkbox-2', value: '2', label: 'Two' })}
+                {checkbox({ id: 'checkbox-3', key: 'checkbox-3', value: '3', label: 'Three' })}
               </div>
             )}
           </CheckboxGroup>
@@ -364,8 +377,8 @@ export default class FormDocumentation extends Component<Props, State> {
             >
               {radio => (
                 <div>
-                  {radio({ key: '1', value: '1', label: 'One' })}
-                  {radio({ key: '2', value: '2', label: 'Two' })}
+                  {radio({ id: 'radio-1', key: 'radio-1', value: '1', label: 'One' })}
+                  {radio({ id: 'radio-2', key: 'radio-2', value: '2', label: 'Two' })}
                 </div>
               )}
             </RadioGroup>
@@ -378,11 +391,115 @@ export default class FormDocumentation extends Component<Props, State> {
           >
             {radio => (
               <div>
-                {radio({ key: '1', value: '1', label: 'One' })}
-                {radio({ key: '2', value: '2', label: 'Two' })}
+                {radio({ id: 'radio-1', key: 'radio-1', value: '1', label: 'One' })}
+                {radio({ id: 'radio-2', key: 'radio-2', value: '2', label: 'Two' })}
               </div>
             )}
           </RadioGroup>
+        </ReactCodeSpecimen>
+        <h3>Segmented Control</h3>
+        <p>Similar to a RadioGroup, you should use a Segmented Control where the user must choose one option from many, however with the subtle difference that it must display a different view.</p>
+        <ReactCodeSpecimen
+          code={dedent`
+            <SegmentedControl
+              name='segmentedControl'
+              onChange={this.handleChange}
+              value={segmentedControl}
+            >
+              {segment => (
+                <div>
+                  {segment({ id: '1', key: '1', value: '1', label: 'One' })}
+                  {segment({ id: '2', key: '2', value: '2', label: 'Two' })}
+                  {segment({ id: '3', key: '3', value: '3', label: 'Three' })}
+                </div>
+              )}
+            </SegmentedControl>
+          `}
+        >
+          <SegmentedControl
+            name='segmentedControl'
+            onChange={this.handleChange}
+            value={segmentedControl}
+          >
+            {segment => (
+              <div>
+                {segment({ id: '1', key: '1', value: '1', label: 'One' })}
+                {segment({ id: '2', key: '2', value: '2', label: 'Two' })}
+                {segment({ id: '3', key: '3', value: '3', label: 'Three' })}
+              </div>
+            )}
+          </SegmentedControl>
+        </ReactCodeSpecimen>
+        <h3>Selectable Pill</h3>
+        <p>
+          Use selectable pills in situations where a checkbox would make sense, but where
+          the data it relates to is displayed in a pill.
+        </p>
+        <ReactCodeSpecimen
+          code={dedent`
+            <SelectablePill
+              checked={selectablePill}
+              label='Frontend Engineer'
+              onChange={this.handleToggle}
+              name='selectablePill'
+              value='selectablePill'
+              id='selectablePill'
+            />
+          `}
+        >
+          <SelectablePill
+            checked={selectablePill}
+            label='Frontend Engineer'
+            onChange={this.handleToggle}
+            name='selectablePill'
+            value='selectablePill'
+            id='selectablePill'
+          />
+        </ReactCodeSpecimen>
+        <h3>Selectable Pill Group</h3>
+        <p>
+          Use the Selectable Pill Group component where you have a set of related
+          binary options, which should be displayed as pills (per the SelectablePill documentation),
+          such as a tag-based facetted search.
+        </p>
+        <ReactCodeSpecimen
+          code={dedent`
+            <SelectablePillGroup
+              name='selectablePillGroup'
+              onChange={this.handleArrayChange}
+              values={selectablePillGroup}
+            >
+              {pill => [
+                pill({ id: 'pill-1', key: 'pill-1', value: '1', label: 'One' }),
+                pill({ id: 'pill-2', key: 'pill-2', value: '2', label: 'Two' }),
+              ]}
+            </SelectablePillGroup>
+          `}
+        >
+          <SelectablePillGroup
+            name='selectablePillGroup'
+            onChange={this.handleArrayChange}
+            values={selectablePillGroup}
+          >
+            {pill => [
+              pill({ id: 'pill-1', key: 'pill-1', value: '1', label: 'One' }),
+              pill({ id: 'pill-2', key: 'pill-2', value: '2', label: 'Two' }),
+              pill({ id: 'pill-3', key: 'pill-3', value: '3', label: 'Three' }),
+              pill({ id: 'pill-4', key: 'pill-4', value: '4', label: 'Four' }),
+              pill({ id: 'pill-5', key: 'pill-5', value: '5', label: 'Five' }),
+              pill({ id: 'pill-6', key: 'pill-6', value: '6', label: 'Six' }),
+              pill({ id: 'pill-7', key: 'pill-7', value: '7', label: 'Seven' }),
+              pill({ id: 'pill-8', key: 'pill-8', value: '8', label: 'Eight' }),
+              pill({ id: 'pill-9', key: 'pill-9', value: '9', label: 'Nine' }),
+              pill({ id: 'pill-10', key: 'pill-10', value: '10', label: 'Ten' }),
+              pill({ id: 'pill-11', key: 'pill-11', value: '11', label: 'Eleven' }),
+              pill({ id: 'pill-12', key: 'pill-12', value: '12', label: 'Twelve' }),
+              pill({ id: 'pill-13', key: 'pill-13', value: '13', label: 'Thirteen' }),
+              pill({ id: 'pill-14', key: 'pill-14', value: '14', label: 'Fourteen' }),
+              pill({ id: 'pill-15', key: 'pill-15', value: '15', label: 'Fifteen' }),
+              pill({ id: 'pill-16', key: 'pill-16', value: '16', label: 'Sixteen' })
+            ]}
+          </SelectablePillGroup>
         </ReactCodeSpecimen>
         <h3>Input field</h3>
         <p>

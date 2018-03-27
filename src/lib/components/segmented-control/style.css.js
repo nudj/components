@@ -46,6 +46,7 @@ const styleSheet = StyleSheet.create({
     textAlign: 'center',
     textDecoration: 'none',
     transition: 'backgroundColor 150ms',
+    width: '100%',
     color: colors.primary,
     ':active': {
       boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.1)'

@@ -18,6 +18,7 @@ module.exports = {
   PillGroup: require('./components/pill-group'),
   RadioButton: require('./components/radio-button'),
   RadioGroup: require('./components/radio-group'),
+  SegmentedControl: require('./components/segmented-control'),
   Select: require('./components/select'),
   SelectablePill: require('./components/selectable-pill'),
   SelectablePillGroup: require('./components/selectable-pill-group'),

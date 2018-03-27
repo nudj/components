@@ -40,7 +40,8 @@ const styleSheet = StyleSheet.create({
   label: merge(typography.type.regular, {
     color: colors.text,
     paddingLeft: sizes.smallIi,
-    userSelect: 'none'
+    userSelect: 'none',
+    width: '100%'
   })
 })
 

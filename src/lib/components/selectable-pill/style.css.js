@@ -12,7 +12,7 @@ const styleSheet = StyleSheet.create({
     position: 'absolute',
     cursor: 'inherit'
   },
-  label: merge(typography.type.smallIi, {
+  labelContainer: merge(typography.type.smallIi, {
     borderWidth: '2px',
     borderStyle: 'solid',
     borderColor: colors.grey,
@@ -29,9 +29,13 @@ const styleSheet = StyleSheet.create({
     textDecoration: 'none',
     transition: 'backgroundColor 150ms',
     lineHeight: 1,
-    cursor: 'pointer'
+    cursor: 'pointer',
+    verticalAlign: 'middle',
+    ':hover': {
+      borderColor: colors.greyDark,
+    }
   }),
-  labelChecked: {
+  labelContainerChecked: {
     backgroundColor: colors.greyLight,
     borderColor: colors.greyLight,
     color: colors.text,
@@ -41,9 +45,35 @@ const styleSheet = StyleSheet.create({
       color: colors.greyDarkest
     }
   },
+  legitLabel: {
+    verticalAlign: 'middle'
+  },
   icon: {
     marginLeft: sizes.smallIi,
-    float: 'right'
+    width: '1.5em',
+    height: '1.5em',
+    flexShrink: 0,
+    verticalAlign: 'middle'
+  },
+  iconBox: {
+    stroke: colors.grey,
+    strokeWidth: '2px'
+  },
+  iconBoxChecked: {
+    fill: 'white'
+  },
+  iconCheckmark: {
+    fill: colors.midRed,
+    transformOrigin: '50% 50%',
+    transition: 'transform 150ms, opacity 150ms'
+  },
+  iconCheckmarkUnchecked: {
+    opacity: 0,
+    transform: 'scale(0)'
+  },
+  iconCheckmarkChecked: {
+    opacity: 1,
+    transform: 'scale(1)'
   }
 })
 

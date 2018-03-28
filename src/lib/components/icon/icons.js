@@ -6,6 +6,7 @@ const icons = {
   candidates: require('./icons/candidates'),
   chevron: require('./icons/chevron'),
   closeButton: require('./icons/close-icon'),
+  circle: require('./icons/circle'),
   email: require('./icons/email-icon'),
   emptySpeechBubble: require('./icons/empty-speech-bubble'),
   speechBubble: require('./icons/speech-bubble'),

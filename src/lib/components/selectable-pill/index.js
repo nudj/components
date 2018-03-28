@@ -47,7 +47,10 @@ const SelectablePill = (props) => {
         )}
       >
         {label}
-        {checked && <Icon name='closeButton' style={style.closeIcon} />}
+        {checked
+          ? <Icon name='closeButton' style={style.icon} />
+          : <Icon name='circle' style={style.icon} />
+        }
       </label>
     </Wrapper>
   )

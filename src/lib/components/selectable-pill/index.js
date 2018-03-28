@@ -42,15 +42,37 @@ const SelectablePill = (props) => {
       <label
         htmlFor={id}
         className={css(
-          style.label,
-          checked && style.labelChecked
+          style.labelContainer,
+          checked && style.labelContainerChecked
         )}
       >
-        {label}
-        {checked
-          ? <Icon name='closeButton' style={style.icon} />
-          : <Icon name='circle' style={style.icon} />
-        }
+        <span className={css(style.legitLabel)}>
+          {label}
+        </span>
+        <svg className={css(style.icon)} viewBox='0 0 24 24'>
+          <g transform='translate(3 4)' fill='none' fillRule='evenodd'>
+            <rect
+              className={css(
+                style.iconBox,
+                checked && style.iconBoxChecked
+              )}
+              x={1}
+              y={1}
+              width={14}
+              height={14}
+              rx={4}
+            />
+            <path
+              className={css(
+                style.iconCheckmark,
+                checked
+                  ? style.iconCheckmarkChecked
+                  : style.iconCheckmarkUnchecked
+              )}
+              d='M8 12L3 7l2-2 3 3 8-8 2 2z'
+            />
+          </g>
+        </svg>
       </label>
     </Wrapper>
   )

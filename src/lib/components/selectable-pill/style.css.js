@@ -41,7 +41,7 @@ const styleSheet = StyleSheet.create({
       color: colors.greyDarkest
     }
   },
-  closeIcon: {
+  icon: {
     marginLeft: sizes.smallIi,
     float: 'right'
   }

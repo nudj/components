@@ -80,7 +80,7 @@ const CheckboxGroup = (props: CheckboxGroupPropTypes) => {
           return (
             <Input
               name={name}
-              classNames={checkboxStyleSheet}
+              styleSheet={checkboxStyleSheet}
               value={childProps.value}
               label={childProps.label}
               onChange={handleChange}

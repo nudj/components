@@ -2,7 +2,6 @@ const React = require('react')
 
 const { mergeStyleSheets, css } = require('../../css')
 const defaultStyleSheet = require('./style.css')
-const Icon = require('../icon')
 
 const SelectablePill = (props) => {
   const {
@@ -13,7 +12,8 @@ const SelectablePill = (props) => {
     onChange,
     name,
     value,
-    id
+    id,
+    disabled
   } = props
 
   const onChangeHandler = event => {
@@ -38,15 +38,18 @@ const SelectablePill = (props) => {
         checked={checked}
         id={id}
         onChange={onChangeHandler}
+        disabled={disabled}
       />
       <label
         htmlFor={id}
         className={css(
           style.labelContainer,
-          checked && style.labelContainerChecked
+          checked && style.labelContainerChecked,
+          disabled && style.labelContainerDisabled,
+          checked && disabled && style.labelContainerCheckedDisabled
         )}
       >
-        <span className={css(style.legitLabel)}>
+        <span className={css(style.label)}>
           {label}
         </span>
         <svg className={css(style.icon)} viewBox='0 0 24 24'>

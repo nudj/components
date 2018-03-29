@@ -32,7 +32,7 @@ const styleSheet = StyleSheet.create({
     cursor: 'pointer',
     verticalAlign: 'middle',
     ':hover': {
-      borderColor: colors.greyDark,
+      borderColor: colors.greyDark
     }
   }),
   labelContainerChecked: {
@@ -45,7 +45,26 @@ const styleSheet = StyleSheet.create({
       color: colors.greyDarkest
     }
   },
-  legitLabel: {
+  labelContainerDisabled: {
+    opacity: 0.2,
+    cursor: 'default',
+    ':hover': {
+      borderColor: colors.grey,
+      backgroundColor: 'transparent',
+      color: colors.greyDark
+    }
+  },
+  labelContainerCheckedDisabled: {
+    backgroundColor: colors.greyLight,
+    borderColor: colors.greyLight,
+    color: colors.text,
+    ':hover': {
+      backgroundColor: colors.greyLight,
+      borderColor: colors.greyLight,
+      color: colors.text
+    }
+  },
+  label: {
     verticalAlign: 'middle'
   },
   icon: {

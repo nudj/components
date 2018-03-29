@@ -69,6 +69,27 @@ const styleSheet = StyleSheet.create({
       backgroundColor: colors.primaryLight,
       color: colors.white
     }
+  },
+  labelDisabled: {
+    opacity: 0.2,
+    ':hover': {
+      color: colors.primary
+    },
+    ':focus': {
+      color: colors.primary
+    }
+  },
+  labelCheckedDisabled: {
+    backgroundColor: colors.primary,
+    color: colors.white,
+    ':hover': {
+      backgroundColor: colors.primary,
+      color: colors.white
+    },
+    ':focus': {
+      backgroundColor: colors.primary,
+      color: colors.white
+    }
   }
 })
 

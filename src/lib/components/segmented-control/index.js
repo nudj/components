@@ -13,7 +13,8 @@ const Segment = props => {
     onChange,
     name,
     value,
-    id
+    id,
+    disabled
   } = props
 
   const onChangeHandler = event => {
@@ -38,12 +39,15 @@ const Segment = props => {
         id={id}
         onChange={onChangeHandler}
         className={css(style.input)}
+        disabled={disabled}
       />
       <label
         htmlFor={id}
         className={css(
           style.label,
-          checked && style.labelChecked
+          checked && style.labelChecked,
+          disabled && style.labelDisabled,
+          checked && disabled && style.labelCheckedDisabled
         )}
       >
         {label}

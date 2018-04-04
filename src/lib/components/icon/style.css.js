@@ -20,6 +20,11 @@ const styleSheet = StyleSheet.create({
     stroke: 'currentColor',
     fill: 'transparent'
   },
+  circle: {
+    stroke: 'currentColor',
+    fill: 'transparent',
+    strokeWidth: '2px'
+  },
 
   /**
    * Legacy

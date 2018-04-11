@@ -5,6 +5,7 @@ const React = require('react')
 const defaultStyle = require('./style.css')
 const { mergeStyle } = require('../../css')
 const InlineAction = require('../inline-action')
+const Icon = require('../icon')
 
 type Props = {
   children: React.Node,
@@ -12,6 +13,8 @@ type Props = {
   href: string,
   inline?: boolean,
   disabled?: boolean,
+  external?: boolean,
+  subtle?: boolean,
   style: Style,
   rest?: Array<mixed>
 }
@@ -24,6 +27,8 @@ const Link = (props: Props) => {
     inline,
     style,
     disabled,
+    external,
+    subtle,
     ...rest
   } = props
   const composedStyle = mergeStyle(inline ? defaultStyle.inline : null, style)
@@ -37,8 +42,12 @@ const Link = (props: Props) => {
       href={href}
       Component={Component}
       style={composedStyle}
+      subtle={subtle}
     >
       {children}
+      {subtle && external && (
+        <Icon style={defaultStyle.externalIcon} name='externalLink' />
+      )}
     </InlineAction>
   )
 }

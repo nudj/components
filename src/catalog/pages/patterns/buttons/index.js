@@ -140,6 +140,34 @@ const ButtonDocumentation = () => {
           </Link>
         </div>
       </ReactCodeSpecimen>
+      <h4>External Links</h4>
+      <p>
+        You can indicate to the user that a link is to an external website by including the `external` prop. Note this only works when using `subtle`
+      </p>
+      <ReactCodeSpecimen
+        code={dedent`
+          <Link
+            external
+            subtle
+            href='#'
+            volume='cheer'
+          >
+            External link
+          </Link>
+        `}
+      >
+        <div className={css(style.wrapper)}>
+          <Link
+            external
+            subtle
+            href='#'
+            style={style.button}
+            volume='cheer'
+          >
+            External link
+          </Link>
+        </div>
+      </ReactCodeSpecimen>
     </Page>
   )
 }

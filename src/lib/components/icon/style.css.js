@@ -105,6 +105,10 @@ const styleSheet = StyleSheet.create({
   whatsapp: {
     stroke: 'transparent',
     fill: 'currentColor'
+  },
+  externalLink: {
+    stroke: 'transparent',
+    fill: 'currentColor'
   }
 })
 

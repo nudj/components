@@ -9,6 +9,7 @@ const icons = {
   circle: require('./icons/circle'),
   email: require('./icons/email-icon'),
   emptySpeechBubble: require('./icons/empty-speech-bubble'),
+  externalLink: require('./icons/external-link'),
   speechBubble: require('./icons/speech-bubble'),
   exitArrow: require('./icons/exit-arrow'),
   facebookMessenger: require('./icons/facebook-messenger'),

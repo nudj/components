@@ -8,11 +8,16 @@ module.exports = {
   CheckboxGroup: require('./components/checkbox-group'),
   ContactCard: require('./components/contact-card'),
   Dropzone: require('./components/dropzone'),
+  EmailButton: require('./components/email-button'),
+  FacebookButton: require('./components/facebook-button'),
   Icon: require('./components/icon'),
+  IconButton: require('./components/icon-button'),
+  IconLink: require('./components/icon-link'),
   Input: require('./components/input'),
   InputField: require('./components/input-field'),
   Link: require('./components/link'),
   Loader: require('./components/loader'),
+  MessengerButton: require('./components/messenger-button'),
   Modal: require('./components/modal'),
   Pill: require('./components/pill'),
   PillGroup: require('./components/pill-group'),
@@ -27,5 +32,7 @@ module.exports = {
   StyleChild: require('./components/style-child'),
   Table: require('./components/table'),
   Text: require('./components/text'),
-  Textarea: require('./components/textarea')
+  Textarea: require('./components/textarea'),
+  TwitterButton: require('./components/twitter-button'),
+  WhatsappButton: require('./components/whatsapp-button')
 }

@@ -90,6 +90,10 @@ const styleSheet = StyleSheet.create({
     stroke: 'transparent',
     fill: 'currentColor'
   },
+  facebook: {
+    stroke: 'transparent',
+    fill: 'currentColor'
+  },
   facebookMessenger: {
     stroke: 'transparent',
     fill: 'currentColor'
@@ -99,6 +103,10 @@ const styleSheet = StyleSheet.create({
     fill: 'currentColor'
   },
   todo: {
+    stroke: 'transparent',
+    fill: 'currentColor'
+  },
+  twitter: {
     stroke: 'transparent',
     fill: 'currentColor'
   },

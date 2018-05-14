@@ -28,6 +28,18 @@ const greyLight = '#ECECEB'
 const greyLightest = '#F7F7F6'
 const white = '#FFFFFF'
 
+// External
+const whatsapp = '#25D366'
+const whatsappLight = '#00e676'
+const facebook = '#334F8D'
+const facebookLight = '#4267b2'
+const messenger = '#0084FF'
+const messengerLight = '#339dff'
+const twitter = '#1A97F1'
+const twitterLight = '#48acf4'
+const gmail = '#d4584a'
+const gmailLight = '#d0796b'
+
 const overlay = {
   // greyDarker @ 50% opacity
   50: 'rgba(66, 63, 60, 0.5)'
@@ -69,5 +81,17 @@ module.exports = {
   white: white,
 
   // Overlays
-  overlay
+  overlay,
+
+  // External
+  whatsapp,
+  whatsappLight,
+  facebook,
+  facebookLight,
+  messenger,
+  messengerLight,
+  twitter,
+  twitterLight,
+  gmail,
+  gmailLight
 }

@@ -1,22 +1,9 @@
 const React = require('react')
 
-const Buildings = props => (
-  <svg viewBox='0 0 24 24' width='1em' height='1em' {...props}>
-    <path
-      data-color='color-2'
-      strokeWidth={2}
-      strokeLinecap='round'
-      strokeMiterlimit={10}
-      strokeLinejoin='round'
-      d='M18 6V1H6v8'
-    />
-    <path
-      strokeWidth={2}
-      strokeLinecap='round'
-      strokeMiterlimit={10}
-      strokeLinejoin='round'
-      d='M10 23h4M1 12h9v11H1zM14 9h9v14h-9zM18 13h1M18 16h1M18 19h1M5 19h1M5 16h1'
-    />
+const Buildings = (props) => (
+  <svg viewBox='0 0 24 24' {...props}>
+    <path d='M12,7V3H2v18h20V7H12z M6,19H4v-2h2V19z M6,15H4v-2h2V15z M6,11H4V9h2V11z M6,7H4V5h2V7z M10,19H8v-2h2V19z M10,15H8v-2h2
+      V15z M10,11H8V9h2V11z M10,7H8V5h2V7z M20,19h-8v-2h2v-2h-2v-2h2v-2h-2V9h8V19z M18,11h-2v2h2V11z M18,15h-2v2h2V15z' />
   </svg>
 )
 

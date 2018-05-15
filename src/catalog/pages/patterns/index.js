@@ -62,6 +62,11 @@ const patterns = orderBy(
       path: '/patterns/accessibility',
       title: 'Accessibility',
       content: require('./accessibility')
+    },
+    {
+      path: '/patterns/iconography',
+      title: 'Iconography',
+      content: require('./icons')
     }
   ],
   'title'

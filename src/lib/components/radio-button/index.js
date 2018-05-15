@@ -1,6 +1,7 @@
 // @flow
 const React = require('react')
 
+const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { mergeStyleSheets, css } = require('../../css')
 const defaultStyleSheet = require('./style.css')
 
@@ -32,7 +33,8 @@ type RadioButtonProps = {
   id: string,
   name: string,
   value: string,
-  label: string
+  label: string,
+  fsShow?: boolean
 }
 
 const RadioButton = (props: RadioButtonProps) => {
@@ -44,7 +46,8 @@ const RadioButton = (props: RadioButtonProps) => {
     onChange,
     name,
     value,
-    id
+    id,
+    fsShow
   } = props
 
   const onChangeHandler = event => {
@@ -86,7 +89,7 @@ const RadioButton = (props: RadioButtonProps) => {
             r='4'
           />
         </svg>
-        <span className={css(style.label)}>{label}</span>
+        <span className={css(!fsShow && FS_HIDE_CLASS, style.label)}>{label}</span>
       </label>
     </Wrapper>
   )
@@ -94,7 +97,8 @@ const RadioButton = (props: RadioButtonProps) => {
 
 RadioButton.defaultProps = {
   styleSheet: {},
-  Wrapper: 'div'
+  Wrapper: 'div',
+  fsShow: FS_SHOW
 }
 
 module.exports = RadioButton

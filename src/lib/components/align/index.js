@@ -1,6 +1,7 @@
 // @flow
 const React = require('react')
 
+const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { css, mergeStyleSheets } = require('../../css')
 const defaultStyleSheet = require('./style.css')
 
@@ -16,7 +17,8 @@ type AlignProps = {
   primarySide: 'left' | 'right',
   leftChildren: React.Node,
   rightChildren: React.Node,
-  rest?: Array<mixed>
+  rest?: Array<mixed>,
+  fsShow?: boolean
 }
 
 const Align = (props: AlignProps) => {
@@ -25,12 +27,14 @@ const Align = (props: AlignProps) => {
     primarySide,
     leftChildren,
     rightChildren,
+    fsShow,
     ...rest
   } = props
 
+  const fsHide = !fsShow && FS_HIDE_CLASS
   const style = mergeStyleSheets(defaultStyleSheet, styleSheet)
-  const leftClasses = css(style.left, primarySide === 'left' && style.large)
-  const rightClasses = css(style.right, primarySide === 'right' && style.large)
+  const leftClasses = css(fsHide, style.left, primarySide === 'left' && style.large)
+  const rightClasses = css(fsHide, style.right, primarySide === 'right' && style.large)
 
   return (
     <div {...rest} className={css(style.root)}>
@@ -42,7 +46,8 @@ const Align = (props: AlignProps) => {
 
 Align.defaultProps = {
   primarySide: 'left',
-  styleSheet: {}
+  styleSheet: {},
+  fsShow: FS_SHOW
 }
 
 module.exports = Align

@@ -2,6 +2,7 @@
 // @flow
 const React = require('react')
 
+const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { css } = require('../../css')
 const styleSheet = require('./style.css')
 
@@ -9,14 +10,15 @@ type PillProps = {
   volume: 'murmur' | 'whisper',
   children: React.Node,
   style: Style,
-  rest?: Array<mixed>
+  rest?: Array<mixed>,
+  nonSensitive?: boolean
 }
 
 const Pill = (props: PillProps) => {
-  const { volume, children, style, ...rest } = props
+  const { volume, children, style, fsShow, ...rest } = props
 
   return (
-    <span {...rest} className={css(styleSheet.root, styleSheet[volume], style)}>
+    <span {...rest} className={css(!fsShow && FS_HIDE_CLASS, styleSheet.root, styleSheet[volume], style)}>
       {children}
     </span>
   )
@@ -24,7 +26,8 @@ const Pill = (props: PillProps) => {
 
 Pill.defaultProps = {
   volume: 'murmur',
-  style: {}
+  style: {},
+  fsShow: FS_SHOW
 }
 
 module.exports = Pill

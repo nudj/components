@@ -2,6 +2,7 @@
 // @flow
 const React = require('react')
 
+const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { css } = require('../../css')
 const { buttonStyleSheet, linkStyleSheet } = require('./style.css')
 
@@ -12,7 +13,8 @@ type InlineActionProps = {
   Component: React.ElementType,
   subtle?: boolean,
   disabled?: boolean,
-  rest?: Array<mixed>
+  rest?: Array<mixed>,
+  fsShow?: boolean
 }
 
 const InlineAction = (props: InlineActionProps) => {
@@ -23,6 +25,7 @@ const InlineAction = (props: InlineActionProps) => {
     subtle,
     Component,
     disabled,
+    fsShow,
     ...rest
   } = props
 
@@ -33,6 +36,7 @@ const InlineAction = (props: InlineActionProps) => {
       {...rest}
       disabled={disabled}
       className={css(
+        !fsShow && FS_HIDE_CLASS,
         styleSheet.root,
         styleSheet[volume],
         disabled && styleSheet.disabled,
@@ -46,7 +50,8 @@ const InlineAction = (props: InlineActionProps) => {
 
 InlineAction.defaultProps = {
   volume: 'murmur',
-  style: {}
+  style: {},
+  fsShow: FS_SHOW
 }
 
 module.exports = InlineAction

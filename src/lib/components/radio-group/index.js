@@ -1,6 +1,7 @@
 // @flow
 const React = require('react')
 
+const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { css } = require('../../css')
 const RadioButton = require('../radio-button')
 
@@ -31,7 +32,8 @@ type RadioGroupPropTypes = {
   onChange: HandlerArgs => mixed,
   value: string,
   styles?: Object,
-  name: string
+  name: string,
+  fsShow?: boolean
 }
 
 const RadioGroup = (props: RadioGroupPropTypes) => {
@@ -43,7 +45,8 @@ const RadioGroup = (props: RadioGroupPropTypes) => {
     value,
     name,
     onChange,
-    styles
+    styles,
+    fsShow
   } = props
 
   const handleChange = ({
@@ -64,7 +67,7 @@ const RadioGroup = (props: RadioGroupPropTypes) => {
   }
 
   return (
-    <div className={css(styles)}>
+    <div className={css(!fsShow && FS_HIDE_CLASS, styles)}>
       {children &&
         children((childProps: ChildPropTypes) => {
           const checked = value === childProps.value
@@ -90,7 +93,8 @@ RadioGroup.defaultProps = {
   Input: RadioButton,
   values: [],
   required: false,
-  radioButtonStyleSheet: {}
+  radioButtonStyleSheet: {},
+  fsShow: FS_SHOW
 }
 
 module.exports = RadioGroup

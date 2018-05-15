@@ -2,6 +2,7 @@
 const React = require('react')
 const get = require('lodash/get')
 
+const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { mergeStyleSheets, css } = require('../../css')
 
 const defaultStylesheet = require('./style.css')
@@ -37,7 +38,8 @@ type TableProps = {
   columns: Array<Column>,
   styleSheet: StyleSheetType,
   headingRenderer?: (column: Column, defaultValue: string) => React.Node,
-  cellRenderer?: (column: Column, row: Row, defaultValue: string) => React.Node
+  cellRenderer?: (column: Column, row: Row, defaultValue: string) => React.Node,
+  fsShow?: boolean
 }
 
 const Table = (props: TableProps) => {
@@ -53,7 +55,8 @@ const Table = (props: TableProps) => {
     headingRenderer = (column, defaultValue) => defaultValue,
     data,
     columns,
-    styleSheet
+    styleSheet,
+    fsShow
   } = props
 
   const style = mergeStyleSheets(defaultStylesheet, styleSheet)
@@ -63,7 +66,7 @@ const Table = (props: TableProps) => {
       <Head className={css(style.header)}>
         <HeaderRow className={css(style.headerRow)}>
           {columns.map((column: Column) => (
-            <HeaderCell className={css(style.heading)} key={column.name}>
+            <HeaderCell className={css(!fsShow && FS_HIDE_CLASS, style.heading)} key={column.name}>
               {headingRenderer(column, column.heading)}
             </HeaderCell>
           ))}
@@ -76,7 +79,7 @@ const Table = (props: TableProps) => {
               const defaultValue: string = get(row, column.name, '')
               return (
                 <Cell
-                  className={css(style.cell)}
+                  className={css(!fsShow && FS_HIDE_CLASS, style.cell)}
                   key={`${row.id}-${column.name}`}
                 >
                   {cellRenderer(column, row, defaultValue)}
@@ -100,7 +103,8 @@ Table.defaultProps = {
   Cell: 'td',
   styleSheet: {},
   data: [],
-  columns: []
+  columns: [],
+  fsShow: FS_SHOW
 }
 
 module.exports = Table

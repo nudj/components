@@ -1,6 +1,7 @@
 // @flow
 const React = require('react')
 
+const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { css, mergeStyleSheets } = require('../../css')
 const Icon = require('../icon')
 const ButtonContainer = require('../button-container')
@@ -35,7 +36,8 @@ type InputProps = {
   styleSheet: StyleSheetType,
   placeholder?: string,
   value?: string,
-  onClear?: HandlerArgs => mixed
+  onClear?: HandlerArgs => mixed,
+  fsShow?: boolean
 }
 
 const noopHandler = (args: HandlerArgs) => {}
@@ -55,7 +57,8 @@ const Input = (props: InputProps) => {
     Wrapper,
     ErrorWrapper,
     error,
-    onClear
+    onClear,
+    fsShow
   } = props
 
   const clearable = typeof onClear === 'function'
@@ -103,6 +106,7 @@ const Input = (props: InputProps) => {
             input = c
           }}
           className={css(
+            !fsShow && FS_HIDE_CLASS,
             style.input,
             error && style.inputError,
             clearable && style.inputWithClear
@@ -136,7 +140,8 @@ Input.defaultProps = {
   onBlur: noopHandler,
   onFocus: noopHandler,
   Wrapper: 'div',
-  ErrorWrapper: 'div'
+  ErrorWrapper: 'div',
+  fsShow: FS_SHOW
 }
 
 module.exports = Input

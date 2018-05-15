@@ -1,13 +1,17 @@
 /* global Style */
 // @flow
 const { StyleSheet } = require('aphrodite/no-important')
+const warning = require('warning')
 const isEmpty = require('lodash/isEmpty')
+const isString = require('lodash/isString')
 const flatten = require('lodash/flattenDeep')
+const partition = require('lodash/partition')
 
 const typography = require('./typography')
 const colors = require('./colors')
 const sizes = require('./sizes')
 const utilities = require('./utilities')
+const { FS_HIDE_CLASS } = require('../constants')
 
 const Extended = StyleSheet.extend([])
 
@@ -36,8 +40,20 @@ const mergeStyle = (...styles: Array<Style>) => {
   return flatten(styles).filter(style => style != null)
 }
 
-const css = (...args: Array<Object>) =>
-  Extended.css(flatten(args).filter(arg => !isEmpty(arg)))
+const acceptedClassNames = [
+  FS_HIDE_CLASS
+]
+
+const css = (...args: Array<mixed>) => {
+  const [ classNames, styles ] = partition(args, isString)
+
+  classNames.forEach(className => warning(
+    acceptedClassNames.includes(className),
+    `Invalid string passed to \`css\`. String \`${className}\` must be one of [${acceptedClassNames.join(', ')}]`
+  ))
+
+  return `${Extended.css(flatten(styles).filter(style => !isEmpty(style)))} ${classNames.join(' ')}`.trim()
+}
 
 module.exports = {
   aphrodite: Extended,

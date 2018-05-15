@@ -13,96 +13,50 @@ const styleSheet = StyleSheet.create({
     verticalAlign: 'middle'
   },
 
-  /**
-   * Stroke based icons
-   */
-  close: {
-    stroke: 'currentColor',
-    fill: 'transparent'
-  },
-  circle: {
-    stroke: 'currentColor',
-    fill: 'transparent',
-    strokeWidth: '2px'
-  },
-
-  /**
-   * Legacy
-   * Stroke based icons
-   */
   briefcase: {
-    stroke: 'currentColor',
-    fill: 'transparent'
+    stroke: 'transparent',
+    fill: 'currentColor'
   },
   buildings: {
-    stroke: 'currentColor',
-    fill: 'transparent'
+    stroke: 'transparent',
+    fill: 'currentColor'
   },
   candidates: {
-    stroke: 'currentColor',
-    fill: 'transparent'
+    stroke: 'transparent',
+    fill: 'currentColor'
   },
-  closeButton: {
-    stroke: 'currentColor',
-    fill: 'transparent'
-  },
-  email: {
-    stroke: 'currentColor',
-    fill: 'transparent'
-  },
-  emptySpeechBubble: {
-    stroke: 'currentColor',
-    fill: 'transparent'
-  },
-  speechBubble: {
-    stroke: 'currentColor',
-    fill: 'transparent'
-  },
-  exitArrow: {
-    stroke: 'currentColor',
-    fill: 'transparent'
-  },
-  mobile: {
-    stroke: 'currentColor',
-    fill: 'transparent'
-  },
-  network: {
-    stroke: 'currentColor',
-    fill: 'transparent'
-  },
-  openLetter: {
-    stroke: 'currentColor',
-    fill: 'transparent'
-  },
-  questionMark: {
-    stroke: 'currentColor',
-    fill: 'transparent'
-  },
-  tick: {
-    stroke: 'currentColor',
-    fill: 'transparent'
-  },
-
-  /**
-   * Fill based icons
-   */
   chevron: {
     stroke: 'transparent',
     fill: 'currentColor'
   },
-  facebook: {
+  close: {
     stroke: 'transparent',
     fill: 'currentColor'
   },
+  email: {
+    stroke: 'transparent',
+    fill: 'currentColor'
+  },
+  exitArrow: {
+    stroke: 'transparent',
+    fill: 'currentColor'
+  },
+  externalLink: {
+    stroke: 'transparent',
+    fill: 'currentColor'
+  },
+  questionMark: {
+    stroke: 'transparent',
+    fill: 'currentColor'
+  },
+  /**
+   * Social icons
+   */
   facebookMessenger: {
     stroke: 'transparent',
     fill: 'currentColor'
   },
-  paperclip: {
-    stroke: 'transparent',
-    fill: 'currentColor'
-  },
-  todo: {
+  facebook: {
     stroke: 'transparent',
     fill: 'currentColor'
   },
@@ -111,10 +65,6 @@ const styleSheet = StyleSheet.create({
     fill: 'currentColor'
   },
   whatsapp: {
-    stroke: 'transparent',
-    fill: 'currentColor'
-  },
-  externalLink: {
     stroke: 'transparent',
     fill: 'currentColor'
   }

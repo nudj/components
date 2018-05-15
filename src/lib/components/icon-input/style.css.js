@@ -8,7 +8,8 @@ const styleSheet = StyleSheet.create({
     pointerEvents: 'none',
     position: 'absolute',
     left: sizes.regular,
-    top: sizes.regular
+    top: sizes.regular,
+    zIndex: 1
   },
   input: {
     paddingLeft: sizes.largeIii

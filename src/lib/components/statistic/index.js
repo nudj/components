@@ -1,6 +1,7 @@
 // @flow
 const React = require('react')
 
+const { FS_SHOW } = require('../../constants')
 const { css, mergeStyleSheets } = require('../../css')
 const mss = require('../../css/modifiers.css')
 const defaultStyleSheet = require('./style.css')
@@ -23,6 +24,7 @@ type Props = {
   correlation?: 'positive' | 'negative',
   comparator?: string,
   styleSheet: StyleSheet,
+  fsShow?: boolean
 }
 
 const getDirectionIcon = (direction, style) => {
@@ -43,7 +45,8 @@ const Statistic = (props: Props) => {
     direction,
     correlation,
     comparator,
-    styleSheet
+    styleSheet,
+    fsShow
   } = props
   const style = mergeStyleSheets(defaultStyleSheet, styleSheet)
 
@@ -57,11 +60,12 @@ const Statistic = (props: Props) => {
         {getDirectionIcon(direction, style)}
         {value}
       </Text>
-      <Text element='dd' style={style.label}>
+      <Text fsShow={fsShow} element='dd' style={style.label}>
         {label}
       </Text>
       { comparator && (
         <Text
+          fsShow={fsShow}
           element='div'
           size='smallI'
           style={style.comparator}
@@ -74,7 +78,8 @@ const Statistic = (props: Props) => {
 }
 
 Statistic.defaultProps = {
-  styleSheet: {}
+  styleSheet: {},
+  fsShow: FS_SHOW
 }
 
 module.exports = Statistic

@@ -1,6 +1,7 @@
 // @flow
 const React = require('react')
 
+const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { mergeStyleSheets, css } = require('../../css')
 const defaultStyleSheet = require('./style.css')
 
@@ -32,7 +33,8 @@ type CheckboxProps = {
   name: string,
   value: string,
   label: string,
-  presentation?: boolean
+  presentation?: boolean,
+  fsShow?: boolean
 }
 
 const Checkbox = (props: CheckboxProps) => {
@@ -45,7 +47,8 @@ const Checkbox = (props: CheckboxProps) => {
     name,
     value,
     id,
-    presentation
+    presentation,
+    fsShow
   } = props
 
   const onChangeHandler = event => {
@@ -94,7 +97,7 @@ const Checkbox = (props: CheckboxProps) => {
             />
           </g>
         </svg>
-        <span className={css(style.label)}>{label}</span>
+        <span className={css(!fsShow && FS_HIDE_CLASS, style.label)}>{label}</span>
       </label>
     </Wrapper>
   )
@@ -103,7 +106,8 @@ const Checkbox = (props: CheckboxProps) => {
 Checkbox.defaultProps = {
   styleSheet: {},
   Wrapper: 'div',
-  onChange: () => {}
+  onChange: () => {},
+  fsShow: FS_SHOW
 }
 
 module.exports = Checkbox

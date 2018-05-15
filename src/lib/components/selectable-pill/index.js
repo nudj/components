@@ -1,5 +1,6 @@
 const React = require('react')
 
+const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { mergeStyleSheets, css } = require('../../css')
 const defaultStyleSheet = require('./style.css')
 
@@ -13,7 +14,8 @@ const SelectablePill = (props) => {
     name,
     value,
     id,
-    disabled
+    disabled,
+    fsShow
   } = props
 
   const onChangeHandler = event => {
@@ -49,7 +51,7 @@ const SelectablePill = (props) => {
           checked && disabled && style.labelContainerCheckedDisabled
         )}
       >
-        <span className={css(style.label)}>
+        <span className={css(!fsShow && FS_HIDE_CLASS, style.label)}>
           {label}
         </span>
         <svg className={css(style.icon)} viewBox='0 0 24 24'>
@@ -84,7 +86,8 @@ const SelectablePill = (props) => {
 SelectablePill.defaultProps = {
   styleSheet: {},
   Wrapper: 'div',
-  onChange: () => {}
+  onChange: () => {},
+  fsShow: FS_SHOW
 }
 
 module.exports = SelectablePill

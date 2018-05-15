@@ -1,6 +1,7 @@
 // @flow
 const React = require('react')
 
+const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { mergeStyleSheets, css } = require('../../css')
 const Icon = require('../icon')
 const defaultStyleSheet = require('./style.css')
@@ -20,7 +21,8 @@ type SelectProps = {
   onFocus: Function,
   required?: boolean,
   styleSheet: StyleSheetType,
-  children: React.ChildrenArray<React.Element<'option'>>
+  children: React.ChildrenArray<React.Element<'option'>>,
+  fsShow?: boolean
 }
 
 type HandlerArgs = {
@@ -42,7 +44,8 @@ const Select = (props: SelectProps) => {
     onChange,
     onBlur,
     onFocus,
-    children
+    children,
+    fsShow
   } = props
 
   const handleEvent = type => event => {
@@ -60,7 +63,7 @@ const Select = (props: SelectProps) => {
   return (
     <div className={css(style.root)}>
       <select
-        className={css(style.select)}
+        className={css(!fsShow && FS_HIDE_CLASS, style.select)}
         id={id}
         name={name}
         onChange={handleEvent('onChange')}
@@ -80,7 +83,8 @@ Select.defaultProps = {
   styleSheet: {},
   onChange: noopHandler,
   onBlur: noopHandler,
-  onFocus: noopHandler
+  onFocus: noopHandler,
+  fsShow: FS_SHOW
 }
 
 module.exports = Select

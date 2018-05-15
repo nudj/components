@@ -2,6 +2,7 @@
 const React = require('react')
 const ReactTextareaAutosize = require('react-textarea-autosize')
 
+const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { css, mergeStyleSheets } = require('../../css')
 const defaultStylesheet = require('./style.css')
 
@@ -35,7 +36,8 @@ type TextareaProps = {
   placeholder?: string,
   value?: string,
   autosize?: boolean,
-  rest?: Array<mixed>
+  rest?: Array<mixed>,
+  fsShow?: boolean
 }
 
 const noopHandler = (args: HandlerArgs) => {}
@@ -55,6 +57,7 @@ const Textarea = (props: TextareaProps) => {
     ErrorWrapper,
     error,
     autosize,
+    fsShow,
     ...rest
   } = props
 
@@ -86,7 +89,7 @@ const Textarea = (props: TextareaProps) => {
     <Wrapper className={css(style.root)}>
       <InputComponent
         {...rest}
-        className={css(style.input, error && style.inputError)}
+        className={css(!fsShow && FS_HIDE_CLASS, style.input, error && style.inputError)}
         id={id}
         name={name}
         onChange={handleEvent('onChange')}
@@ -107,7 +110,8 @@ Textarea.defaultProps = {
   onBlur: noopHandler,
   onFocus: noopHandler,
   Wrapper: 'div',
-  ErrorWrapper: 'div'
+  ErrorWrapper: 'div',
+  fsShow: FS_SHOW
 }
 
 module.exports = Textarea

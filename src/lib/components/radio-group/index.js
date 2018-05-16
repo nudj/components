@@ -33,7 +33,7 @@ type RadioGroupPropTypes = {
   value: string,
   styles?: Object,
   name: string,
-  nonSensitive?: boolean
+  nonsensitive?: boolean
 }
 
 const RadioGroup = (props: RadioGroupPropTypes) => {
@@ -46,7 +46,7 @@ const RadioGroup = (props: RadioGroupPropTypes) => {
     name,
     onChange,
     styles,
-    nonSensitive
+    nonsensitive
   } = props
 
   const handleChange = ({
@@ -67,7 +67,7 @@ const RadioGroup = (props: RadioGroupPropTypes) => {
   }
 
   return (
-    <div className={css(!nonSensitive && FS_HIDE_CLASS, styles)}>
+    <div className={css(!nonsensitive && FS_HIDE_CLASS, styles)}>
       {children &&
         children((childProps: ChildPropTypes) => {
           const checked = value === childProps.value
@@ -94,7 +94,7 @@ RadioGroup.defaultProps = {
   values: [],
   required: false,
   radioButtonStyleSheet: {},
-  nonSensitive: FS_SHOW
+  nonsensitive: FS_SHOW
 }
 
 module.exports = RadioGroup

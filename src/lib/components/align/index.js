@@ -18,7 +18,7 @@ type AlignProps = {
   leftChildren: React.Node,
   rightChildren: React.Node,
   rest?: Array<mixed>,
-  nonSensitive?: boolean
+  nonsensitive?: boolean
 }
 
 const Align = (props: AlignProps) => {
@@ -27,11 +27,11 @@ const Align = (props: AlignProps) => {
     primarySide,
     leftChildren,
     rightChildren,
-    nonSensitive,
+    nonsensitive,
     ...rest
   } = props
 
-  const fsHide = !nonSensitive && FS_HIDE_CLASS
+  const fsHide = !nonsensitive && FS_HIDE_CLASS
   const style = mergeStyleSheets(defaultStyleSheet, styleSheet)
   const leftClasses = css(fsHide, style.left, primarySide === 'left' && style.large)
   const rightClasses = css(fsHide, style.right, primarySide === 'right' && style.large)
@@ -47,7 +47,7 @@ const Align = (props: AlignProps) => {
 Align.defaultProps = {
   primarySide: 'left',
   styleSheet: {},
-  nonSensitive: FS_SHOW
+  nonsensitive: FS_SHOW
 }
 
 module.exports = Align

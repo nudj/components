@@ -24,7 +24,7 @@ type Props = {
   correlation?: 'positive' | 'negative',
   comparator?: string,
   styleSheet: StyleSheet,
-  nonSensitive?: boolean
+  nonsensitive?: boolean
 }
 
 const getDirectionIcon = (direction, style) => {
@@ -46,7 +46,7 @@ const Statistic = (props: Props) => {
     correlation,
     comparator,
     styleSheet,
-    nonSensitive
+    nonsensitive
   } = props
   const style = mergeStyleSheets(defaultStyleSheet, styleSheet)
 
@@ -60,12 +60,12 @@ const Statistic = (props: Props) => {
         {getDirectionIcon(direction, style)}
         {value}
       </Text>
-      <Text nonSensitive={nonSensitive} element='dd' style={style.label}>
+      <Text nonsensitive={nonsensitive} element='dd' style={style.label}>
         {label}
       </Text>
       { comparator && (
         <Text
-          nonSensitive={nonSensitive}
+          nonsensitive={nonsensitive}
           element='div'
           size='smallI'
           style={style.comparator}
@@ -79,7 +79,7 @@ const Statistic = (props: Props) => {
 
 Statistic.defaultProps = {
   styleSheet: {},
-  nonSensitive: FS_SHOW
+  nonsensitive: FS_SHOW
 }
 
 module.exports = Statistic

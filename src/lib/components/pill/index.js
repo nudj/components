@@ -11,14 +11,14 @@ type PillProps = {
   children: React.Node,
   style: Style,
   rest?: Array<mixed>,
-  nonSensitive?: boolean
+  nonsensitive?: boolean
 }
 
 const Pill = (props: PillProps) => {
-  const { volume, children, style, nonSensitive, ...rest } = props
+  const { volume, children, style, nonsensitive, ...rest } = props
 
   return (
-    <span {...rest} className={css(!nonSensitive && FS_HIDE_CLASS, styleSheet.root, styleSheet[volume], style)}>
+    <span {...rest} className={css(!nonsensitive && FS_HIDE_CLASS, styleSheet.root, styleSheet[volume], style)}>
       {children}
     </span>
   )
@@ -27,7 +27,7 @@ const Pill = (props: PillProps) => {
 Pill.defaultProps = {
   volume: 'murmur',
   style: {},
-  nonSensitive: FS_SHOW
+  nonsensitive: FS_SHOW
 }
 
 module.exports = Pill

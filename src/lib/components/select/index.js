@@ -22,7 +22,7 @@ type SelectProps = {
   required?: boolean,
   styleSheet: StyleSheetType,
   children: React.ChildrenArray<React.Element<'option'>>,
-  fsShow?: boolean
+  nonSensitive?: boolean
 }
 
 type HandlerArgs = {
@@ -45,7 +45,7 @@ const Select = (props: SelectProps) => {
     onBlur,
     onFocus,
     children,
-    fsShow
+    nonSensitive
   } = props
 
   const handleEvent = type => event => {
@@ -63,7 +63,7 @@ const Select = (props: SelectProps) => {
   return (
     <div className={css(style.root)}>
       <select
-        className={css(!fsShow && FS_HIDE_CLASS, style.select)}
+        className={css(!nonSensitive && FS_HIDE_CLASS, style.select)}
         id={id}
         name={name}
         onChange={handleEvent('onChange')}
@@ -84,7 +84,7 @@ Select.defaultProps = {
   onChange: noopHandler,
   onBlur: noopHandler,
   onFocus: noopHandler,
-  fsShow: FS_SHOW
+  nonSensitive: FS_SHOW
 }
 
 module.exports = Select

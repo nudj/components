@@ -37,7 +37,7 @@ type InputProps = {
   placeholder?: string,
   value?: string,
   onClear?: HandlerArgs => mixed,
-  fsShow?: boolean
+  nonSensitive?: boolean
 }
 
 const noopHandler = (args: HandlerArgs) => {}
@@ -58,7 +58,7 @@ const Input = (props: InputProps) => {
     ErrorWrapper,
     error,
     onClear,
-    fsShow
+    nonSensitive
   } = props
 
   const clearable = typeof onClear === 'function'
@@ -106,7 +106,7 @@ const Input = (props: InputProps) => {
             input = c
           }}
           className={css(
-            !fsShow && FS_HIDE_CLASS,
+            !nonSensitive && FS_HIDE_CLASS,
             style.input,
             error && style.inputError,
             clearable && style.inputWithClear
@@ -141,7 +141,7 @@ Input.defaultProps = {
   onFocus: noopHandler,
   Wrapper: 'div',
   ErrorWrapper: 'div',
-  fsShow: FS_SHOW
+  nonSensitive: FS_SHOW
 }
 
 module.exports = Input

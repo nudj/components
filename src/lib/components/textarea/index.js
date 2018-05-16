@@ -37,7 +37,7 @@ type TextareaProps = {
   value?: string,
   autosize?: boolean,
   rest?: Array<mixed>,
-  fsShow?: boolean
+  nonSensitive?: boolean
 }
 
 const noopHandler = (args: HandlerArgs) => {}
@@ -57,7 +57,7 @@ const Textarea = (props: TextareaProps) => {
     ErrorWrapper,
     error,
     autosize,
-    fsShow,
+    nonSensitive,
     ...rest
   } = props
 
@@ -89,7 +89,7 @@ const Textarea = (props: TextareaProps) => {
     <Wrapper className={css(style.root)}>
       <InputComponent
         {...rest}
-        className={css(!fsShow && FS_HIDE_CLASS, style.input, error && style.inputError)}
+        className={css(!nonSensitive && FS_HIDE_CLASS, style.input, error && style.inputError)}
         id={id}
         name={name}
         onChange={handleEvent('onChange')}
@@ -111,7 +111,7 @@ Textarea.defaultProps = {
   onFocus: noopHandler,
   Wrapper: 'div',
   ErrorWrapper: 'div',
-  fsShow: FS_SHOW
+  nonSensitive: FS_SHOW
 }
 
 module.exports = Textarea

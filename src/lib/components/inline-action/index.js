@@ -14,7 +14,7 @@ type InlineActionProps = {
   subtle?: boolean,
   disabled?: boolean,
   rest?: Array<mixed>,
-  fsShow?: boolean
+  nonSensitive?: boolean
 }
 
 const InlineAction = (props: InlineActionProps) => {
@@ -25,7 +25,7 @@ const InlineAction = (props: InlineActionProps) => {
     subtle,
     Component,
     disabled,
-    fsShow,
+    nonSensitive,
     ...rest
   } = props
 
@@ -36,7 +36,7 @@ const InlineAction = (props: InlineActionProps) => {
       {...rest}
       disabled={disabled}
       className={css(
-        !fsShow && FS_HIDE_CLASS,
+        !nonSensitive && FS_HIDE_CLASS,
         styleSheet.root,
         styleSheet[volume],
         disabled && styleSheet.disabled,
@@ -51,7 +51,7 @@ const InlineAction = (props: InlineActionProps) => {
 InlineAction.defaultProps = {
   volume: 'murmur',
   style: {},
-  fsShow: FS_SHOW
+  nonSensitive: FS_SHOW
 }
 
 module.exports = InlineAction

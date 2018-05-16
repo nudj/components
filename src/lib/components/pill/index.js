@@ -15,10 +15,10 @@ type PillProps = {
 }
 
 const Pill = (props: PillProps) => {
-  const { volume, children, style, fsShow, ...rest } = props
+  const { volume, children, style, nonSensitive, ...rest } = props
 
   return (
-    <span {...rest} className={css(!fsShow && FS_HIDE_CLASS, styleSheet.root, styleSheet[volume], style)}>
+    <span {...rest} className={css(!nonSensitive && FS_HIDE_CLASS, styleSheet.root, styleSheet[volume], style)}>
       {children}
     </span>
   )
@@ -27,7 +27,7 @@ const Pill = (props: PillProps) => {
 Pill.defaultProps = {
   volume: 'murmur',
   style: {},
-  fsShow: FS_SHOW
+  nonSensitive: FS_SHOW
 }
 
 module.exports = Pill

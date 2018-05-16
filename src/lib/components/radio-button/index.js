@@ -34,7 +34,7 @@ type RadioButtonProps = {
   name: string,
   value: string,
   label: string,
-  fsShow?: boolean
+  nonSensitive?: boolean
 }
 
 const RadioButton = (props: RadioButtonProps) => {
@@ -47,7 +47,7 @@ const RadioButton = (props: RadioButtonProps) => {
     name,
     value,
     id,
-    fsShow
+    nonSensitive
   } = props
 
   const onChangeHandler = event => {
@@ -89,7 +89,7 @@ const RadioButton = (props: RadioButtonProps) => {
             r='4'
           />
         </svg>
-        <span className={css(!fsShow && FS_HIDE_CLASS, style.label)}>{label}</span>
+        <span className={css(!nonSensitive && FS_HIDE_CLASS, style.label)}>{label}</span>
       </label>
     </Wrapper>
   )
@@ -98,7 +98,7 @@ const RadioButton = (props: RadioButtonProps) => {
 RadioButton.defaultProps = {
   styleSheet: {},
   Wrapper: 'div',
-  fsShow: FS_SHOW
+  nonSensitive: FS_SHOW
 }
 
 module.exports = RadioButton

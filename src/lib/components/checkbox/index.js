@@ -34,7 +34,7 @@ type CheckboxProps = {
   value: string,
   label: string,
   presentation?: boolean,
-  fsShow?: boolean
+  nonSensitive?: boolean
 }
 
 const Checkbox = (props: CheckboxProps) => {
@@ -48,7 +48,7 @@ const Checkbox = (props: CheckboxProps) => {
     value,
     id,
     presentation,
-    fsShow
+    nonSensitive
   } = props
 
   const onChangeHandler = event => {
@@ -97,7 +97,7 @@ const Checkbox = (props: CheckboxProps) => {
             />
           </g>
         </svg>
-        <span className={css(!fsShow && FS_HIDE_CLASS, style.label)}>{label}</span>
+        <span className={css(!nonSensitive && FS_HIDE_CLASS, style.label)}>{label}</span>
       </label>
     </Wrapper>
   )
@@ -107,7 +107,7 @@ Checkbox.defaultProps = {
   styleSheet: {},
   Wrapper: 'div',
   onChange: () => {},
-  fsShow: FS_SHOW
+  nonSensitive: FS_SHOW
 }
 
 module.exports = Checkbox

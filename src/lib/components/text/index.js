@@ -10,7 +10,7 @@ type TextProps = {
   children: React.Node,
   style?: Style,
   element: React.ElementType,
-  fsShow?: boolean,
+  nonSensitive?: boolean,
   size:
     | 'largeVi'
     | 'largeV'
@@ -25,10 +25,10 @@ type TextProps = {
 }
 
 const Text = (props: TextProps) => {
-  const { style, size, children, element: Component, fsShow, ...rest } = props
+  const { style, size, children, element: Component, nonSensitive, ...rest } = props
 
   return (
-    <Component {...rest} className={css(!fsShow && FS_HIDE_CLASS, styleSheet[size], style)}>
+    <Component {...rest} className={css(!nonSensitive && FS_HIDE_CLASS, styleSheet[size], style)}>
       {children}
     </Component>
   )
@@ -37,7 +37,7 @@ const Text = (props: TextProps) => {
 Text.defaultProps = {
   element: 'span',
   size: 'regular',
-  fsShow: FS_SHOW
+  nonSensitive: FS_SHOW
 }
 
 module.exports = Text

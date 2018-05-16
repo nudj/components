@@ -15,7 +15,7 @@ const SelectablePill = (props) => {
     value,
     id,
     disabled,
-    nonSensitive
+    nonsensitive
   } = props
 
   const onChangeHandler = event => {
@@ -51,7 +51,7 @@ const SelectablePill = (props) => {
           checked && disabled && style.labelContainerCheckedDisabled
         )}
       >
-        <span className={css(!nonSensitive && FS_HIDE_CLASS, style.label)}>
+        <span className={css(!nonsensitive && FS_HIDE_CLASS, style.label)}>
           {label}
         </span>
         <svg className={css(style.icon)} viewBox='0 0 24 24'>
@@ -87,7 +87,7 @@ SelectablePill.defaultProps = {
   styleSheet: {},
   Wrapper: 'div',
   onChange: () => {},
-  nonSensitive: FS_SHOW
+  nonsensitive: FS_SHOW
 }
 
 module.exports = SelectablePill

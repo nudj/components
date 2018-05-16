@@ -39,7 +39,7 @@ type TableProps = {
   styleSheet: StyleSheetType,
   headingRenderer?: (column: Column, defaultValue: string) => React.Node,
   cellRenderer?: (column: Column, row: Row, defaultValue: string) => React.Node,
-  nonSensitive?: boolean
+  nonsensitive?: boolean
 }
 
 const Table = (props: TableProps) => {
@@ -56,7 +56,7 @@ const Table = (props: TableProps) => {
     data,
     columns,
     styleSheet,
-    nonSensitive
+    nonsensitive
   } = props
 
   const style = mergeStyleSheets(defaultStylesheet, styleSheet)
@@ -66,7 +66,7 @@ const Table = (props: TableProps) => {
       <Head className={css(style.header)}>
         <HeaderRow className={css(style.headerRow)}>
           {columns.map((column: Column) => (
-            <HeaderCell className={css(!nonSensitive && FS_HIDE_CLASS, style.heading)} key={column.name}>
+            <HeaderCell className={css(!nonsensitive && FS_HIDE_CLASS, style.heading)} key={column.name}>
               {headingRenderer(column, column.heading)}
             </HeaderCell>
           ))}
@@ -79,7 +79,7 @@ const Table = (props: TableProps) => {
               const defaultValue: string = get(row, column.name, '')
               return (
                 <Cell
-                  className={css(!nonSensitive && FS_HIDE_CLASS, style.cell)}
+                  className={css(!nonsensitive && FS_HIDE_CLASS, style.cell)}
                   key={`${row.id}-${column.name}`}
                 >
                   {cellRenderer(column, row, defaultValue)}
@@ -104,7 +104,7 @@ Table.defaultProps = {
   styleSheet: {},
   data: [],
   columns: [],
-  nonSensitive: FS_SHOW
+  nonsensitive: FS_SHOW
 }
 
 module.exports = Table

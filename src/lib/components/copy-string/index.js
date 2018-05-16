@@ -1,44 +1,56 @@
-// @flow
+/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "^_" }] */
+
 const React = require('react')
 const copy = require('copy-to-clipboard')
+const PropTypes = require('prop-types')
 
 const InlineAction = require('../inline-action')
+const { ComponentPropType } = require('../../helpers/prop-types')
 
-type Props = {
-  type?: 'submit' | 'reset' | 'button',
-  value?: string,
-  children: React.Node,
-  Component: React.ElementType,
-  text: string,
-  onCopy: () => void,
-  rest?: Array<mixed>
-}
+class CopyString extends React.Component {
+  static defaultProps = {
+    volume: 'murmur',
+    onCopy: () => {},
+    onBlur: () => {}
+  }
 
-const CopyString = (props: Props) => {
-  const { children, type, text, onCopy, Component, ...rest } = props
+  static PropTypes = {
+    onCopy: PropTypes.func,
+    onBlur: PropTypes.func,
+    volume: PropTypes.oneOf(['scream', 'yell', 'shout', 'cheer', 'murmur']),
+    children: ComponentPropType.isRequired,
+    string: PropTypes.string.isRequired
+  }
 
-  const onClick = () => {
-    copy(text)
+  onClick = () => {
+    const { string, onCopy } = this.props
+    copy(string)
     onCopy()
   }
 
-  return (
-    <InlineAction
-      {...rest}
-      onClick={onClick}
-      type={type}
-      Component={Component}
-    >
-      {children}
-    </InlineAction>
-  )
-}
+  render () {
+    const {
+      children,
+      string: _string,
+      onCopy: _onCopy,
+      onBlur,
+      volume,
+      ...rest
+    } = this.props
 
-CopyString.defaultProps = {
-  volume: 'murmur',
-  onCopy: () => {},
-  Component: 'button',
-  type: 'button'
+    return (
+      <InlineAction
+        {...rest}
+        onBlur={onBlur}
+        volume={volume}
+        onClick={this.onClick}
+        Component='button'
+        type='button'
+      >
+        {children}
+      </InlineAction>
+    )
+  }
 }
 
 module.exports = CopyString

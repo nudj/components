@@ -4,6 +4,7 @@ import dedent from 'dedent'
 import { Page } from 'catalog'
 
 import Input from '../../../../lib/components/input'
+import CopyString from '../../../../lib/components/copy-string'
 import IconInput from '../../../../lib/components/icon-input'
 import InputField from '../../../../lib/components/input-field'
 import Select from '../../../../lib/components/select'
@@ -33,12 +34,15 @@ type State = {
   selectablePill: boolean,
   selectablePillGroup: Array<string>,
   textarea: string,
+  copied: boolean
 }
 
 export default class FormDocumentation extends Component<Props, State> {
   handleChange: ({ name: string, value: string }) => void
   handleArrayChange: ({ name: string, values: Array<string> }) => void
   handleToggle: ({ name: string, value: boolean }) => void
+  handleCopy: () => void
+  handleCopyStringBlur: () => void
 
   constructor (props: Object) {
     super(props)
@@ -56,7 +60,8 @@ export default class FormDocumentation extends Component<Props, State> {
       segmentedControl: '',
       selectablePill: false,
       selectablePillGroup: [],
-      textarea: ''
+      textarea: '',
+      copied: false
     }
   }
 
@@ -84,6 +89,14 @@ export default class FormDocumentation extends Component<Props, State> {
     })
   }
 
+  handleCopy = () => {
+    this.setState({ copied: true })
+  }
+
+  handleCopyStringBlur = () => {
+    this.setState({ copied: false })
+  }
+
   render () {
     const {
       input,
@@ -98,7 +111,8 @@ export default class FormDocumentation extends Component<Props, State> {
       segmentedControl,
       selectablePill,
       selectablePillGroup,
-      textarea
+      textarea,
+      copied
     } = this.state
 
     return (
@@ -537,6 +551,31 @@ export default class FormDocumentation extends Component<Props, State> {
               required
             />
           </InputField>
+        </ReactCodeSpecimen>
+        <h3>Copy String</h3>
+        <p>
+          Use the Copy String component when you want to provide your user with a
+          quick and easy way of copying some useful information to their clipboard.
+        </p>
+        <ReactCodeSpecimen
+          code={dedent`
+            <CopyString
+              onCopy={this.handleCopy}
+              onBlur={this.handleCopyStringBlur}
+              string={importantLink}
+            >
+              {copied ? 'Copied! 🎉' : 'Copy'}
+            </CopyString>
+          `}
+        >
+          <CopyString
+            onCopy={this.handleCopy}
+            onBlur={this.handleCopyStringBlur}
+            string='Time flies like an arrow; fruit flies like a banana'
+            volume={copied ? 'shout' : 'cheer'}
+          >
+            {copied ? 'Copied! 🎉' : 'Copy'}
+          </CopyString>
         </ReactCodeSpecimen>
       </Page>
     )

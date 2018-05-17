@@ -4,7 +4,7 @@
 const React = require('react')
 const { shallow } = require('enzyme')
 
-const CopyString = require('../../../lib/components/copy-string')
+const { CopyString } = require('../../../lib')
 
 describe('CopyString', () => {
   it('renders', () => {

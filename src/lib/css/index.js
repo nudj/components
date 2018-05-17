@@ -11,6 +11,7 @@ const typography = require('./typography')
 const colors = require('./colors')
 const sizes = require('./sizes')
 const utilities = require('./utilities')
+const animations = require('./animations')
 const { FS_HIDE_CLASS } = require('../constants')
 
 const Extended = StyleSheet.extend([])
@@ -64,5 +65,6 @@ module.exports = {
   typography,
   colors,
   sizes,
-  utilities
+  utilities,
+  animations
 }

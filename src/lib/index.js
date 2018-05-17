@@ -7,6 +7,7 @@ module.exports = {
   Checkbox: require('./components/checkbox'),
   CheckboxGroup: require('./components/checkbox-group'),
   ContactCard: require('./components/contact-card'),
+  CopyString: require('./components/copy-string'),
   Dropzone: require('./components/dropzone'),
   EmailButton: require('./components/email-button'),
   FacebookButton: require('./components/facebook-button'),

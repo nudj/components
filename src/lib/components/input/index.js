@@ -37,7 +37,8 @@ type InputProps = {
   placeholder?: string,
   value?: string,
   onClear?: HandlerArgs => mixed,
-  nonsensitive?: boolean
+  nonsensitive?: boolean,
+  tabIndex?: number
 }
 
 const noopHandler = (args: HandlerArgs) => {}
@@ -58,6 +59,7 @@ const Input = (props: InputProps) => {
     ErrorWrapper,
     error,
     onClear,
+    tabIndex,
     nonsensitive
   } = props
 
@@ -120,10 +122,15 @@ const Input = (props: InputProps) => {
           required={required}
           placeholder={placeholder}
           value={value}
+          tabIndex={tabIndex}
         />
         {clearable &&
           value && (
-            <ButtonContainer style={style.clearButton} onClick={handleClear}>
+            <ButtonContainer
+              style={style.clearButton}
+              onClick={handleClear}
+              tabIndex={tabIndex}
+            >
               <Icon style={style.icon} name='close' />
             </ButtonContainer>
           )}

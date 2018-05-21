@@ -45,6 +45,10 @@ const styleSheet = StyleSheet.create({
     stroke: 'transparent',
     fill: 'currentColor'
   },
+  nudj: {
+    stroke: 'transparent',
+    fill: 'currentColor'
+  },
   questionMark: {
     stroke: 'transparent',
     fill: 'currentColor'

@@ -6,8 +6,9 @@ const icons = {
   chevron: require('./icons/chevron'),
   email: require('./icons/email'),
   exitArrow: require('./icons/exit'),
-  questionMark: require('./icons/help'),
   externalLink: require('./icons/external-link'),
+  nudj: require('./icons/nudj'),
+  questionMark: require('./icons/help'),
   // social
   facebook: require('./icons/facebook'),
   facebookMessenger: require('./icons/facebook-messenger'),

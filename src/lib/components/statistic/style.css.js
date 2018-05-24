@@ -4,15 +4,18 @@ const stylesheet = StyleSheet.create({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    textAlign: 'center'
+    textAlign: 'left'
   },
   value: {
-    flexGrow: 1
+    flexGrow: 1,
+    lineHeight: 1,
+    marginTop: sizes.smallIii
   },
   icon: {
     display: 'inline-block',
-    marginRight: '0.5rem',
-    fontSize: '0.35em'
+    fontSize: '0.5em',
+    marginTop: `-${sizes.smallIi}`,
+    marginLeft: `-${sizes.smallIii}`
   },
   positive: {
     color: colors.success
@@ -21,7 +24,8 @@ const stylesheet = StyleSheet.create({
     color: colors.danger
   },
   label: {
-    marginLeft: 0
+    marginLeft: 0,
+    color: colors.greyDarker
   },
   comparator: {
     color: colors.grey,

@@ -52,6 +52,9 @@ const Statistic = (props: Props) => {
 
   return (
     <div className={css(style.root)}>
+      <Text nonsensitive={nonsensitive} element='dd' style={style.label}>
+        {label}
+      </Text>
       <Text
         size='largeVi'
         element='dt'
@@ -59,9 +62,6 @@ const Statistic = (props: Props) => {
       >
         {getDirectionIcon(direction, style)}
         {value}
-      </Text>
-      <Text nonsensitive={nonsensitive} element='dd' style={style.label}>
-        {label}
       </Text>
       { comparator && (
         <Text

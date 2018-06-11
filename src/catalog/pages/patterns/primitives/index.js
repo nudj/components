@@ -5,6 +5,7 @@ import { Page } from 'catalog'
 import Text from '../../../../lib/components/text'
 import Card from '../../../../lib/components/card'
 import Align from '../../../../lib/components/align'
+import Banner from '../../../../lib/components/banner'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
 
 const PrimitivesDocumentation = () => (
@@ -75,6 +76,25 @@ const PrimitivesDocumentation = () => (
           rightChildren={<button>Continue</button>}
         />
       </Card>
+    </ReactCodeSpecimen>
+    <h3>Banner</h3>
+    <p>
+      Use a banner to present important notifications to the user
+    </p>
+    <ReactCodeSpecimen
+      code={dedent`
+        <Banner context='success'>
+          <Text>
+            You're all set up and good to go! 🚀
+          </Text>
+        </Banner>
+      `}
+    >
+      <Banner context='success'>
+        <Text>
+          You&apos;re all set up and good to go! 🚀
+        </Text>
+      </Banner>
     </ReactCodeSpecimen>
   </Page>
 )

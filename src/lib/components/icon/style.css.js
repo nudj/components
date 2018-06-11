@@ -54,6 +54,17 @@ const styleSheet = StyleSheet.create({
     fill: 'currentColor'
   },
   /**
+   * Icons w/circle
+   */
+  pause: {
+    stroke: 'transparent',
+    fill: 'currentColor'
+  },
+  play: {
+    stroke: 'transparent',
+    fill: 'currentColor'
+  },
+  /**
    * Social icons
    */
   facebookMessenger: {

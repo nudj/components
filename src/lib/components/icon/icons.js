@@ -9,6 +9,9 @@ const icons = {
   externalLink: require('./icons/external-link'),
   nudj: require('./icons/nudj'),
   questionMark: require('./icons/help'),
+  // circles
+  pause: require('./icons/pause'),
+  play: require('./icons/play'),
   // social
   facebook: require('./icons/facebook'),
   facebookMessenger: require('./icons/facebook-messenger'),

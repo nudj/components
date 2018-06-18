@@ -75,7 +75,7 @@ const RadioGroup = (props: RadioGroupPropTypes) => {
           return (
             <Input
               name={name}
-              classNames={radioButtonStyleSheet}
+              styleSheet={radioButtonStyleSheet}
               value={childProps.value}
               label={childProps.label}
               onChange={handleChange}

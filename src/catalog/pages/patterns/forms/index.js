@@ -12,11 +12,17 @@ import Checkbox from '../../../../lib/components/checkbox'
 import CheckboxGroup from '../../../../lib/components/checkbox-group'
 import SegmentedControl from '../../../../lib/components/segmented-control'
 import RadioButton from '../../../../lib/components/radio-button'
+import RadioBlockGroup from '../../../../lib/components/radio-block-group'
 import RadioGroup from '../../../../lib/components/radio-group'
 import SelectablePill from '../../../../lib/components/selectable-pill'
 import SelectablePillGroup from '../../../../lib/components/selectable-pill-group'
 import Textarea from '../../../../lib/components/textarea'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
+
+/**
+ * NOTE: using import here instead of require makes flow blow up due to destructuring
+ */
+// const { css } = require('../../../../lib/css')
 
 type Props = {}
 
@@ -30,6 +36,7 @@ type State = {
   checkboxGroup: Array<string>,
   radio: boolean,
   radioGroup: string,
+  blockGroup: string,
   segmentedControl: string,
   selectablePill: boolean,
   selectablePillGroup: Array<string>,
@@ -57,6 +64,7 @@ export default class FormDocumentation extends Component<Props, State> {
       checkboxGroup: [],
       radio: false,
       radioGroup: '',
+      blockGroup: '',
       segmentedControl: '',
       selectablePill: false,
       selectablePillGroup: [],
@@ -108,6 +116,7 @@ export default class FormDocumentation extends Component<Props, State> {
       checkboxGroup,
       radio,
       radioGroup,
+      blockGroup,
       segmentedControl,
       selectablePill,
       selectablePillGroup,
@@ -410,6 +419,40 @@ export default class FormDocumentation extends Component<Props, State> {
               </div>
             )}
           </RadioGroup>
+        </ReactCodeSpecimen>
+        <h3>Radio Block Group</h3>
+        <p>
+          Similar to the RadioGroup, you should use a BlockGroup when the
+          user needs to choose one option from many. Typically, this should be
+          used when the BlockGroup is the core focus for the user, e.g., when
+          it is the main option on the page.
+        </p>
+        <ReactCodeSpecimen
+          code={dedent`
+            <RadioBlockGroup
+              name='blockGroup'
+              onChange={this.handleChange}
+              value={blockGroup}
+            >
+              {block => [
+                block({ id: 'block-1', key: 'block-1', value: '1', label: 'One' }),
+                block({ id: 'block-2', key: 'block-2', value: '2', label: 'Two' }),
+                block({ id: 'block-3', key: 'block-3', value: '3', label: 'Three' })
+              ]}
+            </RadioBlockGroup>
+          `}
+        >
+          <RadioBlockGroup
+            name='blockGroup'
+            onChange={this.handleChange}
+            value={blockGroup}
+          >
+            {block => [
+              block({ id: 'block-1', key: 'block-1', value: '1', label: 'One' }),
+              block({ id: 'block-2', key: 'block-2', value: '2', label: 'Two' }),
+              block({ id: 'block-3', key: 'block-3', value: '3', label: 'Three' })
+            ]}
+          </RadioBlockGroup>
         </ReactCodeSpecimen>
         <h3>Segmented Control</h3>
         <p>Similar to a RadioGroup, you should use a Segmented Control where the user must choose one option from many, however with the subtle difference that it must display a different view.</p>

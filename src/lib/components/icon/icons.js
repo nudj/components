@@ -4,9 +4,11 @@ const icons = {
   buildings: require('./icons/buildings'),
   candidates: require('./icons/candidates'),
   chevron: require('./icons/chevron'),
+  edit: require('./icons/edit'),
   email: require('./icons/email'),
   exitArrow: require('./icons/exit'),
   externalLink: require('./icons/external-link'),
+  moreVert: require('./icons/more-vert'),
   nudj: require('./icons/nudj'),
   questionMark: require('./icons/help'),
   // circles

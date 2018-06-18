@@ -33,6 +33,10 @@ const styleSheet = StyleSheet.create({
     stroke: 'transparent',
     fill: 'currentColor'
   },
+  edit: {
+    stroke: 'transparent',
+    fill: 'currentColor'
+  },
   email: {
     stroke: 'transparent',
     fill: 'currentColor'
@@ -42,6 +46,10 @@ const styleSheet = StyleSheet.create({
     fill: 'currentColor'
   },
   externalLink: {
+    stroke: 'transparent',
+    fill: 'currentColor'
+  },
+  moreVert: {
     stroke: 'transparent',
     fill: 'currentColor'
   },

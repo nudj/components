@@ -39,8 +39,8 @@ const InputField = (props: InputProps) => {
         {label}
         {required && requiredNotice()}
       </label>
-      <div className={css(style.inputContainer)}>{children}</div>
       {description && descriptionContainer()}
+      <div className={css(style.inputContainer)}>{children}</div>
     </div>
   )
 }

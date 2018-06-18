@@ -12,11 +12,11 @@ const styleSheet = StyleSheet.create({
     verticalAlign: 'super'
   }),
   inputContainer: {
-    marginTop: sizes.smallIi
+    marginTop: sizes.smallI
   },
   description: merge(typography.type.regular, {
-    color: colors.text,
-    marginTop: sizes.smallIi
+    color: colors.greyDarker,
+    marginTop: sizes.smallIii
   })
 })
 

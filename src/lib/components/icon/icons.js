@@ -17,6 +17,7 @@ const icons = {
   // social
   facebook: require('./icons/facebook'),
   facebookMessenger: require('./icons/facebook-messenger'),
+  linkedin: require('./icons/linkedin'),
   twitter: require('./icons/twitter'),
   whatsapp: require('./icons/whatsapp')
 }

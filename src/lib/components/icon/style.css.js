@@ -12,7 +12,6 @@ const styleSheet = StyleSheet.create({
     fill: 'inherit',
     verticalAlign: 'middle'
   },
-
   briefcase: {
     stroke: 'transparent',
     fill: 'currentColor'
@@ -33,6 +32,14 @@ const styleSheet = StyleSheet.create({
     stroke: 'transparent',
     fill: 'currentColor'
   },
+  dollarBold: {
+    stroke: 'transparent',
+    fill: 'currentColor'
+  },
+  dollar: {
+    stroke: 'transparent',
+    fill: 'currentColor'
+  },
   edit: {
     stroke: 'transparent',
     fill: 'currentColor'
@@ -49,11 +56,27 @@ const styleSheet = StyleSheet.create({
     stroke: 'transparent',
     fill: 'currentColor'
   },
+  euroBold: {
+    stroke: 'transparent',
+    fill: 'currentColor'
+  },
+  euro: {
+    stroke: 'transparent',
+    fill: 'currentColor'
+  },
   moreVert: {
     stroke: 'transparent',
     fill: 'currentColor'
   },
   nudj: {
+    stroke: 'transparent',
+    fill: 'currentColor'
+  },
+  poundBold: {
+    stroke: 'transparent',
+    fill: 'currentColor'
+  },
+  pound: {
     stroke: 'transparent',
     fill: 'currentColor'
   },

@@ -39,6 +39,8 @@ const twitter = '#1A97F1'
 const twitterLight = '#48acf4'
 const gmail = '#d4584a'
 const gmailLight = '#d0796b'
+const linkedin = '#0077b5'
+const linkedinLight = '#008cc9'
 
 const overlay = {
   // greyDarker @ 50% opacity
@@ -93,5 +95,7 @@ module.exports = {
   twitter,
   twitterLight,
   gmail,
-  gmailLight
+  gmailLight,
+  linkedin,
+  linkedinLight
 }

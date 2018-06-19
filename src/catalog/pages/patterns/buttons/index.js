@@ -12,6 +12,7 @@ import FacebookButton from '../../../../lib/components/facebook-button'
 import MessengerButton from '../../../../lib/components/messenger-button'
 import TwitterButton from '../../../../lib/components/twitter-button'
 import EmailButton from '../../../../lib/components/email-button'
+import LinkedinButton from '../../../../lib/components/linkedin-button'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
 import style from './style.css'
 
@@ -359,6 +360,12 @@ const ButtonDocumentation = () => (
           text='Hiya mate, how about this job?'
           url='https://nudj.co/companies/fundstack/jobs/software-engineer'
           via='nudj'
+        />
+        <LinkedinButton
+          style={style.button}
+          url='https://nudj.co'
+          title='Supercharge your referral scheme'
+          summary='nudj makes it effortless for you and your team to ask for, track, and reward referrals.'
         />
         <EmailButton
           style={style.button}

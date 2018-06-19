@@ -18,6 +18,7 @@ module.exports = {
   Input: require('./components/input'),
   InputField: require('./components/input-field'),
   Link: require('./components/link'),
+  LinkedinButton: require('./components/linkedin-button'),
   Loader: require('./components/loader'),
   MessengerButton: require('./components/messenger-button'),
   Modal: require('./components/modal'),

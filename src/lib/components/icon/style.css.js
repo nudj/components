@@ -83,6 +83,10 @@ const styleSheet = StyleSheet.create({
     stroke: 'transparent',
     fill: 'currentColor'
   },
+  linkedin: {
+    stroke: 'transparent',
+    fill: 'currentColor'
+  },
   twitter: {
     stroke: 'transparent',
     fill: 'currentColor'

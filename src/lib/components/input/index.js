@@ -1,75 +1,72 @@
-// @flow
 const React = require('react')
+const PropTypes = require('prop-types')
 
+const { ComponentPropType } = require('../../helpers/prop-types')
 const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { css, mergeStyleSheets } = require('../../css')
 const Icon = require('../icon')
 const ButtonContainer = require('../button-container')
 const defaultStylesheet = require('./style.css')
 
-type StyleSheetType = {
-  root?: string,
-  error?: string,
-  input?: string,
-  inputError?: string
-}
+const noopHandler = args => {}
 
-type HandlerArgs = {
-  name: string,
-  value: string,
-  preventDefault: Function,
-  stopPropagation: Function
-}
+class Input extends React.Component {
+  static defaultProps = {
+    type: 'text',
+    styleSheet: {},
+    onChange: noopHandler,
+    onBlur: noopHandler,
+    onFocus: noopHandler,
+    Wrapper: 'div',
+    ErrorWrapper: 'div',
+    nonsensitive: FS_SHOW
+  }
 
-type InputProps = {
-  id: string,
-  type: 'text' | 'email' | 'password' | 'search' | 'url',
-  Wrapper: React.ElementType,
-  ErrorWrapper: React.ElementType,
-  onChange: HandlerArgs => mixed,
-  onBlur: HandlerArgs => mixed,
-  onFocus: HandlerArgs => mixed,
-  onClear: HandlerArgs => mixed,
-  error?: string,
-  required?: boolean,
-  name: string,
-  styleSheet: StyleSheetType,
-  placeholder?: string,
-  value?: string,
-  onClear?: HandlerArgs => mixed,
-  nonsensitive?: boolean,
-  tabIndex?: number
-}
+  static propTypes = {
+    id: PropTypes.string,
+    type: PropTypes.oneOf(['text', 'email', 'password', 'search', 'url']),
+    Wrapper: ComponentPropType,
+    ErrorWrapper: ComponentPropType,
+    onChange: PropTypes.func,
+    onBlur: PropTypes.func,
+    onFocus: PropTypes.func,
+    onClear: PropTypes.func,
+    error: PropTypes.string,
+    placeholder: PropTypes.string,
+    value: PropTypes.string,
+    required: PropTypes.bool,
+    nonsensitive: PropTypes.bool,
+    tabIndex: PropTypes.number,
+    name: PropTypes.string,
+    styleSheet: PropTypes.shape({
+      root: PropTypes.oneOfType([ PropTypes.string, PropTypes.array ]),
+      error: PropTypes.oneOfType([ PropTypes.string, PropTypes.array ]),
+      input: PropTypes.oneOfType([ PropTypes.string, PropTypes.array ]),
+      inputError: PropTypes.oneOfType([ PropTypes.string, PropTypes.array ])
+    })
+  }
 
-const noopHandler = (args: HandlerArgs) => {}
+  state = {
+    hasFocus: false
+  }
 
-const Input = (props: InputProps) => {
-  const {
-    id,
-    name,
-    type,
-    required,
-    placeholder,
-    value,
-    styleSheet,
-    onChange,
-    onBlur,
-    onFocus,
-    Wrapper,
-    ErrorWrapper,
-    error,
-    onClear,
-    tabIndex,
-    nonsensitive
-  } = props
+  focus = () => {
+    if (this.input) {
+      this.input.focus()
+    }
+    this.handleFocus()
+  }
 
-  const clearable = typeof onClear === 'function'
-  // hack to prevent flow from complaining about `onClear` being optional
-  let onClearHandler = onClear || (_ => {})
+  blur = () => {
+    if (this.input) {
+      this.input.blur()
+    }
+    this.handleBlur()
+  }
 
-  const handleEvent = type => event => {
-    const actions = { onChange, onBlur, onFocus }
-    return actions[type]({
+  handleChange = event => {
+    const { onChange, name } = this.props
+    onChange({
       name: name,
       value: event.target.value,
       preventDefault: event.preventDefault,
@@ -77,13 +74,28 @@ const Input = (props: InputProps) => {
     })
   }
 
-  const handleClear = event => {
+  handleBlur = () => {
+    const { onBlur } = this.props
+    this.setState({ hasFocus: false })
+    onBlur()
+  }
+
+  handleFocus = () => {
+    const { onFocus } = this.props
+    this.setState({ hasFocus: true })
+    onFocus()
+  }
+
+  handleClear = event => {
+    const { onClear } = this.props
+    const clearable = typeof onClear === 'function'
+
     if (clearable) {
       event.preventDefault()
-      if (input != null) input.focus()
+      this.focus()
 
-      onClearHandler({
-        name: name,
+      onClear({
+        name: this.props.name,
         value: '',
         preventDefault: event.preventDefault,
         stopPropagation: event.stopPropagation
@@ -91,64 +103,66 @@ const Input = (props: InputProps) => {
     }
   }
 
-  const style = mergeStyleSheets(defaultStylesheet, styleSheet)
+  render () {
+    const {
+      id,
+      name,
+      type,
+      required,
+      placeholder,
+      value,
+      styleSheet,
+      Wrapper,
+      ErrorWrapper,
+      error,
+      onClear,
+      tabIndex,
+      nonsensitive
+    } = this.props
 
-  const errorSection = () => (
-    <ErrorWrapper className={css(style.error)}>{error}</ErrorWrapper>
-  )
+    const clearable = typeof onClear === 'function'
+    const style = mergeStyleSheets(defaultStylesheet, styleSheet)
 
-  // ref
-  let input = null
-
-  return (
-    <Wrapper className={css(style.root)}>
-      <div className={css(style.inputContainer)}>
-        <input
-          ref={c => {
-            input = c
-          }}
-          className={css(
-            !nonsensitive && FS_HIDE_CLASS,
-            style.input,
-            error && style.inputError,
-            clearable && style.inputWithClear
-          )}
-          id={id}
-          name={name}
-          type={type}
-          onChange={handleEvent('onChange')}
-          onBlur={handleEvent('onBlur')}
-          onFocus={handleEvent('onFocus')}
-          required={required}
-          placeholder={placeholder}
-          value={value}
-          tabIndex={tabIndex}
-        />
-        {clearable &&
-          value && (
+    return (
+      <Wrapper className={css(style.root)}>
+        <div className={css(style.inputContainer)}>
+          <input
+            ref={c => {
+              this.input = c
+            }}
+            className={css(
+              !nonsensitive && FS_HIDE_CLASS,
+              style.input,
+              error && style.inputError,
+              clearable && style.inputWithClear
+            )}
+            id={id}
+            name={name}
+            type={type}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}
+            onFocus={this.handleFocus}
+            required={required}
+            placeholder={placeholder}
+            value={value}
+            tabIndex={tabIndex}
+          />
+          {clearable && value && (
             <ButtonContainer
               style={style.clearButton}
-              onClick={handleClear}
+              onClick={this.handleClear}
               tabIndex={tabIndex}
             >
               <Icon style={style.icon} name='close' />
             </ButtonContainer>
           )}
-      </div>
-      {error ? errorSection() : null}
-    </Wrapper>
-  )
-}
-
-Input.defaultProps = {
-  type: 'text',
-  styleSheet: {},
-  onChange: noopHandler,
-  onBlur: noopHandler,
-  onFocus: noopHandler,
-  Wrapper: 'div',
-  ErrorWrapper: 'div',
-  nonsensitive: FS_SHOW
+        </div>
+        {error && (
+          <ErrorWrapper className={css(style.error)}>{error}</ErrorWrapper>
+        )}
+      </Wrapper>
+    )
+  }
 }
 
 module.exports = Input

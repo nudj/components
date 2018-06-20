@@ -102,20 +102,8 @@ describe('Input', () => {
         <Input name={inputName} onBlur={customOnBlur} />
       )
       const input = component.find('input')
-      const event = {
-        target: {
-          value: 'Input Value Here'
-        },
-        preventDefault: () => {},
-        stopPropagation: () => {}
-      }
-      input.simulate('blur', event)
-      expect(customOnBlur).to.have.been.calledWith({
-        name: inputName,
-        value: event.target.value,
-        preventDefault: event.preventDefault,
-        stopPropagation: event.stopPropagation
-      })
+      input.simulate('blur', {})
+      expect(customOnBlur).to.have.been.called()
     })
 
     it('takes an onFocus function', () => {
@@ -125,20 +113,8 @@ describe('Input', () => {
         <Input name={inputName} onFocus={customOnFocus} />
       )
       const input = component.find('input')
-      const event = {
-        target: {
-          value: 'Input Value Here'
-        },
-        preventDefault: () => {},
-        stopPropagation: () => {}
-      }
-      input.simulate('focus', event)
-      expect(customOnFocus).to.have.been.calledWith({
-        name: inputName,
-        value: event.target.value,
-        preventDefault: event.preventDefault,
-        stopPropagation: event.stopPropagation
-      })
+      input.simulate('focus', {})
+      expect(customOnFocus).to.have.been.called()
     })
 
     it('takes fires the onClear function with an empty string when cleared', () => {

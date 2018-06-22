@@ -16,6 +16,7 @@ module.exports = {
   IconButton: require('./components/icon-button'),
   IconLink: require('./components/icon-link'),
   Input: require('./components/input'),
+  IntegerInput: require('./components/integer-input'),
   IconInput: require('./components/icon-input'),
   InputField: require('./components/input-field'),
   Link: require('./components/link'),

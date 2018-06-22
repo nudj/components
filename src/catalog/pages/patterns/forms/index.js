@@ -6,6 +6,7 @@ import { Page } from 'catalog'
 import Input from '../../../../lib/components/input'
 import CopyString from '../../../../lib/components/copy-string'
 import IconInput from '../../../../lib/components/icon-input'
+import IntegerInput from '../../../../lib/components/integer-input'
 import InputField from '../../../../lib/components/input-field'
 import Select from '../../../../lib/components/select'
 import Checkbox from '../../../../lib/components/checkbox'
@@ -30,6 +31,7 @@ type State = {
   input: string,
   error: string,
   iconInput: string,
+  integerInput: string,
   checkbox: boolean,
   inputField: string,
   select: string,
@@ -58,6 +60,7 @@ export default class FormDocumentation extends Component<Props, State> {
       input: '',
       error: 'Invalid input',
       iconInput: '',
+      integerInput: '',
       checkbox: false,
       inputField: '',
       select: '',
@@ -112,6 +115,7 @@ export default class FormDocumentation extends Component<Props, State> {
       iconInput,
       checkbox,
       inputField,
+      integerInput,
       select,
       checkboxGroup,
       radio,
@@ -594,6 +598,32 @@ export default class FormDocumentation extends Component<Props, State> {
               required
             />
           </InputField>
+        </ReactCodeSpecimen>
+        <h3>Bonus field</h3>
+        <p>
+          Use the integer input when you want to provide your user with a
+          validated input for numerical values.
+        </p>
+        <ReactCodeSpecimen
+          code={dedent`
+            <IntegerInput
+              id='integerInput'
+              name='integerInput'
+              onChange={this.handleChange}
+              Component={IconInput}
+              iconName='poundBold'
+              value={integerInput}
+            />
+          `}
+        >
+          <IntegerInput
+            id='integerInput'
+            name='integerInput'
+            onChange={this.handleChange}
+            Component={IconInput}
+            iconName='poundBold'
+            value={integerInput}
+          />
         </ReactCodeSpecimen>
         <h3>Copy String</h3>
         <p>

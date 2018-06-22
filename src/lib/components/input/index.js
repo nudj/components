@@ -17,6 +17,8 @@ class Input extends React.Component {
     onChange: noopHandler,
     onBlur: noopHandler,
     onFocus: noopHandler,
+    onKeyDown: noopHandler,
+    onKeyUp: noopHandler,
     Wrapper: 'div',
     ErrorWrapper: 'div',
     nonsensitive: FS_SHOW
@@ -24,7 +26,7 @@ class Input extends React.Component {
 
   static propTypes = {
     id: PropTypes.string,
-    type: PropTypes.oneOf(['text', 'email', 'password', 'search', 'url']),
+    type: PropTypes.oneOf(['text', 'email', 'password', 'search', 'url', 'number']),
     Wrapper: ComponentPropType,
     ErrorWrapper: ComponentPropType,
     onChange: PropTypes.func,
@@ -116,6 +118,8 @@ class Input extends React.Component {
       ErrorWrapper,
       error,
       onClear,
+      onKeyDown,
+      onKeyUp,
       tabIndex,
       nonsensitive
     } = this.props
@@ -139,6 +143,8 @@ class Input extends React.Component {
             id={id}
             name={name}
             type={type}
+            onKeyDown={onKeyDown}
+            onKeyUp={onKeyUp}
             onChange={this.handleChange}
             onBlur={this.handleBlur}
             onFocus={this.handleFocus}

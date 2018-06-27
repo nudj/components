@@ -13,6 +13,7 @@ const noopHandler = args => {}
 class Input extends React.Component {
   static defaultProps = {
     type: 'text',
+    value: '',
     styleSheet: {},
     onChange: noopHandler,
     onBlur: noopHandler,
@@ -41,10 +42,10 @@ class Input extends React.Component {
     tabIndex: PropTypes.number,
     name: PropTypes.string,
     styleSheet: PropTypes.shape({
-      root: PropTypes.oneOfType([ PropTypes.string, PropTypes.array ]),
-      error: PropTypes.oneOfType([ PropTypes.string, PropTypes.array ]),
-      input: PropTypes.oneOfType([ PropTypes.string, PropTypes.array ]),
-      inputError: PropTypes.oneOfType([ PropTypes.string, PropTypes.array ])
+      root: PropTypes.oneOfType([ PropTypes.string, PropTypes.object, PropTypes.array ]),
+      error: PropTypes.oneOfType([ PropTypes.string, PropTypes.object, PropTypes.array ]),
+      input: PropTypes.oneOfType([ PropTypes.string, PropTypes.object, PropTypes.array ]),
+      inputError: PropTypes.oneOfType([ PropTypes.string, PropTypes.object, PropTypes.array ])
     })
   }
 

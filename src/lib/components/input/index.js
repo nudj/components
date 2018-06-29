@@ -1,7 +1,7 @@
 const React = require('react')
 const PropTypes = require('prop-types')
 
-const { ComponentPropType } = require('../../helpers/prop-types')
+const { ComponentPropType, StylePropType } = require('../../helpers/prop-types')
 const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { css, mergeStyleSheets } = require('../../css')
 const Icon = require('../icon')
@@ -42,10 +42,10 @@ class Input extends React.Component {
     tabIndex: PropTypes.number,
     name: PropTypes.string,
     styleSheet: PropTypes.shape({
-      root: PropTypes.oneOfType([ PropTypes.string, PropTypes.object, PropTypes.array ]),
-      error: PropTypes.oneOfType([ PropTypes.string, PropTypes.object, PropTypes.array ]),
-      input: PropTypes.oneOfType([ PropTypes.string, PropTypes.object, PropTypes.array ]),
-      inputError: PropTypes.oneOfType([ PropTypes.string, PropTypes.object, PropTypes.array ])
+      root: StylePropType,
+      error: StylePropType,
+      input: StylePropType,
+      inputError: StylePropType
     })
   }
 

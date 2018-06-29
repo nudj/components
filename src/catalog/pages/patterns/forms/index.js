@@ -33,6 +33,8 @@ type State = {
   iconInput: string,
   integerInput: string,
   checkbox: boolean,
+  indeterminateCheckboxChecked: boolean,
+  indeterminateCheckboxIndeterminate: boolean,
   inputField: string,
   select: string,
   checkboxGroup: Array<string>,
@@ -52,6 +54,7 @@ export default class FormDocumentation extends Component<Props, State> {
   handleToggle: ({ name: string, value: boolean }) => void
   handleCopy: () => void
   handleCopyStringBlur: () => void
+  handleIndeterminateCheckboxChange: () => void
 
   constructor (props: Object) {
     super(props)
@@ -62,6 +65,8 @@ export default class FormDocumentation extends Component<Props, State> {
       iconInput: '',
       integerInput: '',
       checkbox: false,
+      indeterminateCheckboxChecked: false,
+      indeterminateCheckboxIndeterminate: true,
       inputField: '',
       select: '',
       checkboxGroup: [],
@@ -108,12 +113,36 @@ export default class FormDocumentation extends Component<Props, State> {
     this.setState({ copied: false })
   }
 
+  handleIndeterminateCheckboxChange = ({
+    name,
+    checked,
+    indeterminate
+  }: {
+    name: string,
+    checked: boolean,
+    indeterminate: boolean
+  }) => {
+    this.setState({
+      [name]: checked,
+      indeterminateCheckboxIndeterminate: indeterminate
+    })
+  }
+
+  handleIndeterminateCheckboxReset = () => {
+    this.setState({
+      indeterminateCheckboxChecked: false,
+      indeterminateCheckboxIndeterminate: true
+    })
+  }
+
   render () {
     const {
       input,
       error,
       iconInput,
       checkbox,
+      indeterminateCheckboxChecked,
+      indeterminateCheckboxIndeterminate,
       inputField,
       integerInput,
       select,
@@ -293,6 +322,38 @@ export default class FormDocumentation extends Component<Props, State> {
             value='checkbox'
             id='checkbox'
           />
+        </ReactCodeSpecimen>
+        <h3>Indeterminate checkbox</h3>
+        <p>
+          In a scenario where checkboxes are hierarchical, the parent checkbox
+          may need to be rendered in an 'indeterminate' state. You can provide
+          this using the `indeterminate` prop. It will also return the new value
+          in the `onChange` handler.
+        </p>
+        <ReactCodeSpecimen
+          code={dedent`
+            <Checkbox
+              checked={this.state.checked}
+              indeterminate={this.state.indeterminate}
+              onChange={this.handleChange}
+              label='Select group'
+              name='select-group'
+              value='group'
+              id='group'
+            />
+          `}
+        >
+          <Checkbox
+            checked={indeterminateCheckboxChecked}
+            label='Select group'
+            onChange={this.handleIndeterminateCheckboxChange}
+            name='indeterminateCheckboxChecked'
+            value='indeterminateCheckboxChecked'
+            id='indeterminateCheckboxChecked'
+            indeterminate={indeterminateCheckboxIndeterminate}
+          />
+          <br />
+          <button onClick={this.handleIndeterminateCheckboxReset}>Reset state</button>
         </ReactCodeSpecimen>
         <h3>Select</h3>
         <p>

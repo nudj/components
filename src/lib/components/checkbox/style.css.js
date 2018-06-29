@@ -27,7 +27,7 @@ const styleSheet = StyleSheet.create({
   },
   iconCheckmark: {
     fill: colors.midRed,
-    transformOrigin: '50% 50%',
+    transformOrigin: '8px 50%',
     transition: 'transform 150ms, opacity 150ms'
   },
   iconCheckmarkUnchecked: {
@@ -37,6 +37,19 @@ const styleSheet = StyleSheet.create({
   iconCheckmarkChecked: {
     opacity: 1,
     transform: 'scale(1)'
+  },
+  iconSquare: {
+    transformOrigin: '8px 50%',
+    transition: 'transform 150ms, opacity 150ms',
+    fill: colors.grey
+  },
+  iconSquareIndeterminate: {
+    opacity: 1,
+    transform: 'scale(1)'
+  },
+  iconSquareDeterminate: {
+    opacity: 0,
+    transform: 'scale(0)'
   },
   label: merge(typography.type.regular, {
     display: 'inline-block',

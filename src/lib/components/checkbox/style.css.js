@@ -9,12 +9,16 @@ const styleSheet = StyleSheet.create({
   input: {
     opacity: 0,
     position: 'absolute',
-    cursor: 'inherit'
+    cursor: 'inherit',
+    ':focus + label': {
+      color: colors.primary,
+    }
   },
   labelContainer: {
     display: 'flex',
     alignItems: 'center',
-    cursor: 'inherit'
+    cursor: 'inherit',
+    color: colors.grey,
   },
   icon: {
     width: '1.5em',
@@ -22,7 +26,7 @@ const styleSheet = StyleSheet.create({
     flexShrink: 0
   },
   iconBox: {
-    stroke: colors.grey,
+    stroke: 'currentColor',
     strokeWidth: '2px'
   },
   iconCheckmark: {

@@ -98,7 +98,7 @@ class Checkbox extends React.Component {
         />
         <label htmlFor={id} className={css(style.labelContainer)}>
           <svg className={css(style.icon)} viewBox='0 0 24 24'>
-            <g transform='translate(3 4)' fill='none' fillRule='evenodd'>
+            <g transform='translate(4 4)' fill='none' fillRule='evenodd'>
               <rect
                 className={css(style.iconBox)}
                 x={1}
@@ -131,7 +131,9 @@ class Checkbox extends React.Component {
               />
             </g>
           </svg>
-          <span className={css(!nonsensitive && FS_HIDE_CLASS, style.label)}>{label}</span>
+          {label && (
+            <span className={css(!nonsensitive && FS_HIDE_CLASS, style.label)}>{label}</span>
+          )}
         </label>
       </Wrapper>
     )

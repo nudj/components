@@ -18,7 +18,6 @@ import RadioGroup from '../../../../lib/components/radio-group'
 import SelectablePill from '../../../../lib/components/selectable-pill'
 import SelectablePillGroup from '../../../../lib/components/selectable-pill-group'
 import Textarea from '../../../../lib/components/textarea'
-import ListMultiSelect from '../../../../lib/components/list-multiselect'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
 
 /**
@@ -78,8 +77,7 @@ export default class FormDocumentation extends Component<Props, State> {
       selectablePill: false,
       selectablePillGroup: [],
       textarea: '',
-      copied: false,
-      listmultiselect: []
+      copied: false
     }
   }
 
@@ -156,8 +154,7 @@ export default class FormDocumentation extends Component<Props, State> {
       selectablePill,
       selectablePillGroup,
       textarea,
-      copied,
-      listmultiselect
+      copied
     } = this.state
 
     return (
@@ -714,119 +711,6 @@ export default class FormDocumentation extends Component<Props, State> {
             {copied ? 'Copied! 🎉' : 'Copy'}
           </CopyString>
         </ReactCodeSpecimen>
-
-        <br />
-        <br />
-        <ListMultiSelect
-          name='listmultiselect'
-          onChange={this.handleArrayChange}
-          values={listmultiselect}
-          joined
-        >
-          {item => [
-            item({
-              id: 'list-item-1',
-              key: 'list-item-1',
-              value: '1',
-              children: (
-                <div
-                  style={{
-                    height: '150px',
-                    width: '500px'
-                  }}
-                >
-                  item 1
-                </div>
-              )
-            }),
-            item({
-              id: 'list-item-2',
-              key: 'list-item-2',
-              value: '2',
-              children: (
-                <div
-                  style={{
-                    height: '150px',
-                    width: '500px'
-                  }}
-                >
-                  item 2
-                </div>
-              )
-            }),
-            item({
-              id: 'list-item-3',
-              key: 'list-item-3',
-              value: '3',
-              children: (
-                <div
-                  style={{
-                    height: '150px',
-                    width: '500px'
-                  }}
-                >
-                  item 3
-                </div>
-              )
-            }),
-          ]}
-        </ListMultiSelect>
-        <br />
-        <br />
-        <ListMultiSelect
-          name='listmultiselect'
-          onChange={this.handleArrayChange}
-          values={listmultiselect}
-          joined={false}
-        >
-          {item => [
-            item({
-              id: 'list-item-1',
-              key: 'list-item-1',
-              value: '1',
-              children: (
-                <div
-                  style={{
-                    height: '150px',
-                    width: '500px'
-                  }}
-                >
-                  item 1
-                </div>
-              )
-            }),
-            item({
-              id: 'list-item-2',
-              key: 'list-item-2',
-              value: '2',
-              children: (
-                <div
-                  style={{
-                    height: '150px',
-                    width: '500px'
-                  }}
-                >
-                  item 2
-                </div>
-              )
-            }),
-            item({
-              id: 'list-item-3',
-              key: 'list-item-3',
-              value: '3',
-              children: (
-                <div
-                  style={{
-                    height: '150px',
-                    width: '500px'
-                  }}
-                >
-                  item 3
-                </div>
-              )
-            }),
-          ]}
-        </ListMultiSelect>
       </Page>
     )
   }

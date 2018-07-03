@@ -11,6 +11,11 @@ const pages = [
     pages: require('./pages/overview')
   },
   {
+    path: '/components',
+    title: 'Components',
+    pages: require('./pages/components')
+  },
+  {
     path: '/patterns',
     title: 'Patterns',
     pages: require('./pages/patterns')

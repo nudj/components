@@ -6,19 +6,22 @@ const styleSheet = StyleSheet.create({
   root: {
     position: 'relative'
   },
+  disabled: {
+    opacity: 0.25
+  },
   input: {
     opacity: 0,
     position: 'absolute',
     cursor: 'inherit',
     ':focus + label': {
-      color: colors.primary,
+      color: colors.primary
     }
   },
   labelContainer: {
     display: 'flex',
     alignItems: 'center',
     cursor: 'inherit',
-    color: colors.grey,
+    color: colors.grey
   },
   icon: {
     width: '1.5em',

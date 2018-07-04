@@ -78,13 +78,19 @@ class Checkbox extends React.Component {
       id,
       presentation,
       nonsensitive,
-      indeterminate
+      indeterminate,
+      disabled
     } = this.props
 
     const style = mergeStyleSheets(defaultStyleSheet, styleSheet)
 
     return (
-      <Wrapper className={css(style.wrapper)}>
+      <Wrapper
+        className={css(
+          style.wrapper,
+          disabled && style.disabled
+        )}
+      >
         <input
           type='checkbox'
           name={name}
@@ -95,6 +101,7 @@ class Checkbox extends React.Component {
           onChange={this.handleChange}
           tabIndex={presentation ? -1 : 0}
           ref={el => { this.checkbox = el }}
+          disabled={disabled}
         />
         <label htmlFor={id} className={css(style.labelContainer)}>
           <svg className={css(style.icon)} viewBox='0 0 24 24'>

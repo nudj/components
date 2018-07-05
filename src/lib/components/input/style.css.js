@@ -13,6 +13,10 @@ const stylesheet = StyleSheet.create({
   inputContainer: {
     position: 'relative'
   },
+  disabled: {
+    color: colors.greyDark,
+    backgroundColor: colors.greyLightest
+  },
   input: merge(typography.type.regular, {
     backgroundColor: colors.white,
     border: `1px solid ${colors.grey}`,

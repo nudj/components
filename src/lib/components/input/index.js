@@ -22,6 +22,7 @@ class Input extends React.Component {
     onKeyUp: noopHandler,
     Wrapper: 'div',
     ErrorWrapper: 'div',
+    disabled: false,
     nonsensitive: FS_SHOW
   }
 
@@ -38,6 +39,7 @@ class Input extends React.Component {
     placeholder: PropTypes.string,
     value: PropTypes.string,
     required: PropTypes.bool,
+    disabled: PropTypes.bool,
     nonsensitive: PropTypes.bool,
     tabIndex: PropTypes.number,
     name: PropTypes.string,
@@ -122,6 +124,7 @@ class Input extends React.Component {
       onKeyDown,
       onKeyUp,
       tabIndex,
+      disabled,
       nonsensitive
     } = this.props
 
@@ -132,12 +135,14 @@ class Input extends React.Component {
       <Wrapper className={css(style.root)}>
         <div className={css(style.inputContainer)}>
           <input
+            disabled={disabled}
             ref={c => {
               this.input = c
             }}
             className={css(
               !nonsensitive && FS_HIDE_CLASS,
               style.input,
+              disabled && style.disabled,
               error && style.inputError,
               clearable && style.inputWithClear
             )}

@@ -42,6 +42,10 @@ const gmailLight = '#d0796b'
 const linkedin = '#0077b5'
 const linkedinLight = '#008cc9'
 
+const background = {
+  blue: '#F7F8FA'
+}
+
 const overlay = {
   // greyDarker @ 50% opacity
   50: 'rgba(66, 63, 60, 0.5)'
@@ -81,6 +85,9 @@ module.exports = {
   greyLight: greyLight,
   greyLightest: greyLightest,
   white: white,
+
+  // Backgrounds
+  background,
 
   // Overlays
   overlay,

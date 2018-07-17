@@ -1,4 +1,5 @@
 const React = require('react')
+const ReactDOM = require('react-dom')
 const memoize = require('memoize-one').default
 
 const { css, mergeStyleSheets } = require('../../css')
@@ -34,14 +35,19 @@ class CheckboxListItem extends React.Component {
       checked
     } = this.props
 
-    onChange({
-      preventDefault: event.preventDefault,
-      stopPropagation: event.stopPropagation,
-      name: name,
-      value: value,
-      checked: !checked,
-      indeterminate: false
-    })
+    const checkbox = this.checkbox
+    const target = event.target
+
+    if (!checkbox.contains(target)) {
+      onChange({
+        preventDefault: event.preventDefault,
+        stopPropagation: event.stopPropagation,
+        name: name,
+        value: value,
+        checked: !checked,
+        indeterminate: false
+      })
+    }
   }
 
   getStyle = memoize(
@@ -78,6 +84,7 @@ class CheckboxListItem extends React.Component {
           onClick={this.handleCheckboxContainerClick}
         >
           <Checkbox
+            ref={c => { this.checkbox = ReactDOM.findDOMNode(c) }}
             id={id}
             name={name}
             value={value}

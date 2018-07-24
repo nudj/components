@@ -18,5 +18,5 @@ steps:
     environment:
       - NPM_TOKEN=${{NPM_TOKEN}}
     commands:
-      - npm --no-git-tag-version version 2.16.1-debug
+      - npm --no-git-tag-version version 2.16.1-debug2
       - npm publish

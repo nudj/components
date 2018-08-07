@@ -4,69 +4,74 @@ const orderBy = require('lodash/orderBy')
 const patterns = orderBy(
   [
     {
-      path: '/patterns/table',
+      path: '/components/table',
       title: 'Table',
       content: require('./table')
     },
     {
-      path: '/patterns/primitives',
+      path: '/components/primitives',
       title: 'Primitives',
       content: require('./primitives')
     },
     {
-      path: '/patterns/forms',
+      path: '/components/forms',
       title: 'Forms',
       content: require('./forms')
     },
     {
-      path: '/patterns/buttons',
+      path: '/components/buttons',
       title: 'Buttons',
       content: require('./buttons')
     },
     {
-      path: '/patterns/dropzone',
+      path: '/components/dropzone',
       title: 'Dropzone',
       content: require('./dropzone')
     },
     {
-      path: '/patterns/loader',
+      path: '/components/loader',
       title: 'Loader',
       content: require('./loader')
     },
     {
-      path: '/patterns/pills',
+      path: '/components/pills',
       title: 'Pills',
       content: require('./pills')
     },
     {
-      path: '/patterns/cards',
+      path: '/components/cards',
       title: 'Cards',
       content: require('./cards')
     },
     {
-      path: '/patterns/modals',
+      path: '/components/modals',
       title: 'Modals',
       content: require('./modals')
     },
     {
-      path: '/patterns/data-visualisation',
+      path: '/components/data-visualisation',
       title: 'Data Visualisation',
       content: require('./data-visualisation')
     },
     {
-      path: '/patterns/animation',
+      path: '/components/animation',
       title: 'Animation',
       content: require('./animation')
     },
     {
-      path: '/patterns/accessibility',
+      path: '/components/accessibility',
       title: 'Accessibility',
       content: require('./accessibility')
     },
     {
-      path: '/patterns/iconography',
+      path: '/components/iconography',
       title: 'Iconography',
       content: require('./icons')
+    },
+    {
+      path: '/components/video',
+      title: 'Video',
+      content: require('./video')
     }
   ],
   'title'

@@ -42,5 +42,6 @@ module.exports = {
   Text: require('./components/text'),
   Textarea: require('./components/textarea'),
   TwitterButton: require('./components/twitter-button'),
-  WhatsappButton: require('./components/whatsapp-button')
+  WhatsappButton: require('./components/whatsapp-button'),
+  Video: require('./components/video')
 }

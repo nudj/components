@@ -42,6 +42,7 @@
     "react-animate-height": "^0.10.10",
     "react-dom": "15.6.2",
     "react-dropzone": "4.2.3",
+    "react-html5video": "^2.5.1",
     "react-modal": "^3.1.10",
     "react-textarea-autosize": "^5.2.1",
     "warning": "^3.0.0"

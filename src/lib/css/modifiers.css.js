@@ -286,6 +286,70 @@ const modifiers = StyleSheet.create({
   bgWhite: { backgroundColor: colors.white },
 
   // Typography
+  lgVi: {
+    fontFamily: typography.fontFamily.jan,
+    fontWeight: typography.fontWeight.bold,
+    fontSize: typography.fontSize.largeVi,
+    lineHeight: typography.lineHeight.largeVi,
+    letterSpacing: typography.letterSpacing.largeVi
+  },
+  lgV: {
+    fontFamily: typography.fontFamily.jan,
+    fontWeight: typography.fontWeight.bold,
+    fontSize: typography.fontSize.largeV,
+    lineHeight: typography.lineHeight.largeV,
+    letterSpacing: typography.letterSpacing.largeV
+  },
+  lgIv: {
+    fontFamily: typography.fontFamily.jan,
+    fontWeight: typography.fontWeight.bold,
+    fontSize: typography.fontSize.largeIv,
+    lineHeight: typography.lineHeight.largeIv,
+    letterSpacing: typography.letterSpacing.largeIv
+  },
+  lgIii: {
+    fontFamily: typography.fontFamily.jan,
+    fontWeight: typography.fontWeight.bold,
+    fontSize: typography.fontSize.largeIii,
+    lineHeight: typography.lineHeight.largeIii,
+    letterSpacing: typography.letterSpacing.largeIii
+  },
+  lgIi: {
+    fontFamily: typography.fontFamily.jan,
+    fontWeight: typography.fontWeight.bold,
+    fontSize: typography.fontSize.largeIi,
+    lineHeight: typography.lineHeight.largeIi,
+    letterSpacing: typography.letterSpacing.largeIi
+  },
+  lgI: {
+    fontFamily: typography.fontFamily.jan,
+    fontWeight: typography.fontWeight.bold,
+    fontSize: typography.fontSize.largeI,
+    lineHeight: typography.lineHeight.largeI,
+    letterSpacing: typography.letterSpacing.largeI
+  },
+  reg: {
+    fontFamily: typography.fontFamily.jan,
+    fontWeight: typography.fontWeight.light,
+    fontSize: typography.fontSize.regular,
+    lineHeight: typography.lineHeight.regular,
+    letterSpacing: typography.letterSpacing.regular
+  },
+  smI: {
+    fontFamily: typography.fontFamily.jan,
+    fontWeight: typography.fontWeight.light,
+    fontSize: typography.fontSize.smallI,
+    lineHeight: typography.lineHeight.smallI,
+    letterSpacing: typography.letterSpacing.smallI
+  },
+  smIi: {
+    fontFamily: typography.fontFamily.jan,
+    fontWeight: typography.fontWeight.light,
+    fontSize: typography.fontSize.smallIi,
+    lineHeight: typography.lineHeight.smallIi,
+    letterSpacing: typography.letterSpacing.smallIi
+  },
+
   bold: { fontWeight: typography.fontWeight.bold },
   light: { fontWeight: typography.fontWeight.light },
 

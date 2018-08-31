@@ -1,4 +1,7 @@
 module.exports = {
+  largeIx: '12rem',
+  largeViii: '10rem',
+  largeVii: '8rem',
   largeVi: '6rem',
   largeV: '5rem',
   largeIv: '4rem',

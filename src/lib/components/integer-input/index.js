@@ -3,7 +3,7 @@ const PropTypes = require('prop-types')
 
 const Input = require('../input')
 const { KEY_CODES } = require('../../constants')
-const { ComponentPropType } = require('../../helpers/prop-types')
+const CustomPropTypes = require('../../helpers/prop-types')
 
 const matchLeadingsZeroRegex = /^0(0*)/
 
@@ -55,7 +55,7 @@ class IntegerInput extends React.Component {
   }
 
   static propTypes = {
-    Component: ComponentPropType,
+    Component: CustomPropTypes.component,
     leadingZero: PropTypes.bool,
     onKeyDown: PropTypes.func,
     onChange: PropTypes.func,

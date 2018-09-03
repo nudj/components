@@ -13,6 +13,6 @@ const StylePropType = (props, propName, componentName) => {
 const ComponentPropType = PropTypes.oneOfType([PropTypes.string, PropTypes.func])
 
 module.exports = {
-  StylePropType,
-  ComponentPropType
+  style: StylePropType,
+  component: ComponentPropType
 }

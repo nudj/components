@@ -1,7 +1,7 @@
 const React = require('react')
 const PropTypes = require('prop-types')
 
-const { ComponentPropType, StylePropType } = require('../../helpers/prop-types')
+const CustomPropTypes = require('../../helpers/prop-types')
 const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { css, mergeStyleSheets } = require('../../css')
 const Icon = require('../icon')
@@ -29,8 +29,8 @@ class Input extends React.Component {
   static propTypes = {
     id: PropTypes.string,
     type: PropTypes.oneOf(['text', 'email', 'password', 'search', 'url', 'number']),
-    Wrapper: ComponentPropType,
-    ErrorWrapper: ComponentPropType,
+    Wrapper: CustomPropTypes.component,
+    ErrorWrapper: CustomPropTypes.component,
     onChange: PropTypes.func,
     onBlur: PropTypes.func,
     onFocus: PropTypes.func,
@@ -44,10 +44,10 @@ class Input extends React.Component {
     tabIndex: PropTypes.number,
     name: PropTypes.string,
     styleSheet: PropTypes.shape({
-      root: StylePropType,
-      error: StylePropType,
-      input: StylePropType,
-      inputError: StylePropType
+      root: CustomPropTypes.style,
+      error: CustomPropTypes.style,
+      input: CustomPropTypes.style,
+      inputError: CustomPropTypes.style
     })
   }
 

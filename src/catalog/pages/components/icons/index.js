@@ -12,6 +12,7 @@ const IconographyDocumentation = () => {
     <Page>
       {Object.keys(icons).map(icon => (
         <ReactCodeSpecimen
+          key={icon}
           code={dedent`<Icon name="${icon}" />`}
         >
           <Icon name={icon} />

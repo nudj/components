@@ -1,7 +1,7 @@
 const React = require('react')
 const PropTypes = require('prop-types')
 
-const { ComponentPropType } = require('../../helpers/prop-types')
+const CustomPropTypes = require('../../helpers/prop-types')
 
 const IconAction = require('../icon-action')
 
@@ -38,7 +38,7 @@ IconButton.propTypes = {
   onClick: PropTypes.func,
   value: PropTypes.string,
   children: PropTypes.node,
-  Component: ComponentPropType
+  Component: CustomPropTypes.component
 }
 
 module.exports = IconButton

@@ -5,7 +5,7 @@ const copy = require('copy-to-clipboard')
 const PropTypes = require('prop-types')
 
 const InlineAction = require('../inline-action')
-const { ComponentPropType } = require('../../helpers/prop-types')
+const CustomPropTypes = require('../../helpers/prop-types')
 
 class CopyString extends React.Component {
   static defaultProps = {
@@ -18,7 +18,7 @@ class CopyString extends React.Component {
     onCopy: PropTypes.func,
     onBlur: PropTypes.func,
     volume: PropTypes.oneOf(['scream', 'yell', 'shout', 'cheer', 'murmur']),
-    children: ComponentPropType.isRequired,
+    children: CustomPropTypes.style.isRequired,
     string: PropTypes.string.isRequired
   }
 

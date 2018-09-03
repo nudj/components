@@ -1,7 +1,7 @@
 const React = require('react')
 const PropTypes = require('prop-types')
 
-const { ComponentPropType, StyleSheetType } = require('../../helpers/prop-types')
+const CustomPropTypes = require('../../helpers/prop-types')
 const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { mergeStyleSheets, css } = require('../../css')
 const defaultStyleSheet = require('./style.css')
@@ -9,17 +9,17 @@ const defaultStyleSheet = require('./style.css')
 class Checkbox extends React.Component {
   static propTypes = {
     styleSheet: PropTypes.shape({
-      root: StyleSheetType,
-      input: StyleSheetType,
-      icon: StyleSheetType,
-      iconBox: StyleSheetType,
-      iconCheckmark: StyleSheetType,
-      iconCheckmarkUnchecked: StyleSheetType,
-      iconCheckmarkChecked: StyleSheetType,
-      label: StyleSheetType
+      root: CustomPropTypes.style,
+      input: CustomPropTypes.style,
+      icon: CustomPropTypes.style,
+      iconBox: CustomPropTypes.style,
+      iconCheckmark: CustomPropTypes.style,
+      iconCheckmarkUnchecked: CustomPropTypes.style,
+      iconCheckmarkChecked: CustomPropTypes.style,
+      label: CustomPropTypes.style
     }),
     checked: PropTypes.bool,
-    Wrapper: ComponentPropType,
+    Wrapper: CustomPropTypes.component,
     onChange: PropTypes.func,
     id: PropTypes.string,
     name: PropTypes.string,

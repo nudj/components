@@ -2,7 +2,7 @@ const React = require('react')
 const PropTypes = require('prop-types')
 const memoize = require('memoize-one').default
 
-const { StylePropType } = require('../../helpers/prop-types')
+const CustomPropTypes = require('../../helpers/prop-types')
 
 const Icon = require('../icon')
 const icons = require('../icon/icons')
@@ -18,7 +18,7 @@ class IconAction extends React.Component {
   static propTypes = {
     iconName: PropTypes.oneOf(Object.keys(icons)).isRequired,
     children: PropTypes.node,
-    style: StylePropType
+    style: CustomPropTypes.style
   }
 
   getStyle = memoize((defaultStyle, style) => [defaultStyle, style])

@@ -1,7 +1,7 @@
 const React = require('react')
 const PropTypes = require('prop-types')
 
-const { StylePropType } = require('../../helpers/prop-types')
+const CustomPropTypes = require('../../helpers/prop-types')
 const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { mergeStyleSheets, css } = require('../../css')
 const defaultStyleSheet = require('./style.css')
@@ -64,7 +64,7 @@ RadioBlock.defaultProps = {
 }
 
 RadioBlock.propTypes = {
-  styleSheet: StylePropType,
+  styleSheet: PropTypes.objectOf(CustomPropTypes.style),
   checked: PropTypes.bool,
   onChange: PropTypes.func,
   id: PropTypes.string.isRequired,

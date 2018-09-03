@@ -2,7 +2,7 @@ const React = require('react')
 const PropTypes = require('prop-types')
 const memoize = require('memoize-one').default
 
-const { StylePropType } = require('../../helpers/prop-types')
+const CustomPropTypes = require('../../helpers/prop-types')
 const defaultStyleSheet = require('./style.css')
 const IconLink = require('../icon-link')
 
@@ -18,7 +18,7 @@ class EmailButton extends React.Component {
     body: PropTypes.string.isRequired,
     children: PropTypes.node,
     target: PropTypes.oneOf(['_blank', '_self', '_parent', '_top']),
-    style: StylePropType,
+    style: CustomPropTypes.style,
     gmail: PropTypes.bool
   }
 

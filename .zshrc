@@ -10,13 +10,6 @@ alias tdd='./node_modules/.bin/nodemon \
 	--watch ./ \
 	--delay 250ms \
 	-x "./node_modules/.bin/mocha --compilers js:babel-core/register --recursive test || exit 1"'
-alias flow='./node_modules/.bin/flow --quiet'
-
-alias fdd='./node_modules/.bin/nodemon \
-	--quiet \
-	--watch ./ \
-	--delay 250ms \
-	-x "./node_modules/.bin/flow --quiet || exit 1"'
 
 alias standardFix='./node_modules/.bin/standard --fix'
 

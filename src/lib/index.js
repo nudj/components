@@ -38,7 +38,6 @@ module.exports = {
   SelectablePill: require('./components/selectable-pill'),
   SelectablePillGroup: require('./components/selectable-pill-group'),
   Statistic: require('./components/statistic'),
-  StyleChild: require('./components/style-child'),
   Table: require('./components/table'),
   Text: require('./components/text'),
   Textarea: require('./components/textarea'),

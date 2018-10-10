@@ -1,4 +1,3 @@
-// @flow
 const orderBy = require('lodash/orderBy')
 
 const patterns = orderBy(

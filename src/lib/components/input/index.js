@@ -28,7 +28,7 @@ class Input extends React.Component {
 
   static propTypes = {
     id: PropTypes.string,
-    type: PropTypes.oneOf(['text', 'email', 'password', 'search', 'url', 'number']),
+    type: PropTypes.oneOf(['text', 'textarea', 'email', 'password', 'search', 'url', 'number']),
     Wrapper: CustomPropTypes.component,
     ErrorWrapper: CustomPropTypes.component,
     onChange: PropTypes.func,

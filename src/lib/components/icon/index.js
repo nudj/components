@@ -1,17 +1,12 @@
-/* global Style */
-// @flow
 const React = require('react')
+const PropTypes = require('prop-types')
 
+const CustomPropTypes = require('../../helpers/prop-types')
 const { css } = require('../../css')
 const styleSheet = require('./style.css')
 const icons = require('./icons')
 
-type IconProps = {
-  name: string,
-  style?: Style,
-}
-
-const Icon = (props: IconProps) => {
+const Icon = props => {
   const { name, style } = props
   const Icon = icons[name]
 
@@ -20,6 +15,11 @@ const Icon = (props: IconProps) => {
   }
 
   return <Icon className={css(styleSheet.root, styleSheet[name], style)} />
+}
+
+Icon.propTypes = {
+  name: PropTypes.string,
+  style: CustomPropTypes.style
 }
 
 module.exports = Icon

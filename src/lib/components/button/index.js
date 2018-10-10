@@ -1,18 +1,9 @@
-// @flow
 const React = require('react')
-
+const PropTypes = require('prop-types')
+const CustomPropTypes = require('../../helpers/prop-types')
 const InlineAction = require('../inline-action')
 
-type Props = {
-  type?: 'submit' | 'reset' | 'button',
-  onClick: Object => void,
-  value?: string,
-  children: React.Node,
-  Component: React.ElementType,
-  rest?: Array<mixed>
-}
-
-const Button = (props: Props) => {
+const Button = props => {
   const { children, type, onClick, Component, ...rest } = props
 
   return (
@@ -20,6 +11,14 @@ const Button = (props: Props) => {
       {children}
     </InlineAction>
   )
+}
+
+Button.propTypes = {
+  type: PropTypes.oneOf(['submit', 'reset', 'button']),
+  onClick: PropTypes.func,
+  value: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  Component: CustomPropTypes.component
 }
 
 Button.defaultProps = {

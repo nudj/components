@@ -1,23 +1,10 @@
-/* global Style */
-// @flow
 const React = require('react')
+const PropTypes = require('prop-types')
 let ReactDropzone = require('react-dropzone')
 ReactDropzone = ReactDropzone.default || ReactDropzone
 
+const CustomPropTypes = require('../../helpers/prop-types')
 const styles = require('./style')
-
-type Props = {
-  accept: string,
-  className: string,
-  rejectClassName?: string,
-  style?: Style,
-  acceptStyle?: Style,
-  activeStyle?: Style,
-  disabledStyle?: Style,
-  rejectStyle?: Style,
-  children: Function,
-  rest?: Array<mixed>
-}
 
 const renderChildrenWrapper = (children, isMimeType) => {
   if (!isMimeType) {
@@ -27,7 +14,7 @@ const renderChildrenWrapper = (children, isMimeType) => {
   return props => children(props)
 }
 
-const Dropzone = (props: Props) => {
+const Dropzone = props => {
   const {
     accept,
     className,
@@ -74,6 +61,19 @@ const Dropzone = (props: Props) => {
       children={renderChildrenWrapper(children, isMimeType)}
     />
   )
+}
+
+Dropzone.propTypes = {
+  accept: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
+  rejectClassName: PropTypes.string,
+  style: CustomPropTypes.style,
+  acceptStyle: CustomPropTypes.style,
+  activeStyle: CustomPropTypes.style,
+  disabledStyle: CustomPropTypes.style,
+  rejectStyle: CustomPropTypes.style,
+  children: PropTypes.func.isRequired,
+  rest: PropTypes.array
 }
 
 Dropzone.defaultProps = {

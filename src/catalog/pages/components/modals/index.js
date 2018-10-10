@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from 'react'
 import dedent from 'dedent'
 import { Page } from 'catalog'

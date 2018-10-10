@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from 'react'
 import dedent from 'dedent'
 import { Page } from 'catalog'
@@ -6,13 +5,7 @@ import { Page } from 'catalog'
 import AnimateHeight from '../../../../lib/components/animate-height'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
 
-type Props = {}
-
-type State = {
-  animateHeight: boolean,
-}
-
-class AnimationDocumentation extends Component<Props, State> {
+class AnimationDocumentation extends Component {
   state = {
     animateHeight: false
   }

@@ -1,40 +1,10 @@
-// @flow
 const React = require('react')
-
+const PropTypes = require('prop-types')
+const CustomPropTypes = require('../../helpers/prop-types')
 const { css } = require('../../css')
 const Checkbox = require('../checkbox')
 
-type ChildPropTypes = {
-  value: string,
-  label: string
-}
-
-type CheckboxClassList = {
-  root?: string,
-  checkbox?: string,
-  wrapper?: string,
-  label?: string
-}
-
-type HandlerArgs = {
-  name: string,
-  values: Array<string>,
-  preventDefault: Function,
-  stopPropagation: Function
-}
-
-type CheckboxGroupPropTypes = {
-  Input: React.ElementType,
-  required?: boolean,
-  checkboxStyleSheet: CheckboxClassList,
-  children: Function => React.Node,
-  onChange: HandlerArgs => mixed,
-  values: Array<string>,
-  styles?: Object,
-  name: string
-}
-
-const CheckboxGroup = (props: CheckboxGroupPropTypes) => {
+const CheckboxGroup = props => {
   const {
     Input,
     required,
@@ -50,10 +20,6 @@ const CheckboxGroup = (props: CheckboxGroupPropTypes) => {
     value,
     preventDefault,
     stopPropagation
-  }: {
-    value: string,
-    preventDefault: Function,
-    stopPropagation: Function
   }) => {
     let newValues
 
@@ -74,7 +40,7 @@ const CheckboxGroup = (props: CheckboxGroupPropTypes) => {
   return (
     <div className={css(styles)}>
       {children &&
-        children((childProps: ChildPropTypes) => {
+        children((childProps) => {
           const checked = values.includes(childProps.value)
 
           return (
@@ -92,6 +58,22 @@ const CheckboxGroup = (props: CheckboxGroupPropTypes) => {
         })}
     </div>
   )
+}
+
+CheckboxGroup.propTypes = {
+  Input: CustomPropTypes.component,
+  required: PropTypes.bool,
+  checkboxStyleSheet: PropTypes.shape({
+    root: PropTypes.string,
+    checkbox: PropTypes.string,
+    wrapper: PropTypes.string,
+    label: PropTypes.string
+  }),
+  children: PropTypes.func,
+  onChange: PropTypes.func,
+  values: PropTypes.arrayOf(PropTypes.string),
+  styles: PropTypes.object,
+  name: PropTypes.string
 }
 
 CheckboxGroup.defaultProps = {

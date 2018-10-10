@@ -13,6 +13,5 @@ RUN mkdir -p /usr/src \
 WORKDIR /usr/src
 COPY src /usr/src
 RUN npm i
-CMD ./node_modules/.bin/standard --parser babel-eslint --plugin flowtype \
-  && ./node_modules/.bin/flow --quiet \
+CMD ./node_modules/.bin/standard --parser babel-eslint \
   && ./node_modules/.bin/mocha --compilers js:babel-core/register --recursive test

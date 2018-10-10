@@ -1,33 +1,14 @@
-// @flow
 const React = require('react')
 const chunk = require('lodash/chunk')
 const uniqBy = require('lodash/uniqBy')
 const method = require('lodash/method')
+const PropTypes = require('prop-types')
 
 const { css, mergeStyleSheets } = require('../../css')
 const Card = require('../card')
 const Pill = require('../pill')
 const Text = require('../text')
 const defaultStyleSheet = require('./style.css')
-
-type StyleSheetType = {
-  root?: string,
-  name?: string,
-  attributes?: string,
-  recommendedForContainer?: string,
-  recommendedForHeading?: string,
-  recommendedForItem?: string,
-  children?: string
-}
-
-type ContactCardProps = {
-  name: string,
-  jobTitle: string,
-  company: string,
-  recommendedFor: Array<string>,
-  children?: React.Node,
-  styleSheet: StyleSheetType
-}
 
 const renderContactInfo = (jobTitle, company) => {
   if (!jobTitle && !company) return ''
@@ -36,7 +17,7 @@ const renderContactInfo = (jobTitle, company) => {
   return `${jobTitle} at ${company}`
 }
 
-const ContactCard = (props: ContactCardProps) => {
+const ContactCard = props => {
   const {
     name,
     jobTitle,
@@ -88,6 +69,23 @@ const ContactCard = (props: ContactCardProps) => {
       {children && <div className={css(style.children)}>{children}</div>}
     </Card>
   )
+}
+
+ContactCard.propTypes = {
+  name: PropTypes.string,
+  jobTitle: PropTypes.string,
+  company: PropTypes.string,
+  recommendedFor: PropTypes.arrayOf(PropTypes.string),
+  children: PropTypes.node,
+  styleSheet: PropTypes.shape({
+    root: PropTypes.string,
+    name: PropTypes.string,
+    attributes: PropTypes.string,
+    recommendedForContainer: PropTypes.string,
+    recommendedForHeading: PropTypes.string,
+    recommendedForItem: PropTypes.string,
+    children: PropTypes.string
+  })
 }
 
 ContactCard.defaultProps = {

@@ -1,27 +1,12 @@
-// @flow
 const React = require('react')
+const PropTypes = require('prop-types')
 
+const CustomPropTypes = require('../../helpers/prop-types')
 const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { css, mergeStyleSheets } = require('../../css')
 const defaultStyleSheet = require('./style.css')
 
-type StyleSheet = {
-  root?: Object,
-  left?: Object,
-  right?: Object,
-  large?: Object
-}
-
-type AlignProps = {
-  styleSheet: StyleSheet,
-  primarySide: 'left' | 'right',
-  leftChildren: React.Node,
-  rightChildren: React.Node,
-  rest?: Array<mixed>,
-  nonsensitive?: boolean
-}
-
-const Align = (props: AlignProps) => {
+const Align = props => {
   const {
     styleSheet,
     primarySide,
@@ -42,6 +27,18 @@ const Align = (props: AlignProps) => {
       <div className={rightClasses}>{rightChildren}</div>
     </div>
   )
+}
+
+Align.propTypes = {
+  styleSheet: PropTypes.shape({
+    root: CustomPropTypes.style,
+    left: CustomPropTypes.style,
+    right: CustomPropTypes.style,
+    large: CustomPropTypes.style
+  }),
+  primarySide: PropTypes.oneOf(['left', 'right']),
+  leftChildren: PropTypes.node,
+  nonsensitive: PropTypes.bool
 }
 
 Align.defaultProps = {

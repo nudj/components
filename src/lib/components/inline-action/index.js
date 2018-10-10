@@ -1,23 +1,12 @@
-/* global Style */
-// @flow
 const React = require('react')
+const PropTypes = require('prop-types')
 
+const CustomPropTypes = require('../../helpers/prop-types')
 const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { css } = require('../../css')
 const { buttonStyleSheet, linkStyleSheet } = require('./style.css')
 
-type InlineActionProps = {
-  volume: 'scream' | 'yell' | 'shout' | 'cheer' | 'murmur',
-  children: React.Node,
-  style: Style,
-  Component: React.ElementType,
-  subtle?: boolean,
-  disabled?: boolean,
-  rest?: Array<mixed>,
-  nonsensitive?: boolean
-}
-
-const InlineAction = (props: InlineActionProps) => {
+const InlineAction = props => {
   const {
     volume,
     children,
@@ -46,6 +35,16 @@ const InlineAction = (props: InlineActionProps) => {
       {children}
     </Component>
   )
+}
+
+InlineAction.propTypes = {
+  volume: PropTypes.oneOf(['scream', 'yell', 'shout', 'cheer', 'murmur']).isRequired,
+  children: PropTypes.node.isRequired,
+  style: CustomPropTypes.style,
+  Component: CustomPropTypes.component,
+  subtle: PropTypes.bool,
+  disabled: PropTypes.bool,
+  nonsensitive: PropTypes.bool
 }
 
 InlineAction.defaultProps = {

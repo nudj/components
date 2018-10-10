@@ -1,5 +1,3 @@
-/* global Style */
-// @flow
 const { StyleSheet } = require('aphrodite/no-important')
 const warning = require('warning')
 const isEmpty = require('lodash/isEmpty')
@@ -16,11 +14,7 @@ const { FS_HIDE_CLASS } = require('../constants')
 
 const Extended = StyleSheet.extend([])
 
-type StyleSheetType = {
-  [string]: Object
-}
-
-const mergeStyleSheets = (...stylesheets: Array<StyleSheetType>) => {
+const mergeStyleSheets = (...stylesheets) => {
   const keys = Object.keys(Object.assign({}, ...stylesheets))
 
   return keys.reduce((classList, className) => {
@@ -37,7 +31,7 @@ const mergeStyleSheets = (...stylesheets: Array<StyleSheetType>) => {
   }, {})
 }
 
-const mergeStyle = (...styles: Array<Style>) => {
+const mergeStyle = (...styles) => {
   return flatten(styles).filter(style => style != null)
 }
 
@@ -45,7 +39,7 @@ const acceptedClassNames = [
   FS_HIDE_CLASS
 ]
 
-const css = (...args: Array<mixed>) => {
+const css = (...args) => {
   const [ classNames, styles ] = partition(args, isString)
 
   classNames.forEach(className => warning(

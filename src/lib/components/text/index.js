@@ -1,30 +1,12 @@
-/* global Style */
-// @flow
 const React = require('react')
+const PropTypes = require('prop-types')
 
+const CustomPropTypes = require('../../helpers/prop-types')
 const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { css } = require('../../css')
 const styleSheet = require('./style.css')
 
-type TextProps = {
-  children: React.Node,
-  style?: Style,
-  element: React.ElementType,
-  nonsensitive?: boolean,
-  size:
-    | 'largeVi'
-    | 'largeV'
-    | 'largeIv'
-    | 'largeIii'
-    | 'largeIi'
-    | 'largeI'
-    | 'regular'
-    | 'smallI'
-    | 'smallIi',
-  rest?: Array<mixed>
-}
-
-const Text = (props: TextProps) => {
+const Text = props => {
   const { style, size, children, element: Component, nonsensitive, ...rest } = props
 
   return (
@@ -32,6 +14,24 @@ const Text = (props: TextProps) => {
       {children}
     </Component>
   )
+}
+
+Text.propTypes = {
+  children: PropTypes.node,
+  style: CustomPropTypes.style,
+  element: CustomPropTypes.component,
+  nonsensitive: PropTypes.bool,
+  size: PropTypes.oneOf([
+    'largeVi',
+    'largeV',
+    'largeIv',
+    'largeIii',
+    'largeIi',
+    'largeI',
+    'regular',
+    'smallI',
+    'smallIi'
+  ])
 }
 
 Text.defaultProps = {

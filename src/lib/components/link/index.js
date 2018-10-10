@@ -1,25 +1,13 @@
-/* global Style */
-// @flow
 const React = require('react')
+const PropTypes = require('prop-types')
 
+const CustomPropTypes = require('../../helpers/prop-types')
 const defaultStyle = require('./style.css')
 const { mergeStyle } = require('../../css')
 const InlineAction = require('../inline-action')
 const Icon = require('../icon')
 
-type Props = {
-  children: React.Node,
-  Component: React.ElementType,
-  href: string,
-  inline?: boolean,
-  disabled?: boolean,
-  external?: boolean,
-  subtle?: boolean,
-  style: Style,
-  rest?: Array<mixed>
-}
-
-const Link = (props: Props) => {
+const Link = props => {
   const {
     children,
     Component,
@@ -50,6 +38,17 @@ const Link = (props: Props) => {
       )}
     </InlineAction>
   )
+}
+
+Link.propTypes = {
+  children: PropTypes.node.isRequired,
+  Component: CustomPropTypes.component,
+  href: PropTypes.string.isRequired,
+  inline: PropTypes.bool,
+  disabled: PropTypes.bool,
+  external: PropTypes.bool,
+  subtle: PropTypes.bool,
+  style: CustomPropTypes.style
 }
 
 Link.defaultProps = {

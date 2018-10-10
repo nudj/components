@@ -1,4 +1,3 @@
-// @flow
 import React from 'react'
 import dedent from 'dedent'
 import { Page } from 'catalog'
@@ -7,11 +6,7 @@ import Pill from '../../../../lib/components/pill'
 import PillGroup from '../../../../lib/components/pill-group'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
 import style from './style.css'
-
-/**
- * NOTE: using import here instead of require makes flow blow up due to destructuring
- */
-const { css } = require('../../../../lib/css')
+import { css } from '../../../../lib/css'
 
 const PillDocumentation = () => {
   return (

@@ -1,27 +1,10 @@
-// @flow
 const React = require('react')
+const PropTypes = require('prop-types')
 
 const { mergeStyleSheets, css } = require('../../css')
 const defaultStyleSheet = require('./style.css')
 
-type StyleSheetType = {
-  root?: string,
-  label?: string,
-  requiredNotice?: string,
-  description?: string,
-  inputContainer?: string
-}
-
-type InputProps = {
-  htmlFor?: string,
-  label: string,
-  required?: boolean,
-  styleSheet: StyleSheetType,
-  children: React.Node,
-  description?: React.Node
-}
-
-const InputField = (props: InputProps) => {
+const InputField = props => {
   const { label, required, styleSheet, description, htmlFor, children } = props
   const style = mergeStyleSheets(defaultStyleSheet, styleSheet)
 
@@ -43,6 +26,21 @@ const InputField = (props: InputProps) => {
       <div className={css(style.inputContainer)}>{children}</div>
     </div>
   )
+}
+
+InputField.propTypes = {
+  htmlFor: PropTypes.string,
+  label: PropTypes.string,
+  required: PropTypes.bool,
+  styleSheet: PropTypes.shape({
+    root: PropTypes.string,
+    label: PropTypes.string,
+    requiredNotice: PropTypes.string,
+    description: PropTypes.string,
+    inputContainer: PropTypes.string
+  }),
+  children: PropTypes.node.isRequired,
+  description: PropTypes.node
 }
 
 InputField.defaultProps = {

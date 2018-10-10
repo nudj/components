@@ -1,23 +1,12 @@
-// @flow
 const React = require('react')
+const PropTypes = require('prop-types')
 
+const CustomPropTypes = require('../../helpers/prop-types')
 const { css, mergeStyleSheets } = require('../../css')
 const defaultStyleSheet = require('./style.css')
 const Pill = require('../pill')
 
-type StyleSheet = {
-  root?: Object,
-  pill?: Object,
-}
-
-type PillProps = {
-  volume?: 'murmur' | 'whisper',
-  styleSheet: StyleSheet,
-  values: Array<React.Node>,
-  rest?: Array<mixed>
-}
-
-const PillGroup = ({ volume, values, styleSheet, ...rest }: PillProps) => {
+const PillGroup = ({ volume, values, styleSheet, ...rest }) => {
   const style = mergeStyleSheets(defaultStyleSheet, styleSheet)
 
   return (
@@ -29,6 +18,15 @@ const PillGroup = ({ volume, values, styleSheet, ...rest }: PillProps) => {
       ))}
     </div>
   )
+}
+
+PillGroup.propTypes = {
+  volume: PropTypes.oneOf(['murmur', 'whisper']),
+  styleSheet: PropTypes.shape({
+    root: CustomPropTypes.style,
+    pill: CustomPropTypes.style
+  }),
+  values: PropTypes.arrayOf(PropTypes.node)
 }
 
 PillGroup.defaultProps = {

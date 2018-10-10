@@ -1,43 +1,12 @@
-// @flow
 const React = require('react')
+const PropTypes = require('prop-types')
 
+const CustomPropTypes = require('../../helpers/prop-types')
 const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { mergeStyleSheets, css } = require('../../css')
 const defaultStyleSheet = require('./style.css')
 
-type StyleSheetType = {
-  root?: string,
-  input?: string,
-  labelContainer?: string,
-  icon?: string,
-  iconBox?: string,
-  iconCheckmark?: string,
-  iconCheckmarkUnchecked?: string,
-  iconCheckmarkChecked?: string,
-  label?: string
-}
-
-type HandlerArgs = {
-  name: string,
-  value: string,
-  checked: boolean,
-  preventDefault: Function,
-  stopPropagation: Function
-}
-
-type RadioButtonProps = {
-  styleSheet: StyleSheetType,
-  checked: boolean,
-  Wrapper: React.ElementType,
-  onChange: HandlerArgs => mixed,
-  id: string,
-  name: string,
-  value: string,
-  label: string,
-  nonsensitive?: boolean
-}
-
-const RadioButton = (props: RadioButtonProps) => {
+const RadioButton = props => {
   const {
     styleSheet,
     label,
@@ -93,6 +62,28 @@ const RadioButton = (props: RadioButtonProps) => {
       </label>
     </Wrapper>
   )
+}
+
+RadioButton.propTypes = {
+  styleSheet: PropTypes.shape({
+    root: PropTypes.string,
+    input: PropTypes.string,
+    labelContainer: PropTypes.string,
+    icon: PropTypes.string,
+    iconBox: PropTypes.string,
+    iconCheckmark: PropTypes.string,
+    iconCheckmarkUnchecked: PropTypes.string,
+    iconCheckmarkChecked: PropTypes.string,
+    label: PropTypes.string
+  }),
+  checked: PropTypes.bool,
+  Wrapper: CustomPropTypes.component,
+  onChange: PropTypes.func,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  value: PropTypes.string,
+  label: PropTypes.string,
+  nonsensitive: PropTypes.bool
 }
 
 RadioButton.defaultProps = {

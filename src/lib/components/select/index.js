@@ -1,40 +1,14 @@
-// @flow
 const React = require('react')
+const PropTypes = require('prop-types')
 
 const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { mergeStyleSheets, css } = require('../../css')
 const Icon = require('../icon')
 const defaultStyleSheet = require('./style.css')
 
-type StyleSheetType = {
-  root?: string,
-  select?: string,
-  chevron?: string
-}
+const noopHandler = args => {}
 
-type SelectProps = {
-  id: string,
-  name: string,
-  value?: string,
-  onChange: Function,
-  onBlur: Function,
-  onFocus: Function,
-  required?: boolean,
-  styleSheet: StyleSheetType,
-  children: React.ChildrenArray<React.Element<'option'>>,
-  nonsensitive?: boolean
-}
-
-type HandlerArgs = {
-  name: string,
-  value: string,
-  preventDefault: Function,
-  stopPropagation: Function
-}
-
-const noopHandler = (args: HandlerArgs) => {}
-
-const Select = (props: SelectProps) => {
+const Select = props => {
   const {
     id,
     name,
@@ -77,6 +51,23 @@ const Select = (props: SelectProps) => {
       <Icon name='chevron' style={style.chevron} />
     </div>
   )
+}
+
+Select.propTypes = {
+  id: PropTypes.string,
+  name: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
+  required: PropTypes.bool,
+  styleSheet: PropTypes.shape({
+    root: PropTypes.string,
+    select: PropTypes.string,
+    chevron: PropTypes.string
+  }),
+  children: PropTypes.object,
+  nonsensitive: PropTypes.bool
 }
 
 Select.defaultProps = {

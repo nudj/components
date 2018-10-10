@@ -1,4 +1,5 @@
 const React = require('react')
+const PropTypes = require('prop-types')
 
 const CustomPropTypes = require('../../helpers/prop-types')
 const RadioGroup = require('../radio-group')
@@ -18,7 +19,7 @@ RadioBlockGroup.defaultProps = {
 }
 
 RadioBlockGroup.propTypes = {
-  styles: CustomPropTypes.style
+  styles: PropTypes.objectOf(CustomPropTypes.style)
 }
 
 module.exports = RadioBlockGroup

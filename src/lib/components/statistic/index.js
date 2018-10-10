@@ -1,5 +1,5 @@
-// @flow
 const React = require('react')
+const PropTypes = require('prop-types')
 
 const { FS_SHOW } = require('../../constants')
 const { css, mergeStyleSheets } = require('../../css')
@@ -7,25 +7,6 @@ const mss = require('../../css/modifiers.css')
 const defaultStyleSheet = require('./style.css')
 const Icon = require('../icon')
 const Text = require('../text')
-
-type StyleSheet = {
-  root?: Object,
-  value?: Object,
-  positive?: Object,
-  negative?: Object,
-  icon?: Object,
-  label?: Object,
-}
-
-type Props = {
-  value: React.Node,
-  label: React.Node,
-  direction?: 'asc' | 'desc',
-  correlation?: 'positive' | 'negative',
-  comparator?: string,
-  styleSheet: StyleSheet,
-  nonsensitive?: boolean
-}
 
 const getDirectionIcon = (direction, style) => {
   switch (direction) {
@@ -38,7 +19,7 @@ const getDirectionIcon = (direction, style) => {
   }
 }
 
-const Statistic = (props: Props) => {
+const Statistic = props => {
   const {
     value,
     label,
@@ -75,6 +56,23 @@ const Statistic = (props: Props) => {
       )}
     </div>
   )
+}
+
+Statistic.propTypes = {
+  value: PropTypes.node,
+  label: PropTypes.node,
+  direction: PropTypes.oneOf(['asc', 'desc']),
+  correlation: PropTypes.oneOf(['positive', 'negative']),
+  comparator: PropTypes.string,
+  styleSheet: PropTypes.shape({
+    root: PropTypes.object,
+    value: PropTypes.object,
+    positive: PropTypes.object,
+    negative: PropTypes.object,
+    icon: PropTypes.object,
+    label: PropTypes.object
+  }),
+  nonsensitive: PropTypes.bool
 }
 
 Statistic.defaultProps = {

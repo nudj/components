@@ -1,42 +1,17 @@
-/* global Style, HTMLElement */
-// @flow
 const React = require('react')
 const ReactModal = require('react-modal')
+const PropTypes = require('prop-types')
 
+const CustomPropTypes = require('../../helpers/prop-types')
 const { css } = require('../../css')
 const defaultStyle = require('./style.css')
 const cardStyle = require('../card/style.css')
-
-type ModalProps = {
-  children: React.Node,
-  isOpen: boolean,
-  appElement: string,
-  onAfterOpen?: () => void,
-  onRequestClose?: () => void,
-  closeTimeoutMS?: Number,
-  contentLabel?: string,
-  portalStyle?: Style,
-  overlayStyle?: Style,
-  style?: Style,
-  bodyOpenStyle?: Style,
-  ariaHideApp?: boolean,
-  shouldFocusAfterRender?: boolean,
-  shouldCloseOnOverlayClick?: boolean,
-  shouldCloseOnEsc?: boolean,
-  shouldReturnFocusAfterClose?: boolean,
-  role?: string,
-  parentSelector?: () => HTMLElement,
-  aria?: {
-    labelledby: string,
-    describedby: string
-  }
-}
 
 /**
  * TODO: Remove `ariaHideApp={false}` until
  * https://github.com/reactjs/react-modal/issues/580 is resolved
  */
-const Modal = (props: ModalProps) => {
+const Modal = props => {
   const {
     children,
     isOpen,
@@ -80,6 +55,31 @@ const Modal = (props: ModalProps) => {
       {children}
     </ReactModal>
   )
+}
+
+Modal.propTypes = {
+  children: PropTypes.node,
+  isOpen: PropTypes.bool,
+  appElement: PropTypes.string,
+  onAfterOpen: PropTypes.func,
+  onRequestClose: PropTypes.func,
+  closeTimeoutMS: PropTypes.number,
+  contentLabel: PropTypes.string,
+  portalStyle: CustomPropTypes.style,
+  overlayStyle: CustomPropTypes.style,
+  style: CustomPropTypes.style,
+  bodyOpenStyle: CustomPropTypes.style,
+  ariaHideApp: PropTypes.bool,
+  shouldFocusAfterRender: PropTypes.bool,
+  shouldCloseOnOverlayClick: PropTypes.bool,
+  shouldCloseOnEsc: PropTypes.bool,
+  shouldReturnFocusAfterClose: PropTypes.bool,
+  role: PropTypes.string,
+  parentSelector: PropTypes.func,
+  aria: PropTypes.shape({
+    labelledby: PropTypes.string,
+    describedby: PropTypes.string
+  })
 }
 
 module.exports = Modal

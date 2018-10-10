@@ -1,42 +1,12 @@
-// @flow
 const React = require('react')
+const PropTypes = require('prop-types')
 
+const CustomPropTypes = require('../../helpers/prop-types')
 const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { css } = require('../../css')
 const RadioButton = require('../radio-button')
 
-type ChildPropTypes = {
-  value: string,
-  label: string
-}
-
-type RadioButtonClassList = {
-  root?: string,
-  radioButton?: string,
-  wrapper?: string,
-  label?: string
-}
-
-type HandlerArgs = {
-  name: string,
-  value: string,
-  preventDefault: Function,
-  stopPropagation: Function
-}
-
-type RadioGroupPropTypes = {
-  Input: React.ElementType,
-  required?: boolean,
-  radioButtonStyleSheet: RadioButtonClassList,
-  children: Function => React.Node,
-  onChange: HandlerArgs => mixed,
-  value: string,
-  styles?: Object,
-  name: string,
-  nonsensitive?: boolean
-}
-
-const RadioGroup = (props: RadioGroupPropTypes) => {
+const RadioGroup = props => {
   const {
     Input,
     required,
@@ -53,10 +23,6 @@ const RadioGroup = (props: RadioGroupPropTypes) => {
     value,
     preventDefault,
     stopPropagation
-  }: {
-    value: string,
-    preventDefault: Function,
-    stopPropagation: Function
   }) => {
     onChange({
       name,
@@ -69,7 +35,7 @@ const RadioGroup = (props: RadioGroupPropTypes) => {
   return (
     <div className={css(!nonsensitive && FS_HIDE_CLASS, styles)}>
       {children &&
-        children((childProps: ChildPropTypes) => {
+        children(childProps => {
           const checked = value === childProps.value
 
           return (
@@ -87,6 +53,23 @@ const RadioGroup = (props: RadioGroupPropTypes) => {
         })}
     </div>
   )
+}
+
+RadioGroup.propTypes = {
+  Input: CustomPropTypes.component,
+  required: PropTypes.bool,
+  radioButtonStyleSheet: PropTypes.shape({
+    root: PropTypes.string,
+    radioButton: PropTypes.string,
+    wrapper: PropTypes.string,
+    label: PropTypes.string
+  }),
+  children: PropTypes.func,
+  onChange: PropTypes.func,
+  value: PropTypes.string,
+  styles: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  name: PropTypes.string,
+  nonsensitive: PropTypes.bool
 }
 
 RadioGroup.defaultProps = {

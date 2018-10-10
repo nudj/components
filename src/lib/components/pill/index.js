@@ -1,20 +1,12 @@
-/* global Style */
-// @flow
 const React = require('react')
+const PropTypes = require('prop-types')
 
+const CustomPropTypes = require('../../helpers/prop-types')
 const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { css } = require('../../css')
 const styleSheet = require('./style.css')
 
-type PillProps = {
-  volume: 'murmur' | 'whisper',
-  children: React.Node,
-  style: Style,
-  rest?: Array<mixed>,
-  nonsensitive?: boolean
-}
-
-const Pill = (props: PillProps) => {
+const Pill = props => {
   const { volume, children, style, nonsensitive, ...rest } = props
 
   return (
@@ -22,6 +14,13 @@ const Pill = (props: PillProps) => {
       {children}
     </span>
   )
+}
+
+Pill.propTypes = {
+  volume: PropTypes.oneOf(['murmur', 'whisper']),
+  children: PropTypes.node,
+  style: CustomPropTypes.style,
+  nonsensitive: PropTypes.bool
 }
 
 Pill.defaultProps = {

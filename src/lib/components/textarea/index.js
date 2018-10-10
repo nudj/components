@@ -1,48 +1,17 @@
-// @flow
 const React = require('react')
 const ReactTextareaAutosize = require('react-textarea-autosize')
+const PropTypes = require('prop-types')
 
+const CustomPropTypes = require('../../helpers/prop-types')
 const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { css, mergeStyleSheets } = require('../../css')
 const defaultStylesheet = require('./style.css')
 
 const TextareaAutosize = ReactTextareaAutosize.default || ReactTextareaAutosize
 
-type StyleSheetType = {
-  root?: string,
-  error?: string,
-  input?: string,
-  inputError?: string
-}
+const noopHandler = args => {}
 
-type HandlerArgs = {
-  name: string,
-  value: string,
-  preventDefault: Function,
-  stopPropagation: Function
-}
-
-type TextareaProps = {
-  id: string,
-  Wrapper: React.ElementType,
-  ErrorWrapper: React.ElementType,
-  onChange: HandlerArgs => mixed,
-  onBlur: HandlerArgs => mixed,
-  onFocus: HandlerArgs => mixed,
-  error?: string,
-  required?: boolean,
-  name: string,
-  styleSheet: StyleSheetType,
-  placeholder?: string,
-  value?: string,
-  autosize?: boolean,
-  rest?: Array<mixed>,
-  nonsensitive?: boolean
-}
-
-const noopHandler = (args: HandlerArgs) => {}
-
-const Textarea = (props: TextareaProps) => {
+const Textarea = props => {
   const {
     id,
     name,
@@ -102,6 +71,29 @@ const Textarea = (props: TextareaProps) => {
       {error ? errorSection() : null}
     </Wrapper>
   )
+}
+
+Textarea.propTypes = {
+  id: PropTypes.string,
+  Wrapper: CustomPropTypes.component,
+  ErrorWrapper: CustomPropTypes.component,
+  onChange: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired,
+  onFocus: PropTypes.func.isRequired,
+  error: PropTypes.string,
+  required: PropTypes.bool,
+  name: PropTypes.string,
+  styleSheet: PropTypes.shape({
+    root: PropTypes.string,
+    error: PropTypes.string,
+    input: PropTypes.string,
+    inputError: PropTypes.string
+  }),
+  placeholder: PropTypes.string,
+  value: PropTypes.string,
+  autosize: PropTypes.bool,
+  rest: PropTypes.array,
+  nonsensitive: PropTypes.bool
 }
 
 Textarea.defaultProps = {

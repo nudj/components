@@ -1,4 +1,3 @@
-// @flow
 import React from 'react'
 import dedent from 'dedent'
 import { Page } from 'catalog'
@@ -15,11 +14,7 @@ import EmailButton from '../../../../lib/components/email-button'
 import LinkedinButton from '../../../../lib/components/linkedin-button'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
 import style from './style.css'
-
-/**
- * NOTE: using import here instead of require makes flow blow up due to destructuring
- */
-const { css } = require('../../../../lib/css')
+import { css } from '../../../../lib/css'
 
 const ButtonDocumentation = () => (
   <Page>

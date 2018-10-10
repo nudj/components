@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from 'react'
 import dedent from 'dedent'
 import { Page } from 'catalog'
@@ -20,43 +19,8 @@ import SelectablePillGroup from '../../../../lib/components/selectable-pill-grou
 import Textarea from '../../../../lib/components/textarea'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
 
-/**
- * NOTE: using import here instead of require makes flow blow up due to destructuring
- */
-// const { css } = require('../../../../lib/css')
-
-type Props = {}
-
-type State = {
-  input: string,
-  error: string,
-  iconInput: string,
-  integerInput: string,
-  checkbox: boolean,
-  indeterminateCheckboxChecked: boolean,
-  indeterminateCheckboxIndeterminate: boolean,
-  inputField: string,
-  select: string,
-  checkboxGroup: Array<string>,
-  radio: boolean,
-  radioGroup: string,
-  blockGroup: string,
-  segmentedControl: string,
-  selectablePill: boolean,
-  selectablePillGroup: Array<string>,
-  textarea: string,
-  copied: boolean
-}
-
-export default class FormDocumentation extends Component<Props, State> {
-  handleChange: ({ name: string, value: string }) => void
-  handleArrayChange: ({ name: string, values: Array<string> }) => void
-  handleToggle: ({ name: string, value: boolean }) => void
-  handleCopy: () => void
-  handleCopyStringBlur: () => void
-  handleIndeterminateCheckboxChange: () => void
-
-  constructor (props: Object) {
+export default class FormDocumentation extends Component {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -81,7 +45,7 @@ export default class FormDocumentation extends Component<Props, State> {
     }
   }
 
-  handleChange = ({ name, value }: { name: string, value: string }) => {
+  handleChange = ({ name, value }) => {
     this.setState({
       [name]: value
     })
@@ -90,16 +54,13 @@ export default class FormDocumentation extends Component<Props, State> {
   handleArrayChange = ({
     name,
     values
-  }: {
-    name: string,
-    values: Array<string>
   }) => {
     this.setState({
       [name]: values
     })
   }
 
-  handleToggle = ({ name, checked }: { name: string, checked: boolean }) => {
+  handleToggle = ({ name, checked }) => {
     this.setState({
       [name]: checked
     })
@@ -117,10 +78,6 @@ export default class FormDocumentation extends Component<Props, State> {
     name,
     checked,
     indeterminate
-  }: {
-    name: string,
-    checked: boolean,
-    indeterminate: boolean
   }) => {
     this.setState({
       [name]: checked,

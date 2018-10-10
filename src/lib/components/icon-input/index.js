@@ -1,25 +1,11 @@
-// @flow
 const React = require('react')
+const PropTypes = require('prop-types')
 
+const CustomPropTypes = require('../../helpers/prop-types')
 const { css, mergeStyleSheets } = require('../../css')
 const defaultStyleSheet = require('./style.css')
 const Icon = require('../icon')
 const Input = require('../input')
-
-type StyleSheet = {
-  root?: Object,
-  icon?: Object,
-  input?: Object
-}
-
-type Props = {
-  styleSheet: StyleSheet,
-  inputStyleSheet: Object,
-  iconName: string,
-  id: string,
-  name: string,
-  rest?: Array<mixed>
-}
 
 const IconInput = ({
   styleSheet,
@@ -28,7 +14,7 @@ const IconInput = ({
   inputStyleSheet,
   name,
   ...rest
-}: Props) => {
+}) => {
   const style = mergeStyleSheets(defaultStyleSheet, styleSheet)
   const inputStyle = mergeStyleSheets({ input: style.input }, inputStyleSheet)
 
@@ -38,6 +24,18 @@ const IconInput = ({
       <Input {...rest} name={name} id={id} styleSheet={inputStyle} />
     </div>
   )
+}
+
+IconInput.propTypes = {
+  styleSheet: PropTypes.shape({
+    root: CustomPropTypes.style,
+    icon: CustomPropTypes.style,
+    input: CustomPropTypes.style
+  }),
+  inputStyleSheet: PropTypes.object,
+  iconName: PropTypes.string,
+  id: PropTypes.string,
+  name: PropTypes.string
 }
 
 IconInput.defaultProps = {

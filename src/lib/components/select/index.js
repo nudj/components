@@ -1,12 +1,11 @@
 const React = require('react')
 const PropTypes = require('prop-types')
 
+const { noop } = require('@nudj/library')
 const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { mergeStyleSheets, css } = require('../../css')
 const Icon = require('../icon')
 const defaultStyleSheet = require('./style.css')
-
-const noopHandler = args => {}
 
 const Select = props => {
   const {
@@ -72,9 +71,9 @@ Select.propTypes = {
 
 Select.defaultProps = {
   styleSheet: {},
-  onChange: noopHandler,
-  onBlur: noopHandler,
-  onFocus: noopHandler,
+  onChange: noop,
+  onBlur: noop,
+  onFocus: noop,
   nonsensitive: FS_SHOW
 }
 

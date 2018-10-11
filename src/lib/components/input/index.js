@@ -1,6 +1,7 @@
 const React = require('react')
 const PropTypes = require('prop-types')
 
+const { noop } = require('@nudj/library')
 const CustomPropTypes = require('../../helpers/prop-types')
 const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { css, mergeStyleSheets } = require('../../css')
@@ -8,18 +9,16 @@ const Icon = require('../icon')
 const ButtonContainer = require('../button-container')
 const defaultStylesheet = require('./style.css')
 
-const noopHandler = args => {}
-
 class Input extends React.Component {
   static defaultProps = {
     type: 'text',
     value: '',
     styleSheet: {},
-    onChange: noopHandler,
-    onBlur: noopHandler,
-    onFocus: noopHandler,
-    onKeyDown: noopHandler,
-    onKeyUp: noopHandler,
+    onChange: noop,
+    onBlur: noop,
+    onFocus: noop,
+    onKeyDown: noop,
+    onKeyUp: noop,
     Wrapper: 'div',
     ErrorWrapper: 'div',
     disabled: false,

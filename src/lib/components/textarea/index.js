@@ -2,14 +2,13 @@ const React = require('react')
 const ReactTextareaAutosize = require('react-textarea-autosize')
 const PropTypes = require('prop-types')
 
+const { noop } = require('@nudj/library')
 const CustomPropTypes = require('../../helpers/prop-types')
 const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { css, mergeStyleSheets } = require('../../css')
 const defaultStylesheet = require('./style.css')
 
 const TextareaAutosize = ReactTextareaAutosize.default || ReactTextareaAutosize
-
-const noopHandler = args => {}
 
 const Textarea = props => {
   const {
@@ -98,9 +97,9 @@ Textarea.propTypes = {
 
 Textarea.defaultProps = {
   styleSheet: {},
-  onChange: noopHandler,
-  onBlur: noopHandler,
-  onFocus: noopHandler,
+  onChange: noop,
+  onBlur: noop,
+  onFocus: noop,
   Wrapper: 'div',
   ErrorWrapper: 'div',
   nonsensitive: FS_SHOW

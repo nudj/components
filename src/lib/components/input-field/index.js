@@ -33,11 +33,11 @@ InputField.propTypes = {
   label: PropTypes.string,
   required: PropTypes.bool,
   styleSheet: PropTypes.shape({
-    root: PropTypes.string,
-    label: PropTypes.string,
-    requiredNotice: PropTypes.string,
-    description: PropTypes.string,
-    inputContainer: PropTypes.string
+    root: PropTypes.object,
+    label: PropTypes.object,
+    requiredNotice: PropTypes.object,
+    description: PropTypes.object,
+    inputContainer: PropTypes.object
   }),
   children: PropTypes.node.isRequired,
   description: PropTypes.node

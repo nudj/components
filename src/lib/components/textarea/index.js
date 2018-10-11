@@ -84,10 +84,10 @@ Textarea.propTypes = {
   required: PropTypes.bool,
   name: PropTypes.string,
   styleSheet: PropTypes.shape({
-    root: PropTypes.string,
-    error: PropTypes.string,
-    input: PropTypes.string,
-    inputError: PropTypes.string
+    root: PropTypes.object,
+    error: PropTypes.object,
+    input: PropTypes.object,
+    inputError: PropTypes.object
   }),
   placeholder: PropTypes.string,
   value: PropTypes.string,

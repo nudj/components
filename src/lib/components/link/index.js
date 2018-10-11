@@ -54,7 +54,8 @@ Link.propTypes = {
 Link.defaultProps = {
   volume: 'murmur',
   Component: 'a',
-  style: {}
+  style: {},
+  href: ''
 }
 
 module.exports = Link

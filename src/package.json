@@ -21,7 +21,7 @@
     "parser": "babel-eslint"
   },
   "dependencies": {
-    "@nudj/library": "1.1.0",
+    "@nudj/library": "7.2.0",
     "aphrodite": "^1.2.0",
     "catalog": "3.4.0",
     "classnames": "^2.2.5",

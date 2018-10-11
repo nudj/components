@@ -19,7 +19,10 @@ RadioBlockGroup.defaultProps = {
 }
 
 RadioBlockGroup.propTypes = {
-  styles: PropTypes.objectOf(CustomPropTypes.style)
+  styles: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.objectOf(CustomPropTypes.style)
+  ])
 }
 
 module.exports = RadioBlockGroup

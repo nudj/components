@@ -59,10 +59,10 @@ RadioGroup.propTypes = {
   Input: CustomPropTypes.component,
   required: PropTypes.bool,
   radioButtonStyleSheet: PropTypes.shape({
-    root: PropTypes.string,
-    radioButton: PropTypes.string,
-    wrapper: PropTypes.string,
-    label: PropTypes.string
+    root: CustomPropTypes.style,
+    radioButton: CustomPropTypes.style,
+    wrapper: CustomPropTypes.style,
+    label: CustomPropTypes.style
   }),
   children: PropTypes.func,
   onChange: PropTypes.func,

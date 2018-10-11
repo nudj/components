@@ -34,7 +34,7 @@ class Input extends React.Component {
     onBlur: PropTypes.func,
     onFocus: PropTypes.func,
     onClear: PropTypes.func,
-    error: PropTypes.string,
+    error: PropTypes.bool,
     placeholder: PropTypes.string,
     value: PropTypes.string,
     required: PropTypes.bool,
@@ -43,10 +43,10 @@ class Input extends React.Component {
     tabIndex: PropTypes.number,
     name: PropTypes.string,
     styleSheet: PropTypes.shape({
-      root: PropTypes.object,
-      error: PropTypes.object,
-      input: PropTypes.object,
-      inputError: PropTypes.object
+      root: CustomPropTypes.style,
+      error: CustomPropTypes.style,
+      input: CustomPropTypes.style,
+      inputError: CustomPropTypes.style
     })
   }
 

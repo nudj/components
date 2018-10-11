@@ -65,7 +65,7 @@ Select.propTypes = {
     select: PropTypes.string,
     chevron: PropTypes.string
   }),
-  children: PropTypes.object,
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   nonsensitive: PropTypes.bool
 }
 

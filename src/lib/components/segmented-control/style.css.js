@@ -14,16 +14,16 @@ const styleSheet = StyleSheet.create({
       borderBottomRightRadius: 0
     },
     ':first-child label': {
-      borderTopLeftRadius: sizes.largeIi,
-      borderBottomLeftRadius: sizes.largeIi,
+      borderTopLeftRadius: sizes.smallIi,
+      borderBottomLeftRadius: sizes.smallIi,
       borderTopRightRadius: 0,
       borderBottomRightRadius: 0
     },
     ':last-child label': {
       borderTopLeftRadius: 0,
       borderBottomLeftRadius: 0,
-      borderTopRightRadius: sizes.largeIi,
-      borderBottomRightRadius: sizes.largeIi
+      borderTopRightRadius: sizes.smallIi,
+      borderBottomRightRadius: sizes.smallIi
     }
   },
   input: {
@@ -40,9 +40,7 @@ const styleSheet = StyleSheet.create({
     display: 'inline-block',
     fontWeight: typography.fontWeight.bold,
     paddingTop: sizes.smallIi,
-    paddingRight: sizes.largeI,
     paddingBottom: sizes.smallIi,
-    paddingLeft: sizes.largeI,
     textAlign: 'center',
     textDecoration: 'none',
     transition: 'backgroundColor 150ms',

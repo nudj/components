@@ -1,11 +1,11 @@
 const { merge } = require('@nudj/library')
 
-const { StyleSheet, colors, typography, sizes } = require('../../css')
+const { StyleSheet, colors, typography, sizes, utilities } = require('../../css')
 
-module.exports.buttonStyleSheet = StyleSheet.create({
+const buttonStyleSheet = StyleSheet.create({
   root: merge(typography.type.regular, {
     border: `1px solid`,
-    borderRadius: sizes.largeIi,
+    borderRadius: sizes.smallIi,
     cursor: 'default',
     display: 'inline-block',
     fontWeight: typography.fontWeight.bold,
@@ -16,6 +16,7 @@ module.exports.buttonStyleSheet = StyleSheet.create({
     textAlign: 'center',
     textDecoration: 'none',
     transition: 'backgroundColor 150ms',
+    boxShadow: utilities.boxShadow[20].narrow,
     ':active': {
       boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.1)'
     }
@@ -78,7 +79,7 @@ module.exports.buttonStyleSheet = StyleSheet.create({
   }
 })
 
-module.exports.linkStyleSheet = StyleSheet.create({
+const linkStyleSheet = StyleSheet.create({
   root: merge(typography.type.regular, {
     display: 'inline-block',
     fontWeight: typography.fontWeight.bold,
@@ -147,3 +148,8 @@ module.exports.linkStyleSheet = StyleSheet.create({
     opacity: 0.25
   }
 })
+
+module.exports = {
+  linkStyleSheet,
+  buttonStyleSheet
+}

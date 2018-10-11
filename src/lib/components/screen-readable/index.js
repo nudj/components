@@ -11,7 +11,7 @@ const ScreenReadable = ({ children }) => (
 )
 
 ScreenReadable.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node
 }
 
 module.exports = ScreenReadable

@@ -44,10 +44,10 @@ class Input extends React.Component {
     tabIndex: PropTypes.number,
     name: PropTypes.string,
     styleSheet: PropTypes.shape({
-      root: CustomPropTypes.style,
-      error: CustomPropTypes.style,
-      input: CustomPropTypes.style,
-      inputError: CustomPropTypes.style
+      root: PropTypes.object,
+      error: PropTypes.object,
+      input: PropTypes.object,
+      inputError: PropTypes.object
     })
   }
 

@@ -102,7 +102,7 @@ class CheckboxListItem extends React.Component {
   }
 }
 
-const ListMultiSelect = (props) => {
+const CheckboxList = (props) => {
   const { joined, children, style, disabled, ...rest } = props
 
   return (
@@ -120,4 +120,4 @@ const ListMultiSelect = (props) => {
   )
 }
 
-module.exports = ListMultiSelect
+module.exports = CheckboxList

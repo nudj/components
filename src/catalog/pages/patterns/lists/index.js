@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import dedent from 'dedent'
 import { Page } from 'catalog'
 
-import ListMultiSelect from '../../../../lib/components/list-multiselect'
+import CheckboxList from '../../../../lib/components/checkbox-list'
 import ReactCodeSpecimen from '../../../components/ReactCodeSpecimen'
 
 const data = [{
@@ -76,18 +76,18 @@ export default class FormDocumentation extends Component {
       <Page>
         <h3>Selectable Lists</h3>
         <p>
-          Use the ListMultiSelect component when the user should be able to
+          Use the CheckboxList component when the user should be able to
           select one or more of the list items to work on or with. Think mass
           deletion, or mass sharing.
         </p>
         <p>
-          By default the ListMultiSelect component renders each item joined.
+          By default the CheckboxList component renders each item joined.
           Use this view when the children have one or less actions that can be
           performed on them when clicked.
         </p>
         <ReactCodeSpecimen
           code={dedent`
-            <ListMultiSelect
+            <CheckboxList
               name='people'
               onChange={this.handleArrayChange}
               values={selectedPeople}
@@ -99,10 +99,10 @@ export default class FormDocumentation extends Component {
                 value: d.id,
                 children: <ExampleListItem {...d} />
               }))}
-            </ListMultiSelect>
+            </CheckboxList>
           `}
         >
-          <ListMultiSelect
+          <CheckboxList
             name='listmultiselectJoined'
             onChange={this.handleArrayChange}
             values={listmultiselectJoined}
@@ -114,7 +114,7 @@ export default class FormDocumentation extends Component {
               value: `${i}-joined`,
               children: <ExampleListItem {...d} />
             }))}
-          </ListMultiSelect>
+          </CheckboxList>
         </ReactCodeSpecimen>
         <h4>Separate Items</h4>
         <p>
@@ -125,7 +125,7 @@ export default class FormDocumentation extends Component {
         </p>
         <ReactCodeSpecimen
           code={dedent`
-            <ListMultiSelect
+            <CheckboxList
               name='people'
               onChange={this.handleArrayChange}
               values={selectedPeople}
@@ -137,10 +137,10 @@ export default class FormDocumentation extends Component {
                 value: d.id,
                 children: <ExampleListItem {...d} />
               }))}
-            </ListMultiSelect>
+            </CheckboxList>
           `}
         >
-          <ListMultiSelect
+          <CheckboxList
             name='listmultiselectSeparate'
             onChange={this.handleArrayChange}
             values={listmultiselectSeparate}
@@ -152,7 +152,7 @@ export default class FormDocumentation extends Component {
               value: `${i}-separate`,
               children: <ExampleListItem {...d} />
             }))}
-          </ListMultiSelect>
+          </CheckboxList>
         </ReactCodeSpecimen>
       </Page>
     )

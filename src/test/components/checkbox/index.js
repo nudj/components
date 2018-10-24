@@ -59,7 +59,8 @@ describe('Checkbox', () => {
         checked: event.target.checked,
         preventDefault: event.preventDefault,
         stopPropagation: event.stopPropagation,
-        indeterminate: false
+        indeterminate: false,
+        required: false
       })
     })
   })

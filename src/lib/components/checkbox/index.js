@@ -24,9 +24,10 @@ class Checkbox extends React.Component {
     id: PropTypes.string,
     name: PropTypes.string,
     value: PropTypes.string,
-    label: PropTypes.string,
+    label: PropTypes.oneOfType([ PropTypes.string, PropTypes.node ]),
     presentation: PropTypes.bool,
-    nonsensitive: PropTypes.bool
+    nonsensitive: PropTypes.bool,
+    required: PropTypes.bool
   }
 
   static defaultProps = {
@@ -63,6 +64,7 @@ class Checkbox extends React.Component {
       checked: event.target.checked,
       preventDefault: event.preventDefault,
       stopPropagation: event.stopPropagation,
+      required: false,
       indeterminate: false
     })
   }
@@ -79,7 +81,8 @@ class Checkbox extends React.Component {
       presentation,
       nonsensitive,
       indeterminate,
-      disabled
+      disabled,
+      required
     } = this.props
 
     const style = mergeStyleSheets(defaultStyleSheet, styleSheet)
@@ -102,6 +105,7 @@ class Checkbox extends React.Component {
           tabIndex={presentation ? -1 : 0}
           ref={el => { this.checkbox = el }}
           disabled={disabled}
+          required={required}
         />
         <label htmlFor={id} className={css(style.labelContainer)}>
           <svg className={css(style.icon)} viewBox='0 0 24 24'>

@@ -13,6 +13,12 @@ const StylePropType = (props, propName, componentName) => {
 const ComponentPropType = PropTypes.oneOfType([PropTypes.string, PropTypes.func])
 
 module.exports = {
+  ...PropTypes,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  date: PropTypes.instanceOf(Date),
+  integer: PropTypes.number,
+  function: PropTypes.func,
+  boolean: PropTypes.bool,
   style: StylePropType,
   component: ComponentPropType
 }

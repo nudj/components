@@ -6,9 +6,18 @@ const { FS_SHOW, FS_HIDE_CLASS } = require('../../constants')
 const { css } = require('../../css')
 const { buttonStyleSheet, linkStyleSheet } = require('./style.css')
 
+const contextToVolumeMap = {
+  primary: 'cheer',
+  secondary: 'murmur',
+  tertiary: 'yell',
+  success: 'shout',
+  danger: 'scream'
+}
+
 const InlineAction = props => {
   const {
     volume,
+    context,
     children,
     style,
     subtle,
@@ -18,6 +27,7 @@ const InlineAction = props => {
     ...rest
   } = props
 
+  const styleType = context ? contextToVolumeMap[context] : volume
   const styleSheet = subtle ? linkStyleSheet : buttonStyleSheet
 
   return (
@@ -27,7 +37,7 @@ const InlineAction = props => {
       className={css(
         !nonsensitive && FS_HIDE_CLASS,
         styleSheet.root,
-        styleSheet[volume],
+        styleSheet[styleType],
         disabled && styleSheet.disabled,
         style
       )}
@@ -39,6 +49,7 @@ const InlineAction = props => {
 
 InlineAction.propTypes = {
   volume: PropTypes.oneOf(['scream', 'yell', 'shout', 'cheer', 'murmur']).isRequired,
+  context: PropTypes.oneOf(['primary', 'secondary', 'tertiary', 'success', 'danger']),
   children: PropTypes.node.isRequired,
   style: CustomPropTypes.style,
   Component: CustomPropTypes.component,
